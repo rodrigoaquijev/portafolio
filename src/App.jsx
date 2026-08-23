@@ -14,7 +14,9 @@ import {
   Sun, 
   Moon, 
   Languages,
-  Sparkles
+  Figma,
+  Code2,
+  Bot
 } from 'lucide-react';
 
 const CONTENT = {
@@ -24,9 +26,16 @@ const CONTENT = {
     getInTouch: "Contactar",
     copied: "¡Copiado!",
     copyEmail: "Copiar Email",
+    trustLabel: "Diseñado para y colaborando con:",
+    stackSectionTitle: "Stack & Metodología",
     workSectionTitle: "Casos de Estudio",
     viewCase: "Explorar caso completo",
     
+    // Stack Categories
+    stackCat1: "Product Design Systems",
+    stackCat2: "Design Engineering",
+    stackCat3: "AI-Augmented Prototyping",
+
     // Caso 1: BBVA
     bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
     bbvaTitle: "Cómo diseñar con conversión y compliance bancario.",
@@ -48,9 +57,7 @@ const CONTENT = {
     emailTileSub: "rodrigoaq996@gmail.com",
     linkedinTileLabel: "Red Profesional",
     linkedinTileSub: "Conectar en LinkedIn",
-    cvTileLabel: "Currículum Vitae",
-    cvTileSub: "Descargar PDF (2026)",
-    alwaysOpen: "Disponible para proyectos"
+    cvTileLabel: "Currículum Vitae"
   },
   en: {
     role: "Product Designer & Design Engineer",
@@ -58,8 +65,15 @@ const CONTENT = {
     getInTouch: "Get in touch",
     copied: "Copied!",
     copyEmail: "Copy Email",
+    trustLabel: "Crafted for and collaborating with:",
+    stackSectionTitle: "Stack & Methodology",
     workSectionTitle: "Selected Works",
     viewCase: "Explore full case",
+
+    // Stack Categories
+    stackCat1: "Product Design Systems",
+    stackCat2: "Design Engineering",
+    stackCat3: "AI-Augmented Prototyping",
 
     // Caso 1: BBVA
     bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
@@ -82,9 +96,7 @@ const CONTENT = {
     emailTileSub: "rodrigoaq996@gmail.com",
     linkedinTileLabel: "Professional Network",
     linkedinTileSub: "Connect on LinkedIn",
-    cvTileLabel: "Curriculum Vitae",
-    cvTileSub: "Download PDF (2026)",
-    alwaysOpen: "Open for select projects"
+    cvTileLabel: "Curriculum Vitae"
   }
 };
 
@@ -195,7 +207,71 @@ export default function App() {
           </div>
         </section>
 
-        {/* 3. SECCIÓN EDITORIAL DE 3 CASOS */}
+        {/* 3. SOCIAL PROOF // LOGOS STRIP */}
+        <section className="trust-strip">
+          <span className="trust-label">{t.trustLabel}</span>
+          <div className="trust-logos">
+            <span className="trust-logo-item">BBVA PERÚ</span>
+            <span className="trust-logo-item">CENTRUM PUCP</span>
+            <span className="trust-logo-item">AMSTERDAM AGENCY</span>
+            <span className="trust-logo-item">UTOPIQ</span>
+          </div>
+        </section>
+
+        {/* 4. STACK TÉCNICO & AI PROTOTYPING */}
+        <section className="stack-section">
+          <h2 className="editorial-section-title" style={{ fontSize: '28px', marginBottom: '24px' }}>
+            {t.stackSectionTitle}
+          </h2>
+
+          <div className="stack-grid">
+            
+            {/* Cluster 1 */}
+            <div className="stack-card">
+              <span className="stack-category-title">
+                <Figma size={14} /> {t.stackCat1}
+              </span>
+              <div className="stack-tags-list">
+                <span className="stack-tag">Figma</span>
+                <span className="stack-tag">Design Systems</span>
+                <span className="stack-tag">Framer</span>
+                <span className="stack-tag">Adobe Creative Cloud</span>
+                <span className="stack-tag">Microcopy & UX Audit</span>
+              </div>
+            </div>
+
+            {/* Cluster 2 */}
+            <div className="stack-card">
+              <span className="stack-category-title">
+                <Code2 size={14} /> {t.stackCat2}
+              </span>
+              <div className="stack-tags-list">
+                <span className="stack-tag">React</span>
+                <span className="stack-tag">HTML5 / CSS Tokens</span>
+                <span className="stack-tag">Vite</span>
+                <span className="stack-tag">Salesforce Marketing Cloud</span>
+                <span className="stack-tag">Git / Vercel</span>
+              </div>
+            </div>
+
+            {/* Cluster 3 */}
+            <div className="stack-card">
+              <span className="stack-category-title">
+                <Bot size={14} /> {t.stackCat3}
+              </span>
+              <div className="stack-tags-list">
+                <span className="stack-tag">Claude Code</span>
+                <span className="stack-tag">Cursor</span>
+                <span className="stack-tag">Gemini Pro</span>
+                <span className="stack-tag">Prompt-to-UI Architecture</span>
+                <span className="stack-tag">AI Workflows</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* 5. SECCIÓN EDITORIAL DE 3 CASOS */}
         <section id="work">
           <h2 className="editorial-section-title">
             {t.workSectionTitle}
@@ -308,7 +384,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 4. PLAYGROUND GRID DE CONTACTO LÚDICO */}
+        {/* 6. PLAYGROUND GRID DE CONTACTO (CV DUAL ES / EN) */}
         <section className="playground-connect-section">
           <h2 className="editorial-section-title" style={{ fontSize: '28px', marginBottom: '24px' }}>
             {t.connectTitle}
@@ -319,10 +395,7 @@ export default function App() {
             {/* Tile Email */}
             <div className="connect-tile" onClick={handleCopyEmail}>
               <div className="tile-arrow"><Copy size={16} /></div>
-              <div>
-                <span className="tile-badge"><Sparkles size={11} /> {t.alwaysOpen}</span>
-                <div className="tile-icon-bubble"><Mail size={18} /></div>
-              </div>
+              <div className="tile-icon-bubble"><Mail size={18} /></div>
               <div>
                 <div className="tile-label">{t.emailTileLabel}</div>
                 <div className="tile-subtext">{copied ? t.copied : t.emailTileSub}</div>
@@ -344,15 +417,22 @@ export default function App() {
               </div>
             </a>
 
-            {/* Tile CV */}
-            <a href="#descargar-cv" className="connect-tile">
-              <div className="tile-arrow"><ArrowUpRight size={16} /></div>
+            {/* Tile CV Dual (ES / EN) */}
+            <div className="connect-tile">
+              <div className="tile-arrow"><FileText size={16} /></div>
               <div className="tile-icon-bubble"><FileText size={18} /></div>
               <div>
                 <div className="tile-label">{t.cvTileLabel}</div>
-                <div className="tile-subtext">{t.cvTileSub}</div>
+                <div className="cv-sub-links">
+                  <a href="/cv-es.pdf" target="_blank" rel="noreferrer" className="cv-pill-link">
+                    ES ↗
+                  </a>
+                  <a href="/cv-en.pdf" target="_blank" rel="noreferrer" className="cv-pill-link">
+                    EN ↗
+                  </a>
+                </div>
               </div>
-            </a>
+            </div>
 
           </div>
         </section>
@@ -365,7 +445,7 @@ export default function App() {
 
       </div>
 
-      {/* 5. APPLE LIQUID GLASS DOCK FLOTANTE CON REBOTE */}
+      {/* 7. APPLE LIQUID GLASS DOCK FLOTANTE CON REBOTE */}
       <nav className="floating-dock-container">
         <div className="floating-dock-liquid">
           <img 
