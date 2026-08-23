@@ -1,42 +1,48 @@
 /* ==========================================================================
-   THEME TOKENS: DUAL THEME (DARK / LIGHT) + KINETIC HUD
+   COLOR SYSTEM WITH PERSONALITY (NO PURE BLACK / NO PURE WHITE)
    ========================================================================== */
 :root[data-theme="dark"] {
-  --bg-deep: #08090C;
-  --bg-surface: #0E1117;
-  --bg-glass: rgba(14, 17, 23, 0.85);
+  --bg-deep: #0B1017;            /* Titanio grafito profundo con subtono azul */
+  --bg-surface: #121A24;         /* Superficie de consola mate */
+  --bg-glass: rgba(18, 26, 36, 0.82);
   --bg-hover: rgba(255, 255, 255, 0.05);
 
-  --text-pure: #F8FAFC;
-  --text-muted: #94A3B8;
-  --text-subtle: #475569;
+  --text-pure: #E6EEF8;          /* Platino frío */
+  --text-muted: #8CA0B8;         /* Acero suave */
+  --text-subtle: #4D5E72;        /* Grafito atenuado */
 
-  --accent-primary: #00E5FF;
-  --accent-rose: #FF2E74;
-  --accent-emerald: #10B981;
-  --border-subtle: rgba(255, 255, 255, 0.09);
-  --border-hover: rgba(255, 255, 255, 0.22);
-  --dock-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-  --hologram-glow: rgba(0, 229, 255, 0.25);
+  --accent-cyan: #00D2FF;        /* Cian fotónico */
+  --accent-iris: #818CF8;        /* Índigo holográfico */
+  --accent-rose: #FB7185;        /* Rosa reactor */
+  --accent-emerald: #34D399;     /* Esmeralda vivo */
+
+  --border-subtle: rgba(140, 160, 184, 0.12);
+  --border-hover: rgba(0, 210, 255, 0.35);
+  --dock-shadow: 0 20px 50px rgba(0, 5, 12, 0.7);
+  --particle-color: rgba(0, 210, 255, 0.25);
+  --particle-line: rgba(129, 140, 248, 0.08);
 }
 
 :root[data-theme="light"] {
-  --bg-deep: #F8F9FA;
-  --bg-surface: #FFFFFF;
-  --bg-glass: rgba(255, 255, 255, 0.88);
-  --bg-hover: rgba(0, 0, 0, 0.04);
+  --bg-deep: #E8EEF5;            /* Hielo arquitectónico con carácter nórdico */
+  --bg-surface: #F3F7FB;         /* Superficie aerodinámica luminosa */
+  --bg-glass: rgba(243, 247, 251, 0.88);
+  --bg-hover: rgba(15, 23, 42, 0.04);
 
-  --text-pure: #090A0D;
-  --text-muted: #525866;
-  --text-subtle: #99A0AE;
+  --text-pure: #131E2E;          /* Grafito noche con contraste limpio */
+  --text-muted: #4B5E76;         /* Pizarra técnica */
+  --text-subtle: #8A9CAE;        /* Gris bruma */
 
-  --accent-primary: #0066FF;
-  --accent-rose: #E11D48;
-  --accent-emerald: #059669;
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 0, 0, 0.2);
-  --dock-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
-  --hologram-glow: rgba(0, 102, 255, 0.15);
+  --accent-cyan: #0284C7;        /* Azul cobalto aero */
+  --accent-iris: #6366F1;        /* Índigo vibrante */
+  --accent-rose: #E11D48;        /* Carmesí editorial */
+  --accent-emerald: #059669;     /* Verde institucional */
+
+  --border-subtle: rgba(19, 30, 46, 0.1);
+  --border-hover: rgba(2, 132, 199, 0.4);
+  --dock-shadow: 0 20px 45px rgba(20, 35, 55, 0.12);
+  --particle-color: rgba(2, 132, 199, 0.3);
+  --particle-line: rgba(99, 102, 241, 0.1);
 }
 
 *, *::before, *::after {
@@ -54,7 +60,17 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   padding-bottom: 120px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Canvas de Partículas en Segundo Plano */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
 }
 
 a {
@@ -63,13 +79,15 @@ a {
 }
 
 .spatial-canvas {
-  max-width: 800px;
+  position: relative;
+  z-index: 10;
+  max-width: 820px;
   margin: 0 auto;
   padding: 48px 24px;
 }
 
 /* ==========================================================================
-   1. HUD METADATA & CONTROLS
+   1. HUD BAR
    ========================================================================== */
 .hud-status-bar {
   display: flex;
@@ -79,7 +97,7 @@ a {
   font-size: 11px;
   color: var(--text-subtle);
   letter-spacing: 0.5px;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border-subtle);
 }
@@ -137,7 +155,7 @@ a {
 }
 
 /* ==========================================================================
-   2. HERO PROFILE
+   2. PROFILE & BIO
    ========================================================================== */
 .profile-row {
   display: flex;
@@ -147,8 +165,8 @@ a {
 }
 
 .profile-avatar {
-  width: 54px;
-  height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 14px;
   object-fit: cover;
   border: 1px solid var(--border-subtle);
@@ -167,7 +185,7 @@ a {
 
 .spatial-intro {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1.45fr 1fr;
   gap: 36px;
   margin-bottom: 32px;
 }
@@ -201,7 +219,7 @@ a {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 48px;
+  margin-bottom: 44px;
 }
 
 .pill-btn-dark {
@@ -216,9 +234,12 @@ a {
   font-weight: 700;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.pill-btn-dark:hover { transform: scale(1.03); }
+.pill-btn-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
 
 .pill-btn-glass {
   display: inline-flex;
@@ -239,50 +260,46 @@ a {
 }
 
 /* ==========================================================================
-   3. 3D GOTHIC ASCII RAV MONOGRAM
+   3. ALTA DENSIDAD ASCII SHADED CANVAS (TIPO SHADING DE TRAMA)
    ========================================================================== */
-.hologram-viewport {
+.ascii-density-wrapper {
   position: relative;
   width: 100%;
-  padding: 32px 16px;
-  margin-bottom: 64px;
+  padding: 24px 16px;
+  margin-bottom: 60px;
   border-radius: 20px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
-.hologram-glow-sphere {
+.ascii-gradient-glow {
   position: absolute;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--hologram-glow) 0%, rgba(255, 46, 116, 0.15) 50%, transparent 75%);
-  filter: blur(40px);
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 210, 255, 0.15) 0%, rgba(129, 140, 248, 0.08) 45%, transparent 75%);
   pointer-events: none;
 }
 
-.ascii-rav-gothic {
-  position: relative;
+.ascii-shaded-text {
   font-family: 'Space Mono', monospace;
-  font-size: clamp(6px, 0.9vw, 9.5px);
-  line-height: 1.05;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+  font-size: clamp(4.5px, 0.72vw, 8px);
+  line-height: 1.02;
+  letter-spacing: 0px;
+  font-weight: 700;
   white-space: pre;
   text-align: center;
-  background: linear-gradient(135deg, var(--accent-primary) 0%, #8B5CF6 50%, var(--accent-rose) 100%);
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-iris) 50%, var(--accent-rose) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 14px var(--hologram-glow));
   user-select: none;
+  transition: transform 0.15s ease-out;
 }
 
 /* ==========================================================================
-   4. SHOWCASE DE TRABAJOS (ALTO IMPACTO VISUAL)
+   4. SHOWCASE DE PROYECTOS VISUALES
    ========================================================================== */
 .work-section-head {
   display: flex;
@@ -333,21 +350,20 @@ a {
 }
 
 .stage-display--bbva {
-  background: linear-gradient(135deg, rgba(0, 68, 129, 0.15) 0%, rgba(0, 229, 255, 0.12) 100%);
+  background: linear-gradient(135deg, rgba(0, 68, 129, 0.12) 0%, rgba(0, 210, 255, 0.08) 100%);
 }
 
 .stage-display--yape {
-  background: linear-gradient(135deg, rgba(115, 18, 136, 0.18) 0%, rgba(255, 46, 116, 0.12) 100%);
+  background: linear-gradient(135deg, rgba(115, 18, 136, 0.14) 0%, rgba(251, 113, 133, 0.08) 100%);
 }
 
-/* Visuales de Prototipos de Alto Detalle */
 .mockup-window {
   width: 100%;
   max-width: 480px;
   background: var(--bg-deep);
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -398,7 +414,7 @@ a {
 .stage-client {
   font-family: 'Space Mono', monospace;
   font-size: 10px;
-  color: var(--accent-primary);
+  color: var(--accent-cyan);
   letter-spacing: 1px;
   margin-bottom: 4px;
   display: block;
@@ -428,6 +444,11 @@ a {
   font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
+  transition: all 0.2s;
+}
+.stage-action:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
 }
 
 /* ==========================================================================
@@ -470,7 +491,7 @@ a {
 }
 
 /* ==========================================================================
-   6. DOCK FLOTANTE INFERIOR
+   6. DOCK FLOTANTE
    ========================================================================== */
 .floating-dock-container {
   position: fixed;

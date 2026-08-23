@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Globe, 
   Clock, 
@@ -17,15 +17,26 @@ import {
   Languages
 } from 'lucide-react';
 
-// Monograma de alta densidad gótico / blackletter volumétrico en micro-ASCII
-const ASCII_GOTHIC_RAV = `
-  ▓█████▄▄   ░███▄▄▄▄     █████████▄     ▓█████▄▄   ░███▄▄▄▄      ███████     ░███     ░███ 
-  ███  ▀███  ░███▀▀▀███   ███     ███    ███  ▀███  ░███▀▀▀███   ███   ░███   ░███     ░███ 
-  ███   ███  ░███   ███   ███▄▄▄▄▄███    ███   ███  ░███   ███  ███     ███   ░███     ░███ 
-  ███████▀   ░███   ███   ███▀▀▀▀▀███    ███████▀   ░███   ███  ███▄▄▄▄▄███    ░███   ░███  
-  ███ ░███▄  ░███   ███   ███     ███    ███ ░███▄  ░███   ███  ███▀▀▀▀▀███     ░███ ░███   
-  ███   ████ ░███   ███   ███     ███    ███   ████ ░███   ███  ███     ███      ░█████░    
-  ███    ███ ░███   ███   ███     ███    ███    ███ ░███   ███  ███     ███       ░███░     
+// Matriz de caracteres de alta densidad con sombreado volumétrico y textura halftone (R · A · V)
+const HIGH_DENSITY_ASCII_RAV = `
+::+*###%@@@@@@@@@@@@@@@@%##*+-.       .-+*###%@@@@@@@@@@@@@@@@%##*+-.       .-+*###%@@@@@@@@@@@@@@@@%##*+::
+::%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%+.   .=%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=.   .+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%::
+::@@@@@%###*+====+*###%@@@@@@@@@@#. .#@@@@@@@@@@%###*+====+*###%@@@@@@#. .#@@@@@@@@@@%###*+====+*###%@@@@@::
+::@@@@@+               .+%@@@@@@@@@=.=@@@@@@@@@%:               .+%@@@@@=.=@@@@@@@@@%:               .+@@@@@::
+::@@@@@+  .+#%%%%%#*-.   .%@@@@@@@@*.*@@@@@@@@#   .+#%%%%%#*-.   .%@@@@*.*@@@@@@@@#   .+#%%%%%#*-.   +@@@@@::
+::@@@@@+  =%@@@@@@@@@%:   =@@@@@@@@*.*@@@@@@@@=  .=%@@@@@@@@@%:   =@@@@*.*@@@@@@@@=  .=%@@@@@@@@@%:   +@@@@@::
+::@@@@@+  =%@@@@@@@@@%:   =@@@@@@@@*.*@@@@@@@@=  .=%@@@@@@@@@%:   =@@@@*.*@@@@@@@@=  .=%@@@@@@@@@%:   +@@@@@::
+::@@@@@+  .+#%%%%%#*-.   .%@@@@@@@@*.*@@@@@@@@#   .+#%%%%%#*-.   .%@@@@*.*@@@@@@@@#   .+#%%%%%#*-.   +@@@@@::
+::@@@@@+               .+%@@@@@@@@@=.=@@@@@@@@@%:               .+%@@@@@=.=@@@@@@@@@%:               .+@@@@@::
+::@@@@@%###*+====+*###%@@@@@@@@@@#. .#@@@@@@@@@@%###*+====+*###%@@@@@@#. .#@@@@@@@@@@%###*+====+*###%@@@@@::
+::@@@@@@@@@@@@@@@@@@@@@@@@@@@@%+.   .=%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=.   .+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%::
+::@@@@@%###%@@@@@@@@%###*+=-:.       .:-=+*###%@@@@@@@@%###%@@@@@@%:       .:-=+*###%@@@@@@@@%###%@@@@@@@::
+::@@@@@+   .-+%@@@@@@%+:                     .-+%@@@@@@%+:   =@@@@@@=              .-+%@@@@@@%+:   =@@@@@@@::
+::@@@@@+      .=%@@@@@@%+:                 .=%@@@@@@%+:      =@@@@@@=            .=%@@@@@@%+:      =@@@@@@@::
+::@@@@@+        .=%@@@@@@%+:             .=%@@@@@@%+:        =@@@@@@=          .=%@@@@@@%+:        =@@@@@@@::
+::@@@@@+          .=%@@@@@@%+:         .=%@@@@@@%+:          =@@@@@@=        .=%@@@@@@%+:          =@@@@@@@::
+::%@@@@#-.          .=%@@@@@@%+:     .=%@@@@@@%+:          .-#@@@@@@#-.    .=%@@@@@@%+:          .-#@@@@@@%::
+::+*###%@@%#*+-.       .-+*###%@@# .#@@%###*+-.       .-+*#%@@%###*+-.   .#@@%###*+-.       .-+*#%@@%###*+::
 `;
 
 const CONTENT = {
@@ -81,11 +92,13 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState('');
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+  // Reloj Lima GMT-5
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -103,13 +116,84 @@ export default function App() {
     return () => clearInterval(timer);
   }, [lang]);
 
+  // Partículas Futuristas Cinéticas de Fondo
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    const particles = Array.from({ length: 42 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      size: Math.random() * 1.5 + 0.8
+    }));
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const pointColor = isDark ? 'rgba(0, 210, 255, 0.35)' : 'rgba(2, 132, 199, 0.4)';
+      const lineColor = isDark ? 'rgba(129, 140, 248, 0.06)' : 'rgba(99, 102, 241, 0.08)';
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = pointColor;
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   const toggleLang = () => setLang(prev => prev === 'es' ? 'en' : 'es');
 
   const handleMouseMove = (e) => {
     const { innerWidth, innerHeight } = window;
-    const x = (e.clientX / innerWidth - 0.5) * 16;
-    const y = (e.clientY / innerHeight - 0.5) * 16;
+    const x = (e.clientX / innerWidth - 0.5) * 14;
+    const y = (e.clientY / innerHeight - 0.5) * 14;
     setMouseOffset({ x, y });
   };
 
@@ -123,9 +207,12 @@ export default function App() {
 
   return (
     <div onMouseMove={handleMouseMove}>
+      {/* Canvas Partículas Espaciales */}
+      <canvas ref={canvasRef} id="particle-canvas" />
+
       <div className="spatial-canvas">
         
-        {/* 1. HUD STATUS BAR CON CONTROLES */}
+        {/* 1. HUD STATUS BAR */}
         <header className="hud-status-bar">
           <div className="hud-left">
             <div className="hud-item">
@@ -194,21 +281,16 @@ export default function App() {
           </button>
         </div>
 
-        {/* 3. MONOGRAMA ASCII GÓTICO 3D */}
-        <div className="hologram-viewport">
-          <div 
-            className="hologram-glow-sphere"
-            style={{
-              transform: `translate(${mouseOffset.x * 1.5}px, ${mouseOffset.y * 1.5}px)`
-            }}
-          />
+        {/* 3. MATRIZ ASCII RAV DE ALTA DENSIDAD */}
+        <div className="ascii-density-wrapper">
+          <div className="ascii-gradient-glow" />
           <pre 
-            className="ascii-rav-gothic"
+            className="ascii-shaded-text"
             style={{
               transform: `translate(${mouseOffset.x}px, ${mouseOffset.y}px)`
             }}
           >
-            {ASCII_GOTHIC_RAV}
+            {HIGH_DENSITY_ASCII_RAV}
           </pre>
         </div>
 
@@ -236,17 +318,17 @@ export default function App() {
                   <div className="window-content">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                       <span style={{ fontWeight: '800', color: '#004481', fontSize: '13px' }}>BBVA</span>
-                      <span style={{ fontSize: '10px', background: 'rgba(0, 229, 255, 0.1)', color: 'var(--accent-primary)', padding: '2px 8px', borderRadius: '4px', fontFamily: 'Space Mono' }}>COMPLIANT</span>
+                      <span style={{ fontSize: '10px', background: 'rgba(0, 210, 255, 0.1)', color: 'var(--accent-cyan)', padding: '2px 8px', borderRadius: '4px', fontFamily: 'Space Mono' }}>COMPLIANT</span>
                     </div>
                     <p style={{ fontSize: '13px', fontWeight: '700', marginBottom: '12px', lineHeight: '1.3' }}>Tus préstamos aprobados empiezan hoy con abono inmediato.</p>
                     <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div>
                         <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Monto preaprobado</span>
-                        <strong style={{ display: 'block', fontSize: '16px', color: 'var(--accent-primary)' }}>S/ 52,100</strong>
+                        <strong style={{ display: 'block', fontSize: '16px', color: 'var(--accent-cyan)' }}>S/ 52,100</strong>
                       </div>
                       <div style={{ textAlign: 'right' }}>
                         <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{t.bbvaKpi}</span>
-                        <strong style={{ display: 'block', fontSize: '14px', color: '#10B981' }}>+24.8%</strong>
+                        <strong style={{ display: 'block', fontSize: '14px', color: 'var(--accent-emerald)' }}>+24.8%</strong>
                       </div>
                     </div>
                   </div>
@@ -279,7 +361,7 @@ export default function App() {
                   <div className="window-content">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                       <span style={{ fontWeight: '800', color: '#731288', fontSize: '13px' }}>Yape</span>
-                      <span style={{ fontSize: '10px', background: 'rgba(255, 46, 116, 0.1)', color: 'var(--accent-rose)', padding: '2px 8px', borderRadius: '4px', fontFamily: 'Space Mono' }}>RESOLVED</span>
+                      <span style={{ fontSize: '10px', background: 'rgba(251, 113, 133, 0.1)', color: 'var(--accent-rose)', padding: '2px 8px', borderRadius: '4px', fontFamily: 'Space Mono' }}>RESOLVED</span>
                     </div>
                     <p style={{ fontSize: '13px', fontWeight: '700', marginBottom: '12px', lineHeight: '1.3' }}>Gestión de transacciones en estado de revisión y mitigación de drop-off.</p>
                     <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -289,7 +371,7 @@ export default function App() {
                       </div>
                       <div style={{ textAlign: 'right' }}>
                         <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{t.yapeKpi}</span>
-                        <strong style={{ display: 'block', fontSize: '14px', color: '#10B981' }}>0.2s Avg</strong>
+                        <strong style={{ display: 'block', fontSize: '14px', color: 'var(--accent-emerald)' }}>0.2s Avg</strong>
                       </div>
                     </div>
                   </div>
