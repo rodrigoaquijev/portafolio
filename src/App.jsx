@@ -18,7 +18,8 @@ import {
 
 const DENSITY_RAMP = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
 
-function RealtimeAsciiEngine({ mousePos }) {
+// Motor de animación cinemática: Robot -> Decodificación -> R -> A -> V
+function CyberpunkAsciiEngine({ mousePos }) {
   const [asciiText, setAsciiText] = useState('');
   const hiddenCanvasRef = useRef(null);
 
@@ -27,9 +28,8 @@ function RealtimeAsciiEngine({ mousePos }) {
     hiddenCanvasRef.current = canvas;
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
-    // Dimensiones de muestreo: matriz de alta resolución
-    const cols = 96;
-    const rows = 36;
+    const cols = 90;
+    const rows = 34;
     canvas.width = cols;
     canvas.height = rows;
 
@@ -41,57 +41,80 @@ function RealtimeAsciiEngine({ mousePos }) {
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, cols, rows);
 
-      const time = frame * 0.035;
-      const morphFactor = (Math.sin(time * 0.5) + 1) / 2; // Oscila entre 0 (Esfera) y 1 (Letras RAV)
+      // Loop completo de 400 frames (~7 segundos a 60 FPS)
+      const loopFrame = frame % 420;
+      const t = loopFrame / 420;
 
       ctx.save();
       ctx.translate(cols / 2, rows / 2);
 
-      // 1. Dibujar núcleo esférico/mecatrónico 3D con sombreado
-      if (morphFactor < 0.85) {
-        const radius = 12 * (1 - morphFactor * 0.5);
-        const grad = ctx.createRadialGradient(
-          mousePos.x * 0.4,
-          mousePos.y * 0.4,
-          1,
-          0,
-          0,
-          radius
-        );
-        grad.addColorStop(0, '#FFFFFF');
-        grad.addColorStop(0.4, '#888888');
-        grad.addColorStop(0.85, '#222222');
-        grad.addColorStop(1, '#000000');
+      // FASE 1: Robot Mecha / Chasis Cyberpunk con Visor y Antenas (t: 0.0 -> 0.35)
+      if (t < 0.35) {
+        const headW = 26;
+        const headH = 18;
 
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(0, 0, radius, 0, Math.PI * 2);
-        ctx.fill();
+        // Cabeza robótica biselada
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(-headW / 2, -headH / 2, headW, headH);
 
-        // Anillos mecatrónicos orbitales
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.8 * (1 - morphFactor)})`;
-        ctx.lineWidth = 1.2;
+        // Visor central
+        ctx.fillStyle = '#FFFFFF';
+        const eyeOffset = Math.sin(frame * 0.1) * 3;
+        ctx.fillRect(-headW / 2 + 4 + eyeOffset, -4, 10, 3);
+
+        // Antenas mecánicas superiores
         ctx.beginPath();
-        ctx.ellipse(0, 0, radius * 1.5, radius * 0.5, time + mousePos.x * 0.05, 0, Math.PI * 2);
+        ctx.moveTo(-headW / 4, -headH / 2);
+        ctx.lineTo(-headW / 4 - 3, -headH / 2 - 5);
+        ctx.moveTo(headW / 4, -headH / 2);
+        ctx.lineTo(headW / 4 + 3, -headH / 2 - 5);
         ctx.stroke();
+
+        // Placas de mandíbula
+        ctx.fillStyle = '#555555';
+        ctx.fillRect(-headW / 2 + 3, 3, headW - 6, 3);
       }
 
-      // 2. Dibujar tipografía volumétrica RAV
-      if (morphFactor > 0.15) {
-        ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(1, morphFactor * 1.4)})`;
-        ctx.font = '900 18px sans-serif';
+      // FASE 2: Decodificación Cyberpunk / Matriz de Glifos (t: 0.35 -> 0.45)
+      else if (t < 0.45) {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '700 8px monospace';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText('R · A · V', 0, 0);
+        
+        for (let i = -2; i <= 2; i++) {
+          const charCode = 65 + Math.floor(Math.random() * 26);
+          ctx.fillText(String.fromCharCode(charCode), i * 14, (Math.random() - 0.5) * 16);
+        }
+      }
 
-        // Subtítulo técnico
-        ctx.font = '700 6px monospace';
-        ctx.fillText('[ 2040 ENGINE ]', 0, 11);
+      // FASE 3: Construcción secuencial: R -> A -> V (t: 0.45 -> 1.0)
+      else {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '900 16px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        // Aparición de la letra 'R' (a partir de t >= 0.45)
+        if (t >= 0.45) {
+          ctx.fillText('R', -24, 0);
+        }
+
+        // Aparición de la letra 'A' (a partir de t >= 0.60)
+        if (t >= 0.60) {
+          ctx.fillText('A', 0, 0);
+        }
+
+        // Aparición de la letra 'V' (a partir de t >= 0.75)
+        if (t >= 0.75) {
+          ctx.fillText('V', 24, 0);
+        }
       }
 
       ctx.restore();
 
-      // 3. Pixel-Sampling: Escaneo y conversión matemática a ASCII
+      // Pixel-Sampling
       const imgData = ctx.getImageData(0, 0, cols, rows).data;
       let output = '';
 
@@ -102,7 +125,6 @@ function RealtimeAsciiEngine({ mousePos }) {
           const r = imgData[idx];
           const g = imgData[idx + 1];
           const b = imgData[idx + 2];
-          // Luminancia ponderada
           const brightness = 0.299 * r + 0.587 * g + 0.114 * b;
           const charIndex = Math.floor((brightness / 255) * (DENSITY_RAMP.length - 1));
           line += DENSITY_RAMP[charIndex];
@@ -115,11 +137,10 @@ function RealtimeAsciiEngine({ mousePos }) {
     };
 
     render();
-
     return () => cancelAnimationFrame(animationId);
   }, [mousePos]);
 
-  return <pre className="ascii-hd-output">{asciiText}</pre>;
+  return <pre className="ascii-kinetic-render">{asciiText}</pre>;
 }
 
 const CONTENT = {
@@ -128,13 +149,12 @@ const CONTENT = {
     bio: "Diseñador de producto digital con formación en economía. Combino rigor analítico, sistemas de diseño escalables y conversión para crear interfaces financieras intuitivas y viables.",
     focusLabel: "ENFOQUE",
     focusVal: "Ecosistemas FinTech, Conversión y Arquitectura de Estados.",
-    statusLabel: "ESTADO",
-    statusVal: "Disponible para proyectos selectos",
+    statusLabel: "UBICACIÓN",
+    statusVal: "Lima, Perú",
     getInTouch: "Contactar",
     copied: "¡Copiado!",
     copyEmail: "Copiar Email",
     workTitle: "Trabajos Seleccionados",
-    workSubtitle: "FEATURED CASE STUDIES // 01-02",
     viewCase: "Explorar caso",
     bbvaTitle: "Cómo diseñar con conversión y compliance bancario.",
     bbvaDesc: "Optimización técnica y visual de envíos masivos en Salesforce Marketing Cloud para BBVA Perú sin romper reglas regulatorias.",
@@ -150,13 +170,12 @@ const CONTENT = {
     bio: "Digital product designer with an economics background. I connect analytical rigor, scalable design systems, and conversion to build high-complexity technical and financial products.",
     focusLabel: "FOCUS",
     focusVal: "FinTech Ecosystems, Conversion & State Architecture.",
-    statusLabel: "STATUS",
-    statusVal: "Available for select projects",
+    statusLabel: "LOCATION",
+    statusVal: "Lima, Peru",
     getInTouch: "Get in touch",
     copied: "Copied!",
     copyEmail: "Copy Email",
     workTitle: "Selected Works",
-    workSubtitle: "FEATURED CASE STUDIES // 01-02",
     viewCase: "Explore case",
     bbvaTitle: "Designing with conversion and bank compliance.",
     bbvaDesc: "Technical and visual optimization of massive lending campaigns in Salesforce Marketing Cloud for BBVA Perú.",
@@ -175,7 +194,6 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState('');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const canvasRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -199,82 +217,11 @@ export default function App() {
     return () => clearInterval(timer);
   }, [lang]);
 
-  // Captura de coordenadas del mouse normalizadas
   const handleMouseMove = (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 30;
-    const y = (e.clientY / window.innerHeight - 0.5) * 30;
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
     setMousePos({ x, y });
   };
-
-  // Partículas Iridiscentes de Fondo
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
-
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    const handleResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', handleResize);
-
-    const particles = Array.from({ length: 32 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      size: Math.random() * 1.5 + 0.8
-    }));
-
-    const render = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const pointColor = isDark ? 'rgba(0, 240, 255, 0.4)' : 'rgba(0, 119, 255, 0.35)';
-      const lineColor = isDark ? 'rgba(112, 0, 255, 0.08)' : 'rgba(107, 33, 168, 0.08)';
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = pointColor;
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 140) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = lineColor;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
-          }
-        }
-      }
-      animationFrameId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
 
   const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   const toggleLang = () => setLang(prev => prev === 'es' ? 'en' : 'es');
@@ -289,29 +236,21 @@ export default function App() {
 
   return (
     <div onMouseMove={handleMouseMove}>
-      <canvas ref={canvasRef} id="particle-canvas" />
-
       <div className="spatial-canvas">
         
-        {/* 1. HUD STATUS BAR */}
-        <header className="hud-status-bar">
-          <div className="hud-left">
-            <div className="hud-item">
-              <Clock size={12} />
-              <span>{time ? `${time} (LIMA, GMT-5)` : 'LIMA, GMT-5'}</span>
-            </div>
-            <div className="hud-item">
-              <span className="live-dot" />
-              <span>SYSTEM READY</span>
-            </div>
+        {/* 1. BARRA SUPERIOR SOBRIA */}
+        <header className="clean-status-bar">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Clock size={12} />
+            <span>{time ? `${time} (LIMA, GMT-5)` : 'LIMA, GMT-5'}</span>
           </div>
 
-          <div className="hud-controls">
-            <button type="button" className="control-pill" onClick={toggleLang}>
+          <div className="clean-controls">
+            <button type="button" className="control-brick-btn" onClick={toggleLang}>
               <Languages size={12} />
               <span>{lang.toUpperCase()}</span>
             </button>
-            <button type="button" className="control-pill" onClick={toggleTheme} aria-label="Toggle Theme">
+            <button type="button" className="control-brick-btn" onClick={toggleTheme} aria-label="Toggle Theme">
               {theme === 'dark' ? <Sun size={12} /> : <Moon size={12} />}
             </button>
           </div>
@@ -343,51 +282,37 @@ export default function App() {
             </div>
             <div>
               <div className="meta-label">{t.statusLabel}</div>
-              <div className="meta-val" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span className="live-dot" />
-                <strong>{t.statusVal}</strong>
-              </div>
+              <div className="meta-val">{t.statusVal}</div>
             </div>
           </div>
         </section>
 
         {/* CTAs */}
         <div className="hero-cta-group">
-          <a href="mailto:rodrigoaq996@gmail.com" className="pill-btn-dark">
+          <a href="mailto:rodrigoaq996@gmail.com" className="brick-btn-dark">
             {t.getInTouch} ↗
           </a>
-          <button type="button" className="pill-btn-glass" onClick={handleCopyEmail}>
+          <button type="button" className="brick-btn-glass" onClick={handleCopyEmail}>
             <span>{copied ? t.copied : 'rodrigoaq996@gmail.com'}</span>
-            {copied ? <Check size={13} color="#00F0FF" /> : <Copy size={13} />}
+            {copied ? <Check size={13} color="#00E5FF" /> : <Copy size={13} />}
           </button>
         </div>
 
-        {/* 3. ARTEFACTO ASCII HD CON CANVAS PIXEL-SAMPLING EN TIEMPO REAL */}
-        <div className="ascii-hd-stage">
-          <div className="ascii-stage-header">
-            <span>[SYS_RENDER // CANVAS PIXEL-SAMPLING ENGINE]</span>
-            <span>96x36 HD RESOLUTION</span>
-          </div>
-          <div 
-            className="iridescent-plasma-sphere" 
-            style={{
-              transform: `translate(${mousePos.x * 2}px, ${mousePos.y * 2}px)`
-            }}
-          />
-          <RealtimeAsciiEngine mousePos={mousePos} />
+        {/* 3. ARTE ASCII LIBRE (SIN MARCOS) */}
+        <div className="ascii-frameless-stage">
+          <CyberpunkAsciiEngine mousePos={mousePos} />
         </div>
 
-        {/* 4. SHOWCASE DE TRABAJOS VISUALES */}
+        {/* 4. SHOWCASE DE TRABAJOS (LADRILLOS DE CRISTAL) */}
         <section id="work">
           <div className="work-section-head">
             <h2 className="work-section-title">{t.workTitle}</h2>
-            <span className="work-section-sub">{t.workSubtitle}</span>
           </div>
 
           <div className="work-showcase-container">
             
             {/* Caso 1: BBVA */}
-            <div className="showcase-stage-card">
+            <div className="glass-brick-card">
               <div className="stage-display stage-display--bbva">
                 <div className="mockup-window">
                   <div className="window-header">
@@ -431,7 +356,7 @@ export default function App() {
             </div>
 
             {/* Caso 2: Yape */}
-            <div className="showcase-stage-card">
+            <div className="glass-brick-card">
               <div className="stage-display stage-display--yape">
                 <div className="mockup-window">
                   <div className="window-header">
@@ -495,13 +420,13 @@ export default function App() {
 
         {/* METADATOS */}
         <div className="spatial-footer-text">
-          <span>RAV · SYSTEM HUD</span>
+          <span>RAV</span>
           <span>©2026 RODRIGO AQUIJE V.</span>
         </div>
 
       </div>
 
-      {/* 6. FLOATING DOCK INFERIOR */}
+      {/* 6. FLOATING DOCK (LADRILLO DE CRISTAL) */}
       <nav className="floating-dock-container">
         <div className="floating-dock">
           <img 
