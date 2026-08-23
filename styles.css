@@ -1,11 +1,10 @@
 /* ==========================================================================
-   ISOMETRIC 3D GLASS-BRICK & POLYGONAL ARCHITECTURE (Z-AXIS PROJECTION)
+   OCTAGONAL & TRUNCATED STAR ARCHITECTURE (Z-AXIS PROJECTION)
    ========================================================================== */
 :root[data-theme="dark"] {
   --bg-deep: #080A0E;
   --bg-surface: #10151F;
   --bg-top-face: #1A2232;
-  --bg-side-face: #0B0E14;
 
   --text-pure: #F4F7FB;
   --text-muted: #8E9CAA;
@@ -16,7 +15,6 @@
   --iris-3: #FF2E74;
   --iris-4: #FFB703;
 
-  /* Extrusión 3D Real en Eje Z (Facetas de Luz y Sombra) */
   --brick-depth-shadow: 
     0 1px 0 #1E2838,
     0 2px 0 #18202D,
@@ -24,7 +22,7 @@
     0 4px 0 #0D1118,
     0 5px 0 #090B10,
     0 6px 0 #05070A,
-    0 16px 32px rgba(0, 0, 0, 0.85);
+    0 18px 36px rgba(0, 0, 0, 0.85);
 
   --button-depth-shadow:
     0 1px 0 #1E2838,
@@ -45,7 +43,6 @@
   --bg-deep: #E6EBF2;
   --bg-surface: #F8FAFD;
   --bg-top-face: #FFFFFF;
-  --bg-side-face: #CCD5E2;
 
   --text-pure: #0B111A;
   --text-muted: #4F5E72;
@@ -63,7 +60,7 @@
     0 4px 0 #A6B2C0,
     0 5px 0 #97A3B2,
     0 6px 0 #8995A4,
-    0 16px 30px rgba(11, 17, 26, 0.12);
+    0 18px 32px rgba(11, 17, 26, 0.12);
 
   --button-depth-shadow:
     0 1px 0 #CCD7E4,
@@ -83,6 +80,19 @@
 :root {
   --font-sans: 'Bricolage Grotesque', -apple-system, sans-serif;
   --font-mono: 'Commit Mono', monospace;
+
+  /* Octágonos Regulares Simétricos */
+  --clip-octagon-card: polygon(24px 0%, calc(100% - 24px) 0%, 100% 24px, 100% calc(100% - 24px), calc(100% - 24px) 100%, 24px 100%, 0% calc(100% - 24px), 0% 24px);
+  --clip-octagon-btn: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+  
+  /* Estrella de 8 Puntas Achatadas (Truncated 8-Point Star) */
+  --clip-star-badge: polygon(
+    30% 0%, 70% 0%, 
+    78% 22%, 100% 30%, 100% 70%, 
+    78% 78%, 70% 100%, 30% 100%, 
+    22% 78%, 0% 70%, 0% 30%, 
+    22% 22%
+  );
 
   --space-xs: 8px;
   --space-sm: 14px;
@@ -124,7 +134,7 @@ a {
 }
 
 /* ==========================================================================
-   1. CABECERA POLIGONAL (SIN LÍNEAS SEPARADORAS)
+   1. STATUS BAR OCTAGONAL
    ========================================================================== */
 .clean-status-bar {
   display: flex;
@@ -137,7 +147,7 @@ a {
   padding: var(--space-sm) var(--space-md);
   background: var(--bg-surface);
   box-shadow: var(--button-depth-shadow);
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  clip-path: var(--clip-octagon-btn);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -147,7 +157,6 @@ a {
   gap: var(--space-xs);
 }
 
-/* Botón 3D Extruido con Depresión Mecánica */
 .brick-btn-3d {
   background: var(--bg-top-face);
   color: var(--text-pure);
@@ -160,7 +169,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  clip-path: var(--clip-octagon-btn);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
@@ -175,7 +184,7 @@ a {
 }
 
 /* ==========================================================================
-   2. PROFILE CON POLÍGONOS FACETADOS
+   2. PROFILE CON ESTRELLAS Y OCTÁGONOS
    ========================================================================== */
 .profile-row {
   display: flex;
@@ -184,19 +193,22 @@ a {
   margin-bottom: var(--space-md);
 }
 
-.profile-avatar-brick {
-  width: 60px;
-  height: 60px;
+.profile-avatar-octagon {
+  width: 64px;
+  height: 64px;
   box-shadow: var(--button-depth-shadow);
-  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  clip-path: var(--clip-star-badge);
   border-top: 2px solid rgba(255, 255, 255, 0.2);
   flex-shrink: 0;
+  background: var(--iris-1);
+  padding: 2px;
 }
 
 .profile-avatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  clip-path: var(--clip-star-badge);
 }
 
 .profile-title-group h1 {
@@ -262,7 +274,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  clip-path: var(--clip-octagon-btn);
   transition: transform 0.15s ease;
 }
 .cta-brick-primary:hover {
@@ -274,7 +286,7 @@ a {
 }
 
 /* ==========================================================================
-   3. ARTE ASCII LIBRE (SIN MARCOS)
+   3. ARTE ASCII LIBRE
    ========================================================================== */
 .ascii-frameless-stage {
   position: relative;
@@ -301,7 +313,7 @@ a {
 }
 
 /* ==========================================================================
-   4. SHOWCASE: LADRILLOS DE CRISTAL 3D EXTRUIDOS EN EJE Z
+   4. SHOWCASE DE PROYECTOS OCTAGONALES
    ========================================================================== */
 .work-section-head {
   display: flex;
@@ -323,17 +335,16 @@ a {
   margin-bottom: var(--space-2xl);
 }
 
-/* El bloque monolítico 3D */
-.isometric-brick-card {
+.isometric-octagon-card {
   position: relative;
   background: var(--bg-surface);
   box-shadow: var(--brick-depth-shadow);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  clip-path: var(--clip-octagon-card);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.isometric-brick-card:hover {
+.isometric-octagon-card:hover {
   transform: translateY(-6px);
 }
 
@@ -354,14 +365,13 @@ a {
   background: radial-gradient(circle at 50% 30%, #731288 0%, #22032B 100%);
 }
 
-/* Ventana Poligonal de Producto */
-.mockup-window-poly {
+.mockup-window-octagon {
   width: 100%;
   max-width: 520px;
   background: #080C10;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: var(--button-depth-shadow);
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  clip-path: polygon(14px 0%, calc(100% - 14px) 0%, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0% calc(100% - 14px), 0% 14px);
 }
 
 .window-header {
@@ -381,7 +391,7 @@ a {
   width: 8px;
   height: 8px;
   background: rgba(255, 255, 255, 0.3);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: var(--clip-octagon-btn);
 }
 
 .window-title {
@@ -409,15 +419,15 @@ a {
 .brand-badge--bbva { color: #00A9E0; }
 .brand-badge--yape { color: #00D5A6; }
 
-.status-chip-poly {
+.status-star-badge {
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  font-weight: 700;
-  padding: 4px 10px;
-  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 12px;
+  clip-path: var(--clip-star-badge);
 }
-.status-chip-poly--bbva { background: #00A9E0; color: #000; }
-.status-chip-poly--yape { background: #00D5A6; color: #000; }
+.status-star-badge--bbva { background: #00A9E0; color: #000; }
+.status-star-badge--yape { background: #00D5A6; color: #000; }
 
 .mockup-headline {
   font-size: 15px;
@@ -427,14 +437,14 @@ a {
   color: #F8FAFC;
 }
 
-.mockup-kpi-brick {
+.mockup-kpi-octagon {
   background: rgba(255, 255, 255, 0.04);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: var(--space-sm);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  clip-path: var(--clip-octagon-btn);
 }
 
 .kpi-label { font-size: 11px; color: #94A3B8; margin-bottom: 2px; }
@@ -480,7 +490,7 @@ a {
 }
 
 /* ==========================================================================
-   5. REDES & DOSSIER
+   5. REDES OCTAGONALES
    ========================================================================== */
 .network-list {
   display: flex;
@@ -489,7 +499,7 @@ a {
   margin-bottom: var(--space-xl);
 }
 
-.network-brick-row {
+.network-octagon-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -497,11 +507,11 @@ a {
   background: var(--bg-surface);
   box-shadow: var(--button-depth-shadow);
   color: var(--text-muted);
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  clip-path: var(--clip-octagon-btn);
   transition: transform 0.15s ease, color 0.15s ease;
 }
 
-.network-brick-row:hover {
+.network-octagon-row:hover {
   color: var(--text-pure);
   transform: translateX(4px);
 }
@@ -522,7 +532,7 @@ a {
 }
 
 /* ==========================================================================
-   6. DOCK FLOTANTE 3D CON EXTRUSIÓN ISOMÉTRICA
+   6. DOCK FLOTANTE OCTAGONAL
    ========================================================================== */
 .floating-dock-container {
   position: fixed;
@@ -536,18 +546,18 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   background: var(--bg-surface);
   border-top: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: var(--dock-depth);
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  clip-path: var(--clip-octagon-btn);
 }
 
-.dock-avatar-poly {
+.dock-avatar-star {
   width: 34px;
   height: 34px;
   object-fit: cover;
-  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  clip-path: var(--clip-star-badge);
 }
 
 .dock-divider-3d {
@@ -568,7 +578,7 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 0 rgba(0,0,0,0.5);
   cursor: pointer;
-  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+  clip-path: var(--clip-octagon-btn);
   transition: transform 0.1s ease, color 0.1s ease;
 }
 

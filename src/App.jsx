@@ -18,7 +18,6 @@ import {
 
 const DENSITY_RAMP = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
 
-// Motor Cyberpunk: Transformación Cinemática Completa
 function CyberpunkAsciiEngine({ mousePos }) {
   const [asciiText, setAsciiText] = useState('');
   const hiddenCanvasRef = useRef(null);
@@ -47,7 +46,7 @@ function CyberpunkAsciiEngine({ mousePos }) {
       ctx.save();
       ctx.translate(cols / 2, rows / 2);
 
-      // FASE 1: Chasis Robótico Mecha con Visor (t: 0.0 -> 0.35)
+      // FASE 1: Robot Mecha / Chasis
       if (t < 0.35) {
         const headW = 28;
         const headH = 18;
@@ -70,7 +69,7 @@ function CyberpunkAsciiEngine({ mousePos }) {
         ctx.fillStyle = '#555555';
         ctx.fillRect(-headW / 2 + 3, 3, headW - 6, 3);
       }
-      // FASE 2: Decodificación Poligonal (t: 0.35 -> 0.45)
+      // FASE 2: Decodificación
       else if (t < 0.45) {
         ctx.fillStyle = '#FFFFFF';
         ctx.font = '700 8px monospace';
@@ -82,7 +81,7 @@ function CyberpunkAsciiEngine({ mousePos }) {
           ctx.fillText(String.fromCharCode(charCode), i * 14, (Math.random() - 0.5) * 16);
         }
       }
-      // FASE 3: Secuencia R -> A -> V (t: 0.45 -> 1.0)
+      // FASE 3: R -> A -> V
       else {
         ctx.fillStyle = '#FFFFFF';
         ctx.font = '900 16px sans-serif';
@@ -186,7 +185,6 @@ export default function App() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  // Reloj Lima GMT-5
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -225,7 +223,7 @@ export default function App() {
     <div onMouseMove={handleMouseMove}>
       <div className="spatial-canvas">
         
-        {/* 1. CABECERA POLIGONAL */}
+        {/* 1. CABECERA OCTAGONAL */}
         <header className="clean-status-bar">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Clock size={12} />
@@ -243,9 +241,9 @@ export default function App() {
           </div>
         </header>
 
-        {/* 2. PROFILE & BIO */}
+        {/* 2. PROFILE */}
         <section className="profile-row">
-          <div className="profile-avatar-brick">
+          <div className="profile-avatar-octagon">
             <img 
               src="assets/avatar.png" 
               alt="Rodrigo Aquije V." 
@@ -276,7 +274,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* CTAs 3D */}
+        {/* CTAs */}
         <div className="hero-cta-group">
           <a href="mailto:rodrigoaq996@gmail.com" className="cta-brick-primary">
             {t.getInTouch} ↗
@@ -292,7 +290,7 @@ export default function App() {
           <CyberpunkAsciiEngine mousePos={mousePos} />
         </div>
 
-        {/* 4. SHOWCASE DE PROYECTOS (LADRILLOS ISOMÉTRICOS 3D) */}
+        {/* 4. SHOWCASE DE PROYECTOS OCTAGONALES */}
         <section id="work">
           <div className="work-section-head">
             <h2 className="work-section-title">{t.workTitle}</h2>
@@ -301,9 +299,9 @@ export default function App() {
           <div className="work-showcase-container">
             
             {/* Caso 1: BBVA */}
-            <div className="isometric-brick-card">
+            <div className="isometric-octagon-card">
               <div className="stage-display stage-display--bbva">
-                <div className="mockup-window-poly">
+                <div className="mockup-window-octagon">
                   <div className="window-header">
                     <div className="window-dots">
                       <div className="window-dot" />
@@ -315,10 +313,10 @@ export default function App() {
                   <div className="window-content">
                     <div className="mockup-header-row">
                       <span className="brand-badge brand-badge--bbva">BBVA</span>
-                      <span className="status-chip-poly status-chip-poly--bbva">COMPLIANT</span>
+                      <span className="status-star-badge status-star-badge--bbva">COMPLIANT</span>
                     </div>
                     <p className="mockup-headline">Tus préstamos aprobados empiezan hoy con abono en 3 minutos.</p>
-                    <div className="mockup-kpi-brick">
+                    <div className="mockup-kpi-octagon">
                       <div>
                         <div className="kpi-label">Monto Aprobado</div>
                         <div className="kpi-amount">S/ 52,100</div>
@@ -345,9 +343,9 @@ export default function App() {
             </div>
 
             {/* Caso 2: Yape */}
-            <div className="isometric-brick-card">
+            <div className="isometric-octagon-card">
               <div className="stage-display stage-display--yape">
-                <div className="mockup-window-poly">
+                <div className="mockup-window-octagon">
                   <div className="window-header">
                     <div className="window-dots">
                       <div className="window-dot" />
@@ -359,10 +357,10 @@ export default function App() {
                   <div className="window-content">
                     <div className="mockup-header-row">
                       <span className="brand-badge brand-badge--yape">Yape</span>
-                      <span className="status-chip-poly status-chip-poly--yape">STATE RESOLVED</span>
+                      <span className="status-star-badge status-star-badge--yape">RESOLVED</span>
                     </div>
                     <p className="mockup-headline">Validación conductual para estados 'en revisión' sin fricción para el usuario.</p>
-                    <div className="mockup-kpi-brick">
+                    <div className="mockup-kpi-octagon">
                       <div>
                         <div className="kpi-label">Monto en Validación</div>
                         <div className="kpi-amount">S/ 180.00</div>
@@ -391,17 +389,17 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5. REDES EN BLOQUES EXTRUIDOS */}
+        {/* 5. REDES */}
         <div className="network-list">
-          <a href="mailto:rodrigoaq996@gmail.com" className="network-brick-row">
+          <a href="mailto:rodrigoaq996@gmail.com" className="network-octagon-row">
             <span className="network-left"><Mail size={15} /> Email</span>
             <span className="network-right">rodrigoaq996@gmail.com ↗</span>
           </a>
-          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="network-brick-row">
+          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="network-octagon-row">
             <span className="network-left"><Linkedin size={15} /> LinkedIn</span>
             <span className="network-right">/in/rodrigo-aquije ↗</span>
           </a>
-          <a href="#descargar-cv" className="network-brick-row">
+          <a href="#descargar-cv" className="network-octagon-row">
             <span className="network-left"><FileText size={15} /> {t.cv}</span>
             <span className="network-right">{t.download} ↗</span>
           </a>
@@ -415,13 +413,13 @@ export default function App() {
 
       </div>
 
-      {/* 6. FLOATING DOCK EXTRUIDO EN EJE Z */}
+      {/* 6. FLOATING DOCK OCTAGONAL 3D */}
       <nav className="floating-dock-container">
         <div className="floating-dock-3d">
           <img 
             src="assets/avatar.png" 
             alt="Rodrigo" 
-            className="dock-avatar-poly"
+            className="dock-avatar-star"
             onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&auto=format&fit=crop&q=80'; }}
           />
           <div className="dock-divider-3d" />
