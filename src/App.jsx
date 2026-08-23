@@ -17,32 +17,16 @@ import {
   Languages
 } from 'lucide-react';
 
-// Matriz de caracteres de alta densidad con sombreado volumétrico y textura halftone (R · A · V)
-const HIGH_DENSITY_ASCII_RAV = `
-::+*###%@@@@@@@@@@@@@@@@%##*+-.       .-+*###%@@@@@@@@@@@@@@@@%##*+-.       .-+*###%@@@@@@@@@@@@@@@@%##*+::
-::%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%+.   .=%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=.   .+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%::
-::@@@@@%###*+====+*###%@@@@@@@@@@#. .#@@@@@@@@@@%###*+====+*###%@@@@@@#. .#@@@@@@@@@@%###*+====+*###%@@@@@::
-::@@@@@+               .+%@@@@@@@@@=.=@@@@@@@@@%:               .+%@@@@@=.=@@@@@@@@@%:               .+@@@@@::
-::@@@@@+  .+#%%%%%#*-.   .%@@@@@@@@*.*@@@@@@@@#   .+#%%%%%#*-.   .%@@@@*.*@@@@@@@@#   .+#%%%%%#*-.   +@@@@@::
-::@@@@@+  =%@@@@@@@@@%:   =@@@@@@@@*.*@@@@@@@@=  .=%@@@@@@@@@%:   =@@@@*.*@@@@@@@@=  .=%@@@@@@@@@%:   +@@@@@::
-::@@@@@+  =%@@@@@@@@@%:   =@@@@@@@@*.*@@@@@@@@=  .=%@@@@@@@@@%:   =@@@@*.*@@@@@@@@=  .=%@@@@@@@@@%:   +@@@@@::
-::@@@@@+  .+#%%%%%#*-.   .%@@@@@@@@*.*@@@@@@@@#   .+#%%%%%#*-.   .%@@@@*.*@@@@@@@@#   .+#%%%%%#*-.   +@@@@@::
-::@@@@@+               .+%@@@@@@@@@=.=@@@@@@@@@%:               .+%@@@@@=.=@@@@@@@@@%:               .+@@@@@::
-::@@@@@%###*+====+*###%@@@@@@@@@@#. .#@@@@@@@@@@%###*+====+*###%@@@@@@#. .#@@@@@@@@@@%###*+====+*###%@@@@@::
-::@@@@@@@@@@@@@@@@@@@@@@@@@@@@%+.   .=%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=.   .+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%::
-::@@@@@%###%@@@@@@@@%###*+=-:.       .:-=+*###%@@@@@@@@%###%@@@@@@%:       .:-=+*###%@@@@@@@@%###%@@@@@@@::
-::@@@@@+   .-+%@@@@@@%+:                     .-+%@@@@@@%+:   =@@@@@@=              .-+%@@@@@@%+:   =@@@@@@@::
-::@@@@@+      .=%@@@@@@%+:                 .=%@@@@@@%+:      =@@@@@@=            .=%@@@@@@%+:      =@@@@@@@::
-::@@@@@+        .=%@@@@@@%+:             .=%@@@@@@%+:        =@@@@@@=          .=%@@@@@@%+:        =@@@@@@@::
-::@@@@@+          .=%@@@@@@%+:         .=%@@@@@@%+:          =@@@@@@=        .=%@@@@@@%+:          =@@@@@@@::
-::%@@@@#-.          .=%@@@@@@%+:     .=%@@@@@@%+:          .-#@@@@@@#-.    .=%@@@@@@%+:          .-#@@@@@@%::
-::+*###%@@%#*+-.       .-+*###%@@# .#@@%###*+-.       .-+*#%@@%###*+-.   .#@@%###*+-.       .-+*#%@@%###*+::
+// Monograma de cabecera técnico de alta definición
+const MINI_ASCII_RAV = `
+  █▀█ ▄▀█ █ █
+  █▀▄ █▀█ ▀▄▀
 `;
 
 const CONTENT = {
   es: {
     role: "Product Designer & Design Engineer",
-    bio: "Diseñador de producto digital con formación en economía. Combino rigor analítico, sistemas de diseño escalables y conversión para crear productos de alta complejidad técnica y financiera.",
+    bio: "Diseñador de producto digital con formación en economía. Combino rigor analítico, sistemas de diseño escalables y conversión para crear interfaces financieras intuitivas y viables.",
     focusLabel: "ENFOQUE",
     focusVal: "Ecosistemas FinTech, Conversión y Arquitectura de Estados.",
     statusLabel: "ESTADO",
@@ -50,15 +34,15 @@ const CONTENT = {
     getInTouch: "Contactar",
     copied: "¡Copiado!",
     copyEmail: "Copiar Email",
-    workTitle: "Proyectos Seleccionados",
-    workSubtitle: "VISUAL SHOWCASE // 01-02",
-    viewCase: "Ver caso",
+    workTitle: "Trabajos Seleccionados",
+    workSubtitle: "FEATURED CASE STUDIES // 01-02",
+    viewCase: "Explorar caso",
     bbvaTitle: "Cómo diseñar con conversión y compliance bancario.",
-    bbvaDesc: "Optimización técnica y visual de envíos masivos en Salesforce Marketing Cloud para BBVA Perú.",
+    bbvaDesc: "Optimización técnica y visual de envíos masivos en Salesforce Marketing Cloud para BBVA Perú sin romper reglas regulatorias.",
     bbvaKpi: "Conversión de Campaña",
     yapeTitle: "La pantalla de error que te hace perder dinero.",
-    yapeDesc: "Rediseño conductual de estados 'en revisión' y mitigación de fricción transaccional.",
-    yapeKpi: "Tiempo de Resolución",
+    yapeDesc: "Rediseño conductual de estados 'en revisión' de Yape para eliminar la percepción de fallo transaccional.",
+    yapeKpi: "Tiempo de Respuesta",
     cv: "Currículum Vitae",
     download: "Descargar PDF"
   },
@@ -72,15 +56,15 @@ const CONTENT = {
     getInTouch: "Get in touch",
     copied: "Copied!",
     copyEmail: "Copy Email",
-    workTitle: "Selected Projects",
-    workSubtitle: "VISUAL SHOWCASE // 01-02",
-    viewCase: "View case",
+    workTitle: "Selected Works",
+    workSubtitle: "FEATURED CASE STUDIES // 01-02",
+    viewCase: "Explore case",
     bbvaTitle: "Designing with conversion and bank compliance.",
-    bbvaDesc: "Technical and visual optimization of massive lending campaigns in Salesforce Marketing Cloud.",
+    bbvaDesc: "Technical and visual optimization of massive lending campaigns in Salesforce Marketing Cloud for BBVA Perú.",
     bbvaKpi: "Campaign Conversion",
     yapeTitle: "The error screen making you lose money.",
-    yapeDesc: "Behavioral redesign for 'under review' states and transactional friction mitigation.",
-    yapeKpi: "Resolution Time",
+    yapeDesc: "Behavioral redesign for Yape's 'under review' states to eliminate transactional friction.",
+    yapeKpi: "Response Time",
     cv: "Curriculum Vitae",
     download: "Download PDF"
   }
@@ -91,14 +75,12 @@ export default function App() {
   const [lang, setLang] = useState('es');
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState('');
-  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
   const canvasRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  // Reloj Lima GMT-5
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -116,7 +98,7 @@ export default function App() {
     return () => clearInterval(timer);
   }, [lang]);
 
-  // Partículas Futuristas Cinéticas de Fondo
+  // Partículas Cinéticas
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -132,20 +114,20 @@ export default function App() {
     };
     window.addEventListener('resize', handleResize);
 
-    const particles = Array.from({ length: 42 }, () => ({
+    const particles = Array.from({ length: 36 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      size: Math.random() * 1.5 + 0.8
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      size: Math.random() * 1.6 + 0.8
     }));
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const pointColor = isDark ? 'rgba(0, 210, 255, 0.35)' : 'rgba(2, 132, 199, 0.4)';
-      const lineColor = isDark ? 'rgba(129, 140, 248, 0.06)' : 'rgba(99, 102, 241, 0.08)';
+      const pointColor = isDark ? 'rgba(0, 210, 255, 0.4)' : 'rgba(2, 132, 199, 0.45)';
+      const lineColor = isDark ? 'rgba(129, 140, 248, 0.08)' : 'rgba(99, 102, 241, 0.1)';
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -165,7 +147,7 @@ export default function App() {
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 130) {
+          if (dist < 140) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -175,7 +157,6 @@ export default function App() {
           }
         }
       }
-
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -190,13 +171,6 @@ export default function App() {
   const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   const toggleLang = () => setLang(prev => prev === 'es' ? 'en' : 'es');
 
-  const handleMouseMove = (e) => {
-    const { innerWidth, innerHeight } = window;
-    const x = (e.clientX / innerWidth - 0.5) * 14;
-    const y = (e.clientY / innerHeight - 0.5) * 14;
-    setMouseOffset({ x, y });
-  };
-
   const handleCopyEmail = async () => {
     await navigator.clipboard.writeText('rodrigoaq996@gmail.com');
     setCopied(true);
@@ -206,8 +180,7 @@ export default function App() {
   const t = CONTENT[lang];
 
   return (
-    <div onMouseMove={handleMouseMove}>
-      {/* Canvas Partículas Espaciales */}
+    <div>
       <canvas ref={canvasRef} id="particle-canvas" />
 
       <div className="spatial-canvas">
@@ -217,7 +190,7 @@ export default function App() {
           <div className="hud-left">
             <div className="hud-item">
               <Clock size={12} />
-              <span>{time ? `${time} (LIMA)` : 'LIMA'}</span>
+              <span>{time ? `${time} (LIMA, GMT-5)` : 'LIMA, GMT-5'}</span>
             </div>
             <div className="hud-item">
               <Globe size={12} />
@@ -238,16 +211,22 @@ export default function App() {
 
         {/* 2. PROFILE & BIO */}
         <section className="profile-row">
-          <img 
-            src="assets/avatar.png" 
-            alt="Rodrigo Aquije V." 
-            className="profile-avatar"
-            onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'; }}
-          />
-          <div className="profile-title-group">
-            <h1>Rodrigo Aquije V.</h1>
-            <p>{t.role}</p>
+          <div className="profile-identity">
+            <img 
+              src="assets/avatar.png" 
+              alt="Rodrigo Aquije V." 
+              className="profile-avatar"
+              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'; }}
+            />
+            <div className="profile-title-group">
+              <h1>Rodrigo Aquije V.</h1>
+              <p>{t.role}</p>
+            </div>
           </div>
+
+          <pre className="mini-ascii-badge">
+            {MINI_ASCII_RAV}
+          </pre>
         </section>
 
         <section className="spatial-intro">
@@ -281,20 +260,7 @@ export default function App() {
           </button>
         </div>
 
-        {/* 3. MATRIZ ASCII RAV DE ALTA DENSIDAD */}
-        <div className="ascii-density-wrapper">
-          <div className="ascii-gradient-glow" />
-          <pre 
-            className="ascii-shaded-text"
-            style={{
-              transform: `translate(${mouseOffset.x}px, ${mouseOffset.y}px)`
-            }}
-          >
-            {HIGH_DENSITY_ASCII_RAV}
-          </pre>
-        </div>
-
-        {/* 4. SHOWCASE DE TRABAJOS VISUALES */}
+        {/* 3. SHOWCASE DE TRABAJOS DESTACADOS (FOCO VISUAL PRINCIPAL) */}
         <section id="work">
           <div className="work-section-head">
             <h2 className="work-section-title">{t.workTitle}</h2>
@@ -303,7 +269,7 @@ export default function App() {
 
           <div className="work-showcase-container">
             
-            {/* Caso BBVA */}
+            {/* Caso 1: BBVA */}
             <div className="showcase-stage-card">
               <div className="stage-display stage-display--bbva">
                 <div className="mockup-window">
@@ -313,40 +279,41 @@ export default function App() {
                       <div className="window-dot" />
                       <div className="window-dot" />
                     </div>
-                    <span className="window-title">salesforce-mc // bbva-campaign.eml</span>
+                    <span className="window-title">salesforce-mc // bbva-lending-v3.eml</span>
                   </div>
                   <div className="window-content">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <span style={{ fontWeight: '800', color: '#004481', fontSize: '13px' }}>BBVA</span>
-                      <span style={{ fontSize: '10px', background: 'rgba(0, 210, 255, 0.1)', color: 'var(--accent-cyan)', padding: '2px 8px', borderRadius: '4px', fontFamily: 'Space Mono' }}>COMPLIANT</span>
+                    <div className="mockup-header-row">
+                      <span className="brand-badge brand-badge--bbva">BBVA</span>
+                      <span className="status-chip status-chip--bbva">COMPLIANT VERIFIED</span>
                     </div>
-                    <p style={{ fontSize: '13px', fontWeight: '700', marginBottom: '12px', lineHeight: '1.3' }}>Tus préstamos aprobados empiezan hoy con abono inmediato.</p>
-                    <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <p className="mockup-headline">Tus préstamos aprobados empiezan hoy con abono en 3 minutos.</p>
+                    <div className="mockup-kpi-card">
                       <div>
-                        <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Monto preaprobado</span>
-                        <strong style={{ display: 'block', fontSize: '16px', color: 'var(--accent-cyan)' }}>S/ 52,100</strong>
+                        <div className="kpi-label">Monto Aprobado</div>
+                        <div className="kpi-amount">S/ 52,100</div>
                       </div>
                       <div style={{ textAlign: 'right' }}>
-                        <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{t.bbvaKpi}</span>
-                        <strong style={{ display: 'block', fontSize: '14px', color: 'var(--accent-emerald)' }}>+24.8%</strong>
+                        <div className="kpi-label">{t.bbvaKpi}</div>
+                        <div className="kpi-metric-badge">+24.8%</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div className="stage-meta">
                 <div className="stage-info">
-                  <span className="stage-client">BBVA PERÚ // FINANCIAL DESIGN</span>
+                  <span className="stage-client">BBVA PERÚ // FINANCIAL UX & CONVERSION</span>
                   <h3 className="stage-title">{t.bbvaTitle}</h3>
                   <p className="stage-desc">{t.bbvaDesc}</p>
                 </div>
                 <a href="/proyecto-bbva.html" className="stage-action">
-                  {t.viewCase} <ArrowUpRight size={14} />
+                  {t.viewCase} <ArrowUpRight size={15} />
                 </a>
               </div>
             </div>
 
-            {/* Caso Yape */}
+            {/* Caso 2: Yape */}
             <div className="showcase-stage-card">
               <div className="stage-display stage-display--yape">
                 <div className="mockup-window">
@@ -356,35 +323,36 @@ export default function App() {
                       <div className="window-dot" />
                       <div className="window-dot" />
                     </div>
-                    <span className="window-title">yape // state-recovery-flow</span>
+                    <span className="window-title">yape // state-recovery-flow.fig</span>
                   </div>
                   <div className="window-content">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <span style={{ fontWeight: '800', color: '#731288', fontSize: '13px' }}>Yape</span>
-                      <span style={{ fontSize: '10px', background: 'rgba(251, 113, 133, 0.1)', color: 'var(--accent-rose)', padding: '2px 8px', borderRadius: '4px', fontFamily: 'Space Mono' }}>RESOLVED</span>
+                    <div className="mockup-header-row">
+                      <span className="brand-badge brand-badge--yape">Yape</span>
+                      <span className="status-chip status-chip--yape">STATE RESOLVED</span>
                     </div>
-                    <p style={{ fontSize: '13px', fontWeight: '700', marginBottom: '12px', lineHeight: '1.3' }}>Gestión de transacciones en estado de revisión y mitigación de drop-off.</p>
-                    <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <p className="mockup-headline">Validación conductual para estados 'en revisión' sin fricción para el usuario.</p>
+                    <div className="mockup-kpi-card">
                       <div>
-                        <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Monto validado</span>
-                        <strong style={{ display: 'block', fontSize: '16px' }}>S/ 180.00</strong>
+                        <div className="kpi-label">Monto en Validación</div>
+                        <div className="kpi-amount">S/ 180.00</div>
                       </div>
                       <div style={{ textAlign: 'right' }}>
-                        <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{t.yapeKpi}</span>
-                        <strong style={{ display: 'block', fontSize: '14px', color: 'var(--accent-emerald)' }}>0.2s Avg</strong>
+                        <div className="kpi-label">{t.yapeKpi}</div>
+                        <div className="kpi-metric-badge">0.2s Avg</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div className="stage-meta">
                 <div className="stage-info">
-                  <span className="stage-client">YAPE // UX AUDIT & BEHAVIORAL</span>
+                  <span className="stage-client">YAPE // BEHAVIORAL AUDIT & STATE SYSTEMS</span>
                   <h3 className="stage-title">{t.yapeTitle}</h3>
                   <p className="stage-desc">{t.yapeDesc}</p>
                 </div>
                 <a href="/proyecto-yape.html" className="stage-action">
-                  {t.viewCase} <ArrowUpRight size={14} />
+                  {t.viewCase} <ArrowUpRight size={15} />
                 </a>
               </div>
             </div>
@@ -392,7 +360,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5. REDES */}
+        {/* 4. REDES */}
         <div className="network-list">
           <a href="mailto:rodrigoaq996@gmail.com" className="network-row">
             <span className="network-left"><Mail size={15} /> Email</span>
@@ -410,13 +378,13 @@ export default function App() {
 
         {/* METADATOS */}
         <div className="spatial-footer-text">
-          <span>RAV · 2040 HUD</span>
+          <span>RAV · SPATIAL HUD</span>
           <span>©2026 RODRIGO AQUIJE V.</span>
         </div>
 
       </div>
 
-      {/* 6. DOCK FLOTANTE */}
+      {/* 5. FLOATING DOCK ELEVADO */}
       <nav className="floating-dock-container">
         <div className="floating-dock">
           <img 
