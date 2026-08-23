@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapPin, Linkedin, Copy, Check, Download, ArrowUpRight, Mail } from 'lucide-react';
 
-// Componente interactivo con 3D Tilt y Spotlight
+// Componente con Físicas Juguetonas (Spring Tilt & Playful Scale)
 function TiltCard({ children, className = '', ...props }) {
   const cardRef = useRef(null);
   const [style, setStyle] = useState({});
@@ -15,12 +15,14 @@ function TiltCard({ children, className = '', ...props }) {
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -4;
-    const rotateY = ((x - centerX) / centerX) * 4;
+    
+    // Inclinación ligeramente más pronunciada y dinámica
+    const rotateX = ((y - centerY) / centerY) * -7;
+    const rotateY = ((x - centerX) / centerX) * 7;
 
     setStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`,
-      boxShadow: '0 20px 40px rgba(29, 42, 50, 0.08)'
+      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.01)`,
+      boxShadow: '0 30px 60px rgba(244, 63, 94, 0.12)'
     });
 
     setSpotlight({ opacity: 1, x, y });
@@ -28,8 +30,8 @@ function TiltCard({ children, className = '', ...props }) {
 
   const handleMouseLeave = () => {
     setStyle({
-      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)',
-      boxShadow: 'none'
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)',
+      boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
     });
     setSpotlight(prev => ({ ...prev, opacity: 0 }));
   };
@@ -42,7 +44,7 @@ function TiltCard({ children, className = '', ...props }) {
         ...style,
         position: 'relative',
         transformStyle: 'preserve-3d',
-        transition: 'transform 0.15s ease-out, box-shadow 0.25s ease'
+        transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease'
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -56,7 +58,7 @@ function TiltCard({ children, className = '', ...props }) {
           borderRadius: 'inherit',
           opacity: spotlight.opacity,
           transition: 'opacity 0.3s ease',
-          background: `radial-gradient(circle 350px at ${spotlight.x}px ${spotlight.y}px, rgba(255,255,255,0.18), transparent 80%)`,
+          background: `radial-gradient(circle 400px at ${spotlight.x}px ${spotlight.y}px, rgba(244, 63, 94, 0.12), transparent 80%)`,
           zIndex: 10
         }}
       />
@@ -64,6 +66,63 @@ function TiltCard({ children, className = '', ...props }) {
     </div>
   );
 }
+
+const PROJECTS = [
+  {
+    id: 1,
+    slug: 'bbva',
+    company: 'BBVA Perú',
+    title: 'Cómo diseñar con conversión y compliance bancario.',
+    description: 'El reto técnico y visual de enviar campañas de préstamos masivas en Salesforce MC sin romper las reglas (ni el diseño).',
+    tags: ['Email UX', 'Salesforce MC', 'Banca Regulada', 'Compliance', 'Figma'],
+    link: '#',
+    mockup: (
+      <div className="screen-box">
+        <span className="mock-tag">BBVA</span>
+        <p className="mock-head">Tus préstamos aprobados empiezan hoy.</p>
+        <div className="mock-card">
+          <p>Recíbelo en tu cuenta en minutos</p>
+          <strong>S/ 52,100</strong>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 2,
+    slug: 'yape',
+    company: 'Yape',
+    title: 'La pantalla de error que te hace perder dinero.',
+    description: 'Un audit de UX sobre los estados "en revisión" de Yape, para que el silencio de la app deje de leerse como una falla.',
+    tags: ['UX Audit', 'Microcopy', 'Sistemas de Estado', 'Figma'],
+    link: '#',
+    mockup: (
+      <div className="phone-box">
+        <div className="phone-screen">
+          <span className="badge-yape">Yape</span>
+          <div className="phone-amount">S/ 6.80</div>
+          <div className="phone-alert">¡Ocurrió un problema técnico!</div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 3,
+    slug: 'allpa',
+    company: 'Allpa',
+    title: 'El sistema que te impide gastar tu propia plata.',
+    description: 'Un concepto de diseño conductual para Apple Watch e iOS que interviene en el flujo de caja antes de que tomes una mala decisión.',
+    tags: ['Ecosistema iOS/watchOS', 'Economía Conductual', 'Growth', 'Figma'],
+    link: '#',
+    mockup: (
+      <div className="watch-box">
+        <div className="watch-screen">
+          <div className="watch-logo">🦙</div>
+          <div className="watch-text">allpa</div>
+        </div>
+      </div>
+    )
+  }
+];
 
 export default function App() {
   const [copied, setCopied] = useState(false);
@@ -88,14 +147,15 @@ export default function App() {
 
   return (
     <>
-      {/* Barra de progreso de lectura superior */}
+      {/* Barra de progreso superior con brillo */}
       <div
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
           height: '3px',
-          backgroundColor: 'var(--accent-terra, #B85D43)',
+          backgroundColor: 'var(--accent-playful)',
+          boxShadow: '0 0 10px var(--accent-playful)',
           width: `${scrollProgress}%`,
           zIndex: 9999,
           transition: 'width 0.1s ease-out'
@@ -106,7 +166,7 @@ export default function App() {
         {/* Navbar */}
         <header className="navbar">
           <div className="nav-brand">
-            <strong>R · A · V</strong> <span className="divider">|</span> <span className="subtext">Portafolio</span>
+            <strong>R · A · V</strong> <span className="divider">·</span> <span className="subtext">Design Engineer</span>
           </div>
           <nav className="nav-links">
             <a href="#proyectos" className="nav-link active">Proyectos</a>
@@ -114,7 +174,7 @@ export default function App() {
           </nav>
         </header>
 
-        {/* Hero Card con 3D Tilt */}
+        {/* Hero Card */}
         <TiltCard className="hero-card">
           <div className="hero-content">
             <img 
@@ -125,19 +185,19 @@ export default function App() {
             />
             <div className="hero-info">
               <h1 className="hero-name">Rodrigo Aquije V.</h1>
-              <p className="hero-role">Product Designer especializado en FinTech y conversión.</p>
+              <p className="hero-role">Product Designer especializado en FinTech & Conversión.</p>
               <p className="hero-bio">
-                Diseño experiencias digitales claras, confiables y comercialmente viables, conectando comportamiento, negocio y precisión visual.
+                Diseño experiencias digitales con rigor analítico y ejecución visual impecable, conectando economía conductual, sistemas de diseño y código nativo.
               </p>
               <div className="hero-meta">
-                <span className="meta-item"><MapPin size={14} /> Lima, Perú</span>
+                <span className="meta-item"><MapPin size={14} color="#10B981" /> Lima, Perú</span>
                 <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="meta-link">
                   <Linkedin size={14} /> LinkedIn
                 </a>
                 <button type="button" className="meta-btn" onClick={handleCopyEmail}>
-                  {copied ? <Check size={14} color="#6EA876" /> : <Copy size={14} />}
-                  <span style={{ color: copied ? '#6EA876' : 'inherit' }}>
-                    {copied ? '¡Copiado!' : 'Copiar Email'}
+                  {copied ? <Check size={14} color="#10B981" /> : <Copy size={14} />}
+                  <span style={{ color: copied ? '#10B981' : 'inherit' }}>
+                    {copied ? '¡Copiado con éxito!' : 'Copiar Email'}
                   </span>
                 </button>
               </div>
@@ -152,133 +212,58 @@ export default function App() {
 
         {/* Proyectos */}
         <section id="proyectos">
-          <h2 className="section-title">Proyectos</h2>
+          <h2 className="section-title">Casos de Estudio</h2>
           <div className="projects-list">
-
-            {/* Caso 1: BBVA */}
-            <TiltCard className="project-card">
-              <div className="project-preview project-preview--bbva">
-                <img src="assets/project-bbva.png" alt="Caso BBVA Perú" className="preview-img" onError={(e) => { e.target.style.display = 'none'; }} />
-                <div className="mockup-placeholder bbva-mock">
-                  <div className="screen-box">
-                    <span className="mock-tag">BBVA</span>
-                    <p className="mock-head">Tus préstamos aprobados empiezan hoy.</p>
-                    <div className="mock-card">
-                      <p>Recíbelo en tu cuenta en minutos</p>
-                      <strong>S/ 52,100</strong>
-                    </div>
+            {PROJECTS.map(project => (
+              <TiltCard key={project.id} className="project-card">
+                <div className={`project-preview project-preview--${project.slug}`}>
+                  <img src={`assets/project-${project.slug}.png`} alt={project.title} className="preview-img" onError={(e) => { e.target.style.display = 'none'; }} />
+                  <div className={`mockup-placeholder ${project.slug}-mock`}>
+                    {project.mockup}
                   </div>
                 </div>
-              </div>
-              <div className="project-details">
-                <span className="project-company">BBVA Perú</span>
-                <h3 className="project-heading">Cómo diseñar con conversión y compliance bancario.</h3>
-                <p className="project-summary">
-                  El reto técnico y visual de enviar campañas de préstamos masivas en Salesforce MC sin romper las reglas (ni el diseño).
-                </p>
-                <div className="project-tags">
-                  <span className="tag">Email UX</span>
-                  <span className="tag">Salesforce MC</span>
-                  <span className="tag">Banca Regulada</span>
-                  <span className="tag">Compliance</span>
-                  <span className="tag">Figma</span>
-                </div>
-                <a href="/proyecto-bbva.html" className="btn-action">
-                  Ver caso <span>↗</span>
-                </a>
-              </div>
-            </TiltCard>
-
-            {/* Caso 2: Yape */}
-            <TiltCard className="project-card">
-              <div className="project-preview project-preview--yape">
-                <img src="assets/project-yape.png" alt="Caso Yape" className="preview-img" onError={(e) => { e.target.style.display = 'none'; }} />
-                <div className="mockup-placeholder yape-mock">
-                  <div className="phone-box">
-                    <div className="phone-screen">
-                      <span className="badge-yape">Yape</span>
-                      <div className="phone-amount">S/ 6.80</div>
-                      <div className="phone-alert">¡Ocurrió un problema técnico!</div>
-                    </div>
+                <div className="project-details">
+                  <span className="project-company">{project.company}</span>
+                  <h3 className="project-heading">{project.title}</h3>
+                  <p className="project-summary">{project.description}</p>
+                  <div className="project-tags">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="tag">{tag}</span>
+                    ))}
                   </div>
+                  <a href={`/proyecto-${project.slug}.html`} className="btn-action">
+                    Ver caso completo <span>↗</span>
+                  </a>
                 </div>
-              </div>
-              <div className="project-details">
-                <span className="project-company">Yape</span>
-                <h3 className="project-heading">La pantalla de error que te hace perder dinero.</h3>
-                <p className="project-summary">
-                  Un audit de UX sobre los estados "en revisión" de Yape, para que el silencio de la app deje de leerse como una falla.
-                </p>
-                <div className="project-tags">
-                  <span className="tag">UX Audit</span>
-                  <span className="tag">Microcopy</span>
-                  <span className="tag">Sistemas de Estado</span>
-                  <span className="tag">Figma</span>
-                </div>
-                <a href="/proyecto-yape.html" className="btn-action">
-                  Ver caso <span>↗</span>
-                </a>
-              </div>
-            </TiltCard>
-
-            {/* Caso 3: Allpa */}
-            <TiltCard className="project-card">
-              <div className="project-preview project-preview--allpa">
-                <img src="assets/project-allpa.png" alt="Caso Allpa" className="preview-img" onError={(e) => { e.target.style.display = 'none'; }} />
-                <div className="mockup-placeholder allpa-mock">
-                  <div className="watch-box">
-                    <div className="watch-screen">
-                      <div className="watch-logo">🦙</div>
-                      <div className="watch-text">allpa</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="project-details">
-                <span className="project-company">Allpa</span>
-                <h3 className="project-heading">El sistema que te impide gastar tu propia plata.</h3>
-                <p className="project-summary">
-                  Un concepto de diseño conductual para Apple Watch e iOS que interviene en el flujo de caja antes de que tomes una mala decisión.
-                </p>
-                <div className="project-tags">
-                  <span className="tag">Ecosistema iOS/watchOS</span>
-                  <span className="tag">Economía Conductual</span>
-                  <span className="tag">Growth</span>
-                  <span className="tag">Figma</span>
-                </div>
-                <a href="/proyecto-allpa.html" className="btn-action">
-                  Ver caso <span>↗</span>
-                </a>
-              </div>
-            </TiltCard>
-
+              </TiltCard>
+            ))}
           </div>
         </section>
 
         {/* Logos Strip */}
         <section className="logos-strip">
-          <div className="logo-item brand-bbva">BBVA</div>
-          <div className="logo-item brand-centrum">centrum PUCP</div>
-          <div className="logo-item brand-amsterdam">AMSTERDAM</div>
-          <div className="logo-item brand-utopiq">UTOPIQ</div>
+          <div className="logo-item">BBVA PERÚ</div>
+          <div className="logo-item">CENTRUM PUCP</div>
+          <div className="logo-item">AMSTERDAM AGENCY</div>
+          <div className="logo-item">UTOPIQ</div>
         </section>
 
         {/* Footer Two Columns */}
         <section className="footer-columns">
-          <TiltCard className="card-column card-vision">
-            <h3 className="column-title">Product Designer con visión de negocio.</h3>
+          <TiltCard className="card-column">
+            <h3 className="column-title">Economía + Diseño + Código.</h3>
             <p className="column-body">
-              Diseño productos digitales enfocados en el usuario, pero con los pies en la tierra. Mi experiencia previa trabajando dentro del sector financiero me enseñó a hablar el idioma del negocio y hoy uso ese contexto para crear interfaces que sean tan intuitivas de usar como rentables de mantener.
+              Mi pasado en el sector financiero y banca corporativa me da una perspectiva única: entiendo las métricas de negocio, el compliance y las restricciones técnicas antes de trazar el primer píxel.
             </p>
             <a href="/about.html" className="btn-dark">
-              Conóceme <ArrowUpRight size={16} />
+              Conoce mi historia <ArrowUpRight size={16} />
             </a>
           </TiltCard>
 
-          <TiltCard className="card-column card-contact">
+          <TiltCard className="card-column">
             <h3 className="column-title">Hablemos</h3>
             <p className="column-body">
-              Siempre estoy abierto a una buena conversación. Si estás armando un equipo, tienes un proyecto en mente, o simplemente quieres intercambiar ideas sobre diseño y finanzas, mi bandeja de entrada está abierta.
+              ¿Buscando un Product Designer con fuerte criterio técnico y de negocio? Mi bandeja de entrada está abierta para nuevos retos.
             </p>
             <div className="contact-links">
               <a href="mailto:rodrigoaq996@gmail.com" className="contact-row">
@@ -293,34 +278,36 @@ export default function App() {
 
         {/* Footer Bottom */}
         <footer className="footer-bottom">
-          <span>R. Aquije V.</span>
+          <span>R. Aquije V. — Crafting Digital Products</span>
           <span>©2026</span>
         </footer>
       </div>
 
-      {/* Toast Notificación flotante */}
+      {/* Toast Notificación con rebote elástico */}
       {copied && (
         <div
           style={{
             position: 'fixed',
             bottom: '32px',
             left: '50%',
-            transform: 'translateX(-50%)',
-            backgroundColor: '#1C2A38',
+            transform: 'translateX(-50%) translateY(0)',
+            backgroundColor: '#1E293B',
             color: '#FFFFFF',
+            border: '1px solid var(--accent-neon)',
             padding: '12px 24px',
             borderRadius: '9999px',
             fontSize: '13px',
-            fontWeight: '600',
+            fontWeight: '700',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.25)',
-            zIndex: 10000
+            gap: '10px',
+            boxShadow: '0 20px 40px rgba(16, 185, 129, 0.25)',
+            zIndex: 10000,
+            animation: 'bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
           }}
         >
-          <Check size={16} color="#6EA876" />
-          Email copiado al portapapeles
+          <Check size={16} color="#10B981" />
+          ¡Correo copiado al portapapeles!
         </div>
       )}
     </>
