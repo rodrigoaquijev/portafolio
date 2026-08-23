@@ -1,21 +1,359 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre Mí</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Mí — Rodrigo Aquije Vásquez</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <header>
-    <nav>
-      <a href="index.html">Inicio</a> | 
-      <a href="about.html">Sobre mí</a> | 
-      <a href="proyecto-1.html">Proyecto 1</a>
-    </nav>
-  </header>
-  <main>
-    <h1>Sobre mí</h1>
-    <p>Esta es mi biografía y trayectoria.</p>
-  </main>
+<body class="about-page">
+
+  <div class="site-container">
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+      <div class="nav-brand">
+        <a href="index.html"><strong>R · A · V</strong></a> <span class="divider">|</span> <span class="subtext">Portafolio</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#proyectos" class="nav-link">Proyectos</a>
+        <a href="about.html" class="nav-link active">Sobre mí</a>
+      </nav>
+    </header>
+
+    <!-- Intro Header Section -->
+    <section class="about-hero">
+      <div class="about-hero-title">
+        <span class="eyebrow">Sobre mí</span>
+        <h1>Rodrigo<br />Aquije<br />Vásquez</h1>
+      </div>
+      <div class="about-hero-text">
+        <h2 class="hero-statement">
+          Diseño con visión de negocio: de la economía y el análisis de datos al diseño de producto.
+        </h2>
+        <p>
+          Soy Product Designer especializado en <strong>FinTech y diseño orientado a conversión</strong>. 
+          Vengo de una formación en economía y análisis cuantitativo, lo que me permite diseñar no solo interfaces claras y confiables para los usuarios, sino productos comercialmente viables, escalables y con alto impacto en el negocio.
+        </p>
+      </div>
+    </section>
+
+  </div><!-- Fin site-container superior -->
+
+  <!-- Full-Width Dark Section: Story / Timeline -->
+  <section class="dark-section">
+    <div class="site-container">
+      <div class="story-grid">
+        
+        <div class="story-sticky-header">
+          <span class="eyebrow eyebrow--light">Mi Historia</span>
+          <h2>Una trayectoria construida con propósito.</h2>
+        </div>
+
+        <div class="timeline-wrapper">
+
+          <!-- Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Economista. Base analítica.</h3>
+              <p>
+                Mi primer acercamiento al mundo profesional fue en <strong>Finanzas Corporativas y Banca</strong>. Aprendí cómo funciona el negocio, la rentabilidad y el lenguaje financiero desde adentro. Hoy utilizo esa mentalidad para diseñar con datos reales.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag tag--dark">Banca Corporativa</span>
+                <span class="tag tag--dark">Finanzas</span>
+                <span class="tag tag--dark">Econometría</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Cuatro años dentro del sector financiero peruano.</h3>
+              <p>
+                Trabajé en el <strong>Banco de la Nación</strong> en el área de crédito hipotecario, entendiendo la operativa bancaria, <strong>la relación entre metas comerciales, la auditoría de regulaciones, las exigencias del regulador y las necesidades del usuario que solicita crédito</strong>.
+              </p>
+              <p>
+                Comprendí que un mal diseño o una interfaz confusa genera fricción no solo en el cliente final, sino en cientos de trabajadores de soporte y en costos operativos directos.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag tag--dark">Auditoría</span>
+                <span class="tag tag--dark">Crédito Hipotecario</span>
+                <span class="tag tag--dark">Operaciones</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>La decisión de construir: la capacidad de diseño.</h3>
+              <p>
+                Estudié la <strong>Carrera Técnica en Diseño Gráfico</strong> de tres años en <strong>Toulouse Lautrec</strong> para complementar mi base analítica con herramientas proyectuales y de diseño visual sólidas. En paralelo me certifiqué en <strong>Diseño UX/UI</strong>, articulando mi experiencia financiera con la investigación y el diseño centrado en el usuario.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag tag--dark">Toulouse Lautrec</span>
+                <span class="tag tag--dark">Diseño UX/UI</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Primeros proyectos. Construyendo experiencia real.</h3>
+              <p>
+                Diseñé identidades de marca, materiales gráficos y conceptos web para pymes y startups. Esta etapa consolidó mi habilidad para traducir requerimientos de negocio en activos visuales de alto valor y afianzó mi proceso de diseño desde la concepción hasta el producto final.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag tag--dark">Identidad Visual</span>
+                <span class="tag tag--dark">Diseño Web</span>
+                <span class="tag tag--dark">Sistemas Visuales</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>BBVA Perú. El lugar donde ambos mundos convergen.</h3>
+              <p>
+                Actualmente formo parte del equipo creativo y técnico en la gestión de campañas de Salesforce Marketing Cloud para <strong>BBVA Perú</strong>. Diseño templates modulares, respondo a requerimientos de compliance financiero bancario y aseguro entregabilidad sin romper el sistema de diseño ni la experiencia del usuario.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag tag--dark">Salesforce MC</span>
+                <span class="tag tag--dark">Figma</span>
+                <span class="tag tag--dark">Banca Retail</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- Fin timeline-wrapper -->
+      </div>
+    </div>
+  </section>
+
+  <div class="site-container">
+
+    <!-- Skills Section -->
+    <section class="section-block">
+      <span class="eyebrow">Skills & Toolkit</span>
+      <h2 class="section-heading">Lo que sé hacer bien.</h2>
+
+      <div class="skills-grid">
+        <div class="skill-category-card">
+          <div class="skill-category-header">
+            <h4>Estrategia & UX</h4>
+          </div>
+          <ul class="skill-list">
+            <li>UX Research & Benchmarking</li>
+            <li>Arquitectura de Información</li>
+            <li>User Journeys & Service Blueprints</li>
+            <li>Economía Conductual aplicada</li>
+            <li>Pruebas de Usabilidad & Audits</li>
+          </ul>
+        </div>
+
+        <div class="skill-category-card">
+          <div class="skill-category-header">
+            <h4>Diseño de Producto & UI</h4>
+          </div>
+          <ul class="skill-list">
+            <li>Design Systems modulares</li>
+            <li>Figma & Auto Layout avanzado</li>
+            <li>Microcopy enfocado a Conversión</li>
+            <li>Wireframing & Prototipado</li>
+            <li>UI responsive para web y móvil</li>
+          </ul>
+        </div>
+
+        <div class="skill-category-card">
+          <div class="skill-category-header">
+            <h4>Técnico & Herramientas</h4>
+          </div>
+          <ul class="skill-list">
+            <li>Salesforce Marketing Cloud (SFMC)</li>
+            <li>HTML & CSS para Maquetación</li>
+            <li>Email Marketing & Compliance</li>
+            <li>Framer / Webflow</li>
+            <li>Git & GitHub (Flujos básicos)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience & Roles Section -->
+    <section class="section-block">
+      <span class="eyebrow">Trayectoria</span>
+      <h2 class="section-heading">Trayectoria y roles.</h2>
+
+      <div class="experience-list">
+
+        <!-- Experiencia 1 -->
+        <article class="experience-card">
+          <div class="experience-meta">
+            <div class="company-badge">
+              <span class="company-name">AMSTERDAM | Agencia Digital</span>
+              <span class="client-tag">(Cliente: BBVA)</span>
+            </div>
+            <span class="period-tag">2026 — Presente</span>
+          </div>
+          <div class="experience-body">
+            <h3 class="role-title">Product Designer / Email UX Designer</h3>
+            <ul class="role-bullets">
+              <li>Diseño y desarrollo de templates dinámicos y responsivos para las campañas de préstamos y productos financieros de BBVA Perú en Salesforce Marketing Cloud, asegurando estricto cumplimiento de compliance regulatorio y conversión.</li>
+              <li>Optimización de flujos de interacción e integración de buenas prácticas de Email UX y accesibilidad.</li>
+              <li>Alineamiento con los equipos de producto y marketing para asegurar que cada interacción cumpla objetivos medibles de negocio.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Experiencia 2 -->
+        <article class="experience-card">
+          <div class="experience-meta">
+            <div class="company-badge">
+              <span class="company-name">UTOPIQ</span>
+            </div>
+            <span class="period-tag">2025</span>
+          </div>
+          <div class="experience-body">
+            <h3 class="role-title">Diseñador Gráfico & UX/UI</h3>
+            <ul class="role-bullets">
+              <li>Diseño de interfaces web y assets digitales para clientes corporativos de diversos sectores, articulando requerimientos comerciales con experiencias de usuario optimizadas.</li>
+              <li>Creación de prototipos interactivos y diseño de sistemas modulares.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Experiencia 3 -->
+        <article class="experience-card">
+          <div class="experience-meta">
+            <div class="company-badge">
+              <span class="company-name">RESTAURANTE PATRIA 2025</span>
+            </div>
+            <span class="period-tag">2025</span>
+          </div>
+          <div class="experience-body">
+            <h3 class="role-title">Diseñador Gráfico & Visual</h3>
+            <ul class="role-bullets">
+              <li>Desarrollo de identidad visual comercial y piezas de comunicación para puntos de venta físicos y plataformas digitales.</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Education Strip Cards -->
+    <section class="section-block">
+      <span class="eyebrow">Formación</span>
+      <h2 class="section-heading">Educación y Certificaciones.</h2>
+
+      <div class="education-grid">
+        <div class="edu-card">
+          <span class="edu-type">Certificación</span>
+          <h4>Behavioral Design</h4>
+          <p class="edu-institution">Centrum PUCP</p>
+          <span class="edu-date">2026</span>
+        </div>
+
+        <div class="edu-card">
+          <span class="edu-type">Carrera Técnica (3 años)</span>
+          <h4>Diseño Gráfico</h4>
+          <p class="edu-institution">Toulouse Lautrec</p>
+          <span class="edu-date">2022 — 2025</span>
+        </div>
+
+        <div class="edu-card">
+          <span class="edu-type">Especialización</span>
+          <h4>Diseño UX/UI</h4>
+          <p class="edu-institution">Coderhouse</p>
+          <span class="edu-date">2023 — 2024</span>
+        </div>
+
+        <div class="edu-card">
+          <span class="edu-type">Grado Universitario</span>
+          <h4>Economía</h4>
+          <p class="edu-institution">Universidad Nacional Federico Villarreal</p>
+          <span class="edu-date">2013 — 2018</span>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- Fin site-container -->
+
+  <!-- Principles Section (Dark Full-Width) -->
+  <section class="dark-section principles-section">
+    <div class="site-container">
+      <span class="eyebrow eyebrow--light">Filosofía de Trabajo</span>
+      <h2 class="section-heading section-heading--light">Principios que guían mi práctica.</h2>
+
+      <div class="principles-grid">
+        <div class="principle-card">
+          <span class="principle-number">01</span>
+          <h4>El negocio y el usuario no compiten</h4>
+          <p>Un buen diseño no es solo estético: resuelve una fricción del usuario mientras genera un retorno claro y medible para la organización.</p>
+        </div>
+
+        <div class="principle-card">
+          <span class="principle-number">02</span>
+          <h4>La claridad vence a la complejidad</h4>
+          <p>Especialmente en el sector financiero, el valor real reside en traducir procesos engorrosos en interfaces directas, seguras y transparentes.</p>
+        </div>
+
+        <div class="principle-card">
+          <span class="principle-number">03</span>
+          <h4>Decisiones guiadas por evidencia</h4>
+          <p>Combino análisis cuantitativo de datos con investigación cualitativa de usuarios para sustentar cada decisión de producto sobre bases firmes.</p>
+        </div>
+
+        <div class="principle-card">
+          <span class="principle-number">04</span>
+          <h4>Precisión técnica y viabilidad</h4>
+          <p>Diseñar conociendo las limitaciones del código y los sistemas de diseño agiliza el desarrollo y elimina la fricción con los equipos de ingeniería.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA Footer -->
+  <div class="site-container">
+    <section class="about-contact-section">
+      <div class="contact-cta-card">
+        <div class="contact-cta-left">
+          <h2>Trabajemos juntos.</h2>
+          <p>
+            ¿Tienes un proyecto en mente, una vacante en tu equipo o quieres conversar sobre diseño y FinTech?
+          </p>
+        </div>
+        <div class="contact-cta-right">
+          <a href="mailto:rodrigoaq996@gmail.com" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            rodrigoaq996@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" class="btn-secondary">
+            Ver LinkedIn ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <footer class="footer-bottom">
+        <span>R. Aquije V.</span>
+        <span>©2026</span>
+      </footer>
+    </section>
+  </div>
+
 </body>
 </html>
