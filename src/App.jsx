@@ -7,13 +7,14 @@ import {
   Home, 
   Layers, 
   User, 
-  Send,
-  Mail,
-  Linkedin,
-  FileText,
-  Sun,
-  Moon,
-  Languages
+  Send, 
+  Mail, 
+  Linkedin, 
+  FileText, 
+  Sun, 
+  Moon, 
+  Languages,
+  Sparkles
 } from 'lucide-react';
 
 const CONTENT = {
@@ -30,22 +31,26 @@ const CONTENT = {
     bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
     bbvaTitle: "Cómo diseñar con conversión y compliance bancario.",
     bbvaDesc: "Optimización técnica y visual de envíos masivos para BBVA Perú manteniendo integridad regulatoria.",
-    bbvaKpi: "Conversión de Campaña",
 
     // Caso 2: Yape
     yapeTag: "BEHAVIORAL AUDIT & STATE SYSTEMS",
     yapeTitle: "La pantalla de error que te hace perder dinero.",
     yapeDesc: "Rediseño conductual de los estados 'en revisión' de Yape para mitigar fricción y drop-off.",
-    yapeKpi: "Resolución",
 
     // Caso 3: Allpa
     allpaTag: "BEHAVIORAL FINANCE // APPLE ECOSYSTEM",
     allpaTitle: "El sistema que te impide gastar tu propia plata.",
     allpaDesc: "Concepto de diseño conductual para Apple Watch e iOS que interviene en el flujo de caja antes de una compra impulsiva.",
-    allpaKpi: "Retención de Ahorro",
 
-    cv: "Currículum Vitae",
-    download: "Descargar PDF"
+    // Playground final
+    connectTitle: "Conectemos",
+    emailTileLabel: "Bandeja de Entrada",
+    emailTileSub: "rodrigoaq996@gmail.com",
+    linkedinTileLabel: "Red Profesional",
+    linkedinTileSub: "Conectar en LinkedIn",
+    cvTileLabel: "Currículum Vitae",
+    cvTileSub: "Descargar PDF (2026)",
+    alwaysOpen: "Disponible para proyectos"
   },
   en: {
     role: "Product Designer & Design Engineer",
@@ -60,22 +65,26 @@ const CONTENT = {
     bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
     bbvaTitle: "Designing with conversion and bank compliance.",
     bbvaDesc: "Technical and visual optimization of massive lending campaigns in Salesforce Marketing Cloud for BBVA Perú.",
-    bbvaKpi: "Campaign Conversion",
 
     // Caso 2: Yape
     yapeTag: "BEHAVIORAL AUDIT & STATE SYSTEMS",
     yapeTitle: "The error screen making you lose money.",
     yapeDesc: "Behavioral redesign for Yape's 'under review' states to eliminate transactional friction.",
-    yapeKpi: "Resolution",
 
     // Caso 3: Allpa
     allpaTag: "BEHAVIORAL FINANCE // APPLE ECOSYSTEM",
     allpaTitle: "The system that prevents you from overspending.",
     allpaDesc: "Behavioral design concept for Apple Watch & iOS that intervenes in cash flow before impulse purchases.",
-    allpaKpi: "Savings Retention",
 
-    cv: "Curriculum Vitae",
-    download: "Download PDF"
+    // Playground final
+    connectTitle: "Let's connect",
+    emailTileLabel: "Direct Inbox",
+    emailTileSub: "rodrigoaq996@gmail.com",
+    linkedinTileLabel: "Professional Network",
+    linkedinTileSub: "Connect on LinkedIn",
+    cvTileLabel: "Curriculum Vitae",
+    cvTileSub: "Download PDF (2026)",
+    alwaysOpen: "Open for select projects"
   }
 };
 
@@ -108,7 +117,6 @@ export default function App() {
     return () => clearInterval(timer);
   }, [lang]);
 
-  // Interpolación suave del halo ambiental sedoso
   const handleMouseMove = (e) => {
     setMouseGlow({
       x: e.clientX - 350,
@@ -157,7 +165,7 @@ export default function App() {
           </div>
         </header>
 
-        {/* 2. HERO SECTION CON AVATAR INTEGRADO & TIPOGRAFÍA SERIF INDIE */}
+        {/* 2. HERO SECTION */}
         <section className="hero-editorial-grid">
           <div className="hero-text-flow">
             <h1 className="hero-name-title">
@@ -187,7 +195,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 3. SECCIÓN EDITORIAL DE 3 CASOS (SIN LÍNEAS NI CLICHÉS) */}
+        {/* 3. SECCIÓN EDITORIAL DE 3 CASOS */}
         <section id="work">
           <h2 className="editorial-section-title">
             {t.workSectionTitle}
@@ -229,7 +237,7 @@ export default function App() {
               </div>
             </article>
 
-            {/* Caso 2: Yape (Invertido Asimétricamente) */}
+            {/* Caso 2: Yape */}
             <article className="editorial-case-article editorial-case-article--reversed">
               <div className="case-display-stage stage-chroma--yape">
                 <div className="case-ui-window">
@@ -300,21 +308,54 @@ export default function App() {
           </div>
         </section>
 
-        {/* 4. REDES Y ENLACES */}
-        <div className="editorial-network-stream">
-          <a href="mailto:rodrigoaq996@gmail.com" className="editorial-network-row">
-            <span className="network-left"><Mail size={15} /> Email</span>
-            <span className="network-right">rodrigoaq996@gmail.com ↗</span>
-          </a>
-          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="editorial-network-row">
-            <span className="network-left"><Linkedin size={15} /> LinkedIn</span>
-            <span className="network-right">/in/rodrigo-aquije ↗</span>
-          </a>
-          <a href="#descargar-cv" className="editorial-network-row">
-            <span className="network-left"><FileText size={15} /> {t.cv}</span>
-            <span className="network-right">{t.download} ↗</span>
-          </a>
-        </div>
+        {/* 4. PLAYGROUND GRID DE CONTACTO LÚDICO */}
+        <section className="playground-connect-section">
+          <h2 className="editorial-section-title" style={{ fontSize: '28px', marginBottom: '24px' }}>
+            {t.connectTitle}
+          </h2>
+
+          <div className="playground-grid">
+            
+            {/* Tile Email */}
+            <div className="connect-tile" onClick={handleCopyEmail}>
+              <div className="tile-arrow"><Copy size={16} /></div>
+              <div>
+                <span className="tile-badge"><Sparkles size={11} /> {t.alwaysOpen}</span>
+                <div className="tile-icon-bubble"><Mail size={18} /></div>
+              </div>
+              <div>
+                <div className="tile-label">{t.emailTileLabel}</div>
+                <div className="tile-subtext">{copied ? t.copied : t.emailTileSub}</div>
+              </div>
+            </div>
+
+            {/* Tile LinkedIn */}
+            <a 
+              href="https://linkedin.com/in/rodrigo-aquije" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="connect-tile"
+            >
+              <div className="tile-arrow"><ArrowUpRight size={16} /></div>
+              <div className="tile-icon-bubble"><Linkedin size={18} /></div>
+              <div>
+                <div className="tile-label">{t.linkedinTileLabel}</div>
+                <div className="tile-subtext">{t.linkedinTileSub}</div>
+              </div>
+            </a>
+
+            {/* Tile CV */}
+            <a href="#descargar-cv" className="connect-tile">
+              <div className="tile-arrow"><ArrowUpRight size={16} /></div>
+              <div className="tile-icon-bubble"><FileText size={18} /></div>
+              <div>
+                <div className="tile-label">{t.cvTileLabel}</div>
+                <div className="tile-subtext">{t.cvTileSub}</div>
+              </div>
+            </a>
+
+          </div>
+        </section>
 
         {/* METADATOS */}
         <div className="spatial-footer-text">
@@ -324,7 +365,7 @@ export default function App() {
 
       </div>
 
-      {/* 5. APPLE LIQUID GLASS DOCK FLOTANTE CON FÍSICAS DE REBOTE */}
+      {/* 5. APPLE LIQUID GLASS DOCK FLOTANTE CON REBOTE */}
       <nav className="floating-dock-container">
         <div className="floating-dock-liquid">
           <img 

@@ -8,7 +8,7 @@
   --bg-glass-panel: rgba(16, 20, 30, 0.75);
 
   --text-pure: #F8FAFC;
-  --text-muted: #94A3B8;
+  --text-muted: #94A39B;
   --text-subtle: #4D596E;
 
   --accent-cyan: #00E5FF;
@@ -18,13 +18,12 @@
 
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-glass: rgba(255, 255, 255, 0.16);
-  --border-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
 
-  /* Apple Liquid Glass Dock */
-  --dock-bg: rgba(20, 26, 38, 0.78);
-  --dock-border: rgba(255, 255, 255, 0.2);
+  /* Apple Liquid Glass Dock - Dark Mode */
+  --dock-bg: rgba(20, 26, 38, 0.85);
+  --dock-border: rgba(255, 255, 255, 0.18);
   --dock-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.8),
+    0 25px 50px -12px rgba(0, 0, 0, 0.85),
     0 0 0 1px rgba(255, 255, 255, 0.12),
     inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.4);
 
@@ -33,7 +32,7 @@
 }
 
 :root[data-theme="light"] {
-  --bg-deep: #F3F5F9;
+  --bg-deep: #F1F4F9;
   --bg-surface: #FFFFFF;
   --bg-surface-elevated: #F8FAFD;
   --bg-glass-panel: rgba(255, 255, 255, 0.85);
@@ -48,15 +47,14 @@
   --accent-emerald: #059669;
 
   --border-subtle: rgba(11, 17, 29, 0.08);
-  --border-glass: rgba(11, 17, 29, 0.12);
-  --border-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+  --border-glass: rgba(11, 17, 29, 0.14);
 
-  /* Apple Liquid Glass Dock */
-  --dock-bg: rgba(255, 255, 255, 0.82);
-  --dock-border: rgba(255, 255, 255, 0.9);
+  /* Apple Liquid Glass Dock - Light Mode con Máximo Contraste y Relieve */
+  --dock-bg: rgba(255, 255, 255, 0.94);
+  --dock-border: rgba(255, 255, 255, 1);
   --dock-shadow: 
-    0 25px 50px -12px rgba(11, 17, 29, 0.16),
-    0 0 0 1px rgba(11, 17, 29, 0.06),
+    0 20px 45px -8px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(15, 23, 42, 0.08),
     inset 0 1px 2px 0 rgba(255, 255, 255, 1);
 
   --ambient-1: rgba(99, 102, 241, 0.05);
@@ -106,7 +104,7 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Halo Ambiental Sedoso y Lento */
+/* Halo Ambiental Sedoso */
 .ambient-silk-glow {
   position: fixed;
   width: 700px;
@@ -219,7 +217,6 @@ a {
   margin-bottom: var(--space-lg);
 }
 
-/* Avatar integrado con acabado circular pulido */
 .hero-avatar-wrapper {
   position: relative;
   width: 96px;
@@ -227,7 +224,7 @@ a {
   border-radius: 50%;
   padding: 3px;
   background: linear-gradient(135deg, var(--border-glass), transparent);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   flex-shrink: 0;
 }
 
@@ -239,7 +236,6 @@ a {
   display: block;
 }
 
-/* CTAs con altura estricta de 44px */
 .hero-action-cluster {
   display: flex;
   align-items: center;
@@ -260,7 +256,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .btn-primary-action:hover {
@@ -291,7 +287,7 @@ a {
 }
 
 /* ==========================================================================
-   3. SECCIÓN EDITORIAL DE 3 CASOS (SIN LÍNEAS NI CLICHÉS)
+   3. SECCIÓN EDITORIAL DE 3 CASOS
    ========================================================================== */
 .editorial-section-title {
   font-family: var(--font-serif);
@@ -312,7 +308,6 @@ a {
   margin-bottom: var(--space-2xl);
 }
 
-/* Tarjeta Editorial Monolítica */
 .editorial-case-article {
   display: grid;
   grid-template-columns: 1.25fr 1fr;
@@ -320,7 +315,7 @@ a {
   border: 1px solid var(--border-subtle);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
 
@@ -329,18 +324,12 @@ a {
   border-color: var(--border-glass);
 }
 
-/* Caso 2 con inversión de columnas para dinamismo asimétrico */
 .editorial-case-article--reversed {
   grid-template-columns: 1fr 1.25fr;
 }
-.editorial-case-article--reversed .case-display-stage {
-  order: 2;
-}
-.editorial-case-article--reversed .case-editorial-pane {
-  order: 1;
-}
+.editorial-case-article--reversed .case-display-stage { order: 2; }
+.editorial-case-article--reversed .case-editorial-pane { order: 1; }
 
-/* Lienzos Cromáticos Suaves */
 .case-display-stage {
   padding: var(--space-xl) var(--space-md);
   display: flex;
@@ -354,7 +343,6 @@ a {
 .stage-chroma--yape { background: radial-gradient(circle at 40% 40%, #731288 0%, #1D0226 100%); }
 .stage-chroma--allpa { background: radial-gradient(circle at 50% 40%, #8C4728 0%, #200E06 100%); }
 
-/* Consola UI Flotante */
 .case-ui-window {
   width: 100%;
   max-width: 440px;
@@ -404,7 +392,6 @@ a {
 .ui-amount { font-size: 16px; font-weight: 700; color: #FFFFFF; }
 .ui-kpi-badge { font-size: 13.5px; font-weight: 700; color: #10B981; }
 
-/* Contenido Editorial del Caso */
 .case-editorial-pane {
   padding: var(--space-lg);
   display: flex;
@@ -451,42 +438,86 @@ a {
 }
 
 /* ==========================================================================
-   4. REDES SOBRIAS
+   4. PLAYGROUND GRID DE CONTACTO (INTERACTIVO Y LÚDICO)
    ========================================================================== */
-.editorial-network-stream {
-  display: flex;
-  flex-direction: column;
+.playground-connect-section {
   margin-bottom: var(--space-xl);
 }
 
-.editorial-network-row {
+.playground-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.connect-tile {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 24px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: var(--space-md) 0;
-  border-bottom: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-  transition: color 0.2s ease, padding-left 0.2s ease;
+  min-height: 150px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.editorial-network-row:hover {
-  color: var(--text-pure);
-  padding-left: 8px;
+.connect-tile:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: var(--border-glass);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
 }
 
-.network-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 14.5px;
-}
-
-.network-right {
+.tile-badge {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-emerald);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.tile-icon-bubble {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--bg-surface-elevated);
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  color: var(--text-pure);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 12px;
+}
+
+.tile-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-pure);
+  margin-bottom: 2px;
+}
+
+.tile-subtext {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.tile-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--text-subtle);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.connect-tile:hover .tile-arrow {
+  color: var(--accent-cyan);
+  transform: translate(3px, -3px);
 }
 
 /* ==========================================================================
@@ -555,7 +586,7 @@ a {
 
 .dock-btn-elastic:hover {
   color: var(--text-pure);
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(125, 125, 125, 0.12);
   transform: translateY(-3px) scale(1.12);
 }
 
@@ -565,7 +596,7 @@ a {
 
 .dock-btn-elastic.active {
   color: var(--text-pure);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(125, 125, 125, 0.08);
 }
 
 .spatial-footer-text {
@@ -582,4 +613,5 @@ a {
   .editorial-case-article, .editorial-case-article--reversed { grid-template-columns: 1fr; }
   .editorial-case-article--reversed .case-display-stage { order: 1; }
   .editorial-case-article--reversed .case-editorial-pane { order: 2; }
+  .playground-grid { grid-template-columns: 1fr; }
 }
