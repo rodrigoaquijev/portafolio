@@ -1,21 +1,219 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Portafolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rodrigo Aquije V. — Portafolio</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Inicio</a> | 
-      <a href="about.html">Sobre mí</a> | 
-      <a href="proyecto-1.html">Proyecto 1</a>
-    </nav>
-  </header>
-  <main>
-    <h1>Bienvenido a mi Portafolio</h1>
-    <p>Diseño de Producto y UX/UI.</p>
-  </main>
+
+  <div class="site-container">
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+      <div class="nav-brand">
+        <strong>R · A · V</strong> <span class="divider">|</span> <span class="subtext">Portafolio</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#proyectos" class="nav-link active">Proyectos</a>
+        <a href="about.html" class="nav-link">Sobre mí</a>
+      </nav>
+    </header>
+
+    <!-- Hero Card -->
+    <section class="hero-card">
+      <div class="hero-content">
+        <div class="hero-avatar-wrapper">
+          <img src="assets/avatar.jpg" alt="Rodrigo Aquije V." class="hero-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80'" />
+        </div>
+        <div class="hero-info">
+          <h1 class="hero-name">Rodrigo Aquije V.</h1>
+          <p class="hero-role">Product Designer especializado en FinTech y conversión.</p>
+          <p class="hero-bio">
+            Diseño experiencias digitales claras, confiables y comercialmente viables, conectando comportamiento, negocio y precisión visual.
+          </p>
+          <div class="hero-meta">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Lima, Perú
+            </span>
+            <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" class="meta-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.67 1.67 0 1 0-.01-3.34 1.67 1.67 0 0 0 .01 3.34m1.39 9.74V9.97H5.07v8.53h2.78z"/></svg>
+              LinkedIn
+            </a>
+            <button class="meta-btn" onclick="navigator.clipboard.writeText('rodrigoaq996@gmail.com'); alert('Email copiado al portapapeles');">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              Copiar Email
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#descargar-cv" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Descargar CV
+        </a>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="projects-section">
+      <h2 class="section-title">Proyectos</h2>
+
+      <div class="projects-list">
+
+        <!-- Proyecto 1: BBVA -->
+        <article class="project-card">
+          <div class="project-preview project-preview--bbva">
+            <img src="assets/project-bbva.jpg" alt="Caso BBVA Perú" class="preview-img" onerror="this.style.display='none'" />
+            <div class="mockup-placeholder bbva-mock">
+              <div class="screen-box">
+                <span class="mock-tag">BBVA</span>
+                <p class="mock-head">Tus préstamos aprobados empiezan hoy.</p>
+                <div class="mock-card">
+                  <p>Recíbelo en tu cuenta en minutos</p>
+                  <strong>S/ 52,100</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <span class="project-company">BBVA Perú</span>
+            <h3 class="project-heading">Cómo diseñar con conversión y compliance bancario.</h3>
+            <p class="project-summary">
+              El reto técnico y visual de enviar campañas de préstamos masivas en Salesforce MC sin romper las reglas (ni el diseño).
+            </p>
+            <div class="project-tags">
+              <span class="tag">Email UX</span>
+              <span class="tag">Salesforce MC</span>
+              <span class="tag">Banca Regulada</span>
+              <span class="tag">Compliance</span>
+              <span class="tag">Figma</span>
+            </div>
+            <a href="proyecto-bbva.html" class="btn-action">
+              Ver caso <span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Proyecto 2: Yape -->
+        <article class="project-card">
+          <div class="project-preview project-preview--yape">
+            <img src="assets/project-yape.jpg" alt="Caso Yape" class="preview-img" onerror="this.style.display='none'" />
+            <div class="mockup-placeholder yape-mock">
+              <div class="phone-box">
+                <div class="phone-screen">
+                  <span class="badge-yape">Yape</span>
+                  <div class="phone-amount">S/ 6.80</div>
+                  <div class="phone-alert">¡Ocurrió un problema técnico!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <span class="project-company">Yape</span>
+            <h3 class="project-heading">La pantalla de error que te hace perder dinero.</h3>
+            <p class="project-summary">
+              Un audit de UX sobre los estados "en revisión" de Yape, para que el silencio de la app deje de leerse como una falla.
+            </p>
+            <div class="project-tags">
+              <span class="tag">UX Audit</span>
+              <span class="tag">Microcopy</span>
+              <span class="tag">Sistemas de Estado</span>
+              <span class="tag">Figma</span>
+            </div>
+            <a href="proyecto-yape.html" class="btn-action">
+              Ver caso <span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Proyecto 3: Allpa -->
+        <article class="project-card">
+          <div class="project-preview project-preview--allpa">
+            <img src="assets/project-allpa.jpg" alt="Caso Allpa" class="preview-img" onerror="this.style.display='none'" />
+            <div class="mockup-placeholder allpa-mock">
+              <div class="watch-box">
+                <div class="watch-screen">
+                  <div class="watch-logo">🦙</div>
+                  <div class="watch-text">allpa</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <span class="project-company">Allpa</span>
+            <h3 class="project-heading">El sistema que te impide gastar tu propia plata.</h3>
+            <p class="project-summary">
+              Un concepto de diseño conductual para Apple Watch e iOS que interviene en el flujo de caja antes de que tomes una mala decisión.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Ecosistema iOS/watchOS</span>
+              <span class="tag">Economía Conductual</span>
+              <span class="tag">Growth</span>
+              <span class="tag">Figma</span>
+            </div>
+            <a href="proyecto-allpa.html" class="btn-action">
+              Ver caso <span>↗</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Client / Brand Logos Strip -->
+    <section class="logos-strip">
+      <div class="logo-item brand-bbva">BBVA</div>
+      <div class="logo-item brand-centrum">centrum PUCP</div>
+      <div class="logo-item brand-amsterdam">AMSTERDAM</div>
+      <div class="logo-item brand-utopiq">UTOPIQ</div>
+    </section>
+
+    <!-- Bottom Two Columns: About & Contact -->
+    <section class="footer-columns">
+      <!-- Columna 1: Visión de Negocio -->
+      <div class="card-column card-vision">
+        <h3 class="column-title">Product Designer con visión de negocio.</h3>
+        <p class="column-body">
+          Diseño productos digitales enfocados en el usuario, pero con los pies en la tierra. Mi experiencia previa trabajando dentro del sector financiero me enseñó a hablar el idioma del negocio y hoy uso ese contexto para crear interfaces que sean tan intuitivas de usar como rentables de mantener.
+        </p>
+        <a href="about.html" class="btn-dark">
+          Conóceme <span>↗</span>
+        </a>
+      </div>
+
+      <!-- Columna 2: Hablemos -->
+      <div class="card-column card-contact">
+        <h3 class="column-title">Hablemos</h3>
+        <p class="column-body">
+          Siempre estoy abierto a una buena conversación. Si estás armando un equipo, tienes un proyecto en mente, o simplemente quieres intercambiar ideas sobre diseño y finanzas, mi bandeja de entrada está abierta. Las grandes cosas suelen empezar con un simple mensaje.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:rodrigoaq996@gmail.com" class="contact-row">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            rodrigoaq996@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" class="contact-row">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.67 1.67 0 1 0-.01-3.34 1.67 1.67 0 0 0 .01 3.34m1.39 9.74V9.97H5.07v8.53h2.78z"/></svg>
+            linkedin.com/in/rodrigo-aquije
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Copyright -->
+    <footer class="footer-bottom">
+      <span>R. Aquije V.</span>
+      <span>©2026</span>
+    </footer>
+
+  </div>
+
 </body>
 </html>
