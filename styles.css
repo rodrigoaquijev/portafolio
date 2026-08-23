@@ -1,10 +1,11 @@
 /* ==========================================================================
-   OCTAGONAL & TRUNCATED STAR ARCHITECTURE (Z-AXIS PROJECTION)
+   BLUEPRINT GRID & 3D Y-AXIS EXTRUSION SYSTEM
    ========================================================================== */
 :root[data-theme="dark"] {
   --bg-deep: #080A0E;
-  --bg-surface: #10151F;
-  --bg-top-face: #1A2232;
+  --bg-surface: #0E121A;
+  --bg-card: #131824;
+  --bg-top-face: #1A2130;
 
   --text-pure: #F4F7FB;
   --text-muted: #8E9CAA;
@@ -15,33 +16,30 @@
   --iris-3: #FF2E74;
   --iris-4: #FFB703;
 
-  --brick-depth-shadow: 
-    0 1px 0 #1E2838,
-    0 2px 0 #18202D,
-    0 3px 0 #121822,
-    0 4px 0 #0D1118,
-    0 5px 0 #090B10,
-    0 6px 0 #05070A,
-    0 18px 36px rgba(0, 0, 0, 0.85);
+  --grid-line: rgba(255, 255, 255, 0.035);
+  --border-clean: 1px solid rgba(255, 255, 255, 0.12);
+  --border-prominent: 1px solid rgba(0, 229, 255, 0.35);
 
-  --button-depth-shadow:
-    0 1px 0 #1E2838,
-    0 2px 0 #161D29,
+  --depth-shadow: 
+    0 1px 0 #1A2230,
+    0 2px 0 #141B26,
     0 3px 0 #0F141C,
-    0 4px 0 #090C11,
-    0 8px 16px rgba(0, 0, 0, 0.6);
+    0 4px 0 #0A0D13,
+    0 16px 32px rgba(0, 0, 0, 0.85);
 
-  --dock-depth: 
-    0 1px 0 #253145,
-    0 2px 0 #1C2534,
+  --dock-shadow: 
+    0 1px 0 #222D40,
+    0 2px 0 #1A2230,
     0 3px 0 #141B26,
-    0 4px 0 #0D1219,
-    0 14px 28px rgba(0, 0, 0, 0.9);
+    0 4px 0 #0E131C,
+    0 5px 0 #080B10,
+    0 20px 40px rgba(0, 0, 0, 0.9);
 }
 
 :root[data-theme="light"] {
   --bg-deep: #E6EBF2;
   --bg-surface: #F8FAFD;
+  --bg-card: #FFFFFF;
   --bg-top-face: #FFFFFF;
 
   --text-pure: #0B111A;
@@ -53,46 +51,28 @@
   --iris-3: #E11D48;
   --iris-4: #D97706;
 
-  --brick-depth-shadow: 
+  --grid-line: rgba(11, 17, 26, 0.04);
+  --border-clean: 1px solid rgba(11, 17, 26, 0.12);
+  --border-prominent: 1px solid rgba(0, 102, 255, 0.35);
+
+  --depth-shadow: 
     0 1px 0 #D3DCE8,
     0 2px 0 #C4CFDC,
     0 3px 0 #B5C0CE,
     0 4px 0 #A6B2C0,
-    0 5px 0 #97A3B2,
-    0 6px 0 #8995A4,
-    0 18px 32px rgba(11, 17, 26, 0.12);
+    0 16px 30px rgba(11, 17, 26, 0.12);
 
-  --button-depth-shadow:
-    0 1px 0 #CCD7E4,
-    0 2px 0 #B8C5D4,
-    0 3px 0 #A3B2C3,
-    0 4px 0 #8E9FB1,
-    0 8px 16px rgba(11, 17, 26, 0.1);
-
-  --dock-depth:
+  --dock-shadow: 
     0 1px 0 #D5DFEB,
     0 2px 0 #C2CEDC,
     0 3px 0 #B0BDCD,
     0 4px 0 #9EACBE,
-    0 14px 28px rgba(11, 17, 26, 0.15);
+    0 20px 40px rgba(11, 17, 26, 0.18);
 }
 
 :root {
   --font-sans: 'Bricolage Grotesque', -apple-system, sans-serif;
   --font-mono: 'Commit Mono', monospace;
-
-  /* Octágonos Regulares Simétricos */
-  --clip-octagon-card: polygon(24px 0%, calc(100% - 24px) 0%, 100% 24px, 100% calc(100% - 24px), calc(100% - 24px) 100%, 24px 100%, 0% calc(100% - 24px), 0% 24px);
-  --clip-octagon-btn: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
-  
-  /* Estrella de 8 Puntas Achatadas (Truncated 8-Point Star) */
-  --clip-star-badge: polygon(
-    30% 0%, 70% 0%, 
-    78% 22%, 100% 30%, 100% 70%, 
-    78% 78%, 70% 100%, 30% 100%, 
-    22% 78%, 0% 70%, 0% 30%, 
-    22% 22%
-  );
 
   --space-xs: 8px;
   --space-sm: 14px;
@@ -110,13 +90,19 @@
 
 body {
   background-color: var(--bg-deep);
+  /* Trama Blueprint sutil para llenar el fondo */
+  background-image: 
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center top;
   color: var(--text-pure);
   font-family: var(--font-sans);
   font-size: 14.5px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  padding-bottom: 160px;
+  padding-bottom: 180px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -134,7 +120,7 @@ a {
 }
 
 /* ==========================================================================
-   1. STATUS BAR OCTAGONAL
+   1. CABECERA SOBRIA CUADRADA
    ========================================================================== */
 .clean-status-bar {
   display: flex;
@@ -146,9 +132,9 @@ a {
   margin-bottom: var(--space-lg);
   padding: var(--space-sm) var(--space-md);
   background: var(--bg-surface);
-  box-shadow: var(--button-depth-shadow);
-  clip-path: var(--clip-octagon-btn);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border: var(--border-clean);
+  box-shadow: var(--depth-shadow);
+  border-radius: 0px;
 }
 
 .clean-controls {
@@ -157,11 +143,11 @@ a {
   gap: var(--space-xs);
 }
 
-.brick-btn-3d {
+.square-btn-3d {
   background: var(--bg-top-face);
   color: var(--text-pure);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: var(--button-depth-shadow);
+  border: var(--border-clean);
+  box-shadow: var(--depth-shadow);
   font-family: var(--font-mono);
   font-size: 11px;
   padding: 6px 14px;
@@ -169,22 +155,22 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  clip-path: var(--clip-octagon-btn);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  border-radius: 0px;
+  transition: transform 0.1s ease, border-color 0.2s ease;
 }
 
-.brick-btn-3d:hover {
+.square-btn-3d:hover {
   transform: translateY(-2px);
   border-color: var(--iris-1);
 }
 
-.brick-btn-3d:active {
-  transform: translateY(3px);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.5);
+.square-btn-3d:active {
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 /* ==========================================================================
-   2. PROFILE CON ESTRELLAS Y OCTÁGONOS
+   2. PROFILE
    ========================================================================== */
 .profile-row {
   display: flex;
@@ -193,22 +179,20 @@ a {
   margin-bottom: var(--space-md);
 }
 
-.profile-avatar-octagon {
-  width: 64px;
-  height: 64px;
-  box-shadow: var(--button-depth-shadow);
-  clip-path: var(--clip-star-badge);
-  border-top: 2px solid rgba(255, 255, 255, 0.2);
+.profile-avatar-square {
+  width: 60px;
+  height: 60px;
+  border: var(--border-clean);
+  box-shadow: var(--depth-shadow);
   flex-shrink: 0;
-  background: var(--iris-1);
-  padding: 2px;
+  border-radius: 0px;
 }
 
 .profile-avatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  clip-path: var(--clip-star-badge);
+  display: block;
 }
 
 .profile-title-group h1 {
@@ -262,64 +246,66 @@ a {
   margin-bottom: var(--space-xl);
 }
 
-.cta-brick-primary {
+.cta-square-primary {
   background: var(--text-pure);
   color: var(--bg-deep);
   font-size: 13px;
   font-weight: 800;
   padding: 12px 24px;
-  box-shadow: var(--button-depth-shadow);
-  border: none;
+  box-shadow: var(--depth-shadow);
+  border: var(--border-clean);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  clip-path: var(--clip-octagon-btn);
+  border-radius: 0px;
   transition: transform 0.15s ease;
 }
-.cta-brick-primary:hover {
+.cta-square-primary:hover {
   transform: translateY(-2px);
 }
-.cta-brick-primary:active {
-  transform: translateY(3px);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.4);
+.cta-square-primary:active {
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 /* ==========================================================================
-   3. ARTE ASCII LIBRE
+   3. RETRATO ASCII HALFTONE (ESTILO GATO / POSTER TÉCNICO)
    ========================================================================== */
-.ascii-frameless-stage {
+.ascii-cat-stage {
   position: relative;
   width: 100%;
   padding: var(--space-md) 0 var(--space-xl);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.ascii-kinetic-render {
-  position: relative;
+.ascii-cat-render {
   font-family: var(--font-mono);
-  font-size: clamp(5px, 0.75vw, 8.5px);
-  line-height: 0.9;
-  letter-spacing: 0.2px;
+  font-size: clamp(4px, 0.65vw, 7.5px);
+  line-height: 0.88;
+  letter-spacing: 0.1px;
   font-weight: 700;
   white-space: pre;
   text-align: center;
-  background: linear-gradient(135deg, var(--iris-1) 0%, var(--iris-2) 35%, var(--iris-3) 70%, var(--iris-4) 100%);
+  background: linear-gradient(135deg, var(--iris-1) 0%, var(--iris-2) 40%, var(--iris-3) 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   user-select: none;
 }
 
 /* ==========================================================================
-   4. SHOWCASE DE PROYECTOS OCTAGONALES
+   4. SHOWCASE DE PROYECTOS CUADRADOS MONOLÍTICOS
    ========================================================================== */
 .work-section-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: var(--border-clean);
 }
 
 .work-section-title {
@@ -335,17 +321,18 @@ a {
   margin-bottom: var(--space-2xl);
 }
 
-.isometric-octagon-card {
+.monolith-square-card {
   position: relative;
   background: var(--bg-surface);
-  box-shadow: var(--brick-depth-shadow);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  clip-path: var(--clip-octagon-card);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: var(--border-clean);
+  box-shadow: var(--depth-shadow);
+  border-radius: 0px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
 }
 
-.isometric-octagon-card:hover {
-  transform: translateY(-6px);
+.monolith-square-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--iris-1);
 }
 
 .stage-display {
@@ -365,18 +352,19 @@ a {
   background: radial-gradient(circle at 50% 30%, #731288 0%, #22032B 100%);
 }
 
-.mockup-window-octagon {
+.mockup-window-square {
   width: 100%;
   max-width: 520px;
   background: #080C10;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: var(--button-depth-shadow);
-  clip-path: polygon(14px 0%, calc(100% - 14px) 0%, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0% calc(100% - 14px), 0% 14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: var(--depth-shadow);
+  border-radius: 0px;
 }
 
 .window-header {
   padding: 10px 18px;
   background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -391,7 +379,7 @@ a {
   width: 8px;
   height: 8px;
   background: rgba(255, 255, 255, 0.3);
-  clip-path: var(--clip-octagon-btn);
+  border-radius: 0px;
 }
 
 .window-title {
@@ -419,15 +407,15 @@ a {
 .brand-badge--bbva { color: #00A9E0; }
 .brand-badge--yape { color: #00D5A6; }
 
-.status-star-badge {
+.status-chip-square {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 800;
-  padding: 4px 12px;
-  clip-path: var(--clip-star-badge);
+  padding: 4px 10px;
+  border-radius: 0px;
 }
-.status-star-badge--bbva { background: #00A9E0; color: #000; }
-.status-star-badge--yape { background: #00D5A6; color: #000; }
+.status-chip-square--bbva { background: #00A9E0; color: #000; }
+.status-chip-square--yape { background: #00D5A6; color: #000; }
 
 .mockup-headline {
   font-size: 15px;
@@ -437,14 +425,14 @@ a {
   color: #F8FAFC;
 }
 
-.mockup-kpi-octagon {
+.mockup-kpi-square {
   background: rgba(255, 255, 255, 0.04);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: var(--space-sm);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  clip-path: var(--clip-octagon-btn);
+  border-radius: 0px;
 }
 
 .kpi-label { font-size: 11px; color: #94A3B8; margin-bottom: 2px; }
@@ -454,7 +442,7 @@ a {
 .stage-meta {
   padding: var(--space-md) var(--space-lg);
   background: var(--bg-surface);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: var(--border-clean);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -490,7 +478,7 @@ a {
 }
 
 /* ==========================================================================
-   5. REDES OCTAGONALES
+   5. REDES EN BLOQUES CUADRADOS
    ========================================================================== */
 .network-list {
   display: flex;
@@ -499,20 +487,22 @@ a {
   margin-bottom: var(--space-xl);
 }
 
-.network-octagon-row {
+.network-square-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--space-sm) var(--space-md);
   background: var(--bg-surface);
-  box-shadow: var(--button-depth-shadow);
+  border: var(--border-clean);
+  box-shadow: var(--depth-shadow);
   color: var(--text-muted);
-  clip-path: var(--clip-octagon-btn);
-  transition: transform 0.15s ease, color 0.15s ease;
+  border-radius: 0px;
+  transition: transform 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-.network-octagon-row:hover {
+.network-square-row:hover {
   color: var(--text-pure);
+  border-color: var(--iris-1);
   transform: translateX(4px);
 }
 
@@ -532,42 +522,52 @@ a {
 }
 
 /* ==========================================================================
-   6. DOCK FLOTANTE OCTAGONAL
+   6. DOCK FLOTANTE CON PERSPECTIVA 3D EN EL EJE Y (ISOMETRIC TILT)
    ========================================================================== */
 .floating-dock-container {
   position: fixed;
-  bottom: 28px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
+  perspective: 900px; /* Habilita el eje 3D real */
   z-index: 9999;
 }
 
-.floating-dock-3d {
+.floating-dock-3d-y {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
   background: var(--bg-surface);
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: var(--dock-depth);
-  clip-path: var(--clip-octagon-btn);
+  border: var(--border-clean);
+  box-shadow: var(--dock-shadow);
+  border-radius: 0px;
+  /* Inclinación 3D en el eje X/Y para sensación de ladrillo físico */
+  transform: rotateX(12deg);
+  transform-origin: center bottom;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
-.dock-avatar-star {
+.floating-dock-3d-y:hover {
+  transform: rotateX(0deg) translateY(-4px);
+}
+
+.dock-avatar-square {
   width: 34px;
   height: 34px;
   object-fit: cover;
-  clip-path: var(--clip-star-badge);
+  border: var(--border-clean);
+  border-radius: 0px;
 }
 
-.dock-divider-3d {
-  width: 2px;
+.dock-divider-square {
+  width: 1px;
   height: 22px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.14);
   margin: 0 4px;
 }
 
-.dock-icon-btn-3d {
+.dock-icon-btn-square {
   width: 38px;
   height: 38px;
   display: inline-flex;
@@ -575,20 +575,20 @@ a {
   justify-content: center;
   color: var(--text-muted);
   background: var(--bg-top-face);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 0 rgba(0,0,0,0.5);
+  border: var(--border-clean);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.4);
   cursor: pointer;
-  clip-path: var(--clip-octagon-btn);
-  transition: transform 0.1s ease, color 0.1s ease;
+  border-radius: 0px;
+  transition: transform 0.1s ease, color 0.1s ease, border-color 0.1s ease;
 }
 
-.dock-icon-btn-3d:hover, .dock-icon-btn-3d.active {
+.dock-icon-btn-square:hover, .dock-icon-btn-square.active {
   color: var(--text-pure);
-  transform: translateY(-2px);
   border-color: var(--iris-1);
+  transform: translateY(-2px);
 }
 
-.dock-icon-btn-3d:active {
+.dock-icon-btn-square:active {
   transform: translateY(2px);
   box-shadow: none;
 }

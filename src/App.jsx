@@ -18,7 +18,8 @@ import {
 
 const DENSITY_RAMP = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
 
-function CyberpunkAsciiEngine({ mousePos }) {
+// Renderizador del Retrato Halftone (Morfología de gato en alta fidelidad)
+function HalftoneCatEngine({ mousePos }) {
   const [asciiText, setAsciiText] = useState('');
   const hiddenCanvasRef = useRef(null);
 
@@ -28,7 +29,7 @@ function CyberpunkAsciiEngine({ mousePos }) {
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
     const cols = 92;
-    const rows = 34;
+    const rows = 38;
     canvas.width = cols;
     canvas.height = rows;
 
@@ -40,67 +41,98 @@ function CyberpunkAsciiEngine({ mousePos }) {
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, cols, rows);
 
-      const loopFrame = frame % 420;
-      const t = loopFrame / 420;
-
       ctx.save();
       ctx.translate(cols / 2, rows / 2);
 
-      // FASE 1: Robot Mecha / Chasis
-      if (t < 0.35) {
-        const headW = 28;
-        const headH = 18;
+      const lookX = mousePos.x * 0.12;
+      const lookY = mousePos.y * 0.12;
 
-        ctx.strokeStyle = '#FFFFFF';
-        ctx.lineWidth = 1.5;
-        ctx.strokeRect(-headW / 2, -headH / 2, headW, headH);
+      // 1. Cabeza y silueta del gato
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.ellipse(0, 4, 22, 16, 0, 0, Math.PI * 2);
+      ctx.fill();
 
-        ctx.fillStyle = '#FFFFFF';
-        const eyeOffset = Math.sin(frame * 0.1) * 3;
-        ctx.fillRect(-headW / 2 + 5 + eyeOffset, -4, 10, 3);
+      // 2. Orejas triangulares estilizadas
+      ctx.beginPath();
+      // Oreja izquierda
+      ctx.moveTo(-16, -2);
+      ctx.lineTo(-20, -18);
+      ctx.lineTo(-6, -10);
+      ctx.closePath();
+      ctx.fill();
 
-        ctx.beginPath();
-        ctx.moveTo(-headW / 4, -headH / 2);
-        ctx.lineTo(-headW / 4 - 4, -headH / 2 - 5);
-        ctx.moveTo(headW / 4, -headH / 2);
-        ctx.lineTo(headW / 4 + 4, -headH / 2 - 5);
-        ctx.stroke();
+      // Oreja derecha
+      ctx.moveTo(16, -2);
+      ctx.lineTo(20, -18);
+      ctx.lineTo(6, -10);
+      ctx.closePath();
+      ctx.fill();
 
-        ctx.fillStyle = '#555555';
-        ctx.fillRect(-headW / 2 + 3, 3, headW - 6, 3);
-      }
-      // FASE 2: Decodificación
-      else if (t < 0.45) {
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '700 8px monospace';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        
-        for (let i = -2; i <= 2; i++) {
-          const charCode = 65 + Math.floor(Math.random() * 26);
-          ctx.fillText(String.fromCharCode(charCode), i * 14, (Math.random() - 0.5) * 16);
-        }
-      }
-      // FASE 3: R -> A -> V
-      else {
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '900 16px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+      // Interior de orejas (sombra)
+      ctx.fillStyle = '#444444';
+      ctx.beginPath();
+      ctx.moveTo(-15, -3);
+      ctx.lineTo(-18, -14);
+      ctx.lineTo(-8, -9);
+      ctx.closePath();
+      ctx.fill();
 
-        if (t >= 0.45) {
-          ctx.fillText('R', -24, 0);
-        }
-        if (t >= 0.60) {
-          ctx.fillText('A', 0, 0);
-        }
-        if (t >= 0.75) {
-          ctx.fillText('V', 24, 0);
-        }
-      }
+      ctx.beginPath();
+      ctx.moveTo(15, -3);
+      ctx.lineTo(18, -14);
+      ctx.lineTo(8, -9);
+      ctx.closePath();
+      ctx.fill();
+
+      // 3. Ojos felinos expresivos
+      ctx.fillStyle = '#111111';
+      ctx.beginPath();
+      ctx.ellipse(-9 + lookX, 0 + lookY, 4.5, 5.5, -0.1, 0, Math.PI * 2);
+      ctx.ellipse(9 + lookX, 0 + lookY, 4.5, 5.5, 0.1, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Brillo en los ojos (pupilas reflectivas)
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.arc(-8 + lookX, -1 + lookY, 1.4, 0, Math.PI * 2);
+      ctx.arc(10 + lookX, -1 + lookY, 1.4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 4. Nariz y hocico
+      ctx.fillStyle = '#222222';
+      ctx.beginPath();
+      ctx.moveTo(-2, 7);
+      ctx.lineTo(2, 7);
+      ctx.lineTo(0, 9.5);
+      ctx.closePath();
+      ctx.fill();
+
+      // 5. Bigotes finos
+      ctx.strokeStyle = '#DDDDDD';
+      ctx.lineWidth = 0.8;
+      
+      // Bigotes izquierda
+      ctx.beginPath();
+      ctx.moveTo(-5, 9);
+      ctx.lineTo(-26, 6 + Math.sin(frame * 0.05) * 0.8);
+      ctx.moveTo(-5, 10);
+      ctx.lineTo(-25, 12 + Math.sin(frame * 0.05) * 0.8);
+      ctx.moveTo(-5, 11);
+      ctx.lineTo(-22, 17);
+
+      // Bigotes derecha
+      ctx.moveTo(5, 9);
+      ctx.lineTo(26, 6 + Math.sin(frame * 0.05) * 0.8);
+      ctx.moveTo(5, 10);
+      ctx.lineTo(25, 12 + Math.sin(frame * 0.05) * 0.8);
+      ctx.moveTo(5, 11);
+      ctx.lineTo(22, 17);
+      ctx.stroke();
 
       ctx.restore();
 
+      // Pixel-Sampling
       const imgData = ctx.getImageData(0, 0, cols, rows).data;
       let output = '';
 
@@ -126,7 +158,7 @@ function CyberpunkAsciiEngine({ mousePos }) {
     return () => cancelAnimationFrame(animationId);
   }, [mousePos]);
 
-  return <pre className="ascii-kinetic-render">{asciiText}</pre>;
+  return <pre className="ascii-cat-render">{asciiText}</pre>;
 }
 
 const CONTENT = {
@@ -185,6 +217,7 @@ export default function App() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+  // Reloj Lima GMT-5
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -223,7 +256,7 @@ export default function App() {
     <div onMouseMove={handleMouseMove}>
       <div className="spatial-canvas">
         
-        {/* 1. CABECERA OCTAGONAL */}
+        {/* 1. CABECERA CUADRADA */}
         <header className="clean-status-bar">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Clock size={12} />
@@ -231,11 +264,11 @@ export default function App() {
           </div>
 
           <div className="clean-controls">
-            <button type="button" className="brick-btn-3d" onClick={toggleLang}>
+            <button type="button" className="square-btn-3d" onClick={toggleLang}>
               <Languages size={12} />
               <span>{lang.toUpperCase()}</span>
             </button>
-            <button type="button" className="brick-btn-3d" onClick={toggleTheme} aria-label="Toggle Theme">
+            <button type="button" className="square-btn-3d" onClick={toggleTheme} aria-label="Toggle Theme">
               {theme === 'dark' ? <Sun size={12} /> : <Moon size={12} />}
             </button>
           </div>
@@ -243,7 +276,7 @@ export default function App() {
 
         {/* 2. PROFILE */}
         <section className="profile-row">
-          <div className="profile-avatar-octagon">
+          <div className="profile-avatar-square">
             <img 
               src="assets/avatar.png" 
               alt="Rodrigo Aquije V." 
@@ -276,21 +309,21 @@ export default function App() {
 
         {/* CTAs */}
         <div className="hero-cta-group">
-          <a href="mailto:rodrigoaq996@gmail.com" className="cta-brick-primary">
+          <a href="mailto:rodrigoaq996@gmail.com" className="cta-square-primary">
             {t.getInTouch} ↗
           </a>
-          <button type="button" className="brick-btn-3d" onClick={handleCopyEmail}>
+          <button type="button" className="square-btn-3d" onClick={handleCopyEmail}>
             <span>{copied ? t.copied : 'rodrigoaq996@gmail.com'}</span>
             {copied ? <Check size={13} color="#00E5FF" /> : <Copy size={13} />}
           </button>
         </div>
 
-        {/* 3. ARTE ASCII LIBRE */}
-        <div className="ascii-frameless-stage">
-          <CyberpunkAsciiEngine mousePos={mousePos} />
+        {/* 3. ARTE ASCII HALFTONE DEL GATO */}
+        <div className="ascii-cat-stage">
+          <HalftoneCatEngine mousePos={mousePos} />
         </div>
 
-        {/* 4. SHOWCASE DE PROYECTOS OCTAGONALES */}
+        {/* 4. SHOWCASE DE PROYECTOS CUADRADOS */}
         <section id="work">
           <div className="work-section-head">
             <h2 className="work-section-title">{t.workTitle}</h2>
@@ -299,9 +332,9 @@ export default function App() {
           <div className="work-showcase-container">
             
             {/* Caso 1: BBVA */}
-            <div className="isometric-octagon-card">
+            <div className="monolith-square-card">
               <div className="stage-display stage-display--bbva">
-                <div className="mockup-window-octagon">
+                <div className="mockup-window-square">
                   <div className="window-header">
                     <div className="window-dots">
                       <div className="window-dot" />
@@ -313,10 +346,10 @@ export default function App() {
                   <div className="window-content">
                     <div className="mockup-header-row">
                       <span className="brand-badge brand-badge--bbva">BBVA</span>
-                      <span className="status-star-badge status-star-badge--bbva">COMPLIANT</span>
+                      <span className="status-chip-square status-chip-square--bbva">COMPLIANT</span>
                     </div>
                     <p className="mockup-headline">Tus préstamos aprobados empiezan hoy con abono en 3 minutos.</p>
-                    <div className="mockup-kpi-octagon">
+                    <div className="mockup-kpi-square">
                       <div>
                         <div className="kpi-label">Monto Aprobado</div>
                         <div className="kpi-amount">S/ 52,100</div>
@@ -336,16 +369,16 @@ export default function App() {
                   <h3 className="stage-title">{t.bbvaTitle}</h3>
                   <p className="stage-desc">{t.bbvaDesc}</p>
                 </div>
-                <a href="/proyecto-bbva.html" className="cta-brick-primary">
+                <a href="/proyecto-bbva.html" className="cta-square-primary">
                   {t.viewCase} <ArrowUpRight size={14} />
                 </a>
               </div>
             </div>
 
             {/* Caso 2: Yape */}
-            <div className="isometric-octagon-card">
+            <div className="monolith-square-card">
               <div className="stage-display stage-display--yape">
-                <div className="mockup-window-octagon">
+                <div className="mockup-window-square">
                   <div className="window-header">
                     <div className="window-dots">
                       <div className="window-dot" />
@@ -357,10 +390,10 @@ export default function App() {
                   <div className="window-content">
                     <div className="mockup-header-row">
                       <span className="brand-badge brand-badge--yape">Yape</span>
-                      <span className="status-star-badge status-star-badge--yape">RESOLVED</span>
+                      <span className="status-chip-square status-chip-square--yape">RESOLVED</span>
                     </div>
                     <p className="mockup-headline">Validación conductual para estados 'en revisión' sin fricción para el usuario.</p>
-                    <div className="mockup-kpi-octagon">
+                    <div className="mockup-kpi-square">
                       <div>
                         <div className="kpi-label">Monto en Validación</div>
                         <div className="kpi-amount">S/ 180.00</div>
@@ -380,7 +413,7 @@ export default function App() {
                   <h3 className="stage-title">{t.yapeTitle}</h3>
                   <p className="stage-desc">{t.yapeDesc}</p>
                 </div>
-                <a href="/proyecto-yape.html" className="cta-brick-primary">
+                <a href="/proyecto-yape.html" className="cta-square-primary">
                   {t.viewCase} <ArrowUpRight size={14} />
                 </a>
               </div>
@@ -389,17 +422,17 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5. REDES */}
+        {/* 5. REDES EN FILAS CUADRADAS */}
         <div className="network-list">
-          <a href="mailto:rodrigoaq996@gmail.com" className="network-octagon-row">
+          <a href="mailto:rodrigoaq996@gmail.com" className="network-square-row">
             <span className="network-left"><Mail size={15} /> Email</span>
             <span className="network-right">rodrigoaq996@gmail.com ↗</span>
           </a>
-          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="network-octagon-row">
+          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="network-square-row">
             <span className="network-left"><Linkedin size={15} /> LinkedIn</span>
             <span className="network-right">/in/rodrigo-aquije ↗</span>
           </a>
-          <a href="#descargar-cv" className="network-octagon-row">
+          <a href="#descargar-cv" className="network-square-row">
             <span className="network-left"><FileText size={15} /> {t.cv}</span>
             <span className="network-right">{t.download} ↗</span>
           </a>
@@ -413,26 +446,26 @@ export default function App() {
 
       </div>
 
-      {/* 6. FLOATING DOCK OCTAGONAL 3D */}
+      {/* 6. DOCK FLOTANTE CON INCLINACIÓN 3D EN EL EJE Y */}
       <nav className="floating-dock-container">
-        <div className="floating-dock-3d">
+        <div className="floating-dock-3d-y">
           <img 
             src="assets/avatar.png" 
             alt="Rodrigo" 
-            className="dock-avatar-star"
+            className="dock-avatar-square"
             onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&auto=format&fit=crop&q=80'; }}
           />
-          <div className="dock-divider-3d" />
-          <a href="#" className="dock-icon-btn-3d active" title="Home">
+          <div className="dock-divider-square" />
+          <a href="#" className="dock-icon-btn-square active" title="Home">
             <Home size={17} />
           </a>
-          <a href="#work" className="dock-icon-btn-3d" title="Projects">
+          <a href="#work" className="dock-icon-btn-square" title="Projects">
             <Layers size={17} />
           </a>
-          <a href="/about.html" className="dock-icon-btn-3d" title="About">
+          <a href="/about.html" className="dock-icon-btn-square" title="About">
             <User size={17} />
           </a>
-          <a href="mailto:rodrigoaq996@gmail.com" className="dock-icon-btn-3d" title="Contact">
+          <a href="mailto:rodrigoaq996@gmail.com" className="dock-icon-btn-square" title="Contact">
             <Send size={17} />
           </a>
         </div>
