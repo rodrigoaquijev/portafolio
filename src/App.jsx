@@ -16,72 +16,111 @@ import {
   Languages
 } from 'lucide-react';
 
-// Secuencia de morfología mecatrónica (De núcleo robótico a iniciales RAV)
-const ROBOTIC_FRAMES = [
-  // Frame 0: Núcleo esférico mecatrónico inicial
-  `
-      ┌─────────── [CORE_INITIALIZING] ───────────┐
-      │               .---.                       │
-      │              /     \\                      │
-      │             | () () |                     │
-      │        .==== \\  =  / ====.               │
-      │       /  ..   '---'   ..  \\              │
-      │      |  |  | [#####] |  |  |              │
-      │       \\  ''           ''  /               │
-      │        '================='                │
-      └───────────────────────────────────────────┘
-  `,
-  // Frame 1: Despliegue de sensores y antenas biomecánicas
-  `
-      ┌─────────── [DEPLOYING_OPTICS] ────────────┐
-      │        \\|/             \\|/                │
-      │       --o--   .=====. --o--               │
-      │        /|\\   /  o o  \\ /|\\                │
-      │        .=== |   ===   | ===.              │
-      │       /  ::  \\       /  ::  \\             │
-      │      [  |  |  '====='  |  |  ]            │
-      │       \\  ::             ::  /             │
-      │        '==================='              │
-      └───────────────────────────────────────────┘
-  `,
-  // Frame 2: Reconfiguración de matriz geométrica
-  `
-      ┌─────────── [MATRIX_MORPHING] ─────────────┐
-      │    ┌───┐         /\        ┌───┐          │
-      │    │ █ │        /  \       │ █ │          │
-      │    └───┘       / /\ \      └───┘          │
-      │      ├───┐    / ____ \   ┌───┤            │
-      │      │ █ │   /_/    \_\  │ █ │            │
-      │    ┌─┴───┴─┐            ┌─┴───┴─┐         │
-      │    │ ░░░░░ │  ◄◄░░░░►►  │ ░░░░░ │         │
-      │    └───────┘            └───────┘         │
-      └───────────────────────────────────────────┘
-  `,
-  // Frame 3: Pre-ensamblado tipográfico de alta densidad
-  `
-      ┌─────────── [ASSEMBLING_RAV] ──────────────┐
-      │    █████╗      █████╗   ██╗   ██╗         │
-      │    ██╔══██╗   ██╔══██╗  ██║   ██║         │
-      │    ██████╔╝   ███████║  ██║   ██║         │
-      │    ██╔══██╗   ██╔══██║  ╚██╗ ██╔╝         │
-      │    ██║  ██║   ██║  ██║   ╚████╔╝          │
-      │    ╚═╝  ╚═╝   ╚═╝  ╚═╝    ╚═══╝           │
-      └───────────────────────────────────────────┘
-  `,
-  // Frame 4: Identidad bloqueada y calibrada (RAV Locked)
-  `
-      ┌────────── [IDENT_LOCKED // RAV] ──────────┐
-      │                                           │
-      │    ██████╗       █████╗     ██╗   ██╗     │
-      │    ██╔══██╗     ██╔══██╗    ██║   ██║     │
-      │    ██████╔╝     ███████║    ██║   ██║     │
-      │    ██╔══██╗     ██╔══██║    ╚██╗ ██╔╝     │
-      │    ██║  ██║     ██║  ██║     ╚████╔╝      │
-      │    ╚═╝  ╚═╝     ╚═╝  ╚═╝      ╚═══╝       │
-      │                                           │
-      └───────────────────────────────────────────┘
-  `
-];
+const DENSITY_RAMP = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+
+function RealtimeAsciiEngine({ mousePos }) {
+  const [asciiText, setAsciiText] = useState('');
+  const hiddenCanvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = hiddenCanvasRef.current || document.createElement('canvas');
+    hiddenCanvasRef.current = canvas;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+    // Dimensiones de muestreo: matriz de alta resolución
+    const cols = 96;
+    const rows = 36;
+    canvas.width = cols;
+    canvas.height = rows;
+
+    let frame = 0;
+    let animationId;
+
+    const render = () => {
+      frame++;
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, cols, rows);
+
+      const time = frame * 0.035;
+      const morphFactor = (Math.sin(time * 0.5) + 1) / 2; // Oscila entre 0 (Esfera) y 1 (Letras RAV)
+
+      ctx.save();
+      ctx.translate(cols / 2, rows / 2);
+
+      // 1. Dibujar núcleo esférico/mecatrónico 3D con sombreado
+      if (morphFactor < 0.85) {
+        const radius = 12 * (1 - morphFactor * 0.5);
+        const grad = ctx.createRadialGradient(
+          mousePos.x * 0.4,
+          mousePos.y * 0.4,
+          1,
+          0,
+          0,
+          radius
+        );
+        grad.addColorStop(0, '#FFFFFF');
+        grad.addColorStop(0.4, '#888888');
+        grad.addColorStop(0.85, '#222222');
+        grad.addColorStop(1, '#000000');
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Anillos mecatrónicos orbitales
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.8 * (1 - morphFactor)})`;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, radius * 1.5, radius * 0.5, time + mousePos.x * 0.05, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // 2. Dibujar tipografía volumétrica RAV
+      if (morphFactor > 0.15) {
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(1, morphFactor * 1.4)})`;
+        ctx.font = '900 18px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('R · A · V', 0, 0);
+
+        // Subtítulo técnico
+        ctx.font = '700 6px monospace';
+        ctx.fillText('[ 2040 ENGINE ]', 0, 11);
+      }
+
+      ctx.restore();
+
+      // 3. Pixel-Sampling: Escaneo y conversión matemática a ASCII
+      const imgData = ctx.getImageData(0, 0, cols, rows).data;
+      let output = '';
+
+      for (let y = 0; y < rows; y++) {
+        let line = '';
+        for (let x = 0; x < cols; x++) {
+          const idx = (y * cols + x) * 4;
+          const r = imgData[idx];
+          const g = imgData[idx + 1];
+          const b = imgData[idx + 2];
+          // Luminancia ponderada
+          const brightness = 0.299 * r + 0.587 * g + 0.114 * b;
+          const charIndex = Math.floor((brightness / 255) * (DENSITY_RAMP.length - 1));
+          line += DENSITY_RAMP[charIndex];
+        }
+        output += line + '\n';
+      }
+
+      setAsciiText(output);
+      animationId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => cancelAnimationFrame(animationId);
+  }, [mousePos]);
+
+  return <pre className="ascii-hd-output">{asciiText}</pre>;
+}
 
 const CONTENT = {
   es: {
@@ -135,7 +174,7 @@ export default function App() {
   const [lang, setLang] = useState('es');
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState('');
-  const [frameIndex, setFrameIndex] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -160,15 +199,14 @@ export default function App() {
     return () => clearInterval(timer);
   }, [lang]);
 
-  // Animación del bucle mecatrónico ASCII
-  useEffect(() => {
-    const animationLoop = setInterval(() => {
-      setFrameIndex((prev) => (prev + 1) % ROBOTIC_FRAMES.length);
-    }, 1100);
-    return () => clearInterval(animationLoop);
-  }, []);
+  // Captura de coordenadas del mouse normalizadas
+  const handleMouseMove = (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 30;
+    const y = (e.clientY / window.innerHeight - 0.5) * 30;
+    setMousePos({ x, y });
+  };
 
-  // Partículas Iridiscentes
+  // Partículas Iridiscentes de Fondo
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -250,7 +288,7 @@ export default function App() {
   const t = CONTENT[lang];
 
   return (
-    <div>
+    <div onMouseMove={handleMouseMove}>
       <canvas ref={canvasRef} id="particle-canvas" />
 
       <div className="spatial-canvas">
@@ -324,16 +362,19 @@ export default function App() {
           </button>
         </div>
 
-        {/* 3. ARTEFACTO ASCII CINÉTICO MONUMENTAL TORNASOLADO (X2 SIZE) */}
-        <div className="ascii-hero-stage">
+        {/* 3. ARTEFACTO ASCII HD CON CANVAS PIXEL-SAMPLING EN TIEMPO REAL */}
+        <div className="ascii-hd-stage">
           <div className="ascii-stage-header">
-            <span>[SYS_ANIM // 60FPS KINETIC ENGINE]</span>
-            <span>FRAME: 0{frameIndex + 1} / 05</span>
+            <span>[SYS_RENDER // CANVAS PIXEL-SAMPLING ENGINE]</span>
+            <span>96x36 HD RESOLUTION</span>
           </div>
-          <div className="iridescent-plasma-sphere" />
-          <pre className="ascii-kinetic-render">
-            {ROBOTIC_FRAMES[frameIndex]}
-          </pre>
+          <div 
+            className="iridescent-plasma-sphere" 
+            style={{
+              transform: `translate(${mousePos.x * 2}px, ${mousePos.y * 2}px)`
+            }}
+          />
+          <RealtimeAsciiEngine mousePos={mousePos} />
         </div>
 
         {/* 4. SHOWCASE DE TRABAJOS VISUALES */}
