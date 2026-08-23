@@ -1,23 +1,26 @@
 /* ==========================================================================
-   2040 CYBER-EDITORIAL / HUD SYSTEM TOKENS
+   SPATIAL HUD + EDITORIAL DOCK SYSTEM (2040 AMBIENCE)
    ========================================================================== */
 :root {
-  --bg-abyss: #030305;
-  --text-pure: #FAFAFA;
-  --text-ghost: #858892;
-  --text-dim: #434651;
-  
-  /* Iridiscencia Tornasolada */
-  --iridescent-1: #6E56CF;
-  --iridescent-2: #00E5FF;
-  --iridescent-3: #FF3B81;
-  --iridescent-4: #FFB340;
+  --bg-deep: #08090C;
+  --bg-glass: rgba(18, 20, 26, 0.75);
+  --bg-hover: rgba(255, 255, 255, 0.04);
 
-  --font-editorial: 'Cinzel', serif;
+  --text-pure: #F8FAFC;
+  --text-muted: #8E95A5;
+  --text-subtle: #474D5E;
+
+  --accent-cyan: #00E5FF;
+  --accent-violet: #7C3AED;
+  --accent-rose: #FF2E74;
+  --accent-emerald: #10B981;
+
+  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-mono: 'Space Mono', monospace;
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Cinzel', Georgia, serif;
 
-  --border-hud: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 *, *::before, *::after {
@@ -27,268 +30,368 @@
 }
 
 body {
-  background-color: var(--bg-abyss);
+  background-color: var(--bg-deep);
   color: var(--text-pure);
   font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  min-height: 100vh;
-  cursor: default;
+  padding-bottom: 120px; /* Espacio para el Dock inferior */
 }
 
-/* Grano y Rejilla de Fondo Sci-Fi */
-.scanlines-overlay {
-  position: fixed;
-  inset: 0;
-  background: 
-    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-    linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-  background-size: 100% 4px, 6px 100%;
-  pointer-events: none;
-  z-index: 999;
-  opacity: 0.6;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Lienzo Principal Centrado */
+.spatial-canvas {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 24px;
 }
 
 /* ==========================================================================
-   HUD HERO STAGE (PANTALLA COMPLETA)
+   1. HUD METADATA HEADER
    ========================================================================== */
-.hud-hero {
-  position: relative;
-  width: 100vw;
-  min-height: 100vh;
-  padding: 40px;
+.hud-status-bar {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
-}
-
-/* 4 Esquinas HUD */
-.hud-corner {
-  position: absolute;
+  align-items: center;
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 1.5px;
-  color: var(--text-ghost);
-  text-transform: uppercase;
-  z-index: 20;
+  color: var(--text-subtle);
+  letter-spacing: 0.5px;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.hud-top-left { top: 32px; left: 32px; }
-.hud-top-right { top: 32px; right: 32px; display: flex; gap: 24px; }
-.hud-top-right a { color: var(--text-ghost); transition: color 0.2s; }
-.hud-top-right a:hover { color: var(--text-pure); }
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-.hud-bottom-left { bottom: 32px; left: 32px; }
-.hud-bottom-right { bottom: 32px; right: 32px; text-align: right; }
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-emerald);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-emerald);
+  animation: pulseDot 2s infinite ease-in-out;
+}
 
-/* Tipografía Editorial Monumental */
-.hero-title-left {
-  position: absolute;
-  top: 14%;
-  left: 6%;
-  font-family: var(--font-editorial);
-  font-size: clamp(3.5rem, 8vw, 7.5rem);
-  font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: -2px;
-  text-transform: uppercase;
-  z-index: 10;
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ==========================================================================
+   2. HERO PROFILE & BIO STREAM
+   ========================================================================== */
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.profile-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid var(--border-subtle);
+}
+
+.profile-title-group h1 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.profile-title-group p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.spatial-intro {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+.bio-main {
+  font-size: 15px;
+  line-height: 1.65;
   color: var(--text-pure);
-  text-shadow: 0 0 30px rgba(255,255,255,0.1);
 }
 
-.hero-title-right {
-  position: absolute;
-  bottom: 12%;
-  right: 6%;
-  font-family: var(--font-editorial);
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -1px;
-  text-align: right;
-  text-transform: uppercase;
-  z-index: 10;
-  color: var(--text-pure);
-}
-
-.hero-bio-stream {
-  position: absolute;
-  top: 22%;
-  right: 8%;
-  max-width: 280px;
+.bio-meta-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   font-size: 12.5px;
-  color: var(--text-ghost);
-  line-height: 1.6;
-  z-index: 10;
-  text-align: left;
 }
 
-/* Artefacto Central: Flor Holográfica ASCII Tornasolada */
-.iridescent-centerpiece {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(580px, 90vw);
-  height: min(580px, 90vw);
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-subtle);
+  margin-bottom: 4px;
+}
+
+.meta-val {
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.meta-val strong {
+  color: var(--text-pure);
+}
+
+/* Botones de Acción de Cabecera */
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.pill-btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  color: #08090C;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s var(--spring);
+}
+.pill-btn-dark:hover { transform: scale(1.03); }
+
+.pill-btn-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-pure);
+  border: 1px solid var(--border-subtle);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pill-btn-glass:hover {
+  background: var(--bg-hover);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   3. ARTEFACTO CENTRAL: HOLOGRAMA ASCII 'RAV'
+   ========================================================================== */
+.hologram-viewport {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  margin-bottom: 56px;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
-  z-index: 5;
+  overflow: hidden;
 }
 
-.hologram-glow {
+.hologram-glow-sphere {
   position: absolute;
-  width: 90%;
-  height: 90%;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(110, 86, 207, 0.45) 0%, rgba(0, 229, 255, 0.3) 35%, rgba(255, 59, 129, 0.35) 60%, transparent 80%);
-  filter: blur(60px);
-  animation: pulseIridescent 8s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.4) 0%, rgba(255, 46, 116, 0.35) 50%, transparent 80%);
+  filter: blur(40px);
+  animation: floatHolo 6s infinite ease-in-out alternate;
 }
 
-@keyframes pulseIridescent {
-  0% { transform: scale(0.9) rotate(0deg); filter: blur(50px) hue-rotate(0deg); }
-  50% { transform: scale(1.15) rotate(180deg); filter: blur(75px) hue-rotate(90deg); }
-  100% { transform: scale(0.95) rotate(360deg); filter: blur(55px) hue-rotate(180deg); }
+@keyframes floatHolo {
+  0% { transform: scale(0.85) translate(-20px, -10px); }
+  100% { transform: scale(1.15) translate(20px, 10px); }
 }
 
-.ascii-flower-matrix {
+.ascii-rav-signature {
   position: relative;
   font-family: var(--font-mono);
-  font-size: clamp(8px, 1.2vw, 13px);
+  font-size: clamp(10px, 1.4vw, 13px);
   line-height: 1.1;
-  letter-spacing: 3px;
   font-weight: 700;
-  text-align: center;
   white-space: pre;
-  background: linear-gradient(135deg, #FFB340 0%, #FF3B81 30%, #6E56CF 60%, #00E5FF 100%);
+  text-align: center;
+  background: linear-gradient(135deg, #00E5FF 0%, #7C3AED 40%, #FF2E74 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.4));
+  filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.5));
   user-select: none;
 }
 
 /* ==========================================================================
-   STREAM DE PROYECTOS (INDEX HUD MINIMALISTA)
+   4. SHOWCASE DE PROYECTOS (ESTILO SOFTWARE DESIGNER)
    ========================================================================== */
-.index-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 32px 60px;
-  border-top: 1px solid var(--border-hud);
-}
-
-.index-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 48px;
-}
-
-.index-title {
-  font-family: var(--font-editorial);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  letter-spacing: -1px;
-}
-
-.index-caption {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 1.5px;
-}
-
-.project-rows-stream {
-  display: flex;
-  flex-direction: column;
-}
-
-.stream-row {
-  display: grid;
-  grid-template-columns: 80px 1.5fr 2fr 1fr auto;
-  align-items: center;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--border-hud);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  position: relative;
-}
-
-.stream-row:hover {
-  padding-left: 20px;
-  padding-right: 20px;
+.showcase-stage {
+  margin-bottom: 56px;
   background: rgba(255, 255, 255, 0.02);
-  border-bottom-color: rgba(0, 229, 255, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  overflow: hidden;
 }
 
-.row-index { font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); }
-.row-client { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--text-pure); letter-spacing: 1px; }
-.row-desc { font-size: 13.5px; color: var(--text-ghost); padding-right: 20px; }
-.row-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.stream-tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); border: 1px solid var(--border-hud); padding: 2px 8px; border-radius: 4px; }
-.row-action { font-family: var(--font-mono); font-size: 14px; color: var(--text-ghost); transition: transform 0.3s; }
-.stream-row:hover .row-action { transform: translate(4px, -4px); color: var(--iridescent-2); }
-
-/* Ventana de Acción / Contacto 2040 */
-.hud-dossier-footer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 32px 40px;
+.case-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 60px;
-  border-top: 1px solid var(--border-hud);
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-subtle);
 }
 
-.dossier-heading {
-  font-family: var(--font-editorial);
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
-.dossier-text {
-  font-size: 14px;
-  color: var(--text-ghost);
-  line-height: 1.7;
-  max-width: 480px;
-}
-
-.dossier-links {
+.case-panel {
+  background: #0D0F14;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 16px;
+  align-items: center;
+  min-height: 340px;
+  position: relative;
 }
 
-.hud-btn {
-  display: inline-flex;
-  align-items: center;
+.case-mockup-inner {
+  width: 100%;
+  max-width: 280px;
+  background: #141720;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   5. LISTA DE CONTACTO Y CONEXIÓN
+   ========================================================================== */
+.network-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 64px;
+}
+
+.network-row {
+  display: flex;
   justify-content: space-between;
-  padding: 16px 24px;
-  border: 1px solid var(--border-hud);
-  background: rgba(255, 255, 255, 0.01);
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.network-row:hover {
+  color: var(--text-pure);
+  padding-left: 8px;
+}
+
+.network-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+}
+
+.network-right {
   font-family: var(--font-mono);
   font-size: 12px;
-  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   6. DOCK FLOTANTE INFERIOR (SPATIAL NAVIGATION DOCK)
+   ========================================================================== */
+.floating-dock-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9000;
+}
+
+.floating-dock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.dock-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.dock-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border-subtle);
+  margin: 0 4px;
+}
+
+.dock-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s var(--spring);
+}
+
+.dock-icon-btn:hover, .dock-icon-btn.active {
   color: var(--text-pure);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px) scale(1.1);
 }
 
-.hud-btn:hover {
-  background: linear-gradient(90deg, rgba(110, 86, 207, 0.15), rgba(0, 229, 255, 0.15));
-  border-color: var(--iridescent-2);
-  transform: translateX(8px);
+/* Footer Info Minimal */
+.spatial-footer-text {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-subtle);
+  padding-top: 24px;
 }
 
-@media (max-width: 900px) {
-  .hero-title-left { top: 10%; left: 4%; }
-  .hero-title-right { bottom: 8%; right: 4%; }
-  .hero-bio-stream { display: none; }
-  .stream-row { grid-template-columns: 1fr; gap: 12px; }
-  .hud-dossier-footer { grid-template-columns: 1fr; }
+@media (max-width: 680px) {
+  .spatial-intro { grid-template-columns: 1fr; }
+  .case-grid { grid-template-columns: 1fr; }
 }
