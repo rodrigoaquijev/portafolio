@@ -1,142 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { MapPin, Linkedin, Copy, Check, Download, ArrowUpRight, Mail } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowUpRight, Copy, Check } from 'lucide-react';
 
-// Componente con Físicas Juguetonas (Spring Tilt & Playful Scale)
-function TiltCard({ children, className = '', ...props }) {
-  const cardRef = useRef(null);
-  const [style, setStyle] = useState({});
-  const [spotlight, setSpotlight] = useState({ opacity: 0, x: 0, y: 0 });
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    // Inclinación ligeramente más pronunciada y dinámica
-    const rotateX = ((y - centerY) / centerY) * -7;
-    const rotateY = ((x - centerX) / centerX) * 7;
-
-    setStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.01)`,
-      boxShadow: '0 30px 60px rgba(244, 63, 94, 0.12)'
-    });
-
-    setSpotlight({ opacity: 1, x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setStyle({
-      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)',
-      boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
-    });
-    setSpotlight(prev => ({ ...prev, opacity: 0 }));
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      className={className}
-      style={{
-        ...style,
-        position: 'relative',
-        transformStyle: 'preserve-3d',
-        transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease'
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      {...props}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          pointerEvents: 'none',
-          borderRadius: 'inherit',
-          opacity: spotlight.opacity,
-          transition: 'opacity 0.3s ease',
-          background: `radial-gradient(circle 400px at ${spotlight.x}px ${spotlight.y}px, rgba(244, 63, 94, 0.12), transparent 80%)`,
-          zIndex: 10
-        }}
-      />
-      {children}
-    </div>
-  );
-}
+// Matriz de arte ASCII Generativo para el centro de refracción
+const ASCII_HOLOGRAM = `
+              @@@
+          @@#  #@@%
+       @@@@@@  @@@@@@@
+     @@@@@  #@@  @@@@@@@
+    @@@@@   %@@    @@@@@@
+   @@@@@    @@@      @@@@@
+  @@@@@     @@@       @@@@@
+  @@@@@@@@@@@@@@@@@@@@@@@@@
+  @@@@@     @@@       @@@@@
+   @@@@@    @@@      @@@@@
+    @@@@@   %@@    @@@@@@
+     @@@@@  #@@  @@@@@@@
+       @@@@@@  @@@@@@@
+          @@#  #@@%
+              @@@
+              |||
+              |||
+             // \\\\
+`;
 
 const PROJECTS = [
   {
-    id: 1,
-    slug: 'bbva',
-    company: 'BBVA Perú',
-    title: 'Cómo diseñar con conversión y compliance bancario.',
-    description: 'El reto técnico y visual de enviar campañas de préstamos masivas en Salesforce MC sin romper las reglas (ni el diseño).',
-    tags: ['Email UX', 'Salesforce MC', 'Banca Regulada', 'Compliance', 'Figma'],
-    link: '#',
-    mockup: (
-      <div className="screen-box">
-        <span className="mock-tag">BBVA</span>
-        <p className="mock-head">Tus préstamos aprobados empiezan hoy.</p>
-        <div className="mock-card">
-          <p>Recíbelo en tu cuenta en minutos</p>
-          <strong>S/ 52,100</strong>
-        </div>
-      </div>
-    )
+    id: '01',
+    company: 'BBVA PERÚ',
+    category: 'FinTech Ecosystem',
+    title: 'Conversión de préstamos y compliance masivo en Salesforce MC',
+    tags: ['Email UX', 'Salesforce MC', 'Compliance'],
+    link: '/proyecto-bbva.html'
   },
   {
-    id: 2,
-    slug: 'yape',
-    company: 'Yape',
-    title: 'La pantalla de error que te hace perder dinero.',
-    description: 'Un audit de UX sobre los estados "en revisión" de Yape, para que el silencio de la app deje de leerse como una falla.',
-    tags: ['UX Audit', 'Microcopy', 'Sistemas de Estado', 'Figma'],
-    link: '#',
-    mockup: (
-      <div className="phone-box">
-        <div className="phone-screen">
-          <span className="badge-yape">Yape</span>
-          <div className="phone-amount">S/ 6.80</div>
-          <div className="phone-alert">¡Ocurrió un problema técnico!</div>
-        </div>
-      </div>
-    )
+    id: '02',
+    company: 'YAPE',
+    category: 'UX Audit & Behavioral',
+    title: 'Sistemas de estado y resolución en transacciones en revisión',
+    tags: ['Microcopy', 'State Systems', 'Figma'],
+    link: '/proyecto-yape.html'
   },
   {
-    id: 3,
-    slug: 'allpa',
-    company: 'Allpa',
-    title: 'El sistema que te impide gastar tu propia plata.',
-    description: 'Un concepto de diseño conductual para Apple Watch e iOS que interviene en el flujo de caja antes de que tomes una mala decisión.',
-    tags: ['Ecosistema iOS/watchOS', 'Economía Conductual', 'Growth', 'Figma'],
-    link: '#',
-    mockup: (
-      <div className="watch-box">
-        <div className="watch-screen">
-          <div className="watch-logo">🦙</div>
-          <div className="watch-text">allpa</div>
-        </div>
-      </div>
-    )
+    id: '03',
+    company: 'ALLPA',
+    category: 'Behavioral Finance / iOS',
+    title: 'Intervención de flujo de caja para Apple Watch y ecosistema Apple',
+    tags: ['watchOS', 'Economía Conductual', 'Growth'],
+    link: '/proyecto-allpa.html'
   }
 ];
 
 export default function App() {
   const [copied, setCopied] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleScroll = () => {
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      if (total > 0) {
-        setScrollProgress((window.scrollY / total) * 100);
-      }
+    const handleMouseMove = (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      setMousePos({ x, y });
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const handleCopyEmail = async () => {
@@ -147,169 +72,111 @@ export default function App() {
 
   return (
     <>
-      {/* Barra de progreso superior con brillo */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          height: '3px',
-          backgroundColor: 'var(--accent-playful)',
-          boxShadow: '0 0 10px var(--accent-playful)',
-          width: `${scrollProgress}%`,
-          zIndex: 9999,
-          transition: 'width 0.1s ease-out'
-        }}
-      />
+      <div className="scanlines-overlay" />
 
-      <div className="site-container">
-        {/* Navbar */}
-        <header className="navbar">
-          <div className="nav-brand">
-            <strong>R · A · V</strong> <span className="divider">·</span> <span className="subtext">Design Engineer</span>
-          </div>
-          <nav className="nav-links">
-            <a href="#proyectos" className="nav-link active">Proyectos</a>
-            <a href="/about.html" className="nav-link">Sobre mí</a>
-          </nav>
-        </header>
+      {/* 2040 HUD HERO VIEWPORT */}
+      <section className="hud-hero">
+        {/* 4 Esquinas de Navegación HUD */}
+        <div className="hud-corner hud-top-left">
+          <span>RODRIGO AQUIJE V.</span>
+        </div>
 
-        {/* Hero Card */}
-        <TiltCard className="hero-card">
-          <div className="hero-content">
-            <img 
-              src="assets/avatar.png" 
-              alt="Rodrigo Aquije V." 
-              className="hero-avatar" 
-              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80'; }} 
-            />
-            <div className="hero-info">
-              <h1 className="hero-name">Rodrigo Aquije V.</h1>
-              <p className="hero-role">Product Designer especializado en FinTech & Conversión.</p>
-              <p className="hero-bio">
-                Diseño experiencias digitales con rigor analítico y ejecución visual impecable, conectando economía conductual, sistemas de diseño y código nativo.
-              </p>
-              <div className="hero-meta">
-                <span className="meta-item"><MapPin size={14} color="#10B981" /> Lima, Perú</span>
-                <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="meta-link">
-                  <Linkedin size={14} /> LinkedIn
-                </a>
-                <button type="button" className="meta-btn" onClick={handleCopyEmail}>
-                  {copied ? <Check size={14} color="#10B981" /> : <Copy size={14} />}
-                  <span style={{ color: copied ? '#10B981' : 'inherit' }}>
-                    {copied ? '¡Copiado con éxito!' : 'Copiar Email'}
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="hero-actions">
-            <a href="#descargar-cv" className="btn-primary">
-              <Download size={15} /> Descargar CV
-            </a>
-          </div>
-        </TiltCard>
+        <div className="hud-corner hud-top-right">
+          <a href="#proyectos">WORK</a>
+          <a href="/about.html">DOSSIER</a>
+          <a href="#contacto">TRANSMIT</a>
+        </div>
 
-        {/* Proyectos */}
-        <section id="proyectos">
-          <h2 className="section-title">Casos de Estudio</h2>
-          <div className="projects-list">
-            {PROJECTS.map(project => (
-              <TiltCard key={project.id} className="project-card">
-                <div className={`project-preview project-preview--${project.slug}`}>
-                  <img src={`assets/project-${project.slug}.png`} alt={project.title} className="preview-img" onError={(e) => { e.target.style.display = 'none'; }} />
-                  <div className={`mockup-placeholder ${project.slug}-mock`}>
-                    {project.mockup}
-                  </div>
-                </div>
-                <div className="project-details">
-                  <span className="project-company">{project.company}</span>
-                  <h3 className="project-heading">{project.title}</h3>
-                  <p className="project-summary">{project.description}</p>
-                  <div className="project-tags">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="tag">{tag}</span>
-                    ))}
-                  </div>
-                  <a href={`/proyecto-${project.slug}.html`} className="btn-action">
-                    Ver caso completo <span>↗</span>
-                  </a>
-                </div>
-              </TiltCard>
-            ))}
-          </div>
-        </section>
+        <div className="hud-corner hud-bottom-left">
+          <span>[SYS_MODE // 2040 KINETIC]</span>
+        </div>
 
-        {/* Logos Strip */}
-        <section className="logos-strip">
-          <div className="logo-item">BBVA PERÚ</div>
-          <div className="logo-item">CENTRUM PUCP</div>
-          <div className="logo-item">AMSTERDAM AGENCY</div>
-          <div className="logo-item">UTOPIQ</div>
-        </section>
+        <div className="hud-corner hud-bottom-right">
+          <span>LIMA, PE // -12.0464° S</span>
+        </div>
 
-        {/* Footer Two Columns */}
-        <section className="footer-columns">
-          <TiltCard className="card-column">
-            <h3 className="column-title">Economía + Diseño + Código.</h3>
-            <p className="column-body">
-              Mi pasado en el sector financiero y banca corporativa me da una perspectiva única: entiendo las métricas de negocio, el compliance y las restricciones técnicas antes de trazar el primer píxel.
-            </p>
-            <a href="/about.html" className="btn-dark">
-              Conoce mi historia <ArrowUpRight size={16} />
-            </a>
-          </TiltCard>
+        {/* Tipografía Monumental Desestructurada */}
+        <h1 className="hero-title-left">
+          RODRIGO<br />AQUIJE
+        </h1>
 
-          <TiltCard className="card-column">
-            <h3 className="column-title">Hablemos</h3>
-            <p className="column-body">
-              ¿Buscando un Product Designer con fuerte criterio técnico y de negocio? Mi bandeja de entrada está abierta para nuevos retos.
-            </p>
-            <div className="contact-links">
-              <a href="mailto:rodrigoaq996@gmail.com" className="contact-row">
-                <Mail size={15} /> rodrigoaq996@gmail.com
-              </a>
-              <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="contact-row">
-                <Linkedin size={15} /> linkedin.com/in/rodrigo-aquije
-              </a>
-            </div>
-          </TiltCard>
-        </section>
+        <div className="hero-bio-stream">
+          <p>
+            Product Designer con formación en economía, especializado en rigor analítico, sistemas de diseño FinTech y conversión sin fricción.
+          </p>
+        </div>
 
-        {/* Footer Bottom */}
-        <footer className="footer-bottom">
-          <span>R. Aquije V. — Crafting Digital Products</span>
-          <span>©2026</span>
-        </footer>
-      </div>
-
-      {/* Toast Notificación con rebote elástico */}
-      {copied && (
+        {/* Artefacto Central Tornasolado con ASCII */}
         <div
+          className="iridescent-centerpiece"
           style={{
-            position: 'fixed',
-            bottom: '32px',
-            left: '50%',
-            transform: 'translateX(-50%) translateY(0)',
-            backgroundColor: '#1E293B',
-            color: '#FFFFFF',
-            border: '1px solid var(--accent-neon)',
-            padding: '12px 24px',
-            borderRadius: '9999px',
-            fontSize: '13px',
-            fontWeight: '700',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            boxShadow: '0 20px 40px rgba(16, 185, 129, 0.25)',
-            zIndex: 10000,
-            animation: 'bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            transform: `translate(calc(-50% + ${mousePos.x}px), calc(-50% + ${mousePos.y}px))`
           }}
         >
-          <Check size={16} color="#10B981" />
-          ¡Correo copiado al portapapeles!
+          <div className="hologram-glow" />
+          <pre className="ascii-flower-matrix">{ASCII_HOLOGRAM}</pre>
         </div>
-      )}
+
+        <h2 className="hero-title-right">
+          DESIGN<br />& SYSTEMS
+        </h2>
+      </section>
+
+      {/* DATA-STREAM DE PROYECTOS (SIN TARJETAS) */}
+      <section id="proyectos" className="index-container">
+        <div className="index-header">
+          <h2 className="index-title">INDEX // 01-03</h2>
+          <span className="index-caption">SELECTED CASE STUDIES</span>
+        </div>
+
+        <div className="project-rows-stream">
+          {PROJECTS.map((project) => (
+            <a
+              key={project.id}
+              href={project.link}
+              className="stream-row"
+            >
+              <span className="row-index">{project.id}</span>
+              <span className="row-client">{project.company}</span>
+              <span className="row-desc">{project.title}</span>
+              <div className="row-tags">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="stream-tag">{tag}</span>
+                ))}
+              </div>
+              <span className="row-action">
+                <ArrowUpRight size={18} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* FOOTER DOSSIER */}
+      <footer id="contacto" className="hud-dossier-footer">
+        <div>
+          <h3 className="dossier-heading">Economía, interfaces y ejecución técnica.</h3>
+          <p className="dossier-text">
+            Diseño productos escalables uniendo la perspectiva del modelo de negocio con arquitectura de interfaz moderna.
+          </p>
+        </div>
+
+        <div className="dossier-links">
+          <button type="button" className="hud-btn" onClick={handleCopyEmail}>
+            <span>{copied ? '[EMAIL COPIED TO CLIPBOARD]' : 'rodrigoaq996@gmail.com'}</span>
+            {copied ? <Check size={14} /> : <Copy size={14} />}
+          </button>
+          <a
+            href="https://linkedin.com/in/rodrigo-aquije"
+            target="_blank"
+            rel="noreferrer"
+            className="hud-btn"
+          >
+            <span>LINKEDIN // PROFILE</span>
+            <ArrowUpRight size={14} />
+          </a>
+        </div>
+      </footer>
     </>
   );
 }
