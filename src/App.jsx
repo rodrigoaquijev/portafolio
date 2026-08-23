@@ -16,10 +16,72 @@ import {
   Languages
 } from 'lucide-react';
 
-const MINI_ASCII_RAV = `
-  █▀█ ▄▀█ █ █
-  █▀▄ █▀█ ▀▄▀
-`;
+// Secuencia de morfología mecatrónica (De núcleo robótico a iniciales RAV)
+const ROBOTIC_FRAMES = [
+  // Frame 0: Núcleo esférico mecatrónico inicial
+  `
+      ┌─────────── [CORE_INITIALIZING] ───────────┐
+      │               .---.                       │
+      │              /     \\                      │
+      │             | () () |                     │
+      │        .==== \\  =  / ====.               │
+      │       /  ..   '---'   ..  \\              │
+      │      |  |  | [#####] |  |  |              │
+      │       \\  ''           ''  /               │
+      │        '================='                │
+      └───────────────────────────────────────────┘
+  `,
+  // Frame 1: Despliegue de sensores y antenas biomecánicas
+  `
+      ┌─────────── [DEPLOYING_OPTICS] ────────────┐
+      │        \\|/             \\|/                │
+      │       --o--   .=====. --o--               │
+      │        /|\\   /  o o  \\ /|\\                │
+      │        .=== |   ===   | ===.              │
+      │       /  ::  \\       /  ::  \\             │
+      │      [  |  |  '====='  |  |  ]            │
+      │       \\  ::             ::  /             │
+      │        '==================='              │
+      └───────────────────────────────────────────┘
+  `,
+  // Frame 2: Reconfiguración de matriz geométrica
+  `
+      ┌─────────── [MATRIX_MORPHING] ─────────────┐
+      │    ┌───┐         /\        ┌───┐          │
+      │    │ █ │        /  \       │ █ │          │
+      │    └───┘       / /\ \      └───┘          │
+      │      ├───┐    / ____ \   ┌───┤            │
+      │      │ █ │   /_/    \_\  │ █ │            │
+      │    ┌─┴───┴─┐            ┌─┴───┴─┐         │
+      │    │ ░░░░░ │  ◄◄░░░░►►  │ ░░░░░ │         │
+      │    └───────┘            └───────┘         │
+      └───────────────────────────────────────────┘
+  `,
+  // Frame 3: Pre-ensamblado tipográfico de alta densidad
+  `
+      ┌─────────── [ASSEMBLING_RAV] ──────────────┐
+      │    █████╗      █████╗   ██╗   ██╗         │
+      │    ██╔══██╗   ██╔══██╗  ██║   ██║         │
+      │    ██████╔╝   ███████║  ██║   ██║         │
+      │    ██╔══██╗   ██╔══██║  ╚██╗ ██╔╝         │
+      │    ██║  ██║   ██║  ██║   ╚████╔╝          │
+      │    ╚═╝  ╚═╝   ╚═╝  ╚═╝    ╚═══╝           │
+      └───────────────────────────────────────────┘
+  `,
+  // Frame 4: Identidad bloqueada y calibrada (RAV Locked)
+  `
+      ┌────────── [IDENT_LOCKED // RAV] ──────────┐
+      │                                           │
+      │    ██████╗       █████╗     ██╗   ██╗     │
+      │    ██╔══██╗     ██╔══██╗    ██║   ██║     │
+      │    ██████╔╝     ███████║    ██║   ██║     │
+      │    ██╔══██╗     ██╔══██║    ╚██╗ ██╔╝     │
+      │    ██║  ██║     ██║  ██║     ╚████╔╝      │
+      │    ╚═╝  ╚═╝     ╚═╝  ╚═╝      ╚═══╝       │
+      │                                           │
+      └───────────────────────────────────────────┘
+  `
+];
 
 const CONTENT = {
   es: {
@@ -73,12 +135,14 @@ export default function App() {
   const [lang, setLang] = useState('es');
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState('');
+  const [frameIndex, setFrameIndex] = useState(0);
   const canvasRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+  // Reloj Lima GMT-5
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -96,7 +160,15 @@ export default function App() {
     return () => clearInterval(timer);
   }, [lang]);
 
-  // Partículas Cinéticas
+  // Animación del bucle mecatrónico ASCII
+  useEffect(() => {
+    const animationLoop = setInterval(() => {
+      setFrameIndex((prev) => (prev + 1) % ROBOTIC_FRAMES.length);
+    }, 1100);
+    return () => clearInterval(animationLoop);
+  }, []);
+
+  // Partículas Iridiscentes
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -124,8 +196,8 @@ export default function App() {
       ctx.clearRect(0, 0, width, height);
 
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const pointColor = isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(5, 150, 105, 0.35)';
-      const lineColor = isDark ? 'rgba(16, 185, 129, 0.07)' : 'rgba(5, 150, 105, 0.08)';
+      const pointColor = isDark ? 'rgba(0, 240, 255, 0.4)' : 'rgba(0, 119, 255, 0.35)';
+      const lineColor = isDark ? 'rgba(112, 0, 255, 0.08)' : 'rgba(107, 33, 168, 0.08)';
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -183,7 +255,7 @@ export default function App() {
 
       <div className="spatial-canvas">
         
-        {/* 1. HUD STATUS BAR (SIN COORDENADAS) */}
+        {/* 1. HUD STATUS BAR */}
         <header className="hud-status-bar">
           <div className="hud-left">
             <div className="hud-item">
@@ -209,22 +281,16 @@ export default function App() {
 
         {/* 2. PROFILE & BIO */}
         <section className="profile-row">
-          <div className="profile-identity">
-            <img 
-              src="assets/avatar.png" 
-              alt="Rodrigo Aquije V." 
-              className="profile-avatar"
-              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'; }}
-            />
-            <div className="profile-title-group">
-              <h1>Rodrigo Aquije V.</h1>
-              <p>{t.role}</p>
-            </div>
+          <img 
+            src="assets/avatar.png" 
+            alt="Rodrigo Aquije V." 
+            className="profile-avatar"
+            onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'; }}
+          />
+          <div className="profile-title-group">
+            <h1>Rodrigo Aquije V.</h1>
+            <p>{t.role}</p>
           </div>
-
-          <pre className="mini-ascii-badge">
-            {MINI_ASCII_RAV}
-          </pre>
         </section>
 
         <section className="spatial-intro">
@@ -254,11 +320,23 @@ export default function App() {
           </a>
           <button type="button" className="pill-btn-glass" onClick={handleCopyEmail}>
             <span>{copied ? t.copied : 'rodrigoaq996@gmail.com'}</span>
-            {copied ? <Check size={13} color="#10B981" /> : <Copy size={13} />}
+            {copied ? <Check size={13} color="#00F0FF" /> : <Copy size={13} />}
           </button>
         </div>
 
-        {/* 3. SHOWCASE DE TRABAJOS VISUALES */}
+        {/* 3. ARTEFACTO ASCII CINÉTICO MONUMENTAL TORNASOLADO (X2 SIZE) */}
+        <div className="ascii-hero-stage">
+          <div className="ascii-stage-header">
+            <span>[SYS_ANIM // 60FPS KINETIC ENGINE]</span>
+            <span>FRAME: 0{frameIndex + 1} / 05</span>
+          </div>
+          <div className="iridescent-plasma-sphere" />
+          <pre className="ascii-kinetic-render">
+            {ROBOTIC_FRAMES[frameIndex]}
+          </pre>
+        </div>
+
+        {/* 4. SHOWCASE DE TRABAJOS VISUALES */}
         <section id="work">
           <div className="work-section-head">
             <h2 className="work-section-title">{t.workTitle}</h2>
@@ -358,7 +436,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 4. REDES */}
+        {/* 5. REDES */}
         <div className="network-list">
           <a href="mailto:rodrigoaq996@gmail.com" className="network-row">
             <span className="network-left"><Mail size={15} /> Email</span>
@@ -382,7 +460,7 @@ export default function App() {
 
       </div>
 
-      {/* 5. FLOATING DOCK ELEVADO & PERFECTAMENTE ALINEADO */}
+      {/* 6. FLOATING DOCK INFERIOR */}
       <nav className="floating-dock-container">
         <div className="floating-dock">
           <img 
