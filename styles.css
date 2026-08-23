@@ -1,51 +1,83 @@
 /* ==========================================================================
-   GLASS-BRICK ARCHITECTURE & CYBER-INDUSTRIAL TOKENS
+   ISOMETRIC 3D GLASS-BRICK & POLYGONAL ARCHITECTURE (Z-AXIS PROJECTION)
    ========================================================================== */
 :root[data-theme="dark"] {
-  --bg-deep: #090B0F;
-  --bg-surface: #10141D;
-  --bg-card: #141A26;
-  
-  --text-pure: #F3F5F9;
-  --text-muted: #8B98AB;
-  --text-subtle: #4D5768;
+  --bg-deep: #080A0E;
+  --bg-surface: #10151F;
+  --bg-top-face: #1A2232;
+  --bg-side-face: #0B0E14;
+
+  --text-pure: #F4F7FB;
+  --text-muted: #8E9CAA;
+  --text-subtle: #4D5766;
 
   --iris-1: #00E5FF;
   --iris-2: #8B5CF6;
   --iris-3: #FF2E74;
   --iris-4: #FFB703;
 
-  /* Biselado de Ladrillo de Cristal (Efecto Macizo) */
-  --brick-border: 1px solid rgba(255, 255, 255, 0.14);
-  --brick-bevel: inset 1px 1px 0px rgba(255, 255, 255, 0.16),
-                 inset -1px -1px 0px rgba(0, 0, 0, 0.5),
-                 0 16px 40px rgba(0, 0, 0, 0.6);
-                 
-  --dock-bg: #10141D;
-  --dock-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  /* Extrusión 3D Real en Eje Z (Facetas de Luz y Sombra) */
+  --brick-depth-shadow: 
+    0 1px 0 #1E2838,
+    0 2px 0 #18202D,
+    0 3px 0 #121822,
+    0 4px 0 #0D1118,
+    0 5px 0 #090B10,
+    0 6px 0 #05070A,
+    0 16px 32px rgba(0, 0, 0, 0.85);
+
+  --button-depth-shadow:
+    0 1px 0 #1E2838,
+    0 2px 0 #161D29,
+    0 3px 0 #0F141C,
+    0 4px 0 #090C11,
+    0 8px 16px rgba(0, 0, 0, 0.6);
+
+  --dock-depth: 
+    0 1px 0 #253145,
+    0 2px 0 #1C2534,
+    0 3px 0 #141B26,
+    0 4px 0 #0D1219,
+    0 14px 28px rgba(0, 0, 0, 0.9);
 }
 
 :root[data-theme="light"] {
-  --bg-deep: #EBEFF5;
+  --bg-deep: #E6EBF2;
   --bg-surface: #F8FAFD;
-  --bg-card: #FFFFFF;
+  --bg-top-face: #FFFFFF;
+  --bg-side-face: #CCD5E2;
 
-  --text-pure: #0E131C;
-  --text-muted: #4F5D70;
-  --text-subtle: #94A1B2;
+  --text-pure: #0B111A;
+  --text-muted: #4F5E72;
+  --text-subtle: #8A98AB;
 
   --iris-1: #0066FF;
   --iris-2: #7C3AED;
   --iris-3: #E11D48;
   --iris-4: #D97706;
 
-  --brick-border: 1px solid rgba(14, 19, 28, 0.14);
-  --brick-bevel: inset 1px 1px 0px rgba(255, 255, 255, 0.9),
-                 inset -1px -1px 0px rgba(14, 19, 28, 0.08),
-                 0 16px 36px rgba(14, 19, 28, 0.08);
+  --brick-depth-shadow: 
+    0 1px 0 #D3DCE8,
+    0 2px 0 #C4CFDC,
+    0 3px 0 #B5C0CE,
+    0 4px 0 #A6B2C0,
+    0 5px 0 #97A3B2,
+    0 6px 0 #8995A4,
+    0 16px 30px rgba(11, 17, 26, 0.12);
 
-  --dock-bg: #FFFFFF;
-  --dock-shadow: 0 16px 36px rgba(14, 19, 28, 0.12);
+  --button-depth-shadow:
+    0 1px 0 #CCD7E4,
+    0 2px 0 #B8C5D4,
+    0 3px 0 #A3B2C3,
+    0 4px 0 #8E9FB1,
+    0 8px 16px rgba(11, 17, 26, 0.1);
+
+  --dock-depth:
+    0 1px 0 #D5DFEB,
+    0 2px 0 #C2CEDC,
+    0 3px 0 #B0BDCD,
+    0 4px 0 #9EACBE,
+    0 14px 28px rgba(11, 17, 26, 0.15);
 }
 
 :root {
@@ -54,10 +86,10 @@
 
   --space-xs: 8px;
   --space-sm: 14px;
-  --space-md: 22px;
-  --space-lg: 36px;
-  --space-xl: 56px;
-  --space-2xl: 90px;
+  --space-md: 24px;
+  --space-lg: 38px;
+  --space-xl: 60px;
+  --space-2xl: 96px;
 }
 
 *, *::before, *::after {
@@ -74,7 +106,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  padding-bottom: 140px;
+  padding-bottom: 160px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -92,7 +124,7 @@ a {
 }
 
 /* ==========================================================================
-   1. BARRA SUPERIOR SOBRIA
+   1. CABECERA POLIGONAL (SIN LÍNEAS SEPARADORAS)
    ========================================================================== */
 .clean-status-bar {
   display: flex;
@@ -102,8 +134,11 @@ a {
   font-size: 11px;
   color: var(--text-subtle);
   margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-sm);
-  border-bottom: var(--brick-border);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-surface);
+  box-shadow: var(--button-depth-shadow);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .clean-controls {
@@ -112,29 +147,35 @@ a {
   gap: var(--space-xs);
 }
 
-.control-brick-btn {
-  background: var(--bg-surface);
-  border: var(--brick-border);
-  box-shadow: var(--brick-bevel);
-  color: var(--text-muted);
+/* Botón 3D Extruido con Depresión Mecánica */
+.brick-btn-3d {
+  background: var(--bg-top-face);
+  color: var(--text-pure);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: var(--button-depth-shadow);
   font-family: var(--font-mono);
   font-size: 11px;
-  padding: 4px 10px;
-  border-radius: 3px;
+  padding: 6px 14px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  transition: color 0.2s, border-color 0.2s;
+  gap: 6px;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-.control-brick-btn:hover {
-  color: var(--text-pure);
+.brick-btn-3d:hover {
+  transform: translateY(-2px);
   border-color: var(--iris-1);
 }
 
+.brick-btn-3d:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.5);
+}
+
 /* ==========================================================================
-   2. PROFILE & INTRO
+   2. PROFILE CON POLÍGONOS FACETADOS
    ========================================================================== */
 .profile-row {
   display: flex;
@@ -143,25 +184,31 @@ a {
   margin-bottom: var(--space-md);
 }
 
+.profile-avatar-brick {
+  width: 60px;
+  height: 60px;
+  box-shadow: var(--button-depth-shadow);
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
 .profile-avatar {
-  width: 58px;
-  height: 58px;
-  border-radius: 4px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: var(--brick-border);
-  box-shadow: var(--brick-bevel);
 }
 
 .profile-title-group h1 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.5px;
 }
 
 .profile-title-group p {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--iris-1);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .spatial-intro {
@@ -199,50 +246,35 @@ a {
 .hero-cta-group {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-md);
   margin-bottom: var(--space-xl);
 }
 
-.brick-btn-dark {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.cta-brick-primary {
   background: var(--text-pure);
   color: var(--bg-deep);
-  padding: 10px 20px;
-  border-radius: 3px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
+  padding: 12px 24px;
+  box-shadow: var(--button-depth-shadow);
   border: none;
   cursor: pointer;
-  box-shadow: var(--brick-bevel);
-  transition: transform 0.2s ease;
-}
-.brick-btn-dark:hover {
-  transform: translateY(-2px);
-}
-
-.brick-btn-glass {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--bg-surface);
-  color: var(--text-pure);
-  border: var(--brick-border);
-  box-shadow: var(--brick-bevel);
-  padding: 9px 18px;
-  border-radius: 3px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  cursor: pointer;
-  transition: border-color 0.2s;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: transform 0.15s ease;
 }
-.brick-btn-glass:hover {
-  border-color: var(--iris-1);
+.cta-brick-primary:hover {
+  transform: translateY(-2px);
+}
+.cta-brick-primary:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.4);
 }
 
 /* ==========================================================================
-   3. ARTE ASCII LIBRE (SIN MARCO, SIN CAJA)
+   3. ARTE ASCII LIBRE (SIN MARCOS)
    ========================================================================== */
 .ascii-frameless-stage {
   position: relative;
@@ -251,13 +283,12 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 .ascii-kinetic-render {
   position: relative;
   font-family: var(--font-mono);
-  font-size: clamp(4.5px, 0.72vw, 8px);
+  font-size: clamp(5px, 0.75vw, 8.5px);
   line-height: 0.9;
   letter-spacing: 0.2px;
   font-weight: 700;
@@ -270,15 +301,13 @@ a {
 }
 
 /* ==========================================================================
-   4. SHOWCASE DE PROYECTOS (LADRILLOS DE CRISTAL ESTRUCTURADOS)
+   4. SHOWCASE: LADRILLOS DE CRISTAL 3D EXTRUIDOS EN EJE Z
    ========================================================================== */
 .work-section-head {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-sm);
-  border-bottom: var(--brick-border);
+  align-items: center;
+  margin-bottom: var(--space-lg);
 }
 
 .work-section-title {
@@ -290,26 +319,26 @@ a {
 .work-showcase-container {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-2xl);
   margin-bottom: var(--space-2xl);
 }
 
-.glass-brick-card {
+/* El bloque monolítico 3D */
+.isometric-brick-card {
+  position: relative;
   background: var(--bg-surface);
-  border: var(--brick-border);
-  box-shadow: var(--brick-bevel);
-  border-radius: 4px;
-  overflow: hidden;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  box-shadow: var(--brick-depth-shadow);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
-.glass-brick-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--iris-1);
+.isometric-brick-card:hover {
+  transform: translateY(-6px);
 }
 
 .stage-display {
-  padding: var(--space-lg) var(--space-md);
+  padding: var(--space-xl) var(--space-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -325,20 +354,19 @@ a {
   background: radial-gradient(circle at 50% 30%, #731288 0%, #22032B 100%);
 }
 
-.mockup-window {
+/* Ventana Poligonal de Producto */
+.mockup-window-poly {
   width: 100%;
   max-width: 520px;
   background: #080C10;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.12), 0 24px 48px rgba(0, 0, 0, 0.7);
-  border-radius: 3px;
-  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--button-depth-shadow);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
 }
 
 .window-header {
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -352,8 +380,8 @@ a {
 .window-dot {
   width: 8px;
   height: 8px;
-  border-radius: 1px;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.3);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .window-title {
@@ -381,15 +409,15 @@ a {
 .brand-badge--bbva { color: #00A9E0; }
 .brand-badge--yape { color: #00D5A6; }
 
-.status-chip {
+.status-chip-poly {
   font-family: var(--font-mono);
   font-size: 10.5px;
   font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 2px;
+  padding: 4px 10px;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
 }
-.status-chip--bbva { background: rgba(0, 169, 224, 0.15); color: #00A9E0; border: 1px solid rgba(0, 169, 224, 0.3); }
-.status-chip--yape { background: rgba(0, 213, 166, 0.15); color: #00D5A6; border: 1px solid rgba(0, 213, 166, 0.3); }
+.status-chip-poly--bbva { background: #00A9E0; color: #000; }
+.status-chip-poly--yape { background: #00D5A6; color: #000; }
 
 .mockup-headline {
   font-size: 15px;
@@ -399,14 +427,14 @@ a {
   color: #F8FAFC;
 }
 
-.mockup-kpi-card {
+.mockup-kpi-brick {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: var(--space-sm);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
 }
 
 .kpi-label { font-size: 11px; color: #94A3B8; margin-bottom: 2px; }
@@ -416,7 +444,7 @@ a {
 .stage-meta {
   padding: var(--space-md) var(--space-lg);
   background: var(--bg-surface);
-  border-top: var(--brick-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -438,7 +466,7 @@ a {
 }
 
 .stage-title {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 800;
   margin-bottom: 6px;
   letter-spacing: -0.3px;
@@ -451,46 +479,31 @@ a {
   line-height: 1.55;
 }
 
-.stage-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 18px;
-  border-radius: 3px;
-  background: var(--text-pure);
-  color: var(--bg-deep);
-  font-size: 12.5px;
-  font-weight: 700;
-  white-space: nowrap;
-  box-shadow: var(--brick-bevel);
-  transition: transform 0.2s ease;
-}
-.stage-action:hover {
-  transform: translateY(-2px);
-}
-
 /* ==========================================================================
-   5. REDES & CONTACTO
+   5. REDES & DOSSIER
    ========================================================================== */
 .network-list {
   display: flex;
   flex-direction: column;
+  gap: var(--space-xs);
   margin-bottom: var(--space-xl);
 }
 
-.network-row {
+.network-brick-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-sm) 0;
-  border-bottom: var(--brick-border);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-surface);
+  box-shadow: var(--button-depth-shadow);
   color: var(--text-muted);
-  transition: color 0.2s, padding-left 0.2s;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: transform 0.15s ease, color 0.15s ease;
 }
 
-.network-row:hover {
+.network-brick-row:hover {
   color: var(--text-pure);
-  padding-left: 6px;
+  transform: translateX(4px);
 }
 
 .network-left {
@@ -509,73 +522,65 @@ a {
 }
 
 /* ==========================================================================
-   6. FLOATING DOCK (LADRILLO DE VIDRIO MACIZO)
+   6. DOCK FLOTANTE 3D CON EXTRUSIÓN ISOMÉTRICA
    ========================================================================== */
 .floating-dock-container {
   position: fixed;
-  bottom: 24px;
+  bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
 }
 
-.floating-dock {
+.floating-dock-3d {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  box-sizing: border-box;
-  background: var(--dock-bg);
-  border: var(--brick-border);
-  box-shadow: var(--brick-bevel);
-  border-radius: 4px;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-surface);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: var(--dock-depth);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
 }
 
-.dock-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 2px;
+.dock-avatar-poly {
+  width: 34px;
+  height: 34px;
   object-fit: cover;
-  border: var(--brick-border);
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
 }
 
-.dock-divider {
-  width: 1px;
-  height: 18px;
-  background: var(--brick-border);
+.dock-divider-3d {
+  width: 2px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.12);
   margin: 0 4px;
 }
 
-.dock-icon-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 2px;
+.dock-icon-btn-3d {
+  width: 38px;
+  height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
   color: var(--text-muted);
-  background: transparent;
-  border: none;
+  background: var(--bg-top-face);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.5);
   cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+  transition: transform 0.1s ease, color 0.1s ease;
 }
 
-.dock-icon-btn:hover, .dock-icon-btn.active {
+.dock-icon-btn-3d:hover, .dock-icon-btn-3d.active {
   color: var(--text-pure);
-  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
+  border-color: var(--iris-1);
 }
 
-.dock-icon-btn.active::after {
-  content: '';
-  position: absolute;
-  bottom: 3px;
-  width: 4px;
-  height: 2px;
-  background-color: var(--iris-1);
+.dock-icon-btn-3d:active {
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 .spatial-footer-text {

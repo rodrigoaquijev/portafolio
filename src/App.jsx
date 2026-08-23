@@ -18,7 +18,7 @@ import {
 
 const DENSITY_RAMP = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
 
-// Motor de animación cinemática: Robot -> Decodificación -> R -> A -> V
+// Motor Cyberpunk: Transformación Cinemática Completa
 function CyberpunkAsciiEngine({ mousePos }) {
   const [asciiText, setAsciiText] = useState('');
   const hiddenCanvasRef = useRef(null);
@@ -28,7 +28,7 @@ function CyberpunkAsciiEngine({ mousePos }) {
     hiddenCanvasRef.current = canvas;
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
-    const cols = 90;
+    const cols = 92;
     const rows = 34;
     canvas.width = cols;
     canvas.height = rows;
@@ -41,42 +41,36 @@ function CyberpunkAsciiEngine({ mousePos }) {
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, cols, rows);
 
-      // Loop completo de 400 frames (~7 segundos a 60 FPS)
       const loopFrame = frame % 420;
       const t = loopFrame / 420;
 
       ctx.save();
       ctx.translate(cols / 2, rows / 2);
 
-      // FASE 1: Robot Mecha / Chasis Cyberpunk con Visor y Antenas (t: 0.0 -> 0.35)
+      // FASE 1: Chasis Robótico Mecha con Visor (t: 0.0 -> 0.35)
       if (t < 0.35) {
-        const headW = 26;
+        const headW = 28;
         const headH = 18;
 
-        // Cabeza robótica biselada
         ctx.strokeStyle = '#FFFFFF';
         ctx.lineWidth = 1.5;
         ctx.strokeRect(-headW / 2, -headH / 2, headW, headH);
 
-        // Visor central
         ctx.fillStyle = '#FFFFFF';
         const eyeOffset = Math.sin(frame * 0.1) * 3;
-        ctx.fillRect(-headW / 2 + 4 + eyeOffset, -4, 10, 3);
+        ctx.fillRect(-headW / 2 + 5 + eyeOffset, -4, 10, 3);
 
-        // Antenas mecánicas superiores
         ctx.beginPath();
         ctx.moveTo(-headW / 4, -headH / 2);
-        ctx.lineTo(-headW / 4 - 3, -headH / 2 - 5);
+        ctx.lineTo(-headW / 4 - 4, -headH / 2 - 5);
         ctx.moveTo(headW / 4, -headH / 2);
-        ctx.lineTo(headW / 4 + 3, -headH / 2 - 5);
+        ctx.lineTo(headW / 4 + 4, -headH / 2 - 5);
         ctx.stroke();
 
-        // Placas de mandíbula
         ctx.fillStyle = '#555555';
         ctx.fillRect(-headW / 2 + 3, 3, headW - 6, 3);
       }
-
-      // FASE 2: Decodificación Cyberpunk / Matriz de Glifos (t: 0.35 -> 0.45)
+      // FASE 2: Decodificación Poligonal (t: 0.35 -> 0.45)
       else if (t < 0.45) {
         ctx.fillStyle = '#FFFFFF';
         ctx.font = '700 8px monospace';
@@ -88,25 +82,19 @@ function CyberpunkAsciiEngine({ mousePos }) {
           ctx.fillText(String.fromCharCode(charCode), i * 14, (Math.random() - 0.5) * 16);
         }
       }
-
-      // FASE 3: Construcción secuencial: R -> A -> V (t: 0.45 -> 1.0)
+      // FASE 3: Secuencia R -> A -> V (t: 0.45 -> 1.0)
       else {
         ctx.fillStyle = '#FFFFFF';
         ctx.font = '900 16px sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
-        // Aparición de la letra 'R' (a partir de t >= 0.45)
         if (t >= 0.45) {
           ctx.fillText('R', -24, 0);
         }
-
-        // Aparición de la letra 'A' (a partir de t >= 0.60)
         if (t >= 0.60) {
           ctx.fillText('A', 0, 0);
         }
-
-        // Aparición de la letra 'V' (a partir de t >= 0.75)
         if (t >= 0.75) {
           ctx.fillText('V', 24, 0);
         }
@@ -114,7 +102,6 @@ function CyberpunkAsciiEngine({ mousePos }) {
 
       ctx.restore();
 
-      // Pixel-Sampling
       const imgData = ctx.getImageData(0, 0, cols, rows).data;
       let output = '';
 
@@ -238,7 +225,7 @@ export default function App() {
     <div onMouseMove={handleMouseMove}>
       <div className="spatial-canvas">
         
-        {/* 1. BARRA SUPERIOR SOBRIA */}
+        {/* 1. CABECERA POLIGONAL */}
         <header className="clean-status-bar">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Clock size={12} />
@@ -246,11 +233,11 @@ export default function App() {
           </div>
 
           <div className="clean-controls">
-            <button type="button" className="control-brick-btn" onClick={toggleLang}>
+            <button type="button" className="brick-btn-3d" onClick={toggleLang}>
               <Languages size={12} />
               <span>{lang.toUpperCase()}</span>
             </button>
-            <button type="button" className="control-brick-btn" onClick={toggleTheme} aria-label="Toggle Theme">
+            <button type="button" className="brick-btn-3d" onClick={toggleTheme} aria-label="Toggle Theme">
               {theme === 'dark' ? <Sun size={12} /> : <Moon size={12} />}
             </button>
           </div>
@@ -258,12 +245,14 @@ export default function App() {
 
         {/* 2. PROFILE & BIO */}
         <section className="profile-row">
-          <img 
-            src="assets/avatar.png" 
-            alt="Rodrigo Aquije V." 
-            className="profile-avatar"
-            onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'; }}
-          />
+          <div className="profile-avatar-brick">
+            <img 
+              src="assets/avatar.png" 
+              alt="Rodrigo Aquije V." 
+              className="profile-avatar"
+              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'; }}
+            />
+          </div>
           <div className="profile-title-group">
             <h1>Rodrigo Aquije V.</h1>
             <p>{t.role}</p>
@@ -287,23 +276,23 @@ export default function App() {
           </div>
         </section>
 
-        {/* CTAs */}
+        {/* CTAs 3D */}
         <div className="hero-cta-group">
-          <a href="mailto:rodrigoaq996@gmail.com" className="brick-btn-dark">
+          <a href="mailto:rodrigoaq996@gmail.com" className="cta-brick-primary">
             {t.getInTouch} ↗
           </a>
-          <button type="button" className="brick-btn-glass" onClick={handleCopyEmail}>
+          <button type="button" className="brick-btn-3d" onClick={handleCopyEmail}>
             <span>{copied ? t.copied : 'rodrigoaq996@gmail.com'}</span>
             {copied ? <Check size={13} color="#00E5FF" /> : <Copy size={13} />}
           </button>
         </div>
 
-        {/* 3. ARTE ASCII LIBRE (SIN MARCOS) */}
+        {/* 3. ARTE ASCII LIBRE */}
         <div className="ascii-frameless-stage">
           <CyberpunkAsciiEngine mousePos={mousePos} />
         </div>
 
-        {/* 4. SHOWCASE DE TRABAJOS (LADRILLOS DE CRISTAL) */}
+        {/* 4. SHOWCASE DE PROYECTOS (LADRILLOS ISOMÉTRICOS 3D) */}
         <section id="work">
           <div className="work-section-head">
             <h2 className="work-section-title">{t.workTitle}</h2>
@@ -312,9 +301,9 @@ export default function App() {
           <div className="work-showcase-container">
             
             {/* Caso 1: BBVA */}
-            <div className="glass-brick-card">
+            <div className="isometric-brick-card">
               <div className="stage-display stage-display--bbva">
-                <div className="mockup-window">
+                <div className="mockup-window-poly">
                   <div className="window-header">
                     <div className="window-dots">
                       <div className="window-dot" />
@@ -326,10 +315,10 @@ export default function App() {
                   <div className="window-content">
                     <div className="mockup-header-row">
                       <span className="brand-badge brand-badge--bbva">BBVA</span>
-                      <span className="status-chip status-chip--bbva">COMPLIANT VERIFIED</span>
+                      <span className="status-chip-poly status-chip-poly--bbva">COMPLIANT</span>
                     </div>
                     <p className="mockup-headline">Tus préstamos aprobados empiezan hoy con abono en 3 minutos.</p>
-                    <div className="mockup-kpi-card">
+                    <div className="mockup-kpi-brick">
                       <div>
                         <div className="kpi-label">Monto Aprobado</div>
                         <div className="kpi-amount">S/ 52,100</div>
@@ -349,16 +338,16 @@ export default function App() {
                   <h3 className="stage-title">{t.bbvaTitle}</h3>
                   <p className="stage-desc">{t.bbvaDesc}</p>
                 </div>
-                <a href="/proyecto-bbva.html" className="stage-action">
+                <a href="/proyecto-bbva.html" className="cta-brick-primary">
                   {t.viewCase} <ArrowUpRight size={14} />
                 </a>
               </div>
             </div>
 
             {/* Caso 2: Yape */}
-            <div className="glass-brick-card">
+            <div className="isometric-brick-card">
               <div className="stage-display stage-display--yape">
-                <div className="mockup-window">
+                <div className="mockup-window-poly">
                   <div className="window-header">
                     <div className="window-dots">
                       <div className="window-dot" />
@@ -370,10 +359,10 @@ export default function App() {
                   <div className="window-content">
                     <div className="mockup-header-row">
                       <span className="brand-badge brand-badge--yape">Yape</span>
-                      <span className="status-chip status-chip--yape">STATE RESOLVED</span>
+                      <span className="status-chip-poly status-chip-poly--yape">STATE RESOLVED</span>
                     </div>
                     <p className="mockup-headline">Validación conductual para estados 'en revisión' sin fricción para el usuario.</p>
-                    <div className="mockup-kpi-card">
+                    <div className="mockup-kpi-brick">
                       <div>
                         <div className="kpi-label">Monto en Validación</div>
                         <div className="kpi-amount">S/ 180.00</div>
@@ -393,7 +382,7 @@ export default function App() {
                   <h3 className="stage-title">{t.yapeTitle}</h3>
                   <p className="stage-desc">{t.yapeDesc}</p>
                 </div>
-                <a href="/proyecto-yape.html" className="stage-action">
+                <a href="/proyecto-yape.html" className="cta-brick-primary">
                   {t.viewCase} <ArrowUpRight size={14} />
                 </a>
               </div>
@@ -402,17 +391,17 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5. REDES */}
+        {/* 5. REDES EN BLOQUES EXTRUIDOS */}
         <div className="network-list">
-          <a href="mailto:rodrigoaq996@gmail.com" className="network-row">
+          <a href="mailto:rodrigoaq996@gmail.com" className="network-brick-row">
             <span className="network-left"><Mail size={15} /> Email</span>
             <span className="network-right">rodrigoaq996@gmail.com ↗</span>
           </a>
-          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="network-row">
+          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="network-brick-row">
             <span className="network-left"><Linkedin size={15} /> LinkedIn</span>
             <span className="network-right">/in/rodrigo-aquije ↗</span>
           </a>
-          <a href="#descargar-cv" className="network-row">
+          <a href="#descargar-cv" className="network-brick-row">
             <span className="network-left"><FileText size={15} /> {t.cv}</span>
             <span className="network-right">{t.download} ↗</span>
           </a>
@@ -426,26 +415,26 @@ export default function App() {
 
       </div>
 
-      {/* 6. FLOATING DOCK (LADRILLO DE CRISTAL) */}
+      {/* 6. FLOATING DOCK EXTRUIDO EN EJE Z */}
       <nav className="floating-dock-container">
-        <div className="floating-dock">
+        <div className="floating-dock-3d">
           <img 
             src="assets/avatar.png" 
             alt="Rodrigo" 
-            className="dock-avatar"
+            className="dock-avatar-poly"
             onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&auto=format&fit=crop&q=80'; }}
           />
-          <div className="dock-divider" />
-          <a href="#" className="dock-icon-btn active" title="Home">
+          <div className="dock-divider-3d" />
+          <a href="#" className="dock-icon-btn-3d active" title="Home">
             <Home size={17} />
           </a>
-          <a href="#work" className="dock-icon-btn" title="Projects">
+          <a href="#work" className="dock-icon-btn-3d" title="Projects">
             <Layers size={17} />
           </a>
-          <a href="/about.html" className="dock-icon-btn" title="About">
+          <a href="/about.html" className="dock-icon-btn-3d" title="About">
             <User size={17} />
           </a>
-          <a href="mailto:rodrigoaq996@gmail.com" className="dock-icon-btn" title="Contact">
+          <a href="mailto:rodrigoaq996@gmail.com" className="dock-icon-btn-3d" title="Contact">
             <Send size={17} />
           </a>
         </div>
