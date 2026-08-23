@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Globe, 
   Clock, 
   ArrowUpRight, 
   Copy, 
@@ -17,7 +16,6 @@ import {
   Languages
 } from 'lucide-react';
 
-// Monograma de cabecera técnico de alta definición
 const MINI_ASCII_RAV = `
   █▀█ ▄▀█ █ █
   █▀▄ █▀█ ▀▄▀
@@ -114,20 +112,20 @@ export default function App() {
     };
     window.addEventListener('resize', handleResize);
 
-    const particles = Array.from({ length: 36 }, () => ({
+    const particles = Array.from({ length: 32 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-      size: Math.random() * 1.6 + 0.8
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      size: Math.random() * 1.5 + 0.8
     }));
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const pointColor = isDark ? 'rgba(0, 210, 255, 0.4)' : 'rgba(2, 132, 199, 0.45)';
-      const lineColor = isDark ? 'rgba(129, 140, 248, 0.08)' : 'rgba(99, 102, 241, 0.1)';
+      const pointColor = isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(5, 150, 105, 0.35)';
+      const lineColor = isDark ? 'rgba(16, 185, 129, 0.07)' : 'rgba(5, 150, 105, 0.08)';
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -185,7 +183,7 @@ export default function App() {
 
       <div className="spatial-canvas">
         
-        {/* 1. HUD STATUS BAR */}
+        {/* 1. HUD STATUS BAR (SIN COORDENADAS) */}
         <header className="hud-status-bar">
           <div className="hud-left">
             <div className="hud-item">
@@ -193,8 +191,8 @@ export default function App() {
               <span>{time ? `${time} (LIMA, GMT-5)` : 'LIMA, GMT-5'}</span>
             </div>
             <div className="hud-item">
-              <Globe size={12} />
-              <span>-12.0464° S</span>
+              <span className="live-dot" />
+              <span>SYSTEM READY</span>
             </div>
           </div>
 
@@ -242,7 +240,7 @@ export default function App() {
             <div>
               <div className="meta-label">{t.statusLabel}</div>
               <div className="meta-val" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span className="live-dot"></span>
+                <span className="live-dot" />
                 <strong>{t.statusVal}</strong>
               </div>
             </div>
@@ -260,7 +258,7 @@ export default function App() {
           </button>
         </div>
 
-        {/* 3. SHOWCASE DE TRABAJOS DESTACADOS (FOCO VISUAL PRINCIPAL) */}
+        {/* 3. SHOWCASE DE TRABAJOS VISUALES */}
         <section id="work">
           <div className="work-section-head">
             <h2 className="work-section-title">{t.workTitle}</h2>
@@ -308,7 +306,7 @@ export default function App() {
                   <p className="stage-desc">{t.bbvaDesc}</p>
                 </div>
                 <a href="/proyecto-bbva.html" className="stage-action">
-                  {t.viewCase} <ArrowUpRight size={15} />
+                  {t.viewCase} <ArrowUpRight size={14} />
                 </a>
               </div>
             </div>
@@ -352,7 +350,7 @@ export default function App() {
                   <p className="stage-desc">{t.yapeDesc}</p>
                 </div>
                 <a href="/proyecto-yape.html" className="stage-action">
-                  {t.viewCase} <ArrowUpRight size={15} />
+                  {t.viewCase} <ArrowUpRight size={14} />
                 </a>
               </div>
             </div>
@@ -378,13 +376,13 @@ export default function App() {
 
         {/* METADATOS */}
         <div className="spatial-footer-text">
-          <span>RAV · SPATIAL HUD</span>
+          <span>RAV · SYSTEM HUD</span>
           <span>©2026 RODRIGO AQUIJE V.</span>
         </div>
 
       </div>
 
-      {/* 5. FLOATING DOCK ELEVADO */}
+      {/* 5. FLOATING DOCK ELEVADO & PERFECTAMENTE ALINEADO */}
       <nav className="floating-dock-container">
         <div className="floating-dock">
           <img 
@@ -395,16 +393,16 @@ export default function App() {
           />
           <div className="dock-divider" />
           <a href="#" className="dock-icon-btn active" title="Home">
-            <Home size={18} />
+            <Home size={17} />
           </a>
           <a href="#work" className="dock-icon-btn" title="Projects">
-            <Layers size={18} />
+            <Layers size={17} />
           </a>
           <a href="/about.html" className="dock-icon-btn" title="About">
-            <User size={18} />
+            <User size={17} />
           </a>
           <a href="mailto:rodrigoaq996@gmail.com" className="dock-icon-btn" title="Contact">
-            <Send size={18} />
+            <Send size={17} />
           </a>
         </div>
       </nav>
