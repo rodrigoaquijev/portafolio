@@ -20,46 +20,60 @@ const CONTENT = {
   es: {
     role: "Product Designer & Design Engineer",
     bio: "Diseñador de producto digital con formación en economía. Conecto rigor analítico, sistemas de diseño escalables y conversión para construir interfaces financieras intuitivas, viables y de alto impacto.",
-    focusLabel: "ENFOQUE",
-    focusVal: "FinTech, Arquitectura de Estados & Conversión",
-    locationLabel: "UBICACIÓN",
-    locationVal: "Lima, Perú",
     getInTouch: "Contactar",
     copied: "¡Copiado!",
     copyEmail: "Copiar Email",
-    workTitle: "Trabajos Seleccionados",
+    workSectionTitle: "Casos de Estudio",
     viewCase: "Explorar caso completo",
-    bbvaCategory: "FINANCIAL DESIGN SYSTEM // SALESFORCE MC",
+    
+    // Caso 1: BBVA
+    bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
     bbvaTitle: "Cómo diseñar con conversión y compliance bancario.",
     bbvaDesc: "Optimización técnica y visual de envíos masivos para BBVA Perú manteniendo integridad regulatoria.",
-    bbvaKpi: "Conversión",
-    yapeCategory: "BEHAVIORAL AUDIT & STATE SYSTEMS",
+    bbvaKpi: "Conversión de Campaña",
+
+    // Caso 2: Yape
+    yapeTag: "BEHAVIORAL AUDIT & STATE SYSTEMS",
     yapeTitle: "La pantalla de error que te hace perder dinero.",
     yapeDesc: "Rediseño conductual de los estados 'en revisión' de Yape para mitigar fricción y drop-off.",
     yapeKpi: "Resolución",
+
+    // Caso 3: Allpa
+    allpaTag: "BEHAVIORAL FINANCE // APPLE ECOSYSTEM",
+    allpaTitle: "El sistema que te impide gastar tu propia plata.",
+    allpaDesc: "Concepto de diseño conductual para Apple Watch e iOS que interviene en el flujo de caja antes de una compra impulsiva.",
+    allpaKpi: "Retención de Ahorro",
+
     cv: "Currículum Vitae",
     download: "Descargar PDF"
   },
   en: {
     role: "Product Designer & Design Engineer",
     bio: "Digital product designer with an economics background. I connect analytical rigor, scalable design systems, and conversion to build intuitive, viable, and high-impact financial interfaces.",
-    focusLabel: "FOCUS",
-    focusVal: "FinTech, State Architecture & Conversion",
-    locationLabel: "LOCATION",
-    locationVal: "Lima, Peru",
     getInTouch: "Get in touch",
     copied: "Copied!",
     copyEmail: "Copy Email",
-    workTitle: "Selected Works",
+    workSectionTitle: "Selected Works",
     viewCase: "Explore full case",
-    bbvaCategory: "FINANCIAL DESIGN SYSTEM // SALESFORCE MC",
+
+    // Caso 1: BBVA
+    bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
     bbvaTitle: "Designing with conversion and bank compliance.",
     bbvaDesc: "Technical and visual optimization of massive lending campaigns in Salesforce Marketing Cloud for BBVA Perú.",
-    bbvaKpi: "Conversion",
-    yapeCategory: "BEHAVIORAL AUDIT & STATE SYSTEMS",
+    bbvaKpi: "Campaign Conversion",
+
+    // Caso 2: Yape
+    yapeTag: "BEHAVIORAL AUDIT & STATE SYSTEMS",
     yapeTitle: "The error screen making you lose money.",
     yapeDesc: "Behavioral redesign for Yape's 'under review' states to eliminate transactional friction.",
     yapeKpi: "Resolution",
+
+    // Caso 3: Allpa
+    allpaTag: "BEHAVIORAL FINANCE // APPLE ECOSYSTEM",
+    allpaTitle: "The system that prevents you from overspending.",
+    allpaDesc: "Behavioral design concept for Apple Watch & iOS that intervenes in cash flow before impulse purchases.",
+    allpaKpi: "Savings Retention",
+
     cv: "Curriculum Vitae",
     download: "Download PDF"
   }
@@ -94,11 +108,11 @@ export default function App() {
     return () => clearInterval(timer);
   }, [lang]);
 
-  // Seguimiento suave del halo ambiental interactivo
+  // Interpolación suave del halo ambiental sedoso
   const handleMouseMove = (e) => {
     setMouseGlow({
-      x: e.clientX - 300,
-      y: e.clientY - 300
+      x: e.clientX - 350,
+      y: e.clientY - 350
     });
   };
 
@@ -115,17 +129,17 @@ export default function App() {
 
   return (
     <div onMouseMove={handleMouseMove}>
-      <div className="noise-overlay" />
+      <div className="grain-overlay" />
       <div 
-        className="ambient-glow" 
+        className="ambient-silk-glow" 
         style={{
           transform: `translate(${mouseGlow.x}px, ${mouseGlow.y}px)`
         }}
       />
 
-      <div className="spatial-canvas">
+      <div className="editorial-canvas">
         
-        {/* 1. CABECERA ASIMÉTRICA SOBRIA */}
+        {/* 1. STATUS BAR */}
         <header className="clean-status-bar">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Clock size={12} />
@@ -143,147 +157,160 @@ export default function App() {
           </div>
         </header>
 
-        {/* 2. HERO SECTION ASIMÉTRICO (60/40 LAYOUT) */}
-        <section className="hero-asymmetric-layout">
-          <div className="hero-main-column">
-            <h1 className="hero-title">Rodrigo Aquije V.</h1>
-            <p className="hero-tagline">{t.role}</p>
-            <p className="hero-statement">{t.bio}</p>
+        {/* 2. HERO SECTION CON AVATAR INTEGRADO & TIPOGRAFÍA SERIF INDIE */}
+        <section className="hero-editorial-grid">
+          <div className="hero-text-flow">
+            <h1 className="hero-name-title">
+              Rodrigo <em>Aquije</em>
+            </h1>
+            <p className="hero-role-lead">{t.role}</p>
+            <p className="hero-description">{t.bio}</p>
 
-            <div className="hero-cta-row">
-              <a href="mailto:rodrigoaq996@gmail.com" className="btn-primary-cta">
+            <div className="hero-action-cluster">
+              <a href="mailto:rodrigoaq996@gmail.com" className="btn-primary-action">
                 {t.getInTouch} ↗
               </a>
-              <button type="button" className="btn-glass-cta" onClick={handleCopyEmail}>
+              <button type="button" className="btn-glass-action" onClick={handleCopyEmail}>
                 <span>{copied ? t.copied : 'rodrigoaq996@gmail.com'}</span>
                 {copied ? <Check size={13} color="#10B981" /> : <Copy size={13} />}
               </button>
             </div>
           </div>
 
-          <div className="hero-side-card">
-            <div className="side-data-block">
-              <span className="side-data-label">{t.focusLabel}</span>
-              <span className="side-data-val">{t.focusVal}</span>
-            </div>
-            <div className="side-data-block">
-              <span className="side-data-label">{t.locationLabel}</span>
-              <span className="side-data-val">{t.locationVal}</span>
-            </div>
+          <div className="hero-avatar-wrapper">
+            <img 
+              src="assets/avatar.png" 
+              alt="Rodrigo Aquije V." 
+              className="hero-avatar-img"
+              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80'; }}
+            />
           </div>
         </section>
 
-        {/* 3. SHOWCASE DE PROYECTOS CON DIAGRAMACIÓN DINÁMICA */}
+        {/* 3. SECCIÓN EDITORIAL DE 3 CASOS (SIN LÍNEAS NI CLICHÉS) */}
         <section id="work">
-          <div className="work-section-header">
-            <h2 className="work-section-title">{t.workTitle}</h2>
-            <span className="work-section-counter">01 — 02</span>
-          </div>
+          <h2 className="editorial-section-title">
+            {t.workSectionTitle}
+          </h2>
 
-          <div className="work-asymmetric-stream">
+          <div className="editorial-works-stream">
             
-            {/* Caso 1: Monolito Principal Full-Width (BBVA) */}
-            <div className="project-monolith-primary">
-              <div className="showcase-viewport-bbva">
-                <div className="ui-mockup-frame">
-                  <div className="ui-frame-top">
-                    <div className="ui-frame-dots">
-                      <div className="ui-frame-dot" />
-                      <div className="ui-frame-dot" />
-                      <div className="ui-frame-dot" />
+            {/* Caso 1: BBVA */}
+            <article className="editorial-case-article">
+              <div className="case-display-stage stage-chroma--bbva">
+                <div className="case-ui-window">
+                  <div className="case-ui-bar">
+                    <div className="case-ui-dots">
+                      <div className="case-ui-dot" />
+                      <div className="case-ui-dot" />
+                      <div className="case-ui-dot" />
                     </div>
-                    <span className="ui-frame-title">salesforce-mc // bbva-campaign.eml</span>
+                    <span className="case-ui-tag">salesforce-mc // bbva.eml</span>
                   </div>
-                  <div className="ui-frame-body">
-                    <div className="ui-badge-row">
-                      <span className="ui-brand-tag ui-brand-tag--bbva">BBVA</span>
-                      <span className="ui-status-tag ui-status-tag--bbva">COMPLIANT VERIFIED</span>
-                    </div>
-                    <p className="ui-title-text">Tus préstamos preaprobados empiezan hoy con abono instantáneo.</p>
-                    <div className="ui-data-metric">
-                      <div>
-                        <div style={{ fontSize: '10px', color: '#94A3B8' }}>Monto preaprobado</div>
-                        <div className="ui-data-num">S/ 52,100</div>
-                      </div>
-                      <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: '10px', color: '#94A3B8' }}>{t.bbvaKpi}</div>
-                        <div className="ui-data-badge">+24.8%</div>
-                      </div>
+                  <div className="case-ui-content">
+                    <p className="ui-headline">Tus préstamos aprobados empiezan hoy con abono instantáneo.</p>
+                    <div className="ui-metric-row">
+                      <div className="ui-amount">S/ 52,100</div>
+                      <div className="ui-kpi-badge">+24.8% CR</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="project-details-pane">
+              <div className="case-editorial-pane">
                 <div>
-                  <span className="project-category">{t.bbvaCategory}</span>
-                  <h3 className="project-heading">{t.bbvaTitle}</h3>
-                  <p className="project-desc">{t.bbvaDesc}</p>
+                  <span className="case-tag-meta">{t.bbvaTag}</span>
+                  <h3 className="case-title">{t.bbvaTitle}</h3>
+                  <p className="case-summary">{t.bbvaDesc}</p>
                 </div>
-                <a href="/proyecto-bbva.html" className="project-action-link">
+                <a href="/proyecto-bbva.html" className="case-read-link">
                   {t.viewCase} <ArrowUpRight size={15} />
                 </a>
               </div>
-            </div>
+            </article>
 
-            {/* Caso 2: Split Asimétrico (Yape) */}
-            <div className="project-split-secondary">
-              <div className="showcase-viewport-yape">
-                <div className="ui-mockup-frame">
-                  <div className="ui-frame-top">
-                    <div className="ui-frame-dots">
-                      <div className="ui-frame-dot" />
-                      <div className="ui-frame-dot" />
-                      <div className="ui-frame-dot" />
+            {/* Caso 2: Yape (Invertido Asimétricamente) */}
+            <article className="editorial-case-article editorial-case-article--reversed">
+              <div className="case-display-stage stage-chroma--yape">
+                <div className="case-ui-window">
+                  <div className="case-ui-bar">
+                    <div className="case-ui-dots">
+                      <div className="case-ui-dot" />
+                      <div className="case-ui-dot" />
+                      <div className="case-ui-dot" />
                     </div>
-                    <span className="ui-frame-title">yape // state-recovery-flow.fig</span>
+                    <span className="case-ui-tag">yape // state-recovery</span>
                   </div>
-                  <div className="ui-frame-body">
-                    <div className="ui-badge-row">
-                      <span className="ui-brand-tag ui-brand-tag--yape">Yape</span>
-                      <span className="ui-status-tag ui-status-tag--yape">STATE RESOLVED</span>
-                    </div>
-                    <p className="ui-title-text">Validación conductual para estados 'en revisión' sin fricción para el usuario.</p>
-                    <div className="ui-data-metric">
-                      <div>
-                        <div style={{ fontSize: '10px', color: '#94A3B8' }}>Monto validado</div>
-                        <div className="ui-data-num">S/ 180.00</div>
-                      </div>
-                      <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: '10px', color: '#94A3B8' }}>{t.yapeKpi}</div>
-                        <div className="ui-data-badge">0.2s Avg</div>
-                      </div>
+                  <div className="case-ui-content">
+                    <p className="ui-headline">Validación conductual para estados 'en revisión' sin fricción.</p>
+                    <div className="ui-metric-row">
+                      <div className="ui-amount">S/ 180.00</div>
+                      <div className="ui-kpi-badge">0.2s Avg</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="project-details-pane">
+              <div className="case-editorial-pane">
                 <div>
-                  <span className="project-category">{t.yapeCategory}</span>
-                  <h3 className="project-heading">{t.yapeTitle}</h3>
-                  <p className="project-desc">{t.yapeDesc}</p>
+                  <span className="case-tag-meta">{t.yapeTag}</span>
+                  <h3 className="case-title">{t.yapeTitle}</h3>
+                  <p className="case-summary">{t.yapeDesc}</p>
                 </div>
-                <a href="/proyecto-yape.html" className="project-action-link">
+                <a href="/proyecto-yape.html" className="case-read-link">
                   {t.viewCase} <ArrowUpRight size={15} />
                 </a>
               </div>
-            </div>
+            </article>
+
+            {/* Caso 3: Allpa */}
+            <article className="editorial-case-article">
+              <div className="case-display-stage stage-chroma--allpa">
+                <div className="case-ui-window">
+                  <div className="case-ui-bar">
+                    <div className="case-ui-dots">
+                      <div className="case-ui-dot" />
+                      <div className="case-ui-dot" />
+                      <div className="case-ui-dot" />
+                    </div>
+                    <span className="case-ui-tag">allpa // watchOS-flow</span>
+                  </div>
+                  <div className="case-ui-content">
+                    <p className="ui-headline">Intervención de flujo de caja antes de una decisión de gasto impulsiva.</p>
+                    <div className="ui-metric-row">
+                      <div className="ui-amount">Budget Locked</div>
+                      <div className="ui-kpi-badge">+38% Saved</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="case-editorial-pane">
+                <div>
+                  <span className="case-tag-meta">{t.allpaTag}</span>
+                  <h3 className="case-title">{t.allpaTitle}</h3>
+                  <p className="case-summary">{t.allpaDesc}</p>
+                </div>
+                <a href="/proyecto-allpa.html" className="case-read-link">
+                  {t.viewCase} <ArrowUpRight size={15} />
+                </a>
+              </div>
+            </article>
 
           </div>
         </section>
 
         {/* 4. REDES Y ENLACES */}
-        <div className="network-stream">
-          <a href="mailto:rodrigoaq996@gmail.com" className="network-stream-row">
+        <div className="editorial-network-stream">
+          <a href="mailto:rodrigoaq996@gmail.com" className="editorial-network-row">
             <span className="network-left"><Mail size={15} /> Email</span>
             <span className="network-right">rodrigoaq996@gmail.com ↗</span>
           </a>
-          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="network-stream-row">
+          <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" className="editorial-network-row">
             <span className="network-left"><Linkedin size={15} /> LinkedIn</span>
             <span className="network-right">/in/rodrigo-aquije ↗</span>
           </a>
-          <a href="#descargar-cv" className="network-stream-row">
+          <a href="#descargar-cv" className="editorial-network-row">
             <span className="network-left"><FileText size={15} /> {t.cv}</span>
             <span className="network-right">{t.download} ↗</span>
           </a>
@@ -297,26 +324,26 @@ export default function App() {
 
       </div>
 
-      {/* 5. DOCK FLOTANTE MINIMALISTA PULIDO */}
+      {/* 5. APPLE LIQUID GLASS DOCK FLOTANTE CON FÍSICAS DE REBOTE */}
       <nav className="floating-dock-container">
-        <div className="floating-dock-minimal">
+        <div className="floating-dock-liquid">
           <img 
             src="assets/avatar.png" 
             alt="Rodrigo" 
-            className="dock-avatar"
+            className="dock-avatar-circle"
             onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&auto=format&fit=crop&q=80'; }}
           />
-          <div className="dock-divider" />
-          <a href="#" className="dock-icon-btn active" title="Home">
+          <div className="dock-divider-glass" />
+          <a href="#" className="dock-btn-elastic active" title="Home">
             <Home size={17} />
           </a>
-          <a href="#work" className="dock-icon-btn" title="Projects">
+          <a href="#work" className="dock-btn-elastic" title="Projects">
             <Layers size={17} />
           </a>
-          <a href="/about.html" className="dock-icon-btn" title="About">
+          <a href="/about.html" className="dock-btn-elastic" title="About">
             <User size={17} />
           </a>
-          <a href="mailto:rodrigoaq996@gmail.com" className="dock-icon-btn" title="Contact">
+          <a href="mailto:rodrigoaq996@gmail.com" className="dock-btn-elastic" title="Contact">
             <Send size={17} />
           </a>
         </div>
