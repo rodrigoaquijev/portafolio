@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CaseBBVA from './pages/CaseBBVA.jsx';
 import PortfolioHome from './pages/PortfolioHome.jsx';
+import AboutPage from './pages/AboutPage.jsx';
 import avatarImage from '../assets/avatar.png';
 import bbvaCover from '../assets/359shots_so.png';
 import yapeCover from '../assets/216shots_so.png';
@@ -515,6 +516,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<PortfolioHome />} />
         <Route path="/casos/bbva" element={<CaseBBVA />} />
+        <Route path="/sobre-mi" element={<AboutPage />} />
       </Routes>
     </>
   );
