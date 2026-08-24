@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CaseBBVA from './pages/CaseBBVA.jsx';
+import avatarImage from '../assets/avatar.png';
+import bbvaCover from '../assets/359shots_so.png';
+import yapeCover from '../assets/216shots_so.png';
+import allpaCover from '../assets/344shots_so.png';
 import { 
   Clock, 
   ArrowUpRight, 
@@ -217,7 +221,7 @@ function HomePage() {
 
           <div className="hero-avatar-wrapper">
             <img 
-              src="assets/avatar.png" 
+              src={avatarImage}
               alt="Rodrigo Aquije V." 
               className="hero-avatar-img"
               onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80'; }}
@@ -321,7 +325,7 @@ function HomePage() {
             <article className="editorial-case-article">
               <div className="case-display-stage stage-chroma--bbva">
                 <img
-                  src="/assets/359shots_so.png"
+                  src={bbvaCover}
                   alt="Campaña de préstamo digital diseñada para BBVA Perú"
                   className="case-cover-image"
                 />
@@ -351,7 +355,7 @@ function HomePage() {
             <article className="editorial-case-article editorial-case-article--reversed">
               <div className="case-display-stage stage-chroma--yape">
                 <img
-                  src="/assets/216shots_so.png"
+                  src={yapeCover}
                   alt="Propuesta de estado de operación en revisión para Yape"
                   className="case-cover-image"
                 />
@@ -381,7 +385,7 @@ function HomePage() {
             <article className="editorial-case-article">
               <div className="case-display-stage stage-chroma--allpa">
                 <img
-                  src="/assets/344shots_so.png"
+                  src={allpaCover}
                   alt="Aplicación Allpa presentada en Apple Watch Ultra"
                   className="case-cover-image"
                 />
@@ -475,7 +479,7 @@ function HomePage() {
       <nav className="floating-dock-container">
         <div className="floating-dock-liquid">
           <img 
-            src="assets/avatar.png" 
+            src={avatarImage}
             alt="Rodrigo" 
             className="dock-avatar-circle"
             onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&auto=format&fit=crop&q=80'; }}
