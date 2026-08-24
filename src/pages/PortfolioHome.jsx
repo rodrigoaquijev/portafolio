@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { GrainGradient } from '@paper-design/shaders-react';
 import { ArrowRight, ArrowUpRight, Check, Copy, FileText, Languages, Linkedin, Mail, Menu, Moon, Send, Sun, Volume2, VolumeX, X } from 'lucide-react';
 import avatarImage from '../../assets/avatar.png';
 import bbvaCover from '../../assets/359shots_so.png';
@@ -15,12 +16,11 @@ const CONTENT = {
     bioDetail: <>Trabajo desde el problema conductual hasta la interfaz funcional: investigación, arquitectura de estados, UI, sistemas de diseño y prototipos en código. Busco que una decisión compleja se sienta <strong>clara, confiable y medible.</strong></>,
     about: 'Sobre mí', aboutTitle: <>Diseño en la intersección entre <em>personas, negocio y tecnología.</em></>,
     aboutCopy: 'Mi formación en economía me ayuda a leer incentivos, riesgo y comportamiento. Mi práctica en diseño convierte esa lectura en flujos, estados y sistemas que un equipo puede implementar y medir.',
-    aboutAside: 'He trabajado en productos financieros, comunicaciones de alto volumen y experiencias digitales donde la confianza no es un detalle visual: es parte del producto.',
+    aboutAside: 'He trabajado en productos financieros, comunicaciones de alto volumen y experiencias digitales donde la confianza no es un detalle visual: es parte del producto.', aboutCta: 'Conocer más sobre mi trayectoria',
     hire: 'Contactar', hireDesc: 'Cuéntame el producto, el reto y el horizonte del proyecto.', name: 'Nombre', email: 'Email', brief: 'Contexto del proyecto', send: 'Preparar mensaje',
     copy: 'Copiar email', copied: 'Email copiado', trust: 'Experiencia & colaboraciones', selected: 'Casos de estudio', workTitle: 'Trabajo seleccionado',
     workIntro: 'Tres problemas financieros abordados desde conversión, comportamiento y sistemas de interfaz.', open: 'Explorar caso completo', soon: 'Caso en desarrollo',
-    pause: 'Mi manera de trabajar', pauseQuote: <>Antes de dibujar una pantalla, necesito entender <em>qué decisión intenta tomar una persona</em> y qué riesgo necesita reducir el negocio.</>,
-    pausePillars: ['Comportamiento', 'Viabilidad', 'Sistema'], capabilities: 'Habilidades & especialidades', connect: 'Conectemos', footer: 'Diseñado y construido en Lima.',
+    capabilities: 'Habilidades & especialidades', connect: 'Conectemos', footer: 'Diseñado y construido en Lima.',
     linkedinAction: 'Conectar en LinkedIn', linkedinNetwork: 'Red profesional', overlayLabels: ['Rol', 'Problema', 'Contribución'],
     capabilityData: [
       { title: 'Product & Interface Design', desc: 'Investigación conductual, flujos transaccionales y arquitectura de interfaces de alta conversión.', proof: 'Del mapa de decisiones al prototipo funcional.', chips: ['Figma', 'Framer', 'UX Audit', 'Prototyping'] },
@@ -40,12 +40,11 @@ const CONTENT = {
     bioDetail: <>I work from the behavioral problem to the functional interface: research, state architecture, UI, design systems and code prototypes. I want complex decisions to feel <strong>clear, trustworthy and measurable.</strong></>,
     about: 'About', aboutTitle: <>Design at the intersection of <em>people, business and technology.</em></>,
     aboutCopy: 'My economics background helps me read incentives, risk and behavior. My design practice turns that understanding into flows, states and systems a team can implement and measure.',
-    aboutAside: 'I have worked on financial products, high-volume communication and digital experiences where trust is not a visual detail: it is part of the product.',
+    aboutAside: 'I have worked on financial products, high-volume communication and digital experiences where trust is not a visual detail: it is part of the product.', aboutCta: 'Learn more about my background',
     hire: 'Get in touch', hireDesc: 'Share the product, the challenge and the project horizon.', name: 'Name', email: 'Email', brief: 'Project context', send: 'Prepare message',
     copy: 'Copy email', copied: 'Email copied', trust: 'Experience & collaborations', selected: 'Case studies', workTitle: 'Selected work',
     workIntro: 'Three financial problems approached through conversion, behavior and interface systems.', open: 'Explore full case', soon: 'Case in progress',
-    pause: 'How I work', pauseQuote: <>Before drawing a screen, I need to understand <em>what decision a person is trying to make</em> and what risk the business needs to reduce.</>,
-    pausePillars: ['Behavior', 'Viability', 'System'], capabilities: 'Capabilities & craft', connect: 'Let’s connect', footer: 'Designed and built in Lima.',
+    capabilities: 'Capabilities & craft', connect: 'Let’s connect', footer: 'Designed and built in Lima.',
     linkedinAction: 'Connect on LinkedIn', linkedinNetwork: 'Professional network', overlayLabels: ['Role', 'Problem', 'Contribution'],
     capabilityData: [
       { title: 'Product & Interface Design', desc: 'Behavioral research, transactional flows and high-conversion interface architecture.', proof: 'From decision map to functional prototype.', chips: ['Figma', 'Framer', 'UX Audit', 'Prototyping'] },
@@ -61,7 +60,7 @@ const CONTENT = {
 };
 
 export default function PortfolioHome() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
   const [lang, setLang] = useState('es');
   const [audio, setAudio] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -70,15 +69,19 @@ export default function PortfolioHome() {
   const [navTarget, setNavTarget] = useState('');
   const [currentSection, setCurrentSection] = useState('');
   const [scrolled, setScrolled] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const t = CONTENT[lang];
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
     document.documentElement.dataset.audio = audio ? 'on' : 'off';
     document.documentElement.dataset.typePair = 'contrast';
     document.documentElement.dataset.typeScale = 'major-third';
     document.title = 'Rodrigo Aquije — Product Designer & Design Engineer';
   }, [theme, audio]);
+
+  useEffect(() => { const media = window.matchMedia('(prefers-reduced-motion: reduce)'); const update = () => setReducedMotion(media.matches); update(); media.addEventListener('change', update); return () => media.removeEventListener('change', update); }, []);
 
   useEffect(() => {
     const handleScroll = () => { setScrolled(window.scrollY > 72); if (window.scrollY < 420) setCurrentSection(''); };
@@ -100,11 +103,10 @@ export default function PortfolioHome() {
     <div className="ref-column">
       <CommandDeck t={t} theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} audio={audio} setAudio={setAudio} open={menuOpen} setOpen={setMenuOpen} scrollTo={scrollTo} sound={sound} currentSection={currentSection} scrolled={scrolled} />
       <section className="ref-section ref-hero ref-reveal"><div className="hero-heading-grid"><div><span className="ref-hero-eyebrow">{t.eyebrow}</span><h1 className="ref-hero-title">{t.title}</h1><p className="ref-hero-role">{t.role}</p></div><div className="hero-avatar-block"><span className="hero-avatar-ring"><img src={avatarImage} alt="Rodrigo Aquije" /></span><span>{t.location}</span><small>Economía · FinTech · Diseño</small></div></div><div className="ref-bio"><p>{t.bio}</p><p>{t.bioDetail}</p></div><div className="ref-actions"><HireConsole t={t} open={hireOpen} setOpen={setHireOpen} sound={sound} /><button className="ref-secondary ref-press" onClick={copyEmail}><Copy size={18} /> {t.copy}</button><LinkedInButton t={t} /></div></section>
-      <section id="about" data-section="about" className="ref-section about-section ref-reveal"><SectionLabel>{t.about}</SectionLabel><div className="about-layout"><h2>{t.aboutTitle}</h2><div><p>{t.aboutCopy}</p><p>{t.aboutAside}</p></div></div><div className="ref-client-strip" aria-label={t.trust}>{CLIENTS.map(([name, type]) => <span key={name}><strong>{name}</strong><small>{type}</small></span>)}</div></section>
       <section id="projects" data-section="projects" className="ref-section projects-section ref-reveal"><div className="ref-heading-row"><div><SectionLabel>{t.selected}</SectionLabel><h2>{t.workTitle}</h2></div><p>{t.workIntro}</p></div><div className="case-square-grid">{t.projects.map((project) => <CaseCard key={project.name} project={project} t={t} onOpen={() => project.href ? window.location.assign(project.href) : notify(t.soon)} />)}</div></section>
-      <section className="ref-interlude ref-reveal" aria-label={t.pause}><span>{t.pause}</span><blockquote>{t.pauseQuote}</blockquote><div>{t.pausePillars.map((pillar) => <strong key={pillar}>{pillar}</strong>)}</div></section>
-      <section id="capabilities" data-section="capabilities" className="ref-section capabilities-section ref-reveal"><SectionLabel>{t.capabilities}</SectionLabel><div className="capability-list capability-list--expressive">{t.capabilityData.map((capability) => <article key={capability.title} className="capability-row capability-row--expressive"><div><h3>{capability.title}</h3><p>{capability.desc}</p></div><div className="capability-reveal"><strong>{capability.proof}</strong><span>{capability.chips.map((chip) => <small key={chip}>{chip}</small>)}</span><ArrowUpRight /></div></article>)}</div></section>
-      <section id="contact" data-section="contact" className="ref-section ref-contact ref-reveal"><SectionLabel>{t.connect}</SectionLabel><h2>{lang === 'es' ? <>Conversemos sobre el <em>problema real.</em></> : <>Let’s discuss the <em>real problem.</em></>}</h2><div className="contact-links"><button onClick={copyEmail}><Mail /><span><strong>Email</strong><small>rodrigoaq996@gmail.com</small></span><ArrowUpRight /></button><a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer"><Linkedin /><span><strong>LinkedIn</strong><small>{t.linkedinNetwork}</small></span><ArrowUpRight /></a><div><FileText /><span><strong>Currículum Vitae</strong><small><a href="/cv-es.pdf">ES ↗</a><a href="/cv-en.pdf">EN ↗</a></small></span></div></div></section>
+      <section id="about" data-section="about" className="ref-section about-section ref-reveal"><SectionLabel>{t.about}</SectionLabel><div className="about-layout"><h2>{t.aboutTitle}</h2><div><p>{t.aboutCopy}</p><p>{t.aboutAside}</p><a className="about-page-cta" href="/sobre-mi"><span>{t.aboutCta}</span><ArrowUpRight /></a></div></div><div className="ref-client-strip" aria-label={t.trust}>{CLIENTS.map(([name, type]) => <span key={name}><strong>{name}</strong><small>{type}</small></span>)}</div></section>
+      <section id="capabilities" data-section="capabilities" className="ref-section capabilities-section capabilities-section--shader ref-reveal"><CapabilityShader theme={theme} reducedMotion={reducedMotion} /><div className="capabilities-content"><SectionLabel>{t.capabilities}</SectionLabel><div className="capability-list capability-list--expressive">{t.capabilityData.map((capability) => <article key={capability.title} className="capability-row capability-row--expressive"><div><h3>{capability.title}</h3><p>{capability.desc}</p></div><div className="capability-reveal"><strong>{capability.proof}</strong><span>{capability.chips.map((chip) => <small key={chip}>{chip}</small>)}</span><ArrowUpRight /></div></article>)}</div></div></section>
+      <section id="contact" data-section="contact" className="ref-section ref-contact ref-reveal"><SectionLabel>{t.connect}</SectionLabel><h2>{lang === 'es' ? <>Conversemos sobre el <em>problema real.</em></> : <>Let’s discuss the <em>real problem.</em></>}</h2><div className="contact-links"><button onClick={copyEmail}><Mail /><span><strong>Email</strong><small>rodrigoaq996@gmail.com</small></span><ArrowUpRight /></button><a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer"><Linkedin /><span><strong>LinkedIn</strong><small>{t.linkedinNetwork}</small></span><ArrowUpRight /></a><div className="cv-card"><FileText /><span><strong>Currículum Vitae</strong><small>Descargar versión</small></span><div className="cv-actions"><a href="/cv-es.pdf" download>Español</a><a href="/cv-en.pdf" download>English</a></div></div></div></section>
       <footer className="ref-footer"><span>© 2026 Rodrigo Aquije</span><span>{t.footer}</span><nav><a href="mailto:rodrigoaq996@gmail.com">Email</a><a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer">LinkedIn</a></nav></footer>
     </div><div className={`ref-toast ${toast ? 'is-visible' : ''}`} role="status" aria-live="polite"><Check size={15} /> {toast}</div>
   </main>;
@@ -116,6 +118,7 @@ function CommandDeck({ t, theme, setTheme, lang, setLang, audio, setAudio, open,
 }
 
 function SectionLabel({ children }) { return <p className="ref-section-label">{children}</p>; }
+function CapabilityShader({ theme, reducedMotion }) { const isLight = theme === 'light'; return <div className="capabilities-shader" aria-hidden="true"><GrainGradient width="100%" height="100%" colors={isLight ? ['#F1F4F9', '#D8F4E7', '#DCE8FF', '#F4F7F3'] : ['#090B10', '#10241D', '#142035', '#090B10']} colorBack={isLight ? '#F1F4F9' : '#090B10'} softness={.88} intensity={.22} noise={.12} shape="corners" speed={reducedMotion ? 0 : .055} scale={1.15} maxPixelCount={700000} /></div>; }
 function LinkedInButton({ t }) { return <a className="ref-icon-button linkedin-hover" href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /><span className="linkedin-profile-card"><span className="linkedin-banner"><b>in</b></span><span className="linkedin-card-body"><img src={avatarImage} alt="" /><strong>Rodrigo Aquije V.</strong><small>Product Designer & Design Engineer</small><em>{t.location}</em><i>{t.linkedinAction}</i></span></span></a>; }
 function CaseCard({ project, t, onOpen }) { return <article className="case-square-card"><button className="case-square-media" onClick={onOpen}><img src={project.image} alt={`${project.name} project cover`} /><span className="case-square-overlay"><span><small>{t.overlayLabels[0]}</small><strong>{project.overlay.role}</strong></span><span><small>{t.overlayLabels[1]}</small><strong>{project.overlay.problem}</strong></span><span><small>{t.overlayLabels[2]}</small><strong>{project.overlay.contribution}</strong></span></span><i><span>{project.href ? t.open : t.soon}</span><ArrowUpRight /></i></button><div className="case-square-copy"><span>{project.tag}</span><h3>{project.name}</h3><p>{project.desc}</p><div>{project.chips.map((chip) => <small key={chip}>{chip}</small>)}</div></div></article>; }
 function HireConsole({ t, open, setOpen, sound }) { return <div className={`hire-console ${open ? 'is-open' : ''}`}><button className="hire-trigger ref-press" onClick={() => { setOpen(!open); sound(560); }} aria-expanded={open}><span>{t.hire}</span><ArrowRight size={17} /></button><div className="hire-panel" inert={!open ? '' : undefined}><p>{t.hireDesc}</p><form onSubmit={(event) => { event.preventDefault(); const data = new FormData(event.currentTarget); window.location.href = `mailto:rodrigoaq996@gmail.com?subject=${encodeURIComponent(`Portfolio inquiry · ${data.get('name')}`)}&body=${encodeURIComponent(`${data.get('brief')}\n\n${data.get('email')}`)}`; }}><label>{t.name}<input name="name" required autoComplete="name" /></label><label>{t.email}<input name="email" type="email" required autoComplete="email" /></label><label>{t.brief}<textarea name="brief" required rows="4" /></label><button type="submit" className="hire-submit ref-press"><Send size={15} /> {t.send}</button></form></div></div>; }
