@@ -28,7 +28,7 @@ import {
 
 const CONTENT = {
   es: {
-    heroKicker: "PRODUCT DESIGN · FINTECH · DESIGN ENGINEERING",
+    heroKicker: "Diseño financiero con criterio de negocio.",
     heroTitle: "Diseño productos financieros que convierten sin perder",
     heroTitleEm: "confianza.",
     role: "Product Designer & Design Engineer",
@@ -52,23 +52,23 @@ const CONTENT = {
     cap2Title: "Design Systems & Code",
     cap2Desc: "Sistemas modulares escalables en Figma y maquetación de componentes vivos en React / CSS Tokens.",
     
-    cap3Title: "AI-Augmented Prototyping",
-    cap3Desc: "Aceleración de prototipado funcional mediante agentes generativos de código y flujos asistidos.",
+    cap3Title: "Prototipado e implementación",
+    cap3Desc: "Prototipos funcionales para probar decisiones temprano y acercar diseño, negocio e ingeniería.",
 
     // Caso 1: BBVA
-    bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
+    bbvaTag: "BBVA Perú · Comunicación financiera",
     bbvaTitle: "Cómo diseñar con conversión y compliance bancario.",
     bbvaDesc: "Optimización técnica y visual de envíos masivos para BBVA Perú manteniendo integridad regulatoria.",
     bbvaChips: ['Salesforce MC', 'Email UX', 'Compliance Bancario', 'Figma Tokens'],
 
     // Caso 2: Yape
-    yapeTag: "BEHAVIORAL AUDIT & STATE SYSTEMS",
+    yapeTag: "Yape · Estados transaccionales",
     yapeTitle: "La pantalla de error que te hace perder dinero.",
     yapeDesc: "Rediseño conductual de los estados 'en revisión' de Yape para mitigar fricción y drop-off.",
     yapeChips: ['UX Audit', 'Microcopy', 'Arquitectura de Estados', 'Growth Design'],
 
     // Caso 3: Allpa
-    allpaTag: "BEHAVIORAL FINANCE // APPLE ECOSYSTEM",
+    allpaTag: "Allpa · Diseño conductual",
     allpaTitle: "El sistema que te impide gastar tu propia plata.",
     allpaDesc: "Concepto de diseño conductual para Apple Watch e iOS que interviene en el flujo de caja antes de una compra impulsiva.",
     allpaChips: ['watchOS / iOS', 'Economía Conductual', 'Cash-Flow UX', 'Figma Prototyping'],
@@ -82,7 +82,7 @@ const CONTENT = {
     cvTileLabel: "Currículum Vitae"
   },
   en: {
-    heroKicker: "PRODUCT DESIGN · FINTECH · DESIGN ENGINEERING",
+    heroKicker: "Financial design grounded in business.",
     heroTitle: "I design financial products that convert without losing",
     heroTitleEm: "trust.",
     role: "Product Designer & Design Engineer",
@@ -106,23 +106,23 @@ const CONTENT = {
     cap2Title: "Design Systems & Code",
     cap2Desc: "Scalable design tokens in Figma and live responsive component architecture in React / CSS.",
     
-    cap3Title: "AI-Augmented Prototyping",
-    cap3Desc: "Accelerating functional prototyping via generative code agents and AI-assisted workflows.",
+    cap3Title: "Prototyping & implementation",
+    cap3Desc: "Functional prototypes to test decisions early and bring design, business and engineering closer.",
 
     // Caso 1: BBVA
-    bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
+    bbvaTag: "BBVA Perú · Financial communication",
     bbvaTitle: "Designing with conversion and bank compliance.",
     bbvaDesc: "Technical and visual optimization of massive lending campaigns in Salesforce Marketing Cloud for BBVA Perú.",
     bbvaChips: ['Salesforce MC', 'Email UX', 'Bank Compliance', 'Figma Tokens'],
 
     // Caso 2: Yape
-    yapeTag: "BEHAVIORAL AUDIT & STATE SYSTEMS",
+    yapeTag: "Yape · Transaction states",
     yapeTitle: "The error screen making you lose money.",
     yapeDesc: "Behavioral redesign for Yape's 'under review' states to eliminate transactional friction.",
     yapeChips: ['UX Audit', 'Microcopy', 'State Systems', 'Growth Design'],
 
     // Caso 3: Allpa
-    allpaTag: "BEHAVIORAL FINANCE // APPLE ECOSYSTEM",
+    allpaTag: "Allpa · Behavioral design",
     allpaTitle: "The system that prevents you from overspending.",
     allpaDesc: "Behavioral design concept for Apple Watch & iOS that intervenes in cash flow before impulse purchases.",
     allpaChips: ['watchOS / iOS', 'Behavioral Economics', 'Cash-Flow UX', 'Figma Prototyping'],
@@ -138,7 +138,7 @@ const CONTENT = {
 };
 
 function HomePage() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
   const [lang, setLang] = useState('es');
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState('');
@@ -327,7 +327,7 @@ function HomePage() {
 
         {/* 5. SECCIÓN EDITORIAL DE 3 CASOS CON CHIPS Y SPACING CALIBRADO */}
         <section id="work">
-          <div className="work-section-heading"><div><span className="section-index">02 / WORK</span><h2 className="editorial-section-title">{t.workSectionTitle}</h2></div><p>{t.workIntro}</p></div>
+          <div className="work-section-heading"><div><span className="section-context">{lang === 'es' ? 'Una selección reciente' : 'A recent selection'}</span><h2 className="editorial-section-title">{t.workSectionTitle}</h2></div><p>{t.workIntro}</p></div>
 
           <div className="editorial-works-stream">
             

@@ -15,7 +15,7 @@ const OfferCard = ({ compact = false }) => (
 );
 
 export default function CaseBBVA() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
   const [lang, setLang] = useState('es');
   const [mouseGlow, setMouseGlow] = useState({ x: 0, y: 0 });
   const t = BBVA_CASE[lang];
