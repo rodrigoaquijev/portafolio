@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CaseBBVA from './pages/CaseBBVA.jsx';
 import PortfolioHome from './pages/PortfolioHome.jsx';
-import DesignCustomizer from './components/DesignCustomizer.jsx';
 import avatarImage from '../assets/avatar.png';
 import bbvaCover from '../assets/359shots_so.png';
 import yapeCover from '../assets/216shots_so.png';
@@ -517,7 +516,6 @@ export default function App() {
         <Route path="/" element={<PortfolioHome />} />
         <Route path="/casos/bbva" element={<CaseBBVA />} />
       </Routes>
-      <DesignCustomizer />
     </>
   );
 }
