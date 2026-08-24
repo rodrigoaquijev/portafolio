@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import { GrainGradient } from '@paper-design/shaders-react';
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
 import { ArrowCircleRightIcon } from '@phosphor-icons/react/dist/csr/ArrowCircleRight';
-import { Check, Copy, FileText, Languages, Linkedin, Mail, Menu, Moon, Send, Sun, Volume2, VolumeX, X } from 'lucide-react';
+import { Check, Copy, FileText, Linkedin, Mail, Send } from 'lucide-react';
+import SiteHeader from '../components/SiteHeader.jsx';
+import SiteLoader from '../components/SiteLoader.jsx';
+import SectionLabel from '../components/SectionLabel.jsx';
+import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import avatarImage from '../../assets/avatar.png';
 import bbvaCover from '../../assets/359shots_so.png';
 import yapeCover from '../../assets/216shots_so.png';
@@ -63,9 +67,7 @@ const CONTENT = {
 };
 
 export default function PortfolioHome() {
-  const [theme, setTheme] = useState('light');
-  const [lang, setLang] = useState('es');
-  const [audio, setAudio] = useState(false);
+  const { theme, lang, audio } = useSiteDesignSystem();
   const [menuOpen, setMenuOpen] = useState(false);
   const [hireOpen, setHireOpen] = useState(false);
   const [toast, setToast] = useState('');
@@ -76,14 +78,7 @@ export default function PortfolioHome() {
   const [loading, setLoading] = useState(true);
   const t = CONTENT[lang];
 
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme;
-    document.documentElement.dataset.audio = audio ? 'on' : 'off';
-    document.documentElement.dataset.typePair = 'contrast';
-    document.documentElement.dataset.typeScale = 'major-third';
-    document.title = 'Rodrigo Aquije — Product Designer & Design Engineer';
-  }, [theme, audio]);
+  useEffect(() => { document.title = 'Rodrigo Aquije — Product Designer & Design Engineer'; }, []);
 
   useEffect(() => { const media = window.matchMedia('(prefers-reduced-motion: reduce)'); const update = () => setReducedMotion(media.matches); update(); media.addEventListener('change', update); return () => media.removeEventListener('change', update); }, []);
   useEffect(() => { document.body.classList.add('is-loading'); const delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 240 : 880; const timer = setTimeout(() => setLoading(false), delay); return () => { clearTimeout(timer); document.body.classList.remove('is-loading'); }; }, []);
@@ -105,10 +100,10 @@ export default function PortfolioHome() {
   const scrollTo = (id) => { setCurrentSection(id); setNavTarget(id); setMenuOpen(false); sound(); requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })); setTimeout(() => setNavTarget(''), 850); };
 
   return <main className={`ref-home ref-home--contrast ${navTarget ? 'is-navigating' : ''}`} data-nav-target={navTarget || undefined}>
-    <LoadingScreen visible={loading} />
+    <SiteLoader visible={loading} />
     <div className="ref-ambient" aria-hidden="true" />
     <div className="ref-column">
-      <CommandDeck t={t} theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} audio={audio} setAudio={setAudio} open={menuOpen} setOpen={setMenuOpen} scrollTo={scrollTo} sound={sound} currentSection={currentSection} scrolled={scrolled} />
+      <SiteHeader items={[{ id: 'about', label: t.nav.about }, { id: 'projects', label: t.nav.work }, { id: 'capabilities', label: t.nav.capabilities }, { id: 'contact', label: t.nav.contact }]} open={menuOpen} setOpen={setMenuOpen} onNavigate={scrollTo} currentSection={currentSection} scrolled={scrolled} />
       <section className="ref-section ref-hero ref-reveal"><div className="hero-heading-grid"><div><span className="ref-hero-eyebrow">{t.eyebrow}</span><h1 className="ref-hero-title">{t.title}</h1><p className="ref-hero-role">{t.role}</p></div><div className="hero-avatar-block"><span className="hero-avatar-ring"><img src={avatarImage} alt="Rodrigo Aquije" /></span><span>{t.location}</span><small>Economía · FinTech · Diseño</small></div></div><div className="ref-bio"><p>{t.bio}</p><p>{t.bioDetail}</p></div><div className="ref-actions"><HireConsole t={t} open={hireOpen} setOpen={setHireOpen} sound={sound} /><button className="ref-secondary ref-press" onClick={copyEmail}><Copy size={18} /> {t.copy}</button><LinkedInButton t={t} /></div></section>
       <section id="projects" data-section="projects" className="ref-section projects-section ref-reveal"><div className="ref-heading-row"><div><SectionLabel>{t.selected}</SectionLabel><h2>{t.workTitle}</h2></div><p>{t.workIntro}</p></div><div className="case-square-grid">{t.projects.map((project) => <CaseCard key={project.name} project={project} t={t} onOpen={() => project.href ? window.location.assign(project.href) : notify(t.soon)} />)}</div></section>
       <section id="about" data-section="about" className="ref-section about-section ref-reveal"><SectionLabel>{t.about}</SectionLabel><div className="about-layout"><h2>{t.aboutTitle}</h2><div><p>{t.aboutCopy}</p><p>{t.aboutAside}</p><Link className="about-page-cta" to="/sobre-mi"><span>{t.aboutCta}</span><ArrowBendUpRightIcon weight="bold" /></Link></div></div><div className="ref-client-strip" aria-label={t.trust}>{CLIENTS.map(([name, type]) => <span key={name}><strong>{name}</strong><small>{type}</small></span>)}</div></section>
@@ -119,13 +114,6 @@ export default function PortfolioHome() {
   </main>;
 }
 
-function CommandDeck({ t, theme, setTheme, lang, setLang, audio, setAudio, open, setOpen, scrollTo, sound, currentSection, scrolled }) {
-  const items = [['about', t.nav.about], ['projects', t.nav.work], ['capabilities', t.nav.capabilities], ['contact', t.nav.contact]];
-  return <header className={`command-deck command-deck--refined ${open ? 'is-open' : ''} ${scrolled ? 'is-scrolled' : ''}`}><div className="command-main"><button className="command-wordmark" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><strong>Rodrigo Aquije</strong><small>Product Designer</small></button><nav className="command-direct-nav" aria-label="Primary">{items.map(([id, label]) => <button key={id} className={currentSection === id ? 'is-active' : ''} aria-current={currentSection === id ? 'page' : undefined} onClick={() => scrollTo(id)}>{label}</button>)}</nav><div className="command-controls"><button className="nav-control" aria-label={audio ? 'Desactivar sonido' : 'Activar sonido'} aria-pressed={audio} data-tip={audio ? 'Sonido activo' : 'Sonido apagado'} onClick={() => { setAudio(!audio); if (!audio) sound(720, true); }}>{audio ? <Volume2 /> : <VolumeX />}</button><button className="nav-control" aria-label="Cambiar tema" data-tip={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'} onClick={() => { setTheme(theme === 'dark' ? 'light' : 'dark'); sound(); }}>{theme === 'dark' ? <Moon /> : <Sun />}</button><button className="nav-control nav-control--language" aria-label="Cambiar idioma" data-tip={lang === 'es' ? 'View in English' : 'Ver en español'} onClick={() => { setLang(lang === 'es' ? 'en' : 'es'); sound(); }}><Languages /><span>{lang.toUpperCase()}</span></button><button className="command-menu" aria-label="Abrir navegación" aria-expanded={open} onClick={() => { setOpen(!open); sound(460); }}>{open ? <X /> : <Menu />}</button></div></div><div className="command-mobile-panel" inert={!open ? '' : undefined}><nav>{items.map(([id, label]) => <button key={id} className={currentSection === id ? 'is-active' : ''} onClick={() => scrollTo(id)}>{label}<ArrowBendUpRightIcon weight="bold" /></button>)}</nav></div></header>;
-}
-
-function SectionLabel({ children }) { return <p className="ref-section-label">{children}</p>; }
-function LoadingScreen({ visible }) { return <div className={`loading-screen ${visible ? 'is-visible' : 'is-complete'}`} role="status" aria-live="polite" aria-label="Cargando portafolio"><div><strong>Rodrigo Aquije</strong><span>Product Design · Lima</span><i aria-hidden="true" /></div></div>; }
 function CapabilityShader({ theme, reducedMotion }) { const isLight = theme === 'light'; return <div className="capabilities-shader" aria-hidden="true"><GrainGradient width="100%" height="100%" colors={isLight ? ['#F1F4F9', '#D8F4E7', '#DCE8FF', '#F4F7F3'] : ['#090B10', '#10241D', '#142035', '#090B10']} colorBack={isLight ? '#F1F4F9' : '#090B10'} softness={.88} intensity={.22} noise={.12} shape="corners" speed={reducedMotion ? 0 : .055} scale={1.15} maxPixelCount={700000} /></div>; }
 function LinkedInButton({ t }) { return <a className="ref-icon-button linkedin-hover" href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /><span className="linkedin-profile-card"><span className="linkedin-banner"><b>in</b></span><span className="linkedin-card-body"><img src={avatarImage} alt="" /><strong>Rodrigo Aquije V.</strong><small>Product Designer & Design Engineer</small><span className="linkedin-location">{t.location}</span><span className="linkedin-connect">{t.linkedinAction}</span></span></span></a>; }
 function CaseCard({ project, t, onOpen }) { return <article className="case-square-card"><button className="case-square-media" onClick={onOpen}><img src={project.image} alt={`${project.name} project cover`} /><span className="case-square-overlay"><span><small>{t.overlayLabels[0]}</small><strong>{project.overlay.role}</strong></span><span><small>{t.overlayLabels[1]}</small><strong>{project.overlay.problem}</strong></span><span><small>{t.overlayLabels[2]}</small><strong>{project.overlay.contribution}</strong></span></span><span className="case-square-action"><span>{project.href ? t.open : t.soon}</span><ArrowBendUpRightIcon weight="bold" /></span></button><div className="case-square-copy"><span>{project.tag}</span><h3>{project.name}</h3><p>{project.desc}</p><div>{project.chips.map((chip) => <small key={chip}>{chip}</small>)}</div></div></article>; }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Check, ChevronDown, Languages, Moon, ShieldCheck, Sun } from 'lucide-react';
 import { BBVA_CASE } from '../content/bbvaCase.jsx';
+import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 
 const OfferCard = ({ compact = false }) => (
   <div className={`bbva-mail ${compact ? 'bbva-mail--compact' : ''}`}>
@@ -15,15 +16,11 @@ const OfferCard = ({ compact = false }) => (
 );
 
 export default function CaseBBVA() {
-  const [theme, setTheme] = useState('light');
-  const [lang, setLang] = useState('es');
+  const { theme, setTheme, lang, setLang } = useSiteDesignSystem();
   const [mouseGlow, setMouseGlow] = useState({ x: 0, y: 0 });
   const t = BBVA_CASE[lang];
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    document.title = lang === 'es' ? 'BBVA Perú — Caso de estudio | Rodrigo Aquije' : 'BBVA Peru — Case study | Rodrigo Aquije';
-  }, [theme, lang]);
+  useEffect(() => { document.title = lang === 'es' ? 'BBVA Perú — Caso de estudio | Rodrigo Aquije' : 'BBVA Peru — Case study | Rodrigo Aquije'; }, [lang]);
 
   return (
     <main className="case-page" onMouseMove={(event) => setMouseGlow({ x: event.clientX - 350, y: event.clientY - 350 })}>

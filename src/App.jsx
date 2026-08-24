@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import CaseBBVA from './pages/CaseBBVA.jsx';
 import PortfolioHome from './pages/PortfolioHome.jsx';
 import AboutPage from './pages/AboutPage.jsx';
+import { SiteDesignSystemProvider } from './components/SiteDesignSystem.jsx';
 import avatarImage from '../assets/avatar.png';
 import bbvaCover from '../assets/359shots_so.png';
 import yapeCover from '../assets/216shots_so.png';
@@ -512,12 +513,12 @@ function HomePage() {
 
 export default function App() {
   return (
-    <>
+    <SiteDesignSystemProvider>
       <Routes>
         <Route path="/" element={<PortfolioHome />} />
         <Route path="/casos/bbva" element={<CaseBBVA />} />
         <Route path="/sobre-mi" element={<AboutPage />} />
       </Routes>
-    </>
+    </SiteDesignSystemProvider>
   );
 }

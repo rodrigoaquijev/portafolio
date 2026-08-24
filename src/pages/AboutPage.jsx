@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
 import { ArrowCircleRightIcon } from '@phosphor-icons/react/dist/csr/ArrowCircleRight';
-import { Check, Copy, FileText, Languages, Linkedin, Mail, Menu, Moon, Sun, Volume2, VolumeX, X } from 'lucide-react';
+import { Check, Copy, FileText, Linkedin, Mail } from 'lucide-react';
+import SiteHeader from '../components/SiteHeader.jsx';
+import SiteLoader from '../components/SiteLoader.jsx';
+import SectionLabel from '../components/SectionLabel.jsx';
+import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import avatarImage from '../../assets/avatar.png';
 
 const CONTENT = {
@@ -112,73 +116,15 @@ const CONTENT = {
   }
 };
 
-function SectionLabel({ children }) {
-  return <p className="about-section-label">{children}</p>;
-}
-
-function AboutNav({ t, theme, setTheme, lang, setLang, audio, setAudio, open, setOpen, scrolled }) {
-  const links = [
-    ['/', t.nav.home],
-    ['/#projects', t.nav.projects],
-    ['/sobre-mi', t.nav.about],
-    ['#about-contact', t.nav.contact]
-  ];
-  const play = () => {
-    if (!audio) return;
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return;
-    const ctx = new AudioCtx();
-    const oscillator = ctx.createOscillator();
-    const gain = ctx.createGain();
-    oscillator.frequency.value = 540;
-    gain.gain.setValueAtTime(.02, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + .06);
-    oscillator.connect(gain);
-    gain.connect(ctx.destination);
-    oscillator.start();
-    oscillator.stop(ctx.currentTime + .065);
-  };
-
-  return <header className={`about-nav ${open ? 'is-open' : ''} ${scrolled ? 'is-scrolled' : ''}`}>
-    <div className="about-nav-main">
-      <a className="about-wordmark" href="/"><strong>Rodrigo Aquije</strong><small>Product Designer</small></a>
-      <nav className="about-desktop-links" aria-label="Principal">
-        {links.map(([href, label]) => <a key={href} className={href === '/sobre-mi' ? 'is-active' : ''} aria-current={href === '/sobre-mi' ? 'page' : undefined} href={href}>{label}</a>)}
-      </nav>
-      <div className="about-nav-controls">
-        <button className="about-nav-control" aria-label={audio ? 'Desactivar sonido' : 'Activar sonido'} aria-pressed={audio} data-tip={audio ? 'Sonido activo' : 'Sonido apagado'} onClick={() => setAudio(!audio)}>{audio ? <Volume2 /> : <VolumeX />}</button>
-        <button className="about-nav-control" aria-label="Cambiar tema" data-tip={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'} onClick={() => { setTheme(theme === 'dark' ? 'light' : 'dark'); play(); }}>{theme === 'dark' ? <Moon /> : <Sun />}</button>
-        <button className="about-nav-control about-nav-language" aria-label="Cambiar idioma" data-tip={lang === 'es' ? 'View in English' : 'Ver en español'} onClick={() => { setLang(lang === 'es' ? 'en' : 'es'); play(); }}><Languages /><span>{lang.toUpperCase()}</span></button>
-        <button className="about-menu" aria-label="Abrir navegación" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
-      </div>
-    </div>
-    <div className="about-mobile-panel" inert={!open ? '' : undefined}>
-      <nav>{links.map(([href, label]) => <a key={href} className={href === '/sobre-mi' ? 'is-active' : ''} href={href} onClick={() => setOpen(false)}><span>{label}</span><ArrowBendUpRightIcon weight="bold" /></a>)}</nav>
-    </div>
-  </header>;
-}
-
-function LoadingScreen({ visible }) {
-  return <div className={`loading-screen ${visible ? 'is-visible' : 'is-complete'}`} role="status" aria-live="polite" aria-label="Cargando página sobre mí"><div><strong>Rodrigo Aquije</strong><span>Sobre mí · Lima</span><i aria-hidden="true" /></div></div>;
-}
-
 export default function AboutPage() {
-  const [theme, setTheme] = useState('light');
-  const [lang, setLang] = useState('es');
-  const [audio, setAudio] = useState(false);
+  const { lang } = useSiteDesignSystem();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
   const t = CONTENT[lang];
 
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme;
-    document.documentElement.dataset.typePair = 'contrast';
-    document.documentElement.dataset.typeScale = 'major-third';
-    document.title = `${lang === 'es' ? 'Sobre mí' : 'About'} — Rodrigo Aquije`;
-  }, [theme, lang]);
+  useEffect(() => { document.title = `${lang === 'es' ? 'Sobre mí' : 'About'} — Rodrigo Aquije`; }, [lang]);
 
   useEffect(() => {
     document.body.classList.add('is-loading');
@@ -208,9 +154,9 @@ export default function AboutPage() {
   };
 
   return <main className="about-page">
-    <LoadingScreen visible={loading} />
+    <SiteLoader visible={loading} subtitle={lang === 'es' ? 'Sobre mí · Lima' : 'About · Lima'} />
     <div className="about-noise" aria-hidden="true" />
-    <AboutNav t={t} theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} audio={audio} setAudio={setAudio} open={menuOpen} setOpen={setMenuOpen} scrolled={scrolled} />
+    <SiteHeader items={[{ href: '/', label: t.nav.home }, { href: '/#projects', label: t.nav.projects }, { href: '/sobre-mi', label: t.nav.about, active: true }, { href: '#about-contact', label: t.nav.contact }]} open={menuOpen} setOpen={setMenuOpen} scrolled={scrolled} wordmarkHref="/" />
 
     <section className="about-hero about-shell about-reveal">
       <div className="about-hero-title">
