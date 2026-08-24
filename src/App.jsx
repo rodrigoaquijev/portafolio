@@ -505,16 +505,18 @@ function HomePage() {
           </a>
         </div>
       </nav>
-      <DesignCustomizer lang={lang} />
     </div>
   );
 }
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/casos/bbva" element={<CaseBBVA />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/casos/bbva" element={<CaseBBVA />} />
+      </Routes>
+      <DesignCustomizer />
+    </>
   );
 }
