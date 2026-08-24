@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import CaseBBVA from './pages/CaseBBVA.jsx';
 import PortfolioHome from './pages/PortfolioHome.jsx';
 import AboutPage from './pages/AboutPage.jsx';
@@ -514,6 +514,7 @@ function HomePage() {
 export default function App() {
   return (
     <SiteDesignSystemProvider>
+      <RouteScrollManager />
       <Routes>
         <Route path="/" element={<PortfolioHome />} />
         <Route path="/casos/bbva" element={<CaseBBVA />} />
@@ -521,4 +522,20 @@ export default function App() {
       </Routes>
     </SiteDesignSystemProvider>
   );
+}
+
+function RouteScrollManager() {
+  const { pathname, hash } = useLocation();
+
+  useLayoutEffect(() => {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+    if (!hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      return;
+    }
+    const frame = window.requestAnimationFrame(() => document.querySelector(hash)?.scrollIntoView({ block: 'start' }));
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname, hash]);
+
+  return null;
 }

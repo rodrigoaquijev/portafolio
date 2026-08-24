@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
-import { ArrowCircleRightIcon } from '@phosphor-icons/react/dist/csr/ArrowCircleRight';
-import { Check, Copy, FileText, Linkedin, Mail } from 'lucide-react';
+import { Check } from 'lucide-react';
 import SiteHeader from '../components/SiteHeader.jsx';
 import SiteLoader from '../components/SiteLoader.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
+import SiteContact from '../components/SiteContact.jsx';
+import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import avatarImage from '../../assets/avatar.png';
 
 const CONTENT = {
   es: {
-    nav: { home: 'Inicio', projects: 'Proyectos', about: 'Sobre mí', contact: 'Contacto' },
+    nav: { story: 'Historia', experience: 'Experiencia', principles: 'Principios', contact: 'Contacto' },
     eyebrow: 'PRODUCT DESIGN · FINTECH · DISEÑO CONDUCTUAL',
     name: 'Rodrigo Aquije Vásquez',
     role: 'Product Designer & Design Engineer',
@@ -59,13 +60,14 @@ const CONTENT = {
       { title: 'El dominio del producto es una ventaja', body: 'Comprender la mecánica del negocio permite diseñar con más profundidad y menos suposiciones.' },
       { title: 'Claridad antes que complejidad', body: 'Reducir carga mental y fricción convierte un problema complejo en una decisión comprensible.' }
     ],
+    connect: 'Conectemos', connectTitle: 'Conversemos sobre el problema real.', linkedinNetwork: 'Red profesional',
     ctaLabel: 'Próxima conversación',
     ctaTitle: 'Trabajemos en productos donde la claridad sí importa.',
     ctaBody: 'Estoy abierto a roles y proyectos donde producto, sistemas y contexto financiero se encuentren. Si ese es el reto, conversemos.',
     email: 'Copiar email', copied: 'Email copiado', linkedin: 'Conectar en LinkedIn', cv: 'Ver currículum', footer: 'Diseñado y construido en Lima.'
   },
   en: {
-    nav: { home: 'Home', projects: 'Projects', about: 'About', contact: 'Contact' },
+    nav: { story: 'Story', experience: 'Experience', principles: 'Principles', contact: 'Contact' },
     eyebrow: 'PRODUCT DESIGN · FINTECH · BEHAVIORAL DESIGN',
     name: 'Rodrigo Aquije Vásquez',
     role: 'Product Designer & Design Engineer',
@@ -110,6 +112,7 @@ const CONTENT = {
       { title: 'Product knowledge is an advantage', body: 'Understanding business mechanics leads to deeper design and fewer assumptions.' },
       { title: 'Clarity before complexity', body: 'Reducing mental load and friction turns a complex problem into an understandable decision.' }
     ],
+    connect: 'Let’s connect', connectTitle: 'Let’s discuss the real problem.', linkedinNetwork: 'Professional network',
     ctaLabel: 'Next conversation', ctaTitle: 'Let’s work on products where clarity matters.',
     ctaBody: 'I am open to roles and projects where product, systems and financial context meet. If that is the challenge, let’s talk.',
     email: 'Copy email', copied: 'Email copied', linkedin: 'Connect on LinkedIn', cv: 'View résumé', footer: 'Designed and built in Lima.'
@@ -120,6 +123,8 @@ export default function AboutPage() {
   const { lang } = useSiteDesignSystem();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [currentSection, setCurrentSection] = useState('');
+  const [navTarget, setNavTarget] = useState('');
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
   const t = CONTENT[lang];
@@ -146,17 +151,33 @@ export default function AboutPage() {
     nodes.forEach((node) => observer.observe(node));
     return () => observer.disconnect();
   }, []);
+  useEffect(() => {
+    const sections = document.querySelectorAll('[data-about-section]');
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setCurrentSection(visible.target.dataset.aboutSection);
+    }, { rootMargin: '-24% 0px -58% 0px', threshold: [0, .2, .45] });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText('rodrigoaq996@gmail.com');
     setCopied(true);
     window.setTimeout(() => setCopied(false), 2200);
   };
+  const scrollTo = (id) => {
+    setCurrentSection(id);
+    setNavTarget(id);
+    setMenuOpen(false);
+    window.requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    window.setTimeout(() => setNavTarget(''), 850);
+  };
 
-  return <main className="about-page">
+  return <main className={`about-page ${navTarget ? 'is-navigating' : ''}`} data-nav-target={navTarget || undefined}>
     <SiteLoader visible={loading} subtitle={lang === 'es' ? 'Sobre mí · Lima' : 'About · Lima'} />
     <div className="about-noise" aria-hidden="true" />
-    <SiteHeader items={[{ href: '/', label: t.nav.home }, { href: '/#projects', label: t.nav.projects }, { href: '/sobre-mi', label: t.nav.about, active: true }, { href: '#about-contact', label: t.nav.contact }]} open={menuOpen} setOpen={setMenuOpen} scrolled={scrolled} wordmarkHref="/" />
+    <SiteHeader items={[{ id: 'story', label: t.nav.story }, { id: 'experience', label: t.nav.experience }, { id: 'principles', label: t.nav.principles }, { id: 'about-contact', label: t.nav.contact }]} open={menuOpen} setOpen={setMenuOpen} scrolled={scrolled} currentSection={currentSection} onNavigate={scrollTo} wordmarkHref="/" wordmarkSubtitle={lang === 'es' ? 'Sobre mí' : 'About'} variant="detail" />
 
     <section className="about-hero about-shell about-reveal">
       <div className="about-hero-title">
@@ -170,7 +191,7 @@ export default function AboutPage() {
       </div>
     </section>
 
-    <section className="about-story about-reveal">
+    <section id="story" data-about-section="story" className="about-story about-reveal">
       <div className="about-shell about-story-layout">
         <header>
           <SectionLabel>{t.storyLabel}</SectionLabel>
@@ -196,7 +217,7 @@ export default function AboutPage() {
       </div>
     </section>
 
-    <section className="about-experience about-shell about-reveal">
+    <section id="experience" data-about-section="experience" className="about-experience about-shell about-reveal">
       <div className="about-heading-row"><div><SectionLabel>{t.experienceLabel}</SectionLabel><h2>{t.experienceTitle}</h2></div><p>{t.experienceIntro}</p></div>
       <div className="about-role-list">
         {t.roles.map((item) => <article key={item.company}><div className="role-company"><h3>{item.company}</h3><span>{item.date}</span></div><div className="role-detail"><strong>{item.role}</strong><p>{item.body}</p></div></article>)}
@@ -204,7 +225,7 @@ export default function AboutPage() {
       <div className="about-education"><SectionLabel>{t.educationLabel}</SectionLabel><div>{t.education.map((item) => <article key={item.program}><span>{item.year}</span><h3>{item.program}</h3><p>{item.school}</p></article>)}</div></div>
     </section>
 
-    <section className="about-principles about-reveal">
+    <section id="principles" data-about-section="principles" className="about-principles about-reveal">
       <div className="about-principles-ambient" aria-hidden="true" />
       <div className="about-shell">
         <SectionLabel>{t.principlesLabel}</SectionLabel>
@@ -213,12 +234,8 @@ export default function AboutPage() {
       </div>
     </section>
 
-    <section id="about-contact" className="about-cta about-shell about-reveal">
-      <SectionLabel>{t.ctaLabel}</SectionLabel>
-      <div className="about-cta-layout"><h2>{t.ctaTitle}</h2><div><p>{t.ctaBody}</p><div className="about-cta-actions"><button onClick={copyEmail}><Copy /> {t.email}<ArrowCircleRightIcon weight="duotone" /></button><a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer"><Linkedin /> {t.linkedin}<ArrowBendUpRightIcon weight="bold" /></a><a href={lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf'} target="_blank" rel="noreferrer"><FileText /> {t.cv}<ArrowBendUpRightIcon weight="bold" /></a></div></div></div>
-    </section>
-
-    <footer className="about-footer about-shell"><span>© 2026 Rodrigo Aquije</span><span>{t.footer}</span><nav><a href="mailto:rodrigoaq996@gmail.com"><Mail /> Email</a><a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer">LinkedIn</a></nav></footer>
+    <SiteContact id="about-contact" dataAboutSection="about-contact" label={t.connect} title={t.connectTitle} lang={lang} linkedinNetwork={t.linkedinNetwork} onCopy={copyEmail} className="about-shell about-contact-shared about-reveal" />
+    <SiteFooter text={t.footer} className="about-shell" />
     <div className={`about-toast ${copied ? 'is-visible' : ''}`} role="status" aria-live="polite"><Check /> {t.copied}</div>
   </main>;
 }

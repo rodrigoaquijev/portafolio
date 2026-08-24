@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { GrainGradient } from '@paper-design/shaders-react';
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
 import { ArrowCircleRightIcon } from '@phosphor-icons/react/dist/csr/ArrowCircleRight';
-import { Check, Copy, FileText, Linkedin, Mail, Send } from 'lucide-react';
+import { Check, Copy, Linkedin, Send } from 'lucide-react';
 import SiteHeader from '../components/SiteHeader.jsx';
 import SiteLoader from '../components/SiteLoader.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
+import SiteContact from '../components/SiteContact.jsx';
+import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import avatarImage from '../../assets/avatar.png';
 import bbvaCover from '../../assets/359shots_so.png';
@@ -108,8 +110,8 @@ export default function PortfolioHome() {
       <section id="projects" data-section="projects" className="ref-section projects-section ref-reveal"><div className="ref-heading-row"><div><SectionLabel>{t.selected}</SectionLabel><h2>{t.workTitle}</h2></div><p>{t.workIntro}</p></div><div className="case-square-grid">{t.projects.map((project) => <CaseCard key={project.name} project={project} t={t} onOpen={() => project.href ? window.location.assign(project.href) : notify(t.soon)} />)}</div></section>
       <section id="about" data-section="about" className="ref-section about-section ref-reveal"><SectionLabel>{t.about}</SectionLabel><div className="about-layout"><h2>{t.aboutTitle}</h2><div><p>{t.aboutCopy}</p><p>{t.aboutAside}</p><Link className="about-page-cta" to="/sobre-mi"><span>{t.aboutCta}</span><ArrowBendUpRightIcon weight="bold" /></Link></div></div><div className="ref-client-strip" aria-label={t.trust}>{CLIENTS.map(([name, type]) => <span key={name}><strong>{name}</strong><small>{type}</small></span>)}</div></section>
       <section id="capabilities" data-section="capabilities" className="ref-section capabilities-section capabilities-section--shader ref-reveal"><CapabilityShader theme={theme} reducedMotion={reducedMotion} /><div className="capabilities-content"><SectionLabel>{t.capabilities}</SectionLabel><div className="capability-list capability-list--expressive">{t.capabilityData.map((capability) => <article key={capability.title} className="capability-row capability-row--expressive"><div><h3>{capability.title}</h3><p>{capability.desc}</p></div><div className="capability-reveal"><strong>{capability.proof}</strong><span>{capability.chips.map((chip) => <small key={chip}>{chip}</small>)}</span><ArrowBendUpRightIcon weight="duotone" /></div></article>)}</div></div></section>
-      <section id="contact" data-section="contact" className="ref-section ref-contact ref-reveal"><SectionLabel>{t.connect}</SectionLabel><h2>{lang === 'es' ? 'Conversemos sobre el problema real.' : 'Let’s discuss the real problem.'}</h2><div className="contact-links"><button onClick={copyEmail}><Mail /><span><strong>Email</strong><small>rodrigoaq996@gmail.com</small></span><ArrowBendUpRightIcon weight="bold" /></button><a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer"><Linkedin /><span><strong>LinkedIn</strong><small>{t.linkedinNetwork}</small></span><ArrowBendUpRightIcon weight="bold" /></a><div className="cv-card"><FileText /><span><strong>Currículum Vitae</strong><small>Descargar versión</small></span><div className="cv-actions"><a href="/cv-es.pdf" download>Español</a><a href="/cv-en.pdf" download>English</a></div></div></div></section>
-      <footer className="ref-footer"><span>© 2026 Rodrigo Aquije</span><span>{t.footer}</span><nav><a href="mailto:rodrigoaq996@gmail.com">Email</a><a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer">LinkedIn</a></nav></footer>
+      <SiteContact dataSection="contact" label={t.connect} title={lang === 'es' ? 'Conversemos sobre el problema real.' : 'Let’s discuss the real problem.'} lang={lang} linkedinNetwork={t.linkedinNetwork} onCopy={copyEmail} className="ref-reveal" />
+      <SiteFooter text={t.footer} />
     </div><div className={`ref-toast ${toast ? 'is-visible' : ''}`} role="status" aria-live="polite"><Check size={15} /> {toast}</div>
   </main>;
 }

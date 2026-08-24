@@ -3,7 +3,7 @@ import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUp
 import { Languages, Menu, Moon, Sun, Volume2, VolumeX, X } from 'lucide-react';
 import { useSiteDesignSystem } from './SiteDesignSystem.jsx';
 
-export default function SiteHeader({ items, open, setOpen, scrolled, currentSection = '', onNavigate, wordmarkHref }) {
+export default function SiteHeader({ items, open, setOpen, scrolled, currentSection = '', onNavigate, wordmarkHref, wordmarkSubtitle = 'Product Designer', variant = 'home' }) {
   const { theme, setTheme, lang, setLang, audio, setAudio } = useSiteDesignSystem();
 
   const sound = (frequency = 520, force = false) => {
@@ -36,9 +36,9 @@ export default function SiteHeader({ items, open, setOpen, scrolled, currentSect
     return <button key={item.id} className={className} aria-current={active ? 'page' : undefined} onClick={() => activate(item)}>{content}</button>;
   };
 
-  const wordmark = <><strong>Rodrigo Aquije</strong><small>Product Designer</small></>;
+  const wordmark = <><strong>Rodrigo Aquije</strong><small>{wordmarkSubtitle}</small></>;
 
-  return <header className={`command-deck command-deck--refined ${open ? 'is-open' : ''} ${scrolled ? 'is-scrolled' : ''}`}>
+  return <header className={`command-deck command-deck--refined command-deck--${variant} ${open ? 'is-open' : ''} ${scrolled ? 'is-scrolled' : ''}`}>
     <div className="command-main">
       {wordmarkHref
         ? <a className="command-wordmark" href={wordmarkHref}>{wordmark}</a>
