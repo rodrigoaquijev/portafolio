@@ -14,9 +14,9 @@ import {
   Sun, 
   Moon, 
   Languages,
-  Figma,
-  Code2,
-  Bot
+  Layout,
+  Cpu,
+  Sparkles
 } from 'lucide-react';
 
 const CONTENT = {
@@ -26,30 +26,38 @@ const CONTENT = {
     getInTouch: "Contactar",
     copied: "¡Copiado!",
     copyEmail: "Copiar Email",
-    trustLabel: "Diseñado para y colaborando con:",
-    stackSectionTitle: "Stack & Metodología",
+    trustLabel: "Experiencia & Colaboraciones",
+    capabilitiesTitle: "Habilidades & Especialidades",
     workSectionTitle: "Casos de Estudio",
     viewCase: "Explorar caso completo",
     
-    // Stack Categories
-    stackCat1: "Product Design Systems",
-    stackCat2: "Design Engineering",
-    stackCat3: "AI-Augmented Prototyping",
+    // Capabilities
+    cap1Title: "Product & Interface Design",
+    cap1Desc: "Investigación conductual, flujos transaccionales y arquitectura de interfaces de alta conversión.",
+    
+    cap2Title: "Design Systems & Code",
+    cap2Desc: "Sistemas modulares escalables en Figma y maquetación de componentes vivos en React / CSS Tokens.",
+    
+    cap3Title: "AI-Augmented Prototyping",
+    cap3Desc: "Aceleración de prototipado funcional mediante agentes generativos de código y flujos asistidos.",
 
     // Caso 1: BBVA
     bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
     bbvaTitle: "Cómo diseñar con conversión y compliance bancario.",
     bbvaDesc: "Optimización técnica y visual de envíos masivos para BBVA Perú manteniendo integridad regulatoria.",
+    bbvaChips: ['Salesforce MC', 'Email UX', 'Compliance Bancario', 'Figma Tokens'],
 
     // Caso 2: Yape
     yapeTag: "BEHAVIORAL AUDIT & STATE SYSTEMS",
     yapeTitle: "La pantalla de error que te hace perder dinero.",
     yapeDesc: "Rediseño conductual de los estados 'en revisión' de Yape para mitigar fricción y drop-off.",
+    yapeChips: ['UX Audit', 'Microcopy', 'Arquitectura de Estados', 'Growth Design'],
 
     // Caso 3: Allpa
     allpaTag: "BEHAVIORAL FINANCE // APPLE ECOSYSTEM",
     allpaTitle: "El sistema que te impide gastar tu propia plata.",
     allpaDesc: "Concepto de diseño conductual para Apple Watch e iOS que interviene en el flujo de caja antes de una compra impulsiva.",
+    allpaChips: ['watchOS / iOS', 'Economía Conductual', 'Cash-Flow UX', 'Figma Prototyping'],
 
     // Playground final
     connectTitle: "Conectemos",
@@ -65,30 +73,38 @@ const CONTENT = {
     getInTouch: "Get in touch",
     copied: "Copied!",
     copyEmail: "Copy Email",
-    trustLabel: "Crafted for and collaborating with:",
-    stackSectionTitle: "Stack & Methodology",
+    trustLabel: "Experience & Collaborations",
+    capabilitiesTitle: "Capabilities & Craft",
     workSectionTitle: "Selected Works",
     viewCase: "Explore full case",
 
-    // Stack Categories
-    stackCat1: "Product Design Systems",
-    stackCat2: "Design Engineering",
-    stackCat3: "AI-Augmented Prototyping",
+    // Capabilities
+    cap1Title: "Product & Interface Design",
+    cap1Desc: "Behavioral research, transactional user flows, and high-conversion interface architecture.",
+    
+    cap2Title: "Design Systems & Code",
+    cap2Desc: "Scalable design tokens in Figma and live responsive component architecture in React / CSS.",
+    
+    cap3Title: "AI-Augmented Prototyping",
+    cap3Desc: "Accelerating functional prototyping via generative code agents and AI-assisted workflows.",
 
     // Caso 1: BBVA
     bbvaTag: "FINANCIAL DESIGN // SALESFORCE MC",
     bbvaTitle: "Designing with conversion and bank compliance.",
     bbvaDesc: "Technical and visual optimization of massive lending campaigns in Salesforce Marketing Cloud for BBVA Perú.",
+    bbvaChips: ['Salesforce MC', 'Email UX', 'Bank Compliance', 'Figma Tokens'],
 
     // Caso 2: Yape
     yapeTag: "BEHAVIORAL AUDIT & STATE SYSTEMS",
     yapeTitle: "The error screen making you lose money.",
     yapeDesc: "Behavioral redesign for Yape's 'under review' states to eliminate transactional friction.",
+    yapeChips: ['UX Audit', 'Microcopy', 'State Systems', 'Growth Design'],
 
     // Caso 3: Allpa
     allpaTag: "BEHAVIORAL FINANCE // APPLE ECOSYSTEM",
     allpaTitle: "The system that prevents you from overspending.",
     allpaDesc: "Behavioral design concept for Apple Watch & iOS that intervenes in cash flow before impulse purchases.",
+    allpaChips: ['watchOS / iOS', 'Behavioral Economics', 'Cash-Flow UX', 'Figma Prototyping'],
 
     // Playground final
     connectTitle: "Let's connect",
@@ -207,71 +223,91 @@ export default function App() {
           </div>
         </section>
 
-        {/* 3. SOCIAL PROOF // LOGOS STRIP */}
+        {/* 3. SOCIAL PROOF (EMPRESAS REDISEÑADAS) */}
         <section className="trust-strip">
           <span className="trust-label">{t.trustLabel}</span>
-          <div className="trust-logos">
-            <span className="trust-logo-item">BBVA PERÚ</span>
-            <span className="trust-logo-item">CENTRUM PUCP</span>
-            <span className="trust-logo-item">AMSTERDAM AGENCY</span>
-            <span className="trust-logo-item">UTOPIQ</span>
+          <div className="trust-logos-row">
+            <span className="trust-brand">
+              Fahrenheit DDB <span className="trust-brand-tag">Agency</span>
+            </span>
+            <span className="trust-brand">
+              BBVA Perú <span className="trust-brand-tag">Banking</span>
+            </span>
+            <span className="trust-brand">
+              CENTRUM PUCP <span className="trust-brand-tag">Business School</span>
+            </span>
+            <span className="trust-brand">
+              Amsterdam Agency <span className="trust-brand-tag">Digital</span>
+            </span>
+            <span className="trust-brand">
+              Utopiq <span className="trust-brand-tag">Tech</span>
+            </span>
           </div>
         </section>
 
-        {/* 4. STACK TÉCNICO & AI PROTOTYPING */}
-        <section className="stack-section">
+        {/* 4. DESIGN CAPABILITIES (STACK REFORMULADO COMO UX/UI CRAFT) */}
+        <section className="stack-editorial-section">
           <h2 className="editorial-section-title" style={{ fontSize: '28px', marginBottom: '24px' }}>
-            {t.stackSectionTitle}
+            {t.capabilitiesTitle}
           </h2>
 
-          <div className="stack-grid">
+          <div className="stack-editorial-grid">
             
-            {/* Cluster 1 */}
-            <div className="stack-card">
-              <span className="stack-category-title">
-                <Figma size={14} /> {t.stackCat1}
-              </span>
-              <div className="stack-tags-list">
-                <span className="stack-tag">Figma</span>
-                <span className="stack-tag">Design Systems</span>
-                <span className="stack-tag">Framer</span>
-                <span className="stack-tag">Adobe Creative Cloud</span>
-                <span className="stack-tag">Microcopy & UX Audit</span>
+            {/* Capacidad 1 */}
+            <div className="capability-card">
+              <div>
+                <div className="capability-header" style={{ marginBottom: '12px' }}>
+                  <div className="capability-icon"><Layout size={16} /></div>
+                  <h3 className="capability-title">{t.cap1Title}</h3>
+                </div>
+                <p className="capability-desc">{t.cap1Desc}</p>
+              </div>
+              <div className="capability-chips">
+                <span className="cap-chip">Figma</span>
+                <span className="cap-chip">Framer</span>
+                <span className="cap-chip">Adobe CC</span>
+                <span className="cap-chip">UX Audit</span>
               </div>
             </div>
 
-            {/* Cluster 2 */}
-            <div className="stack-card">
-              <span className="stack-category-title">
-                <Code2 size={14} /> {t.stackCat2}
-              </span>
-              <div className="stack-tags-list">
-                <span className="stack-tag">React</span>
-                <span className="stack-tag">HTML5 / CSS Tokens</span>
-                <span className="stack-tag">Vite</span>
-                <span className="stack-tag">Salesforce Marketing Cloud</span>
-                <span className="stack-tag">Git / Vercel</span>
+            {/* Capacidad 2 */}
+            <div className="capability-card">
+              <div>
+                <div className="capability-header" style={{ marginBottom: '12px' }}>
+                  <div className="capability-icon"><Cpu size={16} /></div>
+                  <h3 className="capability-title">{t.cap2Title}</h3>
+                </div>
+                <p className="capability-desc">{t.cap2Desc}</p>
+              </div>
+              <div className="capability-chips">
+                <span className="cap-chip">Design Tokens</span>
+                <span className="cap-chip">React</span>
+                <span className="cap-chip">HTML5 / CSS</span>
+                <span className="cap-chip">SFMC</span>
               </div>
             </div>
 
-            {/* Cluster 3 */}
-            <div className="stack-card">
-              <span className="stack-category-title">
-                <Bot size={14} /> {t.stackCat3}
-              </span>
-              <div className="stack-tags-list">
-                <span className="stack-tag">Claude Code</span>
-                <span className="stack-tag">Cursor</span>
-                <span className="stack-tag">Gemini Pro</span>
-                <span className="stack-tag">Prompt-to-UI Architecture</span>
-                <span className="stack-tag">AI Workflows</span>
+            {/* Capacidad 3 */}
+            <div className="capability-card">
+              <div>
+                <div className="capability-header" style={{ marginBottom: '12px' }}>
+                  <div className="capability-icon"><Sparkles size={16} /></div>
+                  <h3 className="capability-title">{t.cap3Title}</h3>
+                </div>
+                <p className="capability-desc">{t.cap3Desc}</p>
+              </div>
+              <div className="capability-chips">
+                <span className="cap-chip">Claude Code</span>
+                <span className="cap-chip">Cursor</span>
+                <span className="cap-chip">Gemini</span>
+                <span className="cap-chip">Prompt-to-UI</span>
               </div>
             </div>
 
           </div>
         </section>
 
-        {/* 5. SECCIÓN EDITORIAL DE 3 CASOS */}
+        {/* 5. SECCIÓN EDITORIAL DE 3 CASOS CON CHIPS Y SPACING CALIBRADO */}
         <section id="work">
           <h2 className="editorial-section-title">
             {t.workSectionTitle}
@@ -306,14 +342,22 @@ export default function App() {
                   <span className="case-tag-meta">{t.bbvaTag}</span>
                   <h3 className="case-title">{t.bbvaTitle}</h3>
                   <p className="case-summary">{t.bbvaDesc}</p>
+                  
+                  {/* Micro Chips Discretos */}
+                  <div className="case-discrete-chips">
+                    {t.bbvaChips.map((chip) => (
+                      <span key={chip} className="project-chip">{chip}</span>
+                    ))}
+                  </div>
                 </div>
+
                 <a href="/proyecto-bbva.html" className="case-read-link">
                   {t.viewCase} <ArrowUpRight size={15} />
                 </a>
               </div>
             </article>
 
-            {/* Caso 2: Yape */}
+            {/* Caso 2: Yape (Invertido) */}
             <article className="editorial-case-article editorial-case-article--reversed">
               <div className="case-display-stage stage-chroma--yape">
                 <div className="case-ui-window">
@@ -340,7 +384,15 @@ export default function App() {
                   <span className="case-tag-meta">{t.yapeTag}</span>
                   <h3 className="case-title">{t.yapeTitle}</h3>
                   <p className="case-summary">{t.yapeDesc}</p>
+                  
+                  {/* Micro Chips Discretos */}
+                  <div className="case-discrete-chips">
+                    {t.yapeChips.map((chip) => (
+                      <span key={chip} className="project-chip">{chip}</span>
+                    ))}
+                  </div>
                 </div>
+
                 <a href="/proyecto-yape.html" className="case-read-link">
                   {t.viewCase} <ArrowUpRight size={15} />
                 </a>
@@ -374,7 +426,15 @@ export default function App() {
                   <span className="case-tag-meta">{t.allpaTag}</span>
                   <h3 className="case-title">{t.allpaTitle}</h3>
                   <p className="case-summary">{t.allpaDesc}</p>
+                  
+                  {/* Micro Chips Discretos */}
+                  <div className="case-discrete-chips">
+                    {t.allpaChips.map((chip) => (
+                      <span key={chip} className="project-chip">{chip}</span>
+                    ))}
+                  </div>
                 </div>
+
                 <a href="/proyecto-allpa.html" className="case-read-link">
                   {t.viewCase} <ArrowUpRight size={15} />
                 </a>
