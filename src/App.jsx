@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CaseBBVA from './pages/CaseBBVA.jsx';
+import DesignCustomizer from './components/DesignCustomizer.jsx';
 import avatarImage from '../assets/avatar.png';
 import bbvaCover from '../assets/359shots_so.png';
 import yapeCover from '../assets/216shots_so.png';
@@ -27,6 +28,9 @@ import {
 
 const CONTENT = {
   es: {
+    heroKicker: "PRODUCT DESIGN · FINTECH · DESIGN ENGINEERING",
+    heroTitle: "Diseño productos financieros que convierten sin perder",
+    heroTitleEm: "confianza.",
     role: "Product Designer & Design Engineer",
     bio: "Diseñador de producto digital con formación en economía. Conecto rigor analítico, sistemas de diseño escalables y conversión para construir interfaces financieras intuitivas, viables y de alto impacto.",
     getInTouch: "Contactar",
@@ -36,6 +40,10 @@ const CONTENT = {
     capabilitiesTitle: "Habilidades & Especialidades",
     workSectionTitle: "Casos de Estudio",
     viewCase: "Explorar caso completo",
+    comingSoon: "Caso en desarrollo",
+    viewWork: "Ver proyectos",
+    workIntro: "Trabajo seleccionado donde estrategia, comportamiento e implementación se conectan con resultados de negocio.",
+    profileNote: "Economía + diseño + código",
     
     // Capabilities
     cap1Title: "Product & Interface Design",
@@ -74,6 +82,9 @@ const CONTENT = {
     cvTileLabel: "Currículum Vitae"
   },
   en: {
+    heroKicker: "PRODUCT DESIGN · FINTECH · DESIGN ENGINEERING",
+    heroTitle: "I design financial products that convert without losing",
+    heroTitleEm: "trust.",
     role: "Product Designer & Design Engineer",
     bio: "Digital product designer with an economics background. I connect analytical rigor, scalable design systems, and conversion to build intuitive, viable, and high-impact financial interfaces.",
     getInTouch: "Get in touch",
@@ -83,6 +94,10 @@ const CONTENT = {
     capabilitiesTitle: "Capabilities & Craft",
     workSectionTitle: "Selected Works",
     viewCase: "Explore full case",
+    comingSoon: "Case in progress",
+    viewWork: "View projects",
+    workIntro: "Selected work connecting strategy, behavior and implementation to business outcomes.",
+    profileNote: "Economics + design + code",
 
     // Capabilities
     cap1Title: "Product & Interface Design",
@@ -184,8 +199,10 @@ function HomePage() {
         {/* 1. STATUS BAR */}
         <header className="clean-status-bar">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <strong className="status-signature">RODRIGO AQUIJE</strong>
+            <span className="status-divider" />
             <Clock size={12} />
-            <span>{time ? `${time} (LIMA, GMT-5)` : 'LIMA, GMT-5'}</span>
+            <span>{time ? `${time} · LIMA` : 'LIMA, GMT-5'}</span>
           </div>
 
           <div className="clean-controls">
@@ -202,30 +219,25 @@ function HomePage() {
         {/* 2. HERO SECTION */}
         <section className="hero-editorial-grid">
           <div className="hero-text-flow">
+            <span className="hero-kicker">{t.heroKicker}</span>
             <h1 className="hero-name-title">
-              Rodrigo <em>Aquije</em>
+              {t.heroTitle} <em>{t.heroTitleEm}</em>
             </h1>
-            <p className="hero-role-lead">{t.role}</p>
             <p className="hero-description">{t.bio}</p>
 
             <div className="hero-action-cluster">
-              <a href="mailto:rodrigoaq996@gmail.com" className="btn-primary-action">
-                {t.getInTouch} ↗
+              <a href="#work" className="btn-primary-action">
+                {t.viewWork} <ArrowUpRight size={14} />
               </a>
-              <button type="button" className="btn-glass-action" onClick={handleCopyEmail}>
-                <span>{copied ? t.copied : 'rodrigoaq996@gmail.com'}</span>
-                {copied ? <Check size={13} color="#10B981" /> : <Copy size={13} />}
-              </button>
+              <a href="mailto:rodrigoaq996@gmail.com" className="btn-glass-action">{t.getInTouch} <ArrowUpRight size={13} /></a>
             </div>
           </div>
 
-          <div className="hero-avatar-wrapper">
-            <img 
-              src={avatarImage}
-              alt="Rodrigo Aquije V." 
-              className="hero-avatar-img"
-              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80'; }}
-            />
+          <div className="hero-profile-rail">
+            <div className="hero-avatar-wrapper">
+              <img src={avatarImage} alt="Rodrigo Aquije V." className="hero-avatar-img" />
+            </div>
+            <div className="hero-profile-copy"><strong>{t.role}</strong><span>{t.profileNote}</span><span>Lima, Perú · GMT−5</span></div>
           </div>
         </section>
 
@@ -315,21 +327,19 @@ function HomePage() {
 
         {/* 5. SECCIÓN EDITORIAL DE 3 CASOS CON CHIPS Y SPACING CALIBRADO */}
         <section id="work">
-          <h2 className="editorial-section-title">
-            {t.workSectionTitle}
-          </h2>
+          <div className="work-section-heading"><div><span className="section-index">02 / WORK</span><h2 className="editorial-section-title">{t.workSectionTitle}</h2></div><p>{t.workIntro}</p></div>
 
           <div className="editorial-works-stream">
             
             {/* Caso 1: BBVA */}
             <article className="editorial-case-article">
-              <div className="case-display-stage stage-chroma--bbva">
+              <a href="/casos/bbva" className="case-display-stage stage-chroma--bbva" aria-label={t.viewCase}>
                 <img
                   src={bbvaCover}
                   alt="Campaña de préstamo digital diseñada para BBVA Perú"
                   className="case-cover-image"
                 />
-              </div>
+              </a>
 
               <div className="case-editorial-pane">
                 <div>
@@ -375,9 +385,7 @@ function HomePage() {
                   </div>
                 </div>
 
-                <a href="/proyecto-yape.html" className="case-read-link">
-                  {t.viewCase} <ArrowUpRight size={15} />
-                </a>
+                <span className="case-read-link case-read-link--disabled">{t.comingSoon}</span>
               </div>
             </article>
 
@@ -405,9 +413,7 @@ function HomePage() {
                   </div>
                 </div>
 
-                <a href="/proyecto-allpa.html" className="case-read-link">
-                  {t.viewCase} <ArrowUpRight size={15} />
-                </a>
+                <span className="case-read-link case-read-link--disabled">{t.comingSoon}</span>
               </div>
             </article>
 
@@ -499,6 +505,7 @@ function HomePage() {
           </a>
         </div>
       </nav>
+      <DesignCustomizer lang={lang} />
     </div>
   );
 }
