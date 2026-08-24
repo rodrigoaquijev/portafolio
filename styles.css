@@ -15,6 +15,9 @@
   --accent-iris: #818CF8;
   --accent-rose: #FB7185;
   --accent-emerald: #10B981;
+  --close-friends: #1CD760;
+  --close-friends-highlight: #7CF4A7;
+  --close-friends-shadow: rgba(28, 215, 96, 0.24);
 
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-glass: rgba(255, 255, 255, 0.16);
@@ -45,6 +48,9 @@
   --accent-iris: #6366F1;
   --accent-rose: #E11D48;
   --accent-emerald: #059669;
+  --close-friends: #0AA84F;
+  --close-friends-highlight: #35D875;
+  --close-friends-shadow: rgba(5, 150, 105, 0.2);
 
   --border-subtle: rgba(11, 17, 29, 0.08);
   --border-glass: rgba(11, 17, 29, 0.14);
@@ -221,8 +227,8 @@ a {
   height: 96px;
   border-radius: 50%;
   padding: 3px;
-  background: linear-gradient(135deg, var(--border-glass), transparent);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  background: conic-gradient(from 205deg, var(--close-friends), var(--close-friends-highlight) 42%, var(--close-friends) 78%, var(--close-friends-highlight));
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--close-friends-shadow), 0 0 22px var(--close-friends-shadow);
   flex-shrink: 0;
 }
 
@@ -232,6 +238,7 @@ a {
   border-radius: 50%;
   object-fit: cover;
   display: block;
+  border: 3px solid var(--bg-deep);
 }
 
 .hero-action-cluster {
@@ -716,7 +723,9 @@ a {
   height: 34px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--border-glass);
+  border: 2px solid var(--close-friends);
+  outline: 2px solid var(--dock-bg);
+  box-shadow: 0 0 0 1px var(--close-friends-highlight), 0 0 10px var(--close-friends-shadow);
 }
 
 .dock-divider-glass {
