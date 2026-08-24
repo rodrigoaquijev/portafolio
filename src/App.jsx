@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import CaseBBVA from './pages/CaseBBVA.jsx';
 import { 
   Clock, 
   ArrowUpRight, 
@@ -116,7 +118,7 @@ const CONTENT = {
   }
 };
 
-export default function App() {
+function HomePage() {
   const [theme, setTheme] = useState('dark');
   const [lang, setLang] = useState('es');
   const [copied, setCopied] = useState(false);
@@ -331,7 +333,7 @@ export default function App() {
                     <p className="ui-headline">Tus préstamos aprobados empiezan hoy con abono instantáneo.</p>
                     <div className="ui-metric-row">
                       <div className="ui-amount">S/ 52,100</div>
-                      <div className="ui-kpi-badge">+24.8% CR</div>
+                      <div className="ui-kpi-badge">KPI · Conversión</div>
                     </div>
                   </div>
                 </div>
@@ -351,7 +353,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <a href="/proyecto-bbva.html" className="case-read-link">
+                <a href="/casos/bbva" className="case-read-link">
                   {t.viewCase} <ArrowUpRight size={15} />
                 </a>
               </div>
@@ -530,5 +532,14 @@ export default function App() {
         </div>
       </nav>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/casos/bbva" element={<CaseBBVA />} />
+    </Routes>
   );
 }
