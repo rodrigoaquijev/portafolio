@@ -320,23 +320,11 @@ function HomePage() {
             {/* Caso 1: BBVA */}
             <article className="editorial-case-article">
               <div className="case-display-stage stage-chroma--bbva">
-                <div className="case-ui-window">
-                  <div className="case-ui-bar">
-                    <div className="case-ui-dots">
-                      <div className="case-ui-dot" />
-                      <div className="case-ui-dot" />
-                      <div className="case-ui-dot" />
-                    </div>
-                    <span className="case-ui-tag">salesforce-mc // bbva.eml</span>
-                  </div>
-                  <div className="case-ui-content">
-                    <p className="ui-headline">Tus préstamos aprobados empiezan hoy con abono instantáneo.</p>
-                    <div className="ui-metric-row">
-                      <div className="ui-amount">S/ 52,100</div>
-                      <div className="ui-kpi-badge">KPI · Conversión</div>
-                    </div>
-                  </div>
-                </div>
+                <img
+                  src="/assets/359shots_so.png"
+                  alt="Campaña de préstamo digital diseñada para BBVA Perú"
+                  className="case-cover-image"
+                />
               </div>
 
               <div className="case-editorial-pane">
@@ -362,23 +350,11 @@ function HomePage() {
             {/* Caso 2: Yape (Invertido) */}
             <article className="editorial-case-article editorial-case-article--reversed">
               <div className="case-display-stage stage-chroma--yape">
-                <div className="case-ui-window">
-                  <div className="case-ui-bar">
-                    <div className="case-ui-dots">
-                      <div className="case-ui-dot" />
-                      <div className="case-ui-dot" />
-                      <div className="case-ui-dot" />
-                    </div>
-                    <span className="case-ui-tag">yape // state-recovery</span>
-                  </div>
-                  <div className="case-ui-content">
-                    <p className="ui-headline">Validación conductual para estados 'en revisión' sin fricción.</p>
-                    <div className="ui-metric-row">
-                      <div className="ui-amount">S/ 180.00</div>
-                      <div className="ui-kpi-badge">0.2s Avg</div>
-                    </div>
-                  </div>
-                </div>
+                <img
+                  src="/assets/216shots_so.png"
+                  alt="Propuesta de estado de operación en revisión para Yape"
+                  className="case-cover-image"
+                />
               </div>
 
               <div className="case-editorial-pane">
@@ -404,23 +380,11 @@ function HomePage() {
             {/* Caso 3: Allpa */}
             <article className="editorial-case-article">
               <div className="case-display-stage stage-chroma--allpa">
-                <div className="case-ui-window">
-                  <div className="case-ui-bar">
-                    <div className="case-ui-dots">
-                      <div className="case-ui-dot" />
-                      <div className="case-ui-dot" />
-                      <div className="case-ui-dot" />
-                    </div>
-                    <span className="case-ui-tag">allpa // watchOS-flow</span>
-                  </div>
-                  <div className="case-ui-content">
-                    <p className="ui-headline">Intervención de flujo de caja antes de una decisión de gasto impulsiva.</p>
-                    <div className="ui-metric-row">
-                      <div className="ui-amount">Budget Locked</div>
-                      <div className="ui-kpi-badge">+38% Saved</div>
-                    </div>
-                  </div>
-                </div>
+                <img
+                  src="/assets/344shots_so.png"
+                  alt="Aplicación Allpa presentada en Apple Watch Ultra"
+                  className="case-cover-image"
+                />
               </div>
 
               <div className="case-editorial-pane">
