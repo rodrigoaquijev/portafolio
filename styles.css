@@ -1930,16 +1930,19 @@ body.is-loading { overflow: hidden; }
 .projects-section .ref-heading-row > p { padding-bottom: 4px; font-size: var(--type-step-0); }
 .case-square-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
 .case-square-card { min-width: 0; }
+.case-square-link { display: block; color: inherit; }
+.case-square-link:focus-visible { outline: 2px solid var(--accent-emerald); outline-offset: 5px; border-radius: 22px; }
+.case-square-media-trigger { width: 100%; padding: 0; display: block; border: 0; color: inherit; background: transparent; text-align: left; }
 .case-square-media { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; display: block; border: 1px solid var(--ref-line); border-radius: 20px; background: var(--bg-surface); color: #f8fafc; cursor: pointer; text-align: left; }
 .case-square-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.16,1,.3,1), filter .35s ease; }
 .case-square-action { position: absolute; right: 14px; bottom: 14px; z-index: 3; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; background: rgba(8,12,18,.65); backdrop-filter: blur(14px); transition: width .35s cubic-bezier(.16,1,.3,1), border-radius .35s, opacity .2s; }
 .case-square-action > span { max-width: 0; overflow: hidden; font: 600 11px var(--font-ui); white-space: nowrap; opacity: 0; transition: max-width .35s, opacity .2s; }
 .case-square-action svg { width: 19px; height: 19px; flex: 0 0 auto; }
-.case-square-media:hover > img { transform: scale(1.045); filter: brightness(.42) saturate(.75); }
-.case-square-media:hover > .case-square-action { width: calc(100% - 28px); border-radius: 999px; gap: 8px; }
-.case-square-media:hover > .case-square-action > span { max-width: 190px; opacity: 1; }
+.case-square-link:hover .case-square-media > img, .case-square-media-trigger:hover .case-square-media > img { transform: scale(1.045); filter: brightness(.42) saturate(.75); }
+.case-square-link:hover .case-square-action, .case-square-media-trigger:hover .case-square-action { width: calc(100% - 28px); border-radius: 999px; gap: 8px; }
+.case-square-link:hover .case-square-action > span, .case-square-media-trigger:hover .case-square-action > span { max-width: 190px; opacity: 1; }
 .case-square-overlay { position: absolute; inset: auto 14px 72px; z-index: 2; display: grid; gap: 12px; opacity: 0; transform: translateY(16px); transition: opacity .25s, transform .42s cubic-bezier(.16,1,.3,1); }
-.case-square-media:hover .case-square-overlay, .case-square-media:focus-visible .case-square-overlay { opacity: 1; transform: none; }
+.case-square-link:hover .case-square-overlay, .case-square-link:focus-visible .case-square-overlay, .case-square-media-trigger:hover .case-square-overlay, .case-square-media-trigger:focus-visible .case-square-overlay { opacity: 1; transform: none; }
 .case-square-overlay > span { display: grid; gap: 2px; }
 .case-square-overlay small { color: rgba(255,255,255,.58); font: 600 9px var(--font-ui); letter-spacing: .08em; text-transform: uppercase; }
 .case-square-overlay strong { max-width: 29ch; color: #fff; font: 500 12px/1.35 var(--font-ui); }
