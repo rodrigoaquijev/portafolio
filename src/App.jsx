@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import CaseBBVA from './pages/CaseBBVA.jsx';
 import CaseYape from './pages/CaseYape.jsx';
+import CaseAllpa from './pages/CaseAllpa.jsx';
 import PortfolioHome from './pages/PortfolioHome.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import { SiteDesignSystemProvider } from './components/SiteDesignSystem.jsx';
@@ -520,6 +521,7 @@ export default function App() {
         <Route path="/" element={<PortfolioHome />} />
         <Route path="/casos/bbva" element={<CaseBBVA />} />
         <Route path="/casos/yape" element={<CaseYape />} />
+        <Route path="/casos/allpa" element={<CaseAllpa />} />
         <Route path="/sobre-mi" element={<AboutPage />} />
       </Routes>
     </SiteDesignSystemProvider>
