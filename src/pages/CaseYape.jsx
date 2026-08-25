@@ -4,7 +4,7 @@ import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUp
 import CaseStudyLayout from '../components/CaseStudyLayout.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
 import EditorialKicker from '../components/EditorialKicker.jsx';
-import SiteContact from '../components/SiteContact.jsx';
+import NextCase from '../components/NextCase.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import { YAPE_CASE } from '../content/yapeCase.js';
@@ -17,18 +17,10 @@ export default function CaseYape() {
   const [auditFocus, setAuditFocus] = useState('status');
   const [systemState, setSystemState] = useState('review');
   const [screenId, setScreenId] = useState('prevent');
-  const [copied, setCopied] = useState(false);
   const activeState = useMemo(() => t.system.states.find((item) => item.id === systemState), [systemState, t]);
   const activeScreen = useMemo(() => t.prototype.screens.find((item) => item.id === screenId), [screenId, t]);
 
   useEffect(() => { setSystemState('review'); setScreenId('prevent'); }, [lang]);
-  useEffect(() => { if (!copied) return undefined; const timer = window.setTimeout(() => setCopied(false), 2200); return () => window.clearTimeout(timer); }, [copied]);
-
-  const copyEmail = async () => {
-    await navigator.clipboard.writeText('rodrigoaq996@gmail.com');
-    setCopied(true);
-  };
-
   return <CaseStudyLayout className="yape-case" pageTitle={t.pageTitle} headerSubtitle={t.headerSubtitle} nav={t.nav}>
     <div className="yape-case-shell">
       <section className="yape-hero case-reveal">
@@ -136,12 +128,10 @@ export default function CaseYape() {
       <div><SectionLabel>{t.learnings.label}</SectionLabel><h2>{t.learnings.title}</h2></div>
       <div className="yape-learning-list">{t.learnings.items.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p><ArrowBendUpRightIcon weight="duotone" /></article>)}</div>
       <blockquote>{t.learnings.closing}</blockquote>
-      <a className="yape-next-case" href="/#projects"><span>{t.learnings.next}</span><strong>{t.learnings.nextTitle}</strong><ArrowRight /></a>
     </section>
 
-    <SiteContact label={t.contact} title={t.contactTitle} lang={lang} linkedinNetwork={t.linkedinNetwork} onCopy={copyEmail} className="yape-case-shell yape-contact case-reveal" />
+    <NextCase current="yape" />
     <SiteFooter text={t.footer} className="yape-case-shell" />
-    <div className={`ref-toast ${copied ? 'is-visible' : ''}`} role="status" aria-live="polite"><Check size={15} /> {t.copied}</div>
   </CaseStudyLayout>;
 }
 

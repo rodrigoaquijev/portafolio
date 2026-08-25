@@ -4,7 +4,7 @@ import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUp
 import CaseStudyLayout from '../components/CaseStudyLayout.jsx';
 import EditorialKicker from '../components/EditorialKicker.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
-import SiteContact from '../components/SiteContact.jsx';
+import NextCase from '../components/NextCase.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import { VACA_CASE } from '../content/vacaCase.js';
@@ -13,21 +13,9 @@ export default function CaseVaca() {
   const { lang } = useSiteDesignSystem();
   const t = VACA_CASE[lang];
   const [screenId, setScreenId] = useState('home');
-  const [copied, setCopied] = useState(false);
   const activeScreen = useMemo(() => t.prototype.screens.find((screen) => screen.id === screenId) || t.prototype.screens[0], [screenId, t]);
 
   useEffect(() => { setScreenId('home'); }, [lang]);
-  useEffect(() => {
-    if (!copied) return undefined;
-    const timer = window.setTimeout(() => setCopied(false), 2200);
-    return () => window.clearTimeout(timer);
-  }, [copied]);
-
-  const copyEmail = async () => {
-    await navigator.clipboard.writeText('rodrigoaq996@gmail.com');
-    setCopied(true);
-  };
-
   return <CaseStudyLayout className="vaca-case" pageTitle={t.pageTitle} headerSubtitle={t.headerSubtitle} nav={t.nav}>
     <div className="vaca-case-shell">
       <section className="vaca-hero case-reveal">
@@ -112,13 +100,11 @@ export default function CaseVaca() {
         <div className="vaca-signal-board"><SectionLabel>{lang === 'es' ? 'Señales para medir' : 'Signals to measure'}</SectionLabel>{t.test.signals.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p><ArrowBendUpRightIcon weight="duotone" /></article>)}</div>
         <div className="vaca-next-step"><small>{lang === 'es' ? 'Siguiente experimento' : 'Next experiment'}</small><p>{t.test.nextStep}</p></div>
         <blockquote className="vaca-closing">{t.test.closing}</blockquote>
-        <a className="vaca-next-case" href="/#projects"><span>{t.test.next}</span><strong>{t.test.nextTitle}</strong><ArrowBendUpRightIcon weight="bold" /></a>
       </div>
     </section>
 
-    <SiteContact label={t.contact} title={t.contactTitle} lang={lang} linkedinNetwork={t.linkedinNetwork} onCopy={copyEmail} className="vaca-contact vaca-case-shell case-reveal" />
+    <NextCase current="vaca" />
     <SiteFooter text={t.footer} className="vaca-case-shell" />
-    <div className={`ref-toast ${copied ? 'is-visible' : ''}`} role="status"><Check />{t.copied}</div>
   </CaseStudyLayout>;
 }
 

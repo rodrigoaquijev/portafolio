@@ -1,0 +1,200 @@
+.bbva-case { --bbva-blue: #064780; --bbva-blue-deep: #062f57; --bbva-sky: #7cc4ee; --bbva-yellow: #f2c230; --bbva-gold: #c7a34a; overflow: clip; }
+.bbva-case-shell { width: min(calc(100% - 48px), 1180px); margin-inline: auto; }
+.bbva-new-phase { padding-block: 140px; scroll-margin-top: 100px; }
+.bbva-new-hero { min-height: 1100px; padding: 150px 0 120px; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(360px, .66fr); gap: 72px 70px; align-items: center; }
+.bbva-new-hero-copy > .editorial-kicker { margin-bottom: 26px; color: var(--text-muted); font: 600 clamp(15px, 1.25vw, 18px)/1.35 var(--font-ui); }
+.bbva-new-hero-copy > .editorial-kicker::before { background: var(--bbva-sky); }
+.bbva-new-hero-copy h1 { max-width: 850px; font: 500 clamp(62px, 7.8vw, 102px)/.87 var(--font-display); letter-spacing: -.06em; text-wrap: balance; }
+.bbva-new-hero-copy > p { max-width: 55ch; margin-top: 34px; color: var(--text-muted); font-size: 18px; line-height: 1.68; }
+.bbva-confidential { max-width: 640px; margin-top: 24px; display: flex; gap: 10px; align-items: flex-start; color: var(--text-subtle); font-size: 12px; line-height: 1.55; }
+.bbva-confidential svg { width: 16px; flex: 0 0 auto; color: var(--bbva-gold); }
+.bbva-new-meta { margin-top: 52px; display: grid; grid-template-columns: repeat(2, 1fr); border-block: 1px solid var(--ref-line); }
+.bbva-new-meta > span { min-height: 75px; padding: 16px 14px 16px 0; display: grid; align-content: center; gap: 4px; border-bottom: 1px solid var(--ref-line); }
+.bbva-new-meta > span:nth-child(odd) { border-right: 1px solid var(--ref-line); }
+.bbva-new-meta > span:nth-child(even) { padding-left: 18px; }
+.bbva-new-meta > span:nth-last-child(-n+2) { border-bottom: 0; }
+.bbva-new-meta small { color: var(--text-subtle); font-size: 11px; }
+.bbva-new-meta strong { font-size: 13px; font-weight: 650; }
+
+.bbva-email-preview { width: min(100%, 390px); justify-self: end; overflow: hidden; border-radius: 25px; background: #dfe4e8; box-shadow: 0 35px 80px rgba(4,48,84,.22); }
+.bbva-email-chrome { height: 38px; padding: 0 12px; display: flex; gap: 5px; align-items: center; background: #d7d9dc; }
+.bbva-email-chrome > i { width: 8px; height: 8px; border-radius: 50%; background: #cc6f6f; }
+.bbva-email-chrome > i:nth-child(2) { background: #d9b755; }
+.bbva-email-chrome > i:nth-child(3) { background: #67ad72; }
+.bbva-email-chrome span { flex: 1; margin-left: 7px; padding: 4px 10px; border-radius: 5px; color: #7b8084; background: rgba(255,255,255,.55); font-size: 8px; }
+.bbva-email-canvas { margin: 0 12px 12px; overflow: hidden; border-radius: 0 0 12px 12px; color: #16202a; background: #f6f8f9; }
+.bbva-email-canvas > header { padding: 13px 18px; color: white; background: var(--bbva-blue); font: 700 18px var(--font-display); }
+.bbva-email-banner { padding: 28px 22px; color: white; background: linear-gradient(135deg, var(--bbva-blue-deep), var(--bbva-blue) 62%, #1473af); }
+.bbva-email-banner > small { color: rgba(255,255,255,.55); font-size: 8px; }
+.bbva-email-banner h3 { max-width: 13ch; margin: 9px 0; color: white; font: 600 28px/.98 var(--font-display); letter-spacing: -.04em; }
+.bbva-email-banner p { max-width: 38ch; color: rgba(255,255,255,.62); font-size: 9px; line-height: 1.5; }
+.bbva-email-banner button, .bbva-email-body article button, .bbva-offer-widget button, .bbva-mode-preview button { margin-top: 16px; padding: 9px 14px; border: 0; border-radius: 6px; color: var(--bbva-blue-deep); background: var(--bbva-yellow); font: 750 9px var(--font-ui); }
+.bbva-email-body { padding: 20px; text-align: center; }
+.bbva-email-body > span { color: var(--bbva-blue); font: 600 15px var(--font-display); }
+.bbva-email-body > p { margin: 7px auto 13px; color: #66727b; font-size: 9px; }
+.bbva-email-body article { padding: 15px; display: grid; border: 1px solid #dce2e7; border-radius: 10px; background: white; }
+.bbva-email-body article small { color: #929ba2; font-size: 7px; }
+.bbva-email-body article strong { color: var(--bbva-blue); font: 600 28px var(--font-display); letter-spacing: -.045em; }
+.bbva-email-body article i, .bbva-offer-widget div > i { height: 6px; margin-top: 10px; overflow: hidden; border-radius: 99px; background: #dce5ec; }
+.bbva-email-body article b, .bbva-offer-widget div > i b { width: 82%; height: 100%; display: block; border-radius: inherit; background: linear-gradient(90deg, var(--bbva-blue), #3f9acc); }
+.bbva-email-body footer { margin-top: 14px; display: flex; gap: 6px; justify-content: center; color: #8c959d; font-size: 7px; }
+.bbva-email-body footer svg { width: 10px; }
+.bbva-email-preview.is-compact { width: 310px; border-radius: 18px; }
+.bbva-email-preview.is-compact .bbva-email-banner { padding: 22px 18px; }
+.bbva-email-preview.is-compact .bbva-email-banner h3 { font-size: 22px; }
+.bbva-email-preview.is-compact .bbva-email-body { padding: 14px; }
+
+.bbva-executive-summary { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--ref-line); }
+.bbva-executive-summary article { min-height: 220px; padding: 30px; border-right: 1px solid var(--ref-line); }
+.bbva-executive-summary article:last-child { border: 0; }
+.bbva-executive-summary svg { width: 28px; color: var(--bbva-sky); }
+.bbva-executive-summary small { margin: 50px 0 8px; display: block; color: var(--text-subtle); font-size: 11px; }
+.bbva-executive-summary p { max-width: 38ch; color: var(--text-muted); font-size: 14px; line-height: 1.55; }
+.bbva-method { grid-column: 1 / -1; margin-top: 40px; padding: 54px; border-radius: 28px; color: #f2f6f9; background: var(--bbva-blue-deep); }
+.bbva-method > header { display: grid; grid-template-columns: .55fr 1fr; gap: 24px 60px; align-items: end; }
+.bbva-method .ref-section-label { color: var(--bbva-sky); }
+.bbva-method > header h2 { font: 500 clamp(42px, 5vw, 66px)/.95 var(--font-display); letter-spacing: -.05em; }
+.bbva-method > header p { grid-column: 2; max-width: 55ch; color: rgba(242,246,249,.58); font-size: 15px; line-height: 1.62; }
+.bbva-method > div { margin-top: 60px; display: grid; grid-template-columns: repeat(4, 1fr); }
+.bbva-method article { position: relative; padding: 24px 22px; border-top: 1px solid rgba(255,255,255,.2); }
+.bbva-method article > span { color: var(--bbva-sky); font-size: 11px; }
+.bbva-method article > i { position: absolute; top: -5px; left: 22px; width: 9px; height: 9px; border-radius: 50%; background: var(--bbva-yellow); }
+.bbva-method h3 { margin: 42px 0 8px; font: 500 26px var(--font-display); }
+.bbva-method article p { color: rgba(242,246,249,.55); font-size: 12px; line-height: 1.55; }
+
+.bbva-phase-heading { margin-bottom: 76px; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .65fr); gap: 72px; align-items: end; }
+.bbva-phase-heading > div { display: grid; gap: 24px; }
+.bbva-phase-heading .ref-section-label { color: var(--bbva-blue); }
+:root[data-theme="dark"] .bbva-phase-heading .ref-section-label { color: var(--bbva-sky); }
+.bbva-phase-heading h2 { max-width: 850px; font: 500 clamp(48px, 6vw, 78px)/.96 var(--font-display); letter-spacing: -.052em; text-wrap: balance; }
+.bbva-phase-heading > p { max-width: 50ch; color: var(--text-muted); font-size: 17px; line-height: 1.68; }
+.bbva-discover { background: var(--bg-surface); }
+.bbva-brief-quote { max-width: 1000px; margin: 0 auto 90px; font: 500 clamp(34px, 4.8vw, 62px)/1.05 var(--font-display); letter-spacing: -.045em; text-align: center; text-wrap: balance; }
+.bbva-constraint-list { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--ref-line); }
+.bbva-constraint-list article { min-height: 290px; padding: 25px; border-right: 1px solid var(--ref-line); }
+.bbva-constraint-list article:last-child { border: 0; }
+.bbva-constraint-list span { color: var(--bbva-blue); font-size: 11px; }
+.bbva-constraint-list h3 { margin: 90px 0 12px; font: 500 25px/1.05 var(--font-display); }
+.bbva-constraint-list p { color: var(--text-muted); font-size: 13px; line-height: 1.58; }
+.bbva-context-block { margin-top: 130px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: start; }
+.bbva-context-block header h2 { margin-top: 24px; font: 500 clamp(38px, 4.8vw, 62px)/.98 var(--font-display); letter-spacing: -.05em; }
+.bbva-context-block > div { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.bbva-context-block article { min-height: 280px; padding: 28px; border: 1px solid var(--ref-line); border-radius: 20px; background: var(--bg-deep); }
+.bbva-context-block svg { color: var(--bbva-sky); }
+.bbva-context-block h3 { margin: 88px 0 12px; font: 500 25px var(--font-display); }
+.bbva-context-block p { color: var(--text-muted); font-size: 13px; line-height: 1.58; }
+
+.bbva-define { background: var(--bg-deep); }
+.bbva-architecture { display: grid; grid-template-columns: 1fr .8fr; gap: 70px; align-items: start; }
+.bbva-architecture-stack { display: grid; gap: 9px; }
+.bbva-architecture-stack article { min-height: calc(80px + var(--bbva-order) * 13px); padding: 18px 22px; display: grid; grid-template-columns: 38px 180px 1fr; gap: 16px; align-items: center; border: 1px solid color-mix(in srgb, var(--bbva-blue) 22%, var(--ref-line)); border-radius: 15px; background: color-mix(in srgb, var(--bbva-blue) calc(4% + var(--bbva-order) * 1%), var(--bg-surface)); }
+.bbva-architecture-stack span { color: var(--bbva-blue); font-size: 10px; }
+.bbva-architecture-stack strong { font: 500 20px var(--font-display); }
+.bbva-architecture-stack p { color: var(--text-muted); font-size: 12px; line-height: 1.48; }
+.bbva-architecture aside > div { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.bbva-architecture aside article { min-height: 230px; padding: 24px; border: 1px solid var(--ref-line); border-radius: 17px; }
+.bbva-architecture aside svg { color: var(--bbva-sky); }
+.bbva-architecture aside h3 { margin: 60px 0 10px; font: 500 24px var(--font-display); }
+.bbva-architecture aside p { color: var(--text-muted); font-size: 12px; line-height: 1.55; }
+.bbva-architecture aside blockquote { margin-top: 22px; padding: 30px; border-left: 3px solid var(--bbva-yellow); color: var(--text-muted); background: var(--bg-surface); font-size: 14px; line-height: 1.65; }
+
+.bbva-develop { background: var(--bbva-blue-deep); color: #f3f6f8; }
+.bbva-develop .ref-section-label { color: var(--bbva-sky); }
+.bbva-develop .bbva-phase-heading > p { color: rgba(243,246,248,.6); }
+.bbva-decision-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-block: 1px solid rgba(255,255,255,.16); }
+.bbva-decision-grid article { min-height: 300px; padding: 32px; border-right: 1px solid rgba(255,255,255,.16); border-bottom: 1px solid rgba(255,255,255,.16); }
+.bbva-decision-grid article:nth-child(even) { border-right: 0; }
+.bbva-decision-grid article:nth-last-child(-n+2) { border-bottom: 0; }
+.bbva-decision-grid span { color: var(--bbva-yellow); }
+.bbva-decision-grid h3 { margin: 85px 0 13px; color: #f3f6f8; font: 500 31px/1.03 var(--font-display); }
+.bbva-decision-grid p { max-width: 48ch; color: rgba(243,246,248,.58); font-size: 14px; line-height: 1.62; }
+.bbva-nudge-lab { margin-top: 110px; display: grid; grid-template-columns: .7fr 1.3fr; gap: 70px; align-items: center; }
+.bbva-offer-widget { overflow: hidden; border-radius: 22px; color: #14202a; background: #f7f8f9; box-shadow: 0 30px 75px rgba(0,0,0,.3); }
+.bbva-offer-widget header { padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; color: white; background: var(--bbva-blue); }
+.bbva-offer-widget header span { font: 700 20px var(--font-display); }
+.bbva-offer-widget header small { color: rgba(255,255,255,.6); }
+.bbva-offer-widget > div { padding: 34px; display: grid; text-align: center; }
+.bbva-offer-widget > div > small { color: #8a959d; }
+.bbva-offer-widget > div > strong { color: var(--bbva-blue); font: 600 51px var(--font-display); letter-spacing: -.055em; }
+.bbva-offer-widget footer { padding: 15px; display: flex; gap: 7px; justify-content: center; color: #7a8790; border-top: 1px solid #dfe4e8; font-size: 10px; }
+.bbva-offer-widget footer svg { width: 13px; }
+.bbva-copy-shift > .ref-section-label { margin-bottom: 30px; }
+.bbva-copy-shift > div { padding: 27px 0; border-top: 1px solid rgba(255,255,255,.18); }
+.bbva-copy-shift > div span { color: rgba(255,255,255,.4); font-size: 11px; }
+.bbva-copy-shift > div p { margin-top: 8px; color: rgba(255,255,255,.48); font: 500 clamp(28px, 4vw, 48px)/1 var(--font-display); letter-spacing: -.04em; }
+.bbva-copy-shift > svg { margin: 15px 0; color: var(--bbva-yellow); transform: rotate(90deg); }
+.bbva-copy-shift > div.is-after p { color: var(--bbva-sky); }
+
+.bbva-deliver { background: var(--bg-surface); }
+.bbva-segment-lab { display: grid; grid-template-columns: 180px minmax(330px, 1fr) minmax(250px, .72fr); overflow: hidden; border: 1px solid var(--ref-line); border-radius: 26px; background: var(--bg-deep); }
+.bbva-segment-lab > nav { padding: 16px; display: grid; align-content: center; gap: 7px; border-right: 1px solid var(--ref-line); }
+.bbva-segment-lab > nav button { min-height: 52px; padding: 0 13px; display: flex; align-items: center; justify-content: space-between; border: 0; border-radius: 12px; color: var(--text-muted); background: transparent; font: 600 12px var(--font-ui); transition: transform .2s, color .2s, background .2s; }
+.bbva-segment-lab > nav button:hover { transform: translateX(3px); color: var(--text-pure); }
+.bbva-segment-lab > nav button.is-active { color: white; background: var(--bbva-blue); }
+.bbva-segment-lab > nav svg { width: 16px; }
+.bbva-segment-preview { min-height: 650px; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, rgba(124,196,238,.22), transparent 50%), #e7ebee; }
+.bbva-segment-lab > aside { padding: 34px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--ref-line); }
+.bbva-segment-lab > aside > small { color: var(--bbva-blue); font-size: 11px; }
+.bbva-segment-lab > aside h3 { margin: 13px 0 17px; font: 500 35px/1 var(--font-display); letter-spacing: -.04em; }
+.bbva-segment-lab > aside p { color: var(--text-muted); font-size: 14px; line-height: 1.62; }
+.bbva-segment-lab > aside > span { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--ref-line); color: var(--bbva-blue); font-size: 11px; font-weight: 650; }
+.bbva-engineering, .bbva-modes, .bbva-measurement, .bbva-learnings { margin-top: 140px; }
+.bbva-engineering > header, .bbva-measurement > header { margin-bottom: 55px; display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: start; }
+.bbva-engineering > header > svg, .bbva-measurement > header > svg { width: 64px; height: 64px; padding: 15px; border: 1px solid var(--ref-line); border-radius: 50%; color: var(--bbva-blue); }
+.bbva-engineering h2, .bbva-measurement h2 { margin-top: 18px; font: 500 clamp(39px, 5vw, 65px)/.98 var(--font-display); letter-spacing: -.05em; }
+.bbva-engineering > div, .bbva-mode-notes, .bbva-measurement > div, .bbva-learnings > div { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--ref-line); }
+.bbva-engineering article, .bbva-mode-notes article, .bbva-measurement article, .bbva-learnings article { min-height: 250px; padding: 28px; border-right: 1px solid var(--ref-line); }
+.bbva-engineering article:last-child, .bbva-mode-notes article:last-child, .bbva-learnings article:last-child { border: 0; }
+.bbva-engineering article > svg { color: var(--bbva-sky); }
+.bbva-engineering h3, .bbva-mode-notes h3, .bbva-measurement h3, .bbva-learnings h3 { margin: 70px 0 10px; font: 500 25px var(--font-display); }
+.bbva-engineering p, .bbva-mode-notes p, .bbva-measurement article p, .bbva-learnings p { color: var(--text-muted); font-size: 13px; line-height: 1.58; }
+.bbva-modes > header { margin-bottom: 52px; display: grid; grid-template-columns: 55px 1fr; gap: 24px; align-items: center; }
+.bbva-modes > header svg { color: var(--bbva-blue); }
+.bbva-modes > header h2 { max-width: 780px; font: 500 clamp(40px, 5vw, 65px)/.98 var(--font-display); letter-spacing: -.05em; }
+.bbva-mode-preview { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-radius: 24px 24px 0 0; }
+.bbva-mode-preview > div { min-height: 310px; padding: 44px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+.bbva-mode-preview .is-light { color: var(--bbva-blue); background: #f3f5f6; }
+.bbva-mode-preview .is-dark { color: var(--bbva-sky); background: #0c1117; }
+.bbva-mode-preview span { font: 700 18px var(--font-display); }
+.bbva-mode-preview strong { margin-top: 45px; font: 600 clamp(42px, 5vw, 68px) var(--font-display); letter-spacing: -.055em; }
+.bbva-measurement > div { grid-template-columns: repeat(4, 1fr); }
+.bbva-measurement article { min-height: 230px; }
+.bbva-measurement article:last-child { border: 0; }
+.bbva-measurement > p { margin-top: 30px; display: flex; gap: 10px; align-items: flex-start; color: var(--text-muted); font-size: 13px; line-height: 1.6; }
+.bbva-measurement > p svg { width: 17px; flex: 0 0 auto; color: var(--bbva-gold); }
+.bbva-learnings > .ref-section-label { margin-bottom: 30px; }
+
+@media (max-width: 1020px) {
+  .bbva-new-hero { grid-template-columns: 1fr; }
+  .bbva-email-preview { justify-self: center; }
+  .bbva-phase-heading, .bbva-context-block, .bbva-architecture { grid-template-columns: 1fr; gap: 40px; }
+  .bbva-segment-lab { grid-template-columns: 160px 1fr; }
+  .bbva-segment-lab > aside { grid-column: 1 / -1; border-top: 1px solid var(--ref-line); border-left: 0; }
+}
+@media (max-width: 760px) {
+  .bbva-case-shell { width: min(calc(100% - 30px), 1180px); }
+  .bbva-new-phase { padding-block: 90px; }
+  .bbva-new-hero { min-height: auto; padding: 116px 0 90px; gap: 50px; }
+  .bbva-new-hero-copy h1 { font-size: clamp(55px, 16vw, 76px); }
+  .bbva-new-hero-copy > p { font-size: 16px; }
+  .bbva-new-meta { grid-template-columns: 1fr; }
+  .bbva-new-meta > span, .bbva-new-meta > span:nth-child(even) { padding-left: 0; border-right: 0; border-bottom: 1px solid var(--ref-line); }
+  .bbva-new-meta > span:nth-last-child(2) { border-bottom: 1px solid var(--ref-line); }
+  .bbva-executive-summary, .bbva-method > div, .bbva-constraint-list, .bbva-context-block > div, .bbva-decision-grid, .bbva-engineering > div, .bbva-mode-notes, .bbva-measurement > div, .bbva-learnings > div { grid-template-columns: 1fr; }
+  .bbva-executive-summary article, .bbva-method article, .bbva-constraint-list article, .bbva-decision-grid article, .bbva-engineering article, .bbva-mode-notes article, .bbva-measurement article, .bbva-learnings article { border-right: 0; border-bottom: 1px solid var(--ref-line); }
+  .bbva-method { padding: 34px 25px; }
+  .bbva-method > header { grid-template-columns: 1fr; }
+  .bbva-method > header p { grid-column: auto; }
+  .bbva-phase-heading { margin-bottom: 48px; grid-template-columns: 1fr; }
+  .bbva-phase-heading h2 { font-size: clamp(42px, 13vw, 61px); }
+  .bbva-architecture-stack article { grid-template-columns: 34px 1fr; }
+  .bbva-architecture-stack article p { grid-column: 2; }
+  .bbva-nudge-lab { grid-template-columns: 1fr; }
+  .bbva-segment-lab { grid-template-columns: 1fr; }
+  .bbva-segment-lab > nav { display: flex; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--ref-line); }
+  .bbva-segment-lab > nav button { min-width: 125px; }
+  .bbva-segment-preview { min-height: 580px; }
+  .bbva-segment-lab > aside { grid-column: auto; }
+  .bbva-engineering > header, .bbva-measurement > header { grid-template-columns: 1fr; }
+  .bbva-mode-preview { grid-template-columns: 1fr; }
+}

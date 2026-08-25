@@ -4,7 +4,7 @@ import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUp
 import CaseStudyLayout from '../components/CaseStudyLayout.jsx';
 import EditorialKicker from '../components/EditorialKicker.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
-import SiteContact from '../components/SiteContact.jsx';
+import NextCase from '../components/NextCase.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import { ALLPA_CASE } from '../content/allpaCase.js';
@@ -15,7 +15,6 @@ export default function CaseAllpa() {
   const [platform, setPlatform] = useState('watch');
   const [screenId, setScreenId] = useState('income');
   const [day, setDay] = useState(18);
-  const [copied, setCopied] = useState(false);
 
   const screens = platform === 'watch' ? t.prototype.watch : t.prototype.phone;
   const activeScreen = useMemo(() => screens.find((screen) => screen.id === screenId) || screens[0], [screenId, screens]);
@@ -28,17 +27,6 @@ export default function CaseAllpa() {
     if (screens.some((screen) => screen.id === screenId)) return;
     setScreenId(screens[0].id);
   }, [screenId, screens]);
-  useEffect(() => {
-    if (!copied) return undefined;
-    const timer = window.setTimeout(() => setCopied(false), 2200);
-    return () => window.clearTimeout(timer);
-  }, [copied]);
-
-  const copyEmail = async () => {
-    await navigator.clipboard.writeText('rodrigoaq996@gmail.com');
-    setCopied(true);
-  };
-
   return <CaseStudyLayout className="allpa-case" pageTitle={t.pageTitle} headerSubtitle={t.headerSubtitle} nav={t.nav}>
     <div className="allpa-case-shell">
       <section className="allpa-hero case-reveal">
@@ -117,13 +105,11 @@ export default function CaseAllpa() {
         <div className="allpa-validation-grid"><div><SectionLabel>{lang === 'es' ? 'Riesgos conocidos' : 'Known risks'}</SectionLabel>{t.validation.risks.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div><div><SectionLabel>{lang === 'es' ? 'Modelo de adopción' : 'Adoption model'}</SectionLabel>{t.validation.business.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div>
         <div className="allpa-metrics"><SectionLabel>{lang === 'es' ? 'Marco de medición' : 'Measurement framework'}</SectionLabel>{t.validation.metrics.map(([title, question, method]) => <article key={title}><h3>{title}</h3><p>{question}</p><span>{method}</span></article>)}</div>
         <blockquote className="allpa-closing">{t.validation.closing}</blockquote>
-        <a className="allpa-next-case" href="/casos/bbva"><span>{t.validation.next}</span><strong>{t.validation.nextTitle}</strong><ArrowBendUpRightIcon weight="bold" /></a>
       </div>
     </section>
 
-    <SiteContact label={t.contact} title={t.contactTitle} lang={lang} linkedinNetwork={t.linkedinNetwork} onCopy={copyEmail} className="allpa-contact allpa-case-shell case-reveal" />
+    <NextCase current="allpa" />
     <SiteFooter text={t.footer} className="allpa-case-shell" />
-    <div className={`ref-toast ${copied ? 'is-visible' : ''}`} role="status"><Check />{t.copied}</div>
   </CaseStudyLayout>;
 }
 

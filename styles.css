@@ -1,7 +1,9 @@
 @import './src/styles/foundation.css';
+@import './src/styles/cases/bbva.css';
 @import './src/styles/cases/yape.css';
 @import './src/styles/home.css';
 @import './src/styles/about.css';
 @import './src/styles/cases/vaca.css';
 @import './src/styles/cases/allpa.css';
+@import './src/styles/cases/next-case.css';
 @import './src/styles/not-found.css';

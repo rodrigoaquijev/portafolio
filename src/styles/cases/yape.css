@@ -192,7 +192,10 @@ body:has(.case-template) { padding-bottom: 0; }
 .case-template[data-nav-target="architecture"] [data-case-phase="architecture"],
 .case-template[data-nav-target="validation"] [data-case-phase="validation"],
 .case-template[data-nav-target="empathize"] [data-case-phase="empathize"],
+.case-template[data-nav-target="discover"] [data-case-phase="discover"],
 .case-template[data-nav-target="define"] [data-case-phase="define"],
+.case-template[data-nav-target="develop"] [data-case-phase="develop"],
+.case-template[data-nav-target="deliver"] [data-case-phase="deliver"],
 .case-template[data-nav-target="ideate"] [data-case-phase="ideate"],
 .case-template[data-nav-target="test"] [data-case-phase="test"] { opacity: 1 !important; filter: none; }
 .case-reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .8s cubic-bezier(.16,1,.3,1); }
@@ -529,4 +532,3 @@ body:has(.case-template) { padding-bottom: 0; }
 @media (prefers-reduced-motion: reduce) {
   .case-reveal, .yape-comparison-card, .yape-finding-list button, .audit-focus-ring { transition-duration: .01ms !important; }
 }
-
