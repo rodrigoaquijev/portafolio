@@ -89,7 +89,7 @@ export default function CaseBBVA() {
           <div className="metrics-table">{t.metrics.map(([metric, type, desc], index) => <div className="metric-row" key={metric}><span>0{index + 1}</span><strong>{metric}</strong><em>{type}</em><p>{desc}</p></div>)}</div>
         </section>
 
-        <section className="case-closing"><p>{t.closing}</p><a href="/#work"><span>{t.next}</span>{t.nextTitle} <ArrowRight size={18} /></a></section>
+        <section className="case-closing"><p>{t.closing}</p><a href="/casos/yape"><span>{t.next}</span>{t.nextTitle} <ArrowRight size={18} /></a></section>
       </article>
     </main>
   );
