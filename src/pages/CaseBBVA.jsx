@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Check, ChevronDown, Languages, Moon, ShieldCheck, Sun } from 'lucide-react';
 import { BBVA_CASE } from '../content/bbvaCase.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
+import EditorialKicker from '../components/EditorialKicker.jsx';
 
 const OfferCard = ({ compact = false }) => (
   <div className={`bbva-mail ${compact ? 'bbva-mail--compact' : ''}`}>
@@ -37,7 +38,7 @@ export default function CaseBBVA() {
 
       <article className="case-shell">
         <section className="case-hero">
-          <span className="case-chapter">{t.eyebrow}</span>
+          <EditorialKicker>{t.eyebrow}</EditorialKicker>
           <h1>{t.title}</h1>
           <p>{t.intro}</p>
           <div className="case-meta">{t.meta.map(([label, value]) => <div key={label}><span>{label}</span><strong>{value}</strong></div>)}</div>

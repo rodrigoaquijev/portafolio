@@ -11,7 +11,7 @@ export const YAPE_CASE = {
       impact: 'Impacto'
     },
     hero: {
-      eyebrow: 'YAPE · BEHAVIORAL UX · ARQUITECTURA DE ESTADOS',
+      eyebrow: 'Yape · Behavioral UX · Arquitectura de estados',
       title: 'Cómo hablarle al usuario cuando el sistema aún no tiene respuesta.',
       intro: 'Rediseño conceptual del momento más incierto de una transferencia: cuando la operación no confirma si el dinero llegó y el silencio empuja a intentarlo otra vez.',
       disclosure: 'Proyecto conceptual independiente. No fue encargado por Yape ni por BCP.',
@@ -135,7 +135,7 @@ export const YAPE_CASE = {
     headerSubtitle: 'Case study · Yape',
     nav: { audit: 'Audit', evidence: 'Evidence', system: 'System', prototype: 'Prototype', impact: 'Impact' },
     hero: {
-      eyebrow: 'YAPE · BEHAVIORAL UX · STATE ARCHITECTURE',
+      eyebrow: 'Yape · Behavioral UX · State architecture',
       title: 'How to talk to people when the system does not have an answer yet.',
       intro: 'A conceptual redesign of the most uncertain moment in a transfer: when the operation cannot confirm whether the money arrived and silence encourages another attempt.',
       disclosure: 'Independent concept project. Not commissioned by Yape or BCP.',

@@ -3,6 +3,7 @@ import { ArrowDown, ArrowRight, ArrowUp, Check, CircleAlert, Clock3, MessageCirc
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
 import CaseStudyLayout from '../components/CaseStudyLayout.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
+import EditorialKicker from '../components/EditorialKicker.jsx';
 import SiteContact from '../components/SiteContact.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
@@ -32,7 +33,7 @@ export default function CaseYape() {
     <div className="yape-case-shell">
       <section className="yape-hero case-reveal">
         <div className="yape-hero-copy">
-          <span className="yape-eyebrow">{t.hero.eyebrow}</span>
+          <EditorialKicker className="yape-eyebrow">{t.hero.eyebrow}</EditorialKicker>
           <h1>{t.hero.title}</h1>
           <p className="yape-hero-intro">{t.hero.intro}</p>
           <p className="yape-disclosure"><CircleAlert /> {t.hero.disclosure}</p>

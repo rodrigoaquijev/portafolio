@@ -3,6 +3,7 @@ import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUp
 import { Aperture, Check, Headphones, UtensilsCrossed } from 'lucide-react';
 import SiteHeader from '../components/SiteHeader.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
+import EditorialKicker from '../components/EditorialKicker.jsx';
 import SiteContact from '../components/SiteContact.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 import MusicPlayer from '../components/MusicPlayer.jsx';
@@ -19,7 +20,7 @@ const PERSONAL_TRACK = {
 const CONTENT = {
   es: {
     nav: { personal: 'Personal', story: 'Historia', experience: 'Experiencia', contact: 'Contacto' },
-    eyebrow: 'PRODUCT DESIGN · FINTECH · DISEÑO CONDUCTUAL',
+    eyebrow: 'Producto digital · FinTech · Diseño conductual',
     name: 'Rodrigo Aquije Vásquez',
     role: 'Product Designer & Design Engineer',
     quote: 'Diseñar con restricciones demuestra el verdadero valor del producto.',
@@ -83,7 +84,7 @@ const CONTENT = {
   },
   en: {
     nav: { personal: 'Personal', story: 'Story', experience: 'Experience', contact: 'Contact' },
-    eyebrow: 'PRODUCT DESIGN · FINTECH · BEHAVIORAL DESIGN',
+    eyebrow: 'Digital product · FinTech · Behavioral design',
     name: 'Rodrigo Aquije Vásquez',
     role: 'Product Designer & Design Engineer',
     quote: 'Designing within constraints reveals the true value of a product.',
@@ -194,7 +195,7 @@ export default function AboutPage() {
 
     <section className="about-hero about-shell about-reveal">
       <div className="about-hero-title">
-        <SectionLabel>{t.eyebrow}</SectionLabel>
+        <EditorialKicker>{t.eyebrow}</EditorialKicker>
         <h1>{t.name}</h1>
         <p>{t.role}</p>
         <MusicPlayer lang={lang} track={PERSONAL_TRACK} />

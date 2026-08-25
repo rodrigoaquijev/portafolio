@@ -7,6 +7,7 @@ import { Check, Copy, Linkedin, Send } from 'lucide-react';
 import SiteHeader from '../components/SiteHeader.jsx';
 import SiteLoader from '../components/SiteLoader.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
+import EditorialKicker from '../components/EditorialKicker.jsx';
 import SiteContact from '../components/SiteContact.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
@@ -20,7 +21,7 @@ const CLIENTS = [['Fahrenheit DDB', 'Agency'], ['BBVA Perú', 'Banking'], ['CENT
 const CONTENT = {
   es: {
     nav: { about: 'Sobre mí', work: 'Proyectos', capabilities: 'Especialidades', contact: 'Contacto' },
-    role: 'Product Designer & Design Engineer', location: 'Lima, Perú', eyebrow: 'PRODUCT DESIGN · FINTECH · DESIGN ENGINEERING', title: 'Rodrigo Aquije',
+    role: 'Product Designer & Design Engineer', location: 'Lima, Perú', eyebrow: 'Producto digital · FinTech · Design Engineering', title: 'Rodrigo Aquije',
     bio: 'Diseñador de producto digital con formación en economía. Conecto rigor analítico, sistemas de diseño escalables y conversión para construir interfaces financieras intuitivas, viables y de alto impacto.',
     bioDetail: <>Trabajo desde el problema conductual hasta la interfaz funcional: investigación, arquitectura de estados, UI, sistemas de diseño y prototipos en código. Busco que una decisión compleja se sienta <strong>clara, confiable y medible.</strong></>,
     about: 'Sobre mí', aboutTitle: 'Diseño en la intersección entre personas, negocio y tecnología.',
@@ -44,7 +45,7 @@ const CONTENT = {
   },
   en: {
     nav: { about: 'About', work: 'Projects', capabilities: 'Expertise', contact: 'Contact' },
-    role: 'Product Designer & Design Engineer', location: 'Lima, Peru', eyebrow: 'PRODUCT DESIGN · FINTECH · DESIGN ENGINEERING', title: 'Rodrigo Aquije',
+    role: 'Product Designer & Design Engineer', location: 'Lima, Peru', eyebrow: 'Digital product · FinTech · Design Engineering', title: 'Rodrigo Aquije',
     bio: 'Digital product designer with an economics background. I connect analytical rigor, scalable design systems and conversion to build intuitive, viable and high-impact financial interfaces.',
     bioDetail: <>I work from the behavioral problem to the functional interface: research, state architecture, UI, design systems and code prototypes. I want complex decisions to feel <strong>clear, trustworthy and measurable.</strong></>,
     about: 'About', aboutTitle: 'Design at the intersection of people, business and technology.',
@@ -106,7 +107,7 @@ export default function PortfolioHome() {
     <div className="ref-ambient" aria-hidden="true" />
     <div className="ref-column">
       <SiteHeader items={[{ id: 'about', label: t.nav.about }, { id: 'projects', label: t.nav.work }, { id: 'capabilities', label: t.nav.capabilities }, { id: 'contact', label: t.nav.contact }]} open={menuOpen} setOpen={setMenuOpen} onNavigate={scrollTo} currentSection={currentSection} scrolled={scrolled} />
-      <section className="ref-section ref-hero ref-reveal"><div className="hero-heading-grid"><div><span className="ref-hero-eyebrow">{t.eyebrow}</span><h1 className="ref-hero-title">{t.title}</h1><p className="ref-hero-role">{t.role}</p></div><div className="hero-avatar-block"><span className="hero-avatar-ring"><img src={avatarImage} alt="Rodrigo Aquije" /></span><span>{t.location}</span><small>Economía · FinTech · Diseño</small></div></div><div className="ref-bio"><p>{t.bio}</p><p>{t.bioDetail}</p></div><div className="ref-actions"><HireConsole t={t} open={hireOpen} setOpen={setHireOpen} sound={sound} /><button className="ref-secondary ref-press" onClick={copyEmail}><Copy size={18} /> {t.copy}</button><LinkedInButton t={t} /></div></section>
+      <section className="ref-section ref-hero ref-reveal"><div className="hero-heading-grid"><div><EditorialKicker>{t.eyebrow}</EditorialKicker><h1 className="ref-hero-title">{t.title}</h1><p className="ref-hero-role">{t.role}</p></div><div className="hero-avatar-block"><span className="hero-avatar-ring"><img src={avatarImage} alt="Rodrigo Aquije" /></span><span>{t.location}</span><small>Economía · FinTech · Diseño</small></div></div><div className="ref-bio"><p>{t.bio}</p><p>{t.bioDetail}</p></div><div className="ref-actions"><HireConsole t={t} open={hireOpen} setOpen={setHireOpen} sound={sound} /><button className="ref-secondary ref-press" onClick={copyEmail}><Copy size={18} /> {t.copy}</button><LinkedInButton t={t} /></div></section>
       <section id="projects" data-section="projects" className="ref-section projects-section ref-reveal"><div className="ref-heading-row"><div><SectionLabel>{t.selected}</SectionLabel><h2>{t.workTitle}</h2></div><p>{t.workIntro}</p></div><div className="case-square-grid">{t.projects.map((project) => <CaseCard key={project.name} project={project} t={t} onOpen={() => project.href ? window.location.assign(project.href) : notify(t.soon)} />)}</div></section>
       <section id="about" data-section="about" className="ref-section about-section ref-reveal"><SectionLabel>{t.about}</SectionLabel><div className="about-layout"><h2>{t.aboutTitle}</h2><div><p>{t.aboutCopy}</p><p>{t.aboutAside}</p><Link className="about-page-cta" to="/sobre-mi"><span>{t.aboutCta}</span><ArrowBendUpRightIcon weight="bold" /></Link></div></div><div className="ref-client-strip" aria-label={t.trust}>{CLIENTS.map(([name, type]) => <span key={name}><strong>{name}</strong><small>{type}</small></span>)}</div></section>
       <section id="capabilities" data-section="capabilities" className="ref-section capabilities-section capabilities-section--shader ref-reveal"><CapabilityShader theme={theme} reducedMotion={reducedMotion} /><div className="capabilities-content"><SectionLabel>{t.capabilities}</SectionLabel><div className="capability-list capability-list--expressive">{t.capabilityData.map((capability) => <article key={capability.title} className="capability-row capability-row--expressive"><div><h3>{capability.title}</h3><p>{capability.desc}</p></div><div className="capability-reveal"><strong>{capability.proof}</strong><span>{capability.chips.map((chip) => <small key={chip}>{chip}</small>)}</span><ArrowBendUpRightIcon weight="duotone" /></div></article>)}</div></div></section>
