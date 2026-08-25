@@ -1,4 +1,11 @@
-export const ALLPA_CASE = {
+import { defineCaseStudy } from './caseStudyContract.js';
+
+export const ALLPA_CASE = defineCaseStudy({
+  slug: 'allpa',
+  name: 'Allpa',
+  methodology: 'Behavioral Design',
+  phases: ['discovery', 'definition', 'architecture', 'prototype', 'validation'],
+  translations: {
   es: {
     pageTitle: 'Allpa — Diseño conductual para liquidez variable | Rodrigo Aquije',
     headerSubtitle: 'Caso de estudio · Allpa',
@@ -187,4 +194,5 @@ export const ALLPA_CASE = {
     },
     contact: 'Let’s connect', contactTitle: 'Let’s discuss financial decisions, behavior and systems.', linkedinNetwork: 'Professional network', copied: 'Email copied', footer: 'Designed and built in Lima.'
   }
-};
+  }
+});

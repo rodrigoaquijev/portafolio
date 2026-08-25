@@ -1,4 +1,15 @@
-export const BBVA_CASE = {
+import { defineCaseStudy } from './caseStudyContract.js';
+
+export const BBVA_CASE = defineCaseStudy({
+  slug: 'bbva',
+  name: 'BBVA Perú',
+  methodology: 'Design de comunicación financiera',
+  phases: ['business', 'behavior', 'wireframes', 'system', 'impact'],
+  phaseLabels: {
+    es: { business: 'Negocio', behavior: 'Conducta', wireframes: 'Arquitectura', system: 'Sistema UI', impact: 'Impacto' },
+    en: { business: 'Business', behavior: 'Behavior', wireframes: 'Architecture', system: 'UI system', impact: 'Impact' }
+  },
+  translations: {
   es: {
     back: 'Volver al portafolio',
     eyebrow: 'BBVA Perú · Diseño financiero · Salesforce Marketing Cloud',
@@ -63,4 +74,5 @@ export const BBVA_CASE = {
     closing: 'Designing for banking is not about making people act faster. It is about giving them enough clarity to act with confidence.',
     next: 'Next case', nextTitle: 'Yape · State architecture'
   }
-};
+  }
+});

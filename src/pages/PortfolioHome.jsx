@@ -11,10 +11,10 @@ import EditorialKicker from '../components/EditorialKicker.jsx';
 import SiteContact from '../components/SiteContact.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
-import avatarImage from '../../assets/avatar.png';
-import bbvaCover from '../../assets/359shots_so.png';
-import yapeCover from '../../assets/216shots_so.png';
-import allpaCover from '../../assets/344shots_so.png';
+import avatarImage from '../../assets/avatar.webp';
+import bbvaCover from '../../assets/359shots_so.webp';
+import yapeCover from '../../assets/216shots_so.webp';
+import allpaCover from '../../assets/344shots_so.webp';
 
 const CLIENTS = [['Fahrenheit DDB', 'Agency'], ['BBVA Perú', 'Banking'], ['CENTRUM PUCP', 'Business School'], ['Amsterdam Agency', 'Digital'], ['Utopiq', 'Tech']];
 

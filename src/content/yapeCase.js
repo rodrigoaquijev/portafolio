@@ -1,4 +1,11 @@
-export const YAPE_CASE = {
+import { defineCaseStudy } from './caseStudyContract.js';
+
+export const YAPE_CASE = defineCaseStudy({
+  slug: 'yape',
+  name: 'Yape',
+  methodology: 'Lean UX',
+  phases: ['audit', 'evidence', 'system', 'prototype', 'impact'],
+  translations: {
   es: {
     pageTitle: 'Yape — Arquitectura de estados | Rodrigo Aquije',
     loader: 'Yape · Caso conceptual',
@@ -214,4 +221,5 @@ export const YAPE_CASE = {
     },
     contact: 'Let’s connect', contactTitle: 'Let’s discuss states, trust and financial decisions.', linkedinNetwork: 'Professional network', copied: 'Email copied', footer: 'Designed and built in Lima.'
   }
-};
+  }
+});

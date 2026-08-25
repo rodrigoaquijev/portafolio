@@ -8,7 +8,7 @@ import SiteContact from '../components/SiteContact.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 import MusicPlayer from '../components/MusicPlayer.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
-import avatarImage from '../../assets/avatar.png';
+import avatarImage from '../../assets/avatar.webp';
 import sonatePacifique from "../../assets/L'impératrice - Sonate Pacifique.mp3";
 
 const PERSONAL_TRACK = {

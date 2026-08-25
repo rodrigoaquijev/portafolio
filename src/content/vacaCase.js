@@ -1,4 +1,11 @@
-export const VACA_CASE = {
+import { defineCaseStudy } from './caseStudyContract.js';
+
+export const VACA_CASE = defineCaseStudy({
+  slug: 'vaca',
+  name: 'Vaca',
+  methodology: 'Design Thinking',
+  phases: ['empathize', 'define', 'ideate', 'prototype', 'test'],
+  translations: {
   es: {
     pageTitle: 'Vaca — Fondo compartido para roommates | Rodrigo Aquije',
     headerSubtitle: 'Caso de estudio · Vaca',
@@ -173,4 +180,5 @@ export const VACA_CASE = {
     },
     contact: 'Let’s connect', contactTitle: 'Let’s discuss financial products, trust and social behavior.', linkedinNetwork: 'Professional network', copied: 'Email copied', footer: 'Designed and built in Lima.'
   }
-};
+  }
+});
