@@ -957,7 +957,7 @@ a {
 body:has(.case-template) { padding-bottom: 0; }
 .case-template { --yape-purple: #79268d; --yape-purple-deep: #33113c; --yape-mint: #19c7a6; --yape-yellow: #f1cf45; --yape-fail: #7d7b82; min-height: 100vh; position: relative; overflow: clip; color: var(--text-pure); background: var(--bg-deep); }
 .case-template-ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .7; background: radial-gradient(circle at 86% 8%, color-mix(in srgb, var(--accent-cyan) 7%, transparent), transparent 30%), radial-gradient(circle at 10% 38%, color-mix(in srgb, var(--accent-emerald) 5%, transparent), transparent 25%); }
-.case-template > *:not(.case-template-ambient) { position: relative; z-index: 1; }
+.case-template > *:not(.case-template-ambient):not(.command-deck--refined) { position: relative; z-index: 1; }
 .case-template > .command-deck--refined { width: min(calc(100% - 48px), 1180px); margin: 28px auto 0; }
 .case-template > .command-deck--refined.is-scrolled { width: min(94%, 1040px); }
 .command-deck--case .command-wordmark small { color: var(--accent-emerald); }

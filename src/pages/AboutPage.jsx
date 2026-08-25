@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
 import { Aperture, Check, Headphones, UtensilsCrossed } from 'lucide-react';
 import SiteHeader from '../components/SiteHeader.jsx';
-import SiteLoader from '../components/SiteLoader.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
 import SiteContact from '../components/SiteContact.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
@@ -149,20 +148,11 @@ export default function AboutPage() {
   const [scrolled, setScrolled] = useState(false);
   const [currentSection, setCurrentSection] = useState('');
   const [navTarget, setNavTarget] = useState('');
-  const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
   const t = CONTENT[lang];
 
   useEffect(() => { document.title = `${lang === 'es' ? 'Sobre mí' : 'About'} — Rodrigo Aquije`; }, [lang]);
 
-  useEffect(() => {
-    document.body.classList.add('is-loading');
-    const delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 180 : 720;
-    const timer = window.setTimeout(() => setLoading(false), delay);
-    return () => { window.clearTimeout(timer); document.body.classList.remove('is-loading'); };
-  }, []);
-
-  useEffect(() => { if (!loading) document.body.classList.remove('is-loading'); }, [loading]);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 72);
     onScroll();
@@ -199,7 +189,6 @@ export default function AboutPage() {
   };
 
   return <main className={`about-page ${navTarget ? 'is-navigating' : ''}`} data-nav-target={navTarget || undefined}>
-    <SiteLoader visible={loading} subtitle={lang === 'es' ? 'Sobre mí · Lima' : 'About · Lima'} />
     <div className="about-noise" aria-hidden="true" />
     <SiteHeader items={[{ id: 'personal', label: t.nav.personal }, { id: 'story', label: t.nav.story }, { id: 'experience', label: t.nav.experience }, { id: 'about-contact', label: t.nav.contact }]} open={menuOpen} setOpen={setMenuOpen} scrolled={scrolled} currentSection={currentSection} onNavigate={scrollTo} wordmarkHref="/" wordmarkSubtitle={lang === 'es' ? 'Sobre mí' : 'About'} variant="detail" />
 

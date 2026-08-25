@@ -28,7 +28,7 @@ export default function CaseYape() {
     setCopied(true);
   };
 
-  return <CaseStudyLayout className="yape-case" lang={lang} pageTitle={t.pageTitle} loaderSubtitle={t.loader} headerSubtitle={t.headerSubtitle} nav={t.nav}>
+  return <CaseStudyLayout className="yape-case" pageTitle={t.pageTitle} headerSubtitle={t.headerSubtitle} nav={t.nav}>
     <div className="yape-case-shell">
       <section className="yape-hero case-reveal">
         <div className="yape-hero-copy">

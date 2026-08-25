@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import SiteHeader from './SiteHeader.jsx';
-import SiteLoader from './SiteLoader.jsx';
 
-export default function CaseStudyLayout({ children, className = '', lang, pageTitle, loaderSubtitle, headerSubtitle, nav }) {
+export default function CaseStudyLayout({ children, className = '', pageTitle, headerSubtitle, nav }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [currentSection, setCurrentSection] = useState('');
   const [navTarget, setNavTarget] = useState('');
 
   useEffect(() => { document.title = pageTitle; }, [pageTitle]);
-  useEffect(() => {
-    document.body.classList.add('is-loading');
-    const delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 180 : 620;
-    const timer = window.setTimeout(() => setLoading(false), delay);
-    return () => { window.clearTimeout(timer); document.body.classList.remove('is-loading'); };
-  }, []);
-  useEffect(() => { if (!loading) document.body.classList.remove('is-loading'); }, [loading]);
   useEffect(() => {
     const onScroll = () => { setScrolled(window.scrollY > 72); if (window.scrollY < 520) setCurrentSection(''); };
     onScroll();
@@ -49,7 +40,6 @@ export default function CaseStudyLayout({ children, className = '', lang, pageTi
   const items = Object.entries(nav).map(([id, label]) => ({ id, label }));
 
   return <main className={`case-template ${className} ${navTarget ? 'is-navigating' : ''}`} data-nav-target={navTarget || undefined}>
-    <SiteLoader visible={loading} subtitle={loaderSubtitle} />
     <div className="case-template-ambient" aria-hidden="true" />
     <SiteHeader items={items} open={menuOpen} setOpen={setMenuOpen} scrolled={scrolled} currentSection={currentSection} onNavigate={scrollTo} wordmarkHref="/" wordmarkSubtitle={headerSubtitle} variant="case" />
     {children}
