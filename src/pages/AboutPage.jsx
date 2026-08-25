@@ -9,6 +9,13 @@ import SiteFooter from '../components/SiteFooter.jsx';
 import MusicPlayer from '../components/MusicPlayer.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import avatarImage from '../../assets/avatar.png';
+import sonatePacifique from "../../assets/L'impératrice - Sonate Pacifique.mp3";
+
+const PERSONAL_TRACK = {
+  src: sonatePacifique,
+  title: 'Sonate Pacifique',
+  artist: "L'Impératrice"
+};
 
 const CONTENT = {
   es: {
@@ -201,6 +208,7 @@ export default function AboutPage() {
         <SectionLabel>{t.eyebrow}</SectionLabel>
         <h1>{t.name}</h1>
         <p>{t.role}</p>
+        <MusicPlayer lang={lang} track={PERSONAL_TRACK} />
       </div>
       <div className="about-hero-profile">
         <figure className="about-portrait"><img src={avatarImage} alt="Rodrigo Aquije" /><figcaption><span>{t.portraitCaption}</span><small>{t.role}</small></figcaption></figure>
@@ -211,7 +219,6 @@ export default function AboutPage() {
     <section id="personal" data-about-section="personal" className="about-personal about-reveal">
       <div className="about-shell">
         <div className="about-heading-row about-personal-heading"><div><SectionLabel>{t.personalLabel}</SectionLabel><h2>{t.personalTitle}</h2></div><p>{t.personalIntro}</p></div>
-        <MusicPlayer lang={lang} />
         <div className="about-hobby-list">
           {t.hobbies.map((hobby, index) => {
             const HobbyIcon = [Headphones, Aperture, UtensilsCrossed][index];

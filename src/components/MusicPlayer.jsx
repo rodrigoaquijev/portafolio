@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Disc3, Music2, Pause, Play, SkipBack, SkipForward, Volume2 } from 'lucide-react';
+import { Disc3, Music2, Pause, Play, Volume2 } from 'lucide-react';
 
 const WAVEFORM = [34, 58, 42, 76, 48, 86, 63, 38, 72, 92, 54, 68, 40, 80, 62, 96, 48, 70, 36, 64, 88, 52, 74, 44, 82, 60, 90, 46, 66, 38, 78, 56, 84, 50, 72, 42];
 
@@ -25,8 +25,8 @@ export default function MusicPlayer({ lang = 'es', track = EMPTY_TRACK }) {
   const hasTrack = Boolean(track.src);
 
   const messages = lang === 'es'
-    ? { label: 'Banda sonora personal', empty: 'Añade un MP3 para activar este reproductor.', ready: 'Archivo local preparado', play: 'Reproducir', pause: 'Pausar', back: 'Retroceder', next: 'Avanzar', volume: 'Volumen' }
-    : { label: 'Personal soundtrack', empty: 'Add an MP3 to activate this player.', ready: 'Local file ready', play: 'Play', pause: 'Pause', back: 'Go back', next: 'Go forward', volume: 'Volume' };
+    ? { label: 'Banda sonora personal', empty: 'Añade un MP3 para activar este reproductor.', ready: 'Pista lista', play: 'Reproducir', pause: 'Pausar', volume: 'Volumen' }
+    : { label: 'Personal soundtrack', empty: 'Add an MP3 to activate this player.', ready: 'Track ready', play: 'Play', pause: 'Pause', volume: 'Volume' };
   const displayTitle = hasTrack ? track.title : (lang === 'es' ? 'Tu canción irá aquí' : 'Your song will live here');
   const displayArtist = hasTrack ? track.artist : (lang === 'es' ? 'Rodrigo Aquije · selección personal' : 'Rodrigo Aquije · personal selection');
 
@@ -67,11 +67,6 @@ export default function MusicPlayer({ lang = 'es', track = EMPTY_TRACK }) {
     setCurrentTime(nextTime);
   };
 
-  const jump = (amount) => {
-    if (!hasTrack) return missingTrack();
-    seek(Math.max(0, Math.min(duration, currentTime + amount)));
-  };
-
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
   return <article className={`personal-player ${playing ? 'is-playing' : ''} ${hasTrack ? 'has-track' : 'is-empty'}`}>
@@ -103,9 +98,7 @@ export default function MusicPlayer({ lang = 'es', track = EMPTY_TRACK }) {
 
     <footer className="player-controls">
       <div className="player-buttons">
-        <button onClick={() => jump(-10)} aria-label={messages.back}><SkipBack /></button>
         <button className="player-play" onClick={togglePlayback} aria-label={playing ? messages.pause : messages.play}>{playing ? <Pause /> : <Play />}</button>
-        <button onClick={() => jump(10)} aria-label={messages.next}><SkipForward /></button>
       </div>
       <label className="player-volume"><Volume2 /><span>{messages.volume}</span><input type="range" min="0" max="1" step=".01" value={volume} onChange={(event) => setVolume(Number(event.target.value))} /></label>
       <span className={`player-notice ${notice ? 'is-visible' : ''}`} role="status">{notice || (hasTrack ? messages.ready : messages.empty)}</span>
