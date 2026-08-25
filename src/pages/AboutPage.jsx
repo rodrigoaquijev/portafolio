@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
-import { Check } from 'lucide-react';
+import { Aperture, Check, Headphones, UtensilsCrossed } from 'lucide-react';
 import SiteHeader from '../components/SiteHeader.jsx';
 import SiteLoader from '../components/SiteLoader.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
 import SiteContact from '../components/SiteContact.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
+import MusicPlayer from '../components/MusicPlayer.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import avatarImage from '../../assets/avatar.png';
 
 const CONTENT = {
   es: {
-    nav: { story: 'Historia', experience: 'Experiencia', principles: 'Principios', contact: 'Contacto' },
+    nav: { personal: 'Personal', story: 'Historia', experience: 'Experiencia', contact: 'Contacto' },
     eyebrow: 'PRODUCT DESIGN · FINTECH · DISEÑO CONDUCTUAL',
     name: 'Rodrigo Aquije Vásquez',
     role: 'Product Designer & Design Engineer',
     quote: 'Diseñar con restricciones demuestra el verdadero valor del producto.',
     intro: 'Soy Product Designer especializado en FinTech y sistemas complejos. Trabajo en la intersección entre el diseño de experiencias y el conocimiento profundo del producto financiero.',
     introTwo: 'Creo que una industria no se transforma solo con tecnología: también necesita información clara, comprensible y capaz de generar confianza.',
+    portraitCaption: 'Lima, Perú · GMT−5',
+    personalLabel: 'Fuera del trabajo', personalTitle: 'Las cosas que mantienen despierta mi curiosidad.',
+    personalIntro: 'No todo termina en una interfaz. La música, la cultura visual y la ciudad también entrenan mi manera de observar, ordenar y construir experiencias.',
+    hobbies: [
+      { title: 'Música electrónica', body: 'Escuchar con atención, descubrir texturas y armar selecciones para distintos estados de ánimo.', action: 'Escuchar' },
+      { title: 'Cultura visual', body: 'Fotografía, portadas, títulos de cine y sistemas editoriales que convierten una idea en una atmósfera.', action: 'Observar' },
+      { title: 'Comida & ciudad', body: 'Conocer lugares nuevos y fijarme en esos pequeños detalles que hacen memorable una experiencia.', action: 'Explorar' }
+    ],
     storyLabel: 'Mi historia',
     storyTitle: 'Una trayectoria construida con propósito.',
     storyIntro: 'Economía, banca y diseño no son capítulos separados. Son las capas que hoy me permiten entender un problema desde el negocio hasta la interfaz.',
@@ -67,13 +76,21 @@ const CONTENT = {
     email: 'Copiar email', copied: 'Email copiado', linkedin: 'Conectar en LinkedIn', cv: 'Ver currículum', footer: 'Diseñado y construido en Lima.'
   },
   en: {
-    nav: { story: 'Story', experience: 'Experience', principles: 'Principles', contact: 'Contact' },
+    nav: { personal: 'Personal', story: 'Story', experience: 'Experience', contact: 'Contact' },
     eyebrow: 'PRODUCT DESIGN · FINTECH · BEHAVIORAL DESIGN',
     name: 'Rodrigo Aquije Vásquez',
     role: 'Product Designer & Design Engineer',
     quote: 'Designing within constraints reveals the true value of a product.',
     intro: 'I am a Product Designer focused on FinTech and complex systems. I work at the intersection of experience design and deep financial-product knowledge.',
     introTwo: 'I believe an industry is not transformed by technology alone: it also needs information that is clear, understandable and able to build trust.',
+    portraitCaption: 'Lima, Peru · GMT−5',
+    personalLabel: 'Outside work', personalTitle: 'The things that keep my curiosity awake.',
+    personalIntro: 'Not everything ends in an interface. Music, visual culture and the city also train the way I observe, organize and build experiences.',
+    hobbies: [
+      { title: 'Electronic music', body: 'Listening closely, discovering textures and building selections for different moods.', action: 'Listen' },
+      { title: 'Visual culture', body: 'Photography, covers, film titles and editorial systems that turn an idea into an atmosphere.', action: 'Observe' },
+      { title: 'Food & city', body: 'Discovering new places and noticing the small details that make an experience memorable.', action: 'Explore' }
+    ],
     storyLabel: 'My story', storyTitle: 'A career built with purpose.',
     storyIntro: 'Economics, banking and design are not separate chapters. They are the layers that let me understand a problem from the business model to the interface.',
     story: [
@@ -177,7 +194,7 @@ export default function AboutPage() {
   return <main className={`about-page ${navTarget ? 'is-navigating' : ''}`} data-nav-target={navTarget || undefined}>
     <SiteLoader visible={loading} subtitle={lang === 'es' ? 'Sobre mí · Lima' : 'About · Lima'} />
     <div className="about-noise" aria-hidden="true" />
-    <SiteHeader items={[{ id: 'story', label: t.nav.story }, { id: 'experience', label: t.nav.experience }, { id: 'principles', label: t.nav.principles }, { id: 'about-contact', label: t.nav.contact }]} open={menuOpen} setOpen={setMenuOpen} scrolled={scrolled} currentSection={currentSection} onNavigate={scrollTo} wordmarkHref="/" wordmarkSubtitle={lang === 'es' ? 'Sobre mí' : 'About'} variant="detail" />
+    <SiteHeader items={[{ id: 'personal', label: t.nav.personal }, { id: 'story', label: t.nav.story }, { id: 'experience', label: t.nav.experience }, { id: 'about-contact', label: t.nav.contact }]} open={menuOpen} setOpen={setMenuOpen} scrolled={scrolled} currentSection={currentSection} onNavigate={scrollTo} wordmarkHref="/" wordmarkSubtitle={lang === 'es' ? 'Sobre mí' : 'About'} variant="detail" />
 
     <section className="about-hero about-shell about-reveal">
       <div className="about-hero-title">
@@ -186,8 +203,21 @@ export default function AboutPage() {
         <p>{t.role}</p>
       </div>
       <div className="about-hero-profile">
-        <span className="about-avatar"><img src={avatarImage} alt="Rodrigo Aquije" /></span>
+        <figure className="about-portrait"><img src={avatarImage} alt="Rodrigo Aquije" /><figcaption><span>{t.portraitCaption}</span><small>{t.role}</small></figcaption></figure>
         <div><strong>{t.quote}</strong><p>{t.intro}</p><p>{t.introTwo}</p></div>
+      </div>
+    </section>
+
+    <section id="personal" data-about-section="personal" className="about-personal about-reveal">
+      <div className="about-shell">
+        <div className="about-heading-row about-personal-heading"><div><SectionLabel>{t.personalLabel}</SectionLabel><h2>{t.personalTitle}</h2></div><p>{t.personalIntro}</p></div>
+        <MusicPlayer lang={lang} />
+        <div className="about-hobby-list">
+          {t.hobbies.map((hobby, index) => {
+            const HobbyIcon = [Headphones, Aperture, UtensilsCrossed][index];
+            return <article key={hobby.title}><header><span><HobbyIcon /></span><small>{hobby.action}</small></header><h3>{hobby.title}</h3><p>{hobby.body}</p><ArrowBendUpRightIcon weight="duotone" /></article>;
+          })}
+        </div>
       </div>
     </section>
 
@@ -225,7 +255,7 @@ export default function AboutPage() {
       <div className="about-education"><SectionLabel>{t.educationLabel}</SectionLabel><div>{t.education.map((item) => <article key={item.program}><span>{item.year}</span><h3>{item.program}</h3><p>{item.school}</p></article>)}</div></div>
     </section>
 
-    <section id="principles" data-about-section="principles" className="about-principles about-reveal">
+    <section id="principles" data-about-section="experience" className="about-principles about-reveal">
       <div className="about-principles-ambient" aria-hidden="true" />
       <div className="about-shell">
         <SectionLabel>{t.principlesLabel}</SectionLabel>
