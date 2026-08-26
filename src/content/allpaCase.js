@@ -11,40 +11,40 @@ export const ALLPA_CASE = defineCaseStudy({
     headerSubtitle: 'Caso de estudio · Allpa',
     nav: { discovery: 'Descubrimiento', definition: 'Definición', architecture: 'Arquitectura', prototype: 'Prototipo', validation: 'Validación' },
     hero: {
-      eyebrow: 'Allpa · Behavioral Design · Sistema de producto',
-      title: 'Convertir un ingreso variable en una decisión clara sobre cuánto gastar.',
-      intro: 'Concepto para profesionales independientes urbanos que cobran digitalmente, administran obligaciones recurrentes y ya utilizan un iPhone.',
-      disclosure: 'Proyecto conceptual independiente. Las cifras de contexto provienen de fuentes públicas; los indicadores de producto definen cómo validaría la propuesta.',
-      meta: [['Rol', 'Product Designer · concepto'], ['Método', 'Behavioral Design'], ['Plataformas', 'iOS · watchOS opcional'], ['Año', '2026']],
+      eyebrow: 'Allpa · Behavioral finance · Sistema de producto',
+      title: 'Diseñar para la volatilidad financiera antes de que el saldo se sienta disponible.',
+      intro: 'Un concepto para trabajadores independientes que estructura cada ingreso en el momento en que llega: protege obligaciones futuras y muestra únicamente la liquidez realmente disponible.',
+      disclosure: 'Proyecto conceptual independiente. Las cifras de impacto son hipótesis de validación, no resultados de producción.',
+      meta: [['Rol', 'Product Designer end-to-end'], ['Método', 'Behavioral Design'], ['Plataformas', 'watchOS + iOS'], ['Año', '2026']],
       moment: '18:42 · Ingresa un pago de S/ 2,000',
-      momentBody: 'Las reglas configuradas separan S/ 1.229 para pagos próximos y S/ 200 para la reserva. La interfaz muestra S/ 571 disponibles y enlaza al cálculo completo.',
-      problem: 'El saldo total reúne consumo diario, impuestos, capital de trabajo y pagos próximos en una sola cifra.',
-      solution: 'Allpa traslada el cálculo a la interfaz y lo presenta antes de la siguiente decisión de gasto.'
+      momentBody: 'En menos de cinco segundos, Allpa separa pagos fijos y colchón antes de que el sesgo de disponibilidad convierta el total en permiso para gastar.',
+      problem: 'Las apps muestran el saldo bruto cuando el dinero llega. El usuario ve abundancia, no compromisos.',
+      solution: 'Allpa aparta obligaciones en T+0 y convierte el saldo protagonista en “lo que puedes gastar”.'
     },
     discovery: {
       label: 'Descubrimiento conductual',
-      title: 'La primera interpretación del saldo define la siguiente decisión.',
-      intro: 'El proyecto parte de una conducta específica: interpretar el saldo total como dinero disponible y reconstruir después qué parte ya estaba comprometida.',
-      stat: '43%',
-      statLabel: 'de microempresarios separaba adecuadamente las cuentas personales y del negocio.',
-      source: 'SBS y PRODUCE · Encuesta nacional de capacidades financieras, 2021.',
-      researchNote: 'La primera versión apunta a profesionales independientes urbanos que cobran digitalmente, ya utilizan iPhone y separan sus obligaciones mediante notas, hojas de cálculo, cuentas distintas o cálculo mental.',
+      title: 'El problema no era cuánto ingresaba. Era cuándo se interpretaba ese ingreso.',
+      intro: 'Las herramientas financieras suelen explicar el gasto después de ocurrido. Allpa interviene en el instante anterior: cuando el dinero entra y todavía puede estructurarse sin quitarle al usuario la última palabra.',
+      stat: '70%',
+      statLabel: 'de la fuerza laboral peruana opera sin un ingreso mensual predecible.',
+      source: 'Referencia del caso: INEI, empleo informal 2024.',
+      researchNote: 'Este caso combina literatura conductual, datos públicos de mercado y patrones observados en productos financieros. Los arquetipos son hipótesis de diseño, no resultados de entrevistas.',
       biases: [
-        { title: 'Saliencia del saldo total', body: 'Ver S/ 2.000 concentra la atención mientras alquiler e impuestos futuros quedan fuera de la lectura principal.', response: 'Convertir el disponible en la cifra protagonista.' },
+        { title: 'Sesgo de disponibilidad', body: 'Ver S/ 2,000 ahora hace que alquiler e impuestos futuros desaparezcan del cálculo mental.', response: 'Mostrar libre neto, no saldo bruto.' },
         { title: 'Sesgo del presente', body: 'Lo disponible hoy pesa más que una obligación conocida que vence en tres semanas.', response: 'Intervenir en T+0 del cobro.' },
         { title: 'Contabilidad mental', body: 'Sin separación, consumo diario y capital de trabajo compiten dentro de la misma bolsa.', response: 'Partición automática y reversible.' }
       ],
-      principle: 'El disponible aparece con su cálculo, sus supuestos y una vía directa para corregir la regla.'
+      principle: 'La interfaz no debía enseñar a presupuestar. Debía cambiar la decisión que aparece primero.'
     },
     definition: {
       label: 'Definición del usuario',
-      title: 'Una audiencia definida por su comportamiento financiero.',
-      intro: 'Los arquetipos representan situaciones de uso pendientes de contraste mediante investigación con profesionales independientes bancarizados que ya utilizan iPhone.',
+      title: 'Dos formas distintas de vivir la misma incertidumbre.',
+      intro: 'Los arquetipos permiten probar si el sistema sirve tanto para ingresos personales variables como para flujos donde capital y utilidad conviven en la misma cuenta.',
       personas: [
-        { name: 'Luis, 32', role: 'Consultor independiente', quote: '“Cobro por proyectos y separo impuestos en una hoja de cálculo.”', goal: 'Reconocer cuánto puede gastar cuando un cliente paga en una fecha variable.', friction: 'Pagos próximos y dinero corriente comparten el saldo.', need: 'Un disponible explicado y fácil de corregir.' },
-        { name: 'Carla, 36', role: 'Directora de estudio creativo', quote: '“Capital de trabajo, impuestos y dinero personal comparten la cuenta.”', goal: 'Diferenciar operación y disponibilidad personal.', friction: 'La distribución cambia según la carga de proyectos.', need: 'Reglas editables que conserven el origen de cada monto.' }
+        { name: 'Luis, 29', role: 'Freelancer digital', quote: '“Tengo buenos meses, pero nunca sé cuánto está realmente libre.”', goal: 'Que un buen ingreso no se diluya en gastos diarios.', friction: 'Posterga impuestos porque el saldo visible mezcla dinero libre y comprometido.', need: 'Saber de inmediato cuánto puede gastar sin tocar obligaciones.' },
+        { name: 'Carla, 34', role: 'Emprendedora', quote: '“La venta entra, pero capital y utilidad siguen siendo el mismo número.”', goal: 'Separar operación del negocio y disponibilidad personal.', friction: 'Hace cuadraturas manuales para entender qué parte del saldo le pertenece.', need: 'Una partición automática, editable y siempre visible.' }
       ],
-      hmw: '¿Cómo puede una interfaz influir en la primera interpretación del saldo sin quitarle control a la persona?'
+      hmw: '¿Cómo estructurar la liquidez en tiempo real antes de que el saldo bruto detone una decisión impulsiva?'
     },
     architecture: {
       label: 'Arquitectura de decisión',
@@ -59,7 +59,7 @@ export const ALLPA_CASE = defineCaseStudy({
       ],
       tradeoffs: [
         ['Fricción intencional', 'Un paso adicional es válido cuando hace visible una consecuencia financiera antes del gasto.'],
-        ['Jerarquía de plataformas', 'El iPhone contiene el flujo completo; el reloj añade intervenciones breves y opcionales.'],
+        ['Wearable primero', 'El reloj atiende decisiones de segundos; el teléfono conserva profundidad y edición.'],
         ['Autonomía preservada', 'Allpa recomienda y estructura, pero nunca bloquea una compra por la fuerza.']
       ],
       audit: [
@@ -70,26 +70,20 @@ export const ALLPA_CASE = defineCaseStudy({
     },
     prototype: {
       label: 'Prototipo dual',
-      title: 'El flujo completo vive en iPhone; el reloj interviene en momentos breves.',
-      intro: 'iOS contiene configuración, cálculo, edición, proyección e historial. watchOS añade ingresos y alertas accionables sin convertirse en una condición de uso.',
+      title: 'Intervención en el reloj. Comprensión y control en el teléfono.',
+      intro: 'Cada dispositivo tiene una responsabilidad clara. watchOS reduce la decisión a un vistazo; iOS explica, proyecta y permite editar sin duplicar versiones del mismo dato.',
       platformWatch: 'watchOS', platformPhone: 'iOS', selector: 'Explorar pantalla',
       watch: [
-        { id: 'income', tab: 'Ingreso', title: 'Ingreso y resultado', tone: 'gold', rationale: 'La notificación reúne monto recibido, disponible calculado y origen de la distribución en una lectura breve.' },
-        { id: 'available', tab: 'Disponible', title: 'Distribución breve', tone: 'green', rationale: 'Pagos y reserva acompañan al disponible para que la cifra conserve contexto aun en la pantalla pequeña.' },
-        { id: 'payment', tab: 'Pago cubierto', title: 'Consecuencia del pago', tone: 'gold', rationale: 'La confirmación traduce el pago a dinero restante y comprueba que las categorías protegidas siguen cubiertas.' },
-        { id: 'critical', tab: 'Usa reserva', title: 'Alerta de dinero protegido', tone: 'coral', rationale: 'La interfaz nombra los S/ 32 que saldrían de la reserva y da mayor peso a cancelar.' }
+        { id: 'income', tab: 'Ingreso', title: 'Te llegó un pago', amount: 'S/ 2,000', body: 'Ya separamos S/ 1,429 para tus pagos fijos y colchón.', action: 'Entendido', secondary: 'Deshacer o ajustar', tone: 'gold', rationale: 'Default nudge: el esfuerzo se coloca del lado de deshacer, no del lado de proteger.' },
+        { id: 'available', tab: 'Disponible', title: 'Esto te queda para gastar', amount: 'S/ 571', body: 'Pagos fijos cubiertos. Tu colchón sigue seguro.', action: 'Ver detalle', secondary: '', tone: 'green', rationale: 'El sistema confirma cobertura con palabras antes de pedirle al usuario interpretar cifras.' },
+        { id: 'payment', tab: 'Pago', title: '¿Vas a pagar esto?', amount: 'S/ 120', body: 'Después te quedan S/ 451 para el resto del mes.', action: 'Sí, pagar', secondary: 'No enviar', tone: 'gold', rationale: 'Una pausa positiva activa evaluación consciente antes de que el dinero salga.' },
+        { id: 'critical', tab: 'Límite', title: 'Cuidado', amount: 'S/ 48', body: 'Si envías S/ 80, no te alcanzará antes del próximo ingreso.', action: 'Cancelar el pago', secondary: 'Enviar de todas formas', tone: 'coral', rationale: 'La opción segura recibe el mayor peso visual; el override sigue disponible sin competir.' }
       ],
       phone: [
-        { id: 'connection', tab: 'Conexión', title: 'Permisos con contexto', rationale: 'La solicitud explica para qué se leerán los movimientos, qué puede hacer Allpa y cómo retirar el acceso.' },
-        { id: 'payments', tab: 'Pagos', title: 'Confirmar lo que se protege', rationale: 'La persona revisa los pagos detectados y decide cuáles formarán parte de su disponible.' },
-        { id: 'reserve', tab: 'Reserva', title: 'Una regla que se puede ajustar', rationale: 'El control muestra porcentaje y equivalente en soles para evitar que la configuración quede abstracta.' },
-        { id: 'preview', tab: 'Vista previa', title: 'Comprobar antes de activar', rationale: 'El ejemplo anticipa la ecuación completa y permite corregir la regla antes de automatizarla.' },
-        { id: 'home', tab: 'Inicio', title: 'Disponible con contexto', rationale: 'La cifra accionable se vincula con el ingreso que la originó y abre directamente su cálculo.' },
-        { id: 'calculation', tab: 'Cálculo', title: 'Una cifra trazable', rationale: 'Ingreso, pagos, reserva, alcance de datos y última actualización aparecen en el mismo recorrido.' },
-        { id: 'edit', tab: 'Editar', title: 'Control después de automatizar', rationale: 'Pagos y reserva siguen editables; los cambios declaran cuándo entrarán en vigor.' },
-        { id: 'coverage', tab: 'Proyección', title: 'Estimación y supuestos', rationale: 'Los 28 días se presentan junto con las variables que producen la proyección.' },
-        { id: 'history', tab: 'Movimientos', title: 'Agencia visible', rationale: 'Cada evento diferencia las acciones de Allpa de aquellas confirmadas por la persona.' },
-        { id: 'protected', tab: 'Protegido', title: 'Fricción con consecuencia explícita', rationale: 'Continuar exige confirmar el monto exacto que saldrá de la reserva; cancelar mantiene la jerarquía principal.' }
+        { id: 'home', tab: 'Inicio', title: 'Tienes esto para gastar', amount: 'S/ 571', body: 'Pagos fijos S/ 1,229 · Colchón S/ 200', action: 'Vas bien', secondary: 'Próximo pago: alquiler cubierto', tone: 'gold', rationale: 'El bruto nunca es protagonista. La pantalla se ancla en el saldo accionable.' },
+        { id: 'split', tab: 'Detalle', title: 'Así se repartió tu dinero', amount: 'S/ 2,000', body: 'Pagos fijos 61% · Colchón 10% · Para gastar 29%', action: 'Ver próximos pagos', secondary: 'Todas las particiones son editables', tone: 'green', rationale: 'La transparencia progresiva sostiene confianza en una automatización que mueve dinero.' },
+        { id: 'coverage', tab: '¿Alcanza?', title: 'Te alcanza con este ritmo', amount: '28 días', body: '17 días más de cobertura frente al patrón sin Allpa.', action: 'Revisar proyección', secondary: 'Basado en tu ritmo habitual', tone: 'gold', rationale: 'El valor se expresa como tranquilidad operativa, no como un gráfico abstracto.' },
+        { id: 'history', tab: 'Movimientos', title: 'Lo que pasó hoy', amount: 'Martes 14', body: 'Ingreso · Apartado automático · Compra', action: 'Ver movimiento', secondary: 'Automático y voluntario nunca se confunden', tone: 'green', rationale: 'Distinguir acciones del sistema preserva la sensación de agencia.' }
       ],
       systemTitle: 'Un sistema visual con pocos roles y ninguna decoración gratuita.',
       tokens: [['Dorado', '#F5A623', 'Liquidez disponible y acción principal'], ['Verde', '#3ECF6E', 'Cobertura y confirmación'], ['Coral', '#FF5A5F', 'Riesgo crítico'], ['Arena', '#A8957E', 'Dinero comprometido']]
@@ -101,7 +95,7 @@ export const ALLPA_CASE = defineCaseStudy({
       risks: [
         ['Fatiga de intervención', 'Si una sugerencia se ignora repetidamente, el sistema reduce frecuencia y agrupa avisos.'],
         ['Efectivo invisible', 'Un retiro no puede clasificarse sin participación del usuario; el cálculo adopta el escenario conservador.'],
-        ['Datos incompletos', 'El cálculo cambia a “Disponible por revisar” cuando existen movimientos sin clasificar o una cuenta pierde conexión.']
+        ['Aprendizaje inicial', 'Durante los primeros 45 días las proyecciones tendrán menor precisión y deben comunicarlo.']
       ],
       metrics: [
         ['Aceptación de la partición', '¿La intervención llega con el timing y el lenguaje correctos?', 'Comparar aceptación, edición y reversión durante T+0.'],
@@ -115,7 +109,7 @@ export const ALLPA_CASE = defineCaseStudy({
         ['B2B2C', 'Licenciamiento como capa conductual para instituciones financieras.']
       ],
       simulation: { title: 'Simular cobertura', body: 'Una demostración del modelo, no una predicción financiera.', day: 'Día', remaining: 'Disponible estimado', stable: 'Cobertura estable', warning: 'Alerta preventiva', critical: 'Límite crítico' },
-      closing: 'Allpa busca reducir el espacio mental que ocupa administrar una liquidez variable todos los días.',
+      closing: 'El valor de Allpa no es ahorrar por el usuario. Es evitar que administrar su liquidez ocupe espacio mental todos los días.',
       next: 'Siguiente caso', nextTitle: 'BBVA Perú · Diseño financiero'
     },
     contact: 'Conectemos', contactTitle: 'Conversemos sobre decisiones financieras, comportamiento y sistemas.', linkedinNetwork: 'Red profesional', copied: 'Email copiado', footer: 'Diseñado y construido en Lima.'
@@ -125,27 +119,27 @@ export const ALLPA_CASE = defineCaseStudy({
     headerSubtitle: 'Case study · Allpa',
     nav: { discovery: 'Discovery', definition: 'Definition', architecture: 'Architecture', prototype: 'Prototype', validation: 'Validation' },
     hero: {
-      eyebrow: 'Allpa · Behavioral Design · Product system',
-      title: 'Turning variable income into a clear decision about what to spend.',
-      intro: 'A concept for urban independent professionals who get paid digitally, manage recurring obligations and already use an iPhone.',
-      disclosure: 'Independent concept project. Context figures come from public sources; product indicators describe how I would validate the proposal.',
-      meta: [['Role', 'Product Designer · concept'], ['Method', 'Behavioral Design'], ['Platforms', 'iOS · optional watchOS'], ['Year', '2026']],
+      eyebrow: 'Allpa · Behavioral finance · Product system',
+      title: 'Designing for financial volatility before a balance feels available.',
+      intro: 'A concept for independent workers that structures each payment as it arrives, protects future obligations and shows only the liquidity that is actually available.',
+      disclosure: 'Independent concept project. Impact figures are validation hypotheses, not production outcomes.',
+      meta: [['Role', 'End-to-end Product Designer'], ['Method', 'Behavioral Design'], ['Platforms', 'watchOS + iOS'], ['Year', '2026']],
       moment: '6:42 PM · A S/ 2,000 payment arrives',
-      momentBody: 'Configured rules set aside S/ 1,229 for upcoming bills and S/ 200 for the reserve. The interface shows S/ 571 available and links to the full calculation.',
-      problem: 'The total balance combines daily spending, taxes, working capital and upcoming payments in one figure.',
-      solution: 'Allpa moves that calculation into the interface and presents it before the next spending decision.'
+      momentBody: 'In under five seconds, Allpa separates bills and a safety buffer before availability bias turns the total into permission to spend.',
+      problem: 'Finance apps show the gross balance when money arrives. People see abundance, not commitments.',
+      solution: 'Allpa protects obligations at T+0 and makes “what you can spend” the primary balance.'
     },
     discovery: {
-      label: 'Behavioral discovery', title: 'The first reading of a balance shapes the next decision.',
-      intro: 'The project starts from a specific behavior: reading the total balance as available money and reconstructing commitments afterwards.',
-      stat: '43%', statLabel: 'of micro-entrepreneurs adequately separated personal and business accounts.', source: 'SBS and PRODUCE · National financial-capabilities survey, 2021.',
-      researchNote: 'The first version targets urban independent professionals who get paid digitally, already use iPhone and currently separate obligations with notes, spreadsheets, multiple accounts or mental calculation.',
+      label: 'Behavioral discovery', title: 'The problem was not how much arrived. It was when that income was interpreted.',
+      intro: 'Financial tools usually explain spending after it happens. Allpa moves to the prior moment, when money arrives and can still be structured without removing the final decision from the user.',
+      stat: '70%', statLabel: 'of Peru’s workforce operates without predictable monthly income.', source: 'Case reference: INEI, informal employment 2024.',
+      researchNote: 'This concept combines behavioral literature, public market data and patterns observed in financial products. Personas are design hypotheses, not interview findings.',
       biases: [
-        { title: 'Total-balance salience', body: 'Seeing S/ 2,000 captures attention while future rent and tax obligations remain outside the primary view.', response: 'Make available money the primary figure.' },
+        { title: 'Availability bias', body: 'Seeing S/ 2,000 now makes future rent and tax obligations disappear from the mental calculation.', response: 'Show net free cash, not gross balance.' },
         { title: 'Present bias', body: 'Money available today outweighs a known obligation due in three weeks.', response: 'Intervene at payment T+0.' },
         { title: 'Mental accounting', body: 'Without separation, daily consumption and working capital compete in one pool.', response: 'Automatic, reversible partitioning.' }
       ],
-      principle: 'Available money appears with its calculation, assumptions and a direct route to correct the rule.'
+      principle: 'The interface did not need to teach budgeting. It needed to change which decision appeared first.'
     },
     definition: {
       label: 'User definition', title: 'Two different ways of living with the same uncertainty.',
@@ -166,30 +160,24 @@ export const ALLPA_CASE = defineCaseStudy({
         { title: 'A new payment begins', body: 'Before transfer, Allpa calculates the effect on coverage.' },
         { title: 'Confirm or protect', body: 'If it fits, confirm. If not, prioritize cancel while keeping override secondary.' }
       ],
-      tradeoffs: [['Intentional friction', 'An extra step is valid when it reveals a financial consequence before spending.'], ['Platform hierarchy', 'iPhone contains the complete flow; the watch adds brief, optional interventions.'], ['Autonomy preserved', 'Allpa recommends and structures but never blocks a purchase by force.']],
+      tradeoffs: [['Intentional friction', 'An extra step is valid when it reveals a financial consequence before spending.'], ['Wearable first', 'The watch handles decisions in seconds; the phone preserves depth and editing.'], ['Autonomy preserved', 'Allpa recommends and structures but never blocks a purchase by force.']],
       audit: [['Technical copy', '“Net liquidity” and “structural retention” became everyday language.'], ['Unnecessary confirmation', 'The first version asked people to accept saving; the correction acts by default and allows undo.'], ['Risky hierarchy', '“Send anyway” stopped being the primary button and became a deliberately quiet action.']]
     },
     prototype: {
-      label: 'Dual prototype', title: 'The full flow lives on iPhone; the watch handles brief moments.',
-      intro: 'iOS contains setup, calculation, editing, forecasts and history. watchOS adds income events and actionable alerts without becoming a requirement.',
+      label: 'Dual prototype', title: 'Intervention on the watch. Understanding and control on the phone.',
+      intro: 'Each device has one clear responsibility. watchOS reduces the decision to a glance; iOS explains, projects and edits without creating two versions of the same data.',
       platformWatch: 'watchOS', platformPhone: 'iOS', selector: 'Explore screen',
       watch: [
-        { id: 'income', tab: 'Income', title: 'Income and result', tone: 'gold', rationale: 'The notification combines incoming amount, calculated availability and allocation source in one short read.' },
-        { id: 'available', tab: 'Available', title: 'Compact allocation', tone: 'green', rationale: 'Bills and reserve remain next to available money so the figure keeps its context on a small screen.' },
-        { id: 'payment', tab: 'Covered payment', title: 'Payment consequence', tone: 'gold', rationale: 'Confirmation translates the payment into money remaining and verifies protected categories stay covered.' },
-        { id: 'critical', tab: 'Uses reserve', title: 'Protected-money warning', tone: 'coral', rationale: 'The UI names the S/ 32 that would leave the reserve and gives cancellation greater visual weight.' }
+        { id: 'income', tab: 'Income', title: 'A payment arrived', amount: 'S/ 2,000', body: 'We separated S/ 1,429 for bills and your buffer.', action: 'Got it', secondary: 'Undo or adjust', tone: 'gold', rationale: 'Default nudge: effort sits on the undo side, not the protection side.' },
+        { id: 'available', tab: 'Available', title: 'This is what you can spend', amount: 'S/ 571', body: 'Bills covered. Your buffer remains safe.', action: 'View details', secondary: '', tone: 'green', rationale: 'Coverage is confirmed in words before people must interpret numbers.' },
+        { id: 'payment', tab: 'Payment', title: 'Are you paying this?', amount: 'S/ 120', body: 'You will have S/ 451 left for the rest of the month.', action: 'Yes, pay', secondary: 'Do not send', tone: 'gold', rationale: 'Positive friction activates conscious evaluation before money leaves.' },
+        { id: 'critical', tab: 'Limit', title: 'Careful', amount: 'S/ 48', body: 'Sending S/ 80 means you may run short before the next payment.', action: 'Cancel payment', secondary: 'Send anyway', tone: 'coral', rationale: 'The safe option gets the most visual weight; override remains available without competing.' }
       ],
       phone: [
-        { id: 'connection', tab: 'Connection', title: 'Permissions with context', rationale: 'The request explains why movements are read, what Allpa can do and how access can be removed.' },
-        { id: 'payments', tab: 'Bills', title: 'Confirm what gets protected', rationale: 'People review detected bills and choose which ones become part of the available-money calculation.' },
-        { id: 'reserve', tab: 'Reserve', title: 'An adjustable rule', rationale: 'The control shows both percentage and soles so the setting remains concrete.' },
-        { id: 'preview', tab: 'Preview', title: 'Check before activation', rationale: 'The example reveals the full equation and supports correction before automation begins.' },
-        { id: 'home', tab: 'Home', title: 'Available money in context', rationale: 'The actionable figure is tied to its source payment and opens its calculation directly.' },
-        { id: 'calculation', tab: 'Calculation', title: 'A traceable figure', rationale: 'Income, bills, reserve, data scope and last update appear in one journey.' },
-        { id: 'edit', tab: 'Edit', title: 'Control after automation', rationale: 'Bills and reserve remain editable, and changes state when they take effect.' },
-        { id: 'coverage', tab: 'Forecast', title: 'Estimate and assumptions', rationale: 'The 28-day estimate appears beside the variables that produce it.' },
-        { id: 'history', tab: 'Activity', title: 'Visible agency', rationale: 'Each event distinguishes Allpa actions from decisions confirmed by the person.' },
-        { id: 'protected', tab: 'Protected', title: 'Friction with an explicit consequence', rationale: 'Continuing requires confirmation of the exact reserve amount affected; cancel remains primary.' }
+        { id: 'home', tab: 'Home', title: 'This is what you can spend', amount: 'S/ 571', body: 'Bills S/ 1,229 · Buffer S/ 200', action: 'You are on track', secondary: 'Next payment: rent covered', tone: 'gold', rationale: 'Gross balance never leads. The screen is anchored in the actionable number.' },
+        { id: 'split', tab: 'Details', title: 'How your money was split', amount: 'S/ 2,000', body: 'Bills 61% · Buffer 10% · Spending 29%', action: 'View upcoming payments', secondary: 'Every partition can be edited', tone: 'green', rationale: 'Progressive transparency sustains trust in an automation that moves money.' },
+        { id: 'coverage', tab: 'Coverage', title: 'Your current pace lasts', amount: '28 days', body: '17 more days of coverage compared with the pattern without Allpa.', action: 'Review projection', secondary: 'Based on your usual pace', tone: 'gold', rationale: 'Value is expressed as operational calm, not an abstract chart.' },
+        { id: 'history', tab: 'Activity', title: 'What happened today', amount: 'Tuesday 14', body: 'Income · Automatic partition · Purchase', action: 'View activity', secondary: 'Automatic and voluntary actions never blur', tone: 'green', rationale: 'Separating system actions preserves agency.' }
       ],
       systemTitle: 'A visual system with few roles and no decorative noise.',
       tokens: [['Gold', '#F5A623', 'Available cash and primary action'], ['Green', '#3ECF6E', 'Coverage and confirmation'], ['Coral', '#FF5A5F', 'Critical risk'], ['Sand', '#A8957E', 'Committed money']]
@@ -197,10 +185,10 @@ export const ALLPA_CASE = defineCaseStudy({
     validation: {
       label: 'Validation and business', title: 'What must be measured before impact can be claimed.',
       intro: 'The concept has no real pilot yet. Evaluation is framed as hypotheses, limits and observable signals, never invented percentages.',
-      risks: [['Intervention fatigue', 'If a suggestion is repeatedly ignored, the system reduces frequency and groups notices.'], ['Invisible cash', 'A withdrawal cannot be classified without user input, so the calculation adopts a conservative scenario.'], ['Incomplete data', 'The status changes to “Available for review” when movements remain unclassified or an account loses connection.']],
+      risks: [['Intervention fatigue', 'If a suggestion is repeatedly ignored, the system reduces frequency and groups notices.'], ['Invisible cash', 'A withdrawal cannot be classified without user input, so the calculation adopts a conservative scenario.'], ['Initial learning', 'Projections will be less accurate during the first 45 days and must say so.']],
       metrics: [['Partition acceptance', 'Does the intervention arrive with the right timing and language?', 'Compare acceptance, editing and reversal during T+0.'], ['Override rate', 'Does the alert protect or start to fatigue?', 'Measure how many people continue despite critical coverage.'], ['Reserve persistence', 'Do obligations remain protected until due?', 'Observe how long each bucket lasts before an edit or withdrawal.'], ['Self-reported stress', 'Does the person perform less daily mental accounting?', 'Qualitative follow-up and a short monthly scale.']],
       business: [['Base', 'Partitions and spendable-balance visibility.'], ['Pro', 'Forecasts and trend audits.'], ['B2B2C', 'Licensing as a behavioral layer for financial institutions.']],
-      simulation: { title: 'Simulate coverage', body: 'A conceptual demonstration of how the model responds over time.', day: 'Day', remaining: 'Estimated available', stable: 'Stable coverage', warning: 'Preventive alert', critical: 'Critical limit' },
+      simulation: { title: 'Simulate coverage', body: 'A demonstration of the model, not a financial prediction.', day: 'Day', remaining: 'Estimated available', stable: 'Stable coverage', warning: 'Preventive alert', critical: 'Critical limit' },
       closing: 'Allpa’s value is not saving for people. It is keeping liquidity management from occupying mental space every day.',
       next: 'Next case', nextTitle: 'BBVA Peru · Financial design'
     },
