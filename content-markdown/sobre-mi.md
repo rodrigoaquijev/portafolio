@@ -1,6 +1,6 @@
 ---
 title: "Sobre mí — Rodrigo Aquije"
-description: "Trayectoria, experiencia y práctica de Rodrigo Aquije, Product Designer & Design Engineer especializado en FinTech y sistemas complejos."
+description: "Trayectoria, experiencia y práctica de Rodrigo Aquije, Product Designer y UX/UI Designer con experiencia en banca, riesgo crediticio, mailing y productos digitales."
 slug: "/sobre-mi"
 ---
 
@@ -29,21 +29,21 @@ slug: "/sobre-mi"
 
 ## Hero
 
-Producto digital · FinTech · Diseño conductual
+Producto digital · Banca · UX/UI
 
-Product Designer & Design Engineer
+Product Designer & UX/UI Designer
 
-“Diseñar con restricciones demuestra el verdadero valor del producto.”
+### No empecé mi carrera en diseño.
 
-Soy Product Designer especializado en FinTech y sistemas complejos. Trabajo en la intersección entre el diseño de experiencias y el conocimiento profundo del producto financiero.
+Estudié Economía y pasé más de cuatro años trabajando en riesgo crediticio y evaluación de portafolios. Con el tiempo decidí acercarme a otra parte del problema: cómo se presenta la información y qué necesita una persona para tomar una decisión.
 
-Creo que una industria no se transforma solo con tecnología: también necesita información clara, comprensible y capaz de generar confianza.
+Hoy trabajo como Product Designer y UX/UI Designer. En Fahrenheit DDB diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad de BBVA Perú, combinando lo que aprendí en banca con diseño visual, producto y tecnología.
 
 ### Retrato
 
 - Pie de imagen: Lima, Perú · GMT−5
-- Product Designer & Design Engineer
-- Alt text: Rodrigo Aquije
+- Product Designer & UX/UI Designer
+- Alt text: Retrato de Rodrigo Aquije en Lima, Perú.
 
 ### Reproductor de música
 
@@ -64,141 +64,95 @@ Creo que una industria no se transforma solo con tecnología: también necesita 
 - Tu canción irá aquí
 - Rodrigo Aquije · selección personal
 
-## Fuera del trabajo
+### Prefiero escuchar un álbum completo.
 
-### Las cosas que mantienen despierta mi curiosidad.
-
-No todo termina en una interfaz. La música, la cultura visual y la ciudad también entrenan mi manera de observar, ordenar y construir experiencias.
-
-### Música electrónica
-
-Escuchar con atención, descubrir texturas y armar selecciones para distintos estados de ánimo.
-
-Acción: Escuchar
-
-### Cultura visual
-
-Fotografía, portadas, títulos de cine y sistemas editoriales que convierten una idea en una atmósfera.
-
-Acción: Observar
-
-### Comida y ciudad
-
-Conocer lugares nuevos y fijarme en esos pequeños detalles que hacen memorable una experiencia.
-
-Acción: Explorar
+Me interesa entender cómo un artista construye un proyecto de principio a fin: el orden de las canciones, los cambios de ritmo y la identidad visual. Algún día me gustaría aprender a mezclar como DJ o producir mi propia música.
 
 ## Mi historia
 
-### Una trayectoria construida con propósito.
+### De analizar riesgo a diseñar interfaces.
 
-Economía, banca y diseño no son capítulos separados. Son las capas que hoy me permiten entender un problema desde el negocio hasta la interfaz.
+Mi transición al diseño no borró mi experiencia anterior. Cambió la forma en que la uso: ahora observo cómo una decisión visual o de contenido afecta la comprensión, la operación y los objetivos del producto.
 
 ### Base analítica
 
-#### Economista antes que diseñador.
+#### Economía antes que diseño.
 
-Me gradué en Economía en la Universidad de Lima con un enfoque en análisis cuantitativo y finanzas. Aprendí a leer incentivos, riesgo y comportamiento para evaluar si una decisión también es viable para el negocio.
+Estudié Economía en la Universidad de Lima entre 2012 y 2017. La formación cuantitativa y financiera me enseñó a trabajar con evidencia, evaluar supuestos y entender que cada decisión tiene costos, riesgos y consecuencias.
 
 - Universidad de Lima
 - Economía
+- Titulado
 
-### Sistema financiero
+### Experiencia financiera
 
-#### Cuatro años dentro de la banca peruana.
+#### Más de cuatro años en riesgo crediticio y portafolios.
 
-Trabajé en riesgo crediticio, evaluación de portafolios y gestión de inversiones. Allí entendí la lógica del banco, las exigencias regulatorias y la incertidumbre que una mala comunicación produce en las personas.
+Entre 2017 y 2022 trabajé en Scania del Perú, Financiera Qapaq y Caja Prymera. Analicé riesgo crediticio y evalué portafolios dentro de entornos donde la regulación y la viabilidad comercial forman parte de cada decisión.
 
-- Riesgo
-- Finanzas
-- Banca
+- Scania del Perú
+- Financiera Qapaq
+- Caja Prymera
 
 ### Cambio de práctica
 
-#### Construir la capacidad de diseño.
+#### Aprender a convertir análisis en experiencias.
 
-Estudié Diseño Gráfico en Toulouse Lautrec y UX/UI en Coderhouse. No buscaba sumar una capa estética: quería convertir problemas complejos en sistemas, jerarquías y decisiones que un equipo pudiera implementar.
+En 2021 empecé a estudiar Diseño Gráfico en Toulouse Lautrec y UX/UI en Coderhouse. Buscaba una práctica donde pudiera combinar análisis, estructura y oficio visual para trabajar directamente sobre la forma en que las personas entienden y usan un producto.
 
 - Toulouse Lautrec
 - Coderhouse
 
-### Experiencia real
+### Primeras experiencias de diseño
 
-#### Los primeros productos y sistemas.
+#### De identidad visual a productos digitales.
 
-Mientras estudiaba diseñé identidades, landing pages y experiencias digitales para Utopiq, Reina Inca y CENTRUM PUCP. Aprendí que una interfaz útil siempre conecta usuarios, operación y objetivos concretos.
+Entre 2022 y 2025 desarrollé identidad y contenidos para Reina Inca, y después diseñé landing pages, piezas de adquisición y productos de capacitación para UTOPIQ y CENTRUM PUCP. Esta etapa me permitió pasar del diseño visual a problemas de información, recorrido y conversión.
 
-- Utopiq
 - Reina Inca
+- UTOPIQ
 - CENTRUM PUCP
 
 ### Presente
 
-#### BBVA Perú: donde ambos mundos convergen.
+#### UX para mailing dentro de BBVA Perú.
 
-Hoy diseño comunicaciones y módulos digitales de alto rendimiento para BBVA Perú. Trabajo con contenido dinámico, compliance, Salesforce Marketing Cloud y sistemas visuales que deben conservar claridad a gran escala.
+Desde agosto de 2025 trabajo para Préstamos de Libre Disponibilidad de BBVA Perú. Empecé desde Amsterdam y, desde agosto de 2026, continúo con el mismo cliente y las mismas funciones en Fahrenheit DDB.
+
+Diseño campañas de mailing, jerarquías de información, módulos responsive y contenido dinámico. También configuro activos en Salesforce Marketing Cloud, valido compatibilidad entre clientes de correo y colaboro con producto y marketing alrededor de objetivos de conversión.
 
 - BBVA Perú
-- Amsterdam Agency
-- Actual
-
-## Especialidades
-
-### Lo que sé hacer bien.
-
-Una práctica híbrida que une criterio de producto, oficio visual y comprensión del contexto financiero.
-
-### Producto y UX
-
-- UI Design
-- UX Research
-- Prototipado
-- Arquitectura de información
-- Design Systems
-
-De la pregunta correcta al flujo que se puede probar.
-
-### Herramientas y código
-
-- Figma
-- Framer
-- Adobe Creative Suite
+- Amsterdam
+- Fahrenheit DDB
 - Salesforce Marketing Cloud
-- React / CSS
-
-Suficiente profundidad técnica para preservar la intención.
-
-### Dominio
-
-- Finanzas y banca
-- Compliance
-- Email Marketing UX
-- Diseño conductual
-- Inglés profesional
-
-Entender el contexto antes de dibujar la solución.
 
 ## Experiencia
 
-### Trayectoria y roles.
+### Trayectoria profesional
 
-Responsabilidades que explican cómo trabajo, no solo dónde estuve.
+### Fahrenheit DDB · BBVA Perú
 
-### Amsterdam Agency · BBVA Perú
+Ago 2026 — Presente
 
-Ago 2025 — Presente
+#### Product Designer / UX/UI Designer
 
-#### Product Designer / UX–UI Designer
+Diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad. Construyo módulos responsive, organizo contenido variable y preparo activos para Salesforce Marketing Cloud bajo requisitos de marca, compatibilidad y compliance bancario.
 
-Diseño y ejecuto campañas de comunicación digital en Salesforce Marketing Cloud. Construyo módulos responsive, contenido dinámico y jerarquías capaces de sostener conversión, marca y compliance bancario.
+### Amsterdam · BBVA Perú
 
-### Utopiq
+Ago 2025 — Ago 2026
+
+#### Product Designer / UX/UI Designer
+
+Asumí el diseño y la ejecución de campañas de mailing para el mismo producto de BBVA Perú. Trabajé con los equipos de producto y marketing para alinear jerarquía, contenido y llamadas a la acción con los objetivos de cada campaña.
+
+### UTOPIQ · CENTRUM PUCP
 
 Feb 2025 — Ago 2025
 
-#### Diseñador Gráfico & UX/UI
+#### Diseñador UX/UI & Gráfico
 
-Desarrollé productos de capacitación, landing pages y piezas de adquisición. El foco fue convertir propuestas complejas en recorridos claros y medibles.
+Diseñé y mantuve landing pages, productos de capacitación y piezas de adquisición para CENTRUM PUCP, con foco en coherencia de marca y conversión.
 
 ### Restaurante Reina Inca
 
@@ -206,21 +160,96 @@ Desarrollé productos de capacitación, landing pages y piezas de adquisición. 
 
 #### Diseñador Gráfico & Visual
 
-Construí una identidad visual coherente y un sistema de contenidos para redes, materiales promocionales y puntos de contacto de marca.
+Desarrollé la identidad visual del restaurante y un sistema de contenidos para redes sociales, materiales promocionales y otros puntos de contacto de marca.
 
-### Industria financiera
+### Caja Prymera
 
-2018 — 2022
+2021 — 2022
 
-#### Riesgo, portafolios e inversiones
+#### Analista de Portafolio
 
-Experiencia en análisis financiero, riesgo crediticio y evaluación de portafolios. Esta base sigue informando cómo priorizo viabilidad, regulación y comportamiento.
+Analicé riesgo crediticio y evalué el comportamiento de portafolios para apoyar su seguimiento y control.
+
+### Financiera Qapaq
+
+2019 — 2021
+
+#### Asistente de Riesgos
+
+Apoyé el análisis de riesgo crediticio y el seguimiento de portafolios dentro de una institución financiera regulada.
+
+### Scania del Perú
+
+2017 — 2018
+
+#### Practicante
+
+Inicié mi experiencia profesional en funciones relacionadas con finanzas y créditos.
+
+## Capacidades y herramientas
+
+### Producto y UX/UI
+
+- Arquitectura de información
+- Flujos y estados
+- Investigación de usuarios
+- Prototipado
+- UX writing
+- Diseño conductual
+
+Trabajo desde la definición del problema hasta una interfaz que pueda revisarse y probarse.
+
+### Diseño y prototipado
+
+- Figma
+- Framer
+- Photoshop
+- Illustrator
+- InDesign
+
+Uso estas herramientas para explorar conceptos, construir sistemas visuales y comunicar cómo debe comportarse una experiencia.
+
+### Front-end e IA
+
+- HTML
+- CSS
+- JavaScript
+- React
+- Codex
+- Claude Code
+- Gemini
+
+Construyo prototipos funcionales y uso agentes de IA para explorar alternativas, documentar decisiones y acelerar la implementación sin delegar el criterio de diseño.
+
+### Mailing financiero
+
+- Salesforce Marketing Cloud
+- Contenido dinámico
+- Diseño responsive
+- Compatibilidad entre clientes de correo
+- Compliance
+- Métricas de conversión
+
+Diseño teniendo en cuenta tanto la lectura del usuario como las restricciones técnicas, regulatorias y comerciales del canal.
 
 ## Formación
+
+### Design System
+
+- repensar.la
+- En curso
+- 2026
+
+### Google UX Design Professional Certificate
+
+- Google
+- Concluido
+- 2026
 
 ### Behavioral Design
 
 - PUCP
+- Concluido
 - 2026
 
 ### Diseño Gráfico
@@ -236,37 +265,43 @@ Experiencia en análisis financiero, riesgo crediticio y evaluación de portafol
 ### Economía
 
 - Universidad de Lima
-- 2017 — 2021
+- Titulado
+- 2012 — 2017
 
-## Criterio de diseño
+## Fuera del trabajo
 
-### Principios que guían mi práctica.
+### Lo que ocupa mi curiosidad cuando cierro Figma.
 
-### Negocio y usuario integrados
+### Lola y Perlita
 
-Una buena experiencia también debe sostener conversión, riesgo, rentabilidad y operación.
+Tengo dos gatas, Lola y Perlita. Compartir la casa con ellas es parte de mi rutina diaria.
 
-### Las restricciones dan estructura
+### Tecnología y ciencia
 
-Compliance, tecnología y contenido delimitan el problema y ayudan a enfocar mejores decisiones.
+Me gusta entender cómo funcionan las computadoras y las laptops, comparar sus componentes y seguir los cambios de la industria. La ciencia también ocupa buena parte de lo que leo y veo por curiosidad.
 
-### El dominio del producto es una ventaja
+### Arte, cine y música
 
-Comprender la mecánica del negocio permite diseñar con más profundidad y menos suposiciones.
+El arte, el cine y la música alimentan mi criterio visual. En música prefiero recorrer álbumes completos para entender la intención detrás del proyecto, no solo una canción aislada.
 
-### Claridad antes que complejidad
+### Cocina
 
-Reducir carga mental y fricción convierte un problema complejo en una decisión comprensible.
+Desde 2025 aprendo cocina por mi cuenta. Cuando puedo preparo una receta nueva o ensayo alguna variación propia. Mi postre favorito es el suspiro a la limeña.
+
+### Movimiento y objetos
+
+Me gusta el fútbol y salir a correr. También me interesan las zapatillas New Balance por su comodidad y por un diseño que combina referencias retro con soluciones contemporáneas.
 
 ## Contacto
 
 Conectemos
 
-### Conversemos sobre el problema real.
+### Cuéntame qué producto estás construyendo y qué decisión necesitas aclarar.
 
 ### Email
 
-- rodrigoaq996@gmail.com
+- rodriaquij1994@gmail.com
+- Copiar email
 - Email copiado
 
 ### LinkedIn

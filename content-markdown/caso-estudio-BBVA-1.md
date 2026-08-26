@@ -1,10 +1,26 @@
 ---
-title: "BBVA Perú — CRM & Email UX | Rodrigo Aquije"
-description: "Caso de estudio sobre el diseño e implementación de comunicaciones CRM para BBVA Perú, con foco en jerarquía, compliance y personalización en Salesforce Marketing Cloud."
+title: "BBVA Perú — UX para mailing personalizado"
+description: "Caso de estudio sobre el diseño, personalización e implementación de una campaña de mailing para Préstamos de Libre Disponibilidad de BBVA Perú."
 slug: "/casos/bbva"
+role: "Diseñador UX"
+timeline: "3 meses · 2025"
+agency: "Amsterdam"
+client: "BBVA Perú"
+product: "Préstamos de Libre Disponibilidad"
+tools:
+  - "Figma"
+  - "Salesforce Marketing Cloud"
+metrics:
+  - "Enviados"
+  - "OR"
+  - "CTOR"
+  - "Altas"
+  - "Efectividad"
+  - "Facturación"
+  - "Ticket promedio"
 ---
 
-# Convertir una oferta de crédito en una experiencia clara.
+# Una oferta distinta para cada cliente. Un email que debía funcionar para todos.
 
 ## Navegación
 
@@ -27,309 +43,265 @@ slug: "/casos/bbva"
 - Abrir navegación
 - Cerrar navegación
 
-## Contexto
+## Contexto & problema de negocio
 
-BBVA Perú · CRM & Email UX · 2024–2025
+BBVA Perú · UX para email · 2025
 
-Diseño y desarrollo end-to-end de comunicaciones CRM para BBVA Perú: jerarquía visual, compliance regulatorio y personalización dinámica, implementados directamente en Salesforce Marketing Cloud.
+Durante tres meses diseñé una campaña de mailing para Préstamos de Libre Disponibilidad de BBVA Perú desde Amsterdam. La pieza debía presentar una oferta de crédito variable, adaptarse a cinco perfiles y funcionar desde una sola estructura en Salesforce Marketing Cloud.
 
-Por confidencialidad, algunos nombres y datos fueron modificados. La implementación técnica y las decisiones de diseño son reales.
+Mi responsabilidad cubrió la arquitectura de información, el diseño visual, el comportamiento responsive, la personalización mediante AMPscript y el testing previo al envío. Trabajé dentro del sistema visual de BBVA y de las restricciones regulatorias y técnicas del canal.
+
+Este caso reconstruye una campaña real. Los datos visibles fueron anonimizados y los resultados comerciales se omiten por confidencialidad.
 
 ### Ficha del proyecto
 
-- Rol: UX/UI Designer · CRM
-- Cliente: BBVA Perú · Agencia Amsterdam
-- Plataforma: Salesforce Marketing Cloud
-- Periodo: 2024–2025
+- Rol: Diseñador UX
+- Agencia: Amsterdam
+- Cliente: BBVA Perú
+- Producto: Préstamos de Libre Disponibilidad
+- Duración: 3 meses
+- Herramientas: Figma y Salesforce Marketing Cloud
+- Estado: Campaña finalizada
 
-### Problema
+### El problema
 
-Un correo que se leía como documento legal, no como una oferta.
+La campaña debía comunicar una oferta personalizada sin construir cinco emails independientes. Cambiaban el perfil, el mensaje, la imagen, el monto y algunos argumentos; la acción principal, los beneficios y el bloque regulatorio debían permanecer consistentes.
 
-### Solución
+El problema de diseño era ordenar esas variables para que cada destinatario pudiera identificar cuatro cosas durante una lectura rápida:
 
-Reordenar la jerarquía para que el beneficio aparezca primero, sin alterar el bloque de compliance.
+1. por qué recibía el email;
+2. qué monto tenía disponible;
+3. qué debía hacer a continuación;
+4. dónde consultar las condiciones de la oferta.
 
-### Rol
+![Mailing anonimizado de BBVA Perú para el segmento Cuenta Sueldo, con oferta variable, monto y CTA principal.](../assets/cases/bbva/bbva-hero-offer.png)
 
-UX/UI e implementación técnica end-to-end en Salesforce Marketing Cloud.
+## Restricciones & trade-offs
 
-## Proceso
+### Sistema visual cerrado
 
-### Cómo se abordó
+Tipografía, paleta, componentes y espaciados respondían al sistema global de BBVA. Mi margen de decisión estaba en la composición, la jerarquía, el contenido y la forma de combinar los módulos existentes.
 
-## Cuatro fases, un mismo hilo conductor.
+### Información regulatoria obligatoria
 
-Double Diamond separa dos momentos de exploración y dos de decisión. El caso avanza desde el contexto real de lectura hasta un sistema listo para producción.
+La tasa, las condiciones y los textos legales debían permanecer disponibles e íntegros. Mi decisión se limitó a ordenar su presentación dentro del email.
 
-### Discover
+### Cinco perfiles, una implementación
 
-Entender el brief, las restricciones y el contexto real.
+Construir una pieza por segmento habría multiplicado el mantenimiento y el riesgo de inconsistencias. Decidí conservar una estructura común y cambiar mediante AMPscript los bloques necesarios para cada perfil.
 
-### Define
+### Restricciones técnicas del email
 
-Acordar el orden de la información antes de diseñar.
+El email debía responder en clientes y tamaños de pantalla con motores de render distintos. Lo construí con HTML basado en tablas y CSS compatible con email, un entorno donde JavaScript y muchas interacciones web no están disponibles.
 
-### Develop
+### Mobile como requisito de base
 
-Explorar UI, copy y nudges dentro del brand system.
+[Litmus identifica el móvil como el entorno principal de lectura para la mayoría de sus audiencias globales](https://www.litmus.com/email-client-market-share) y advierte que cada base puede comportarse de forma diferente. Sin un desglose público específico de BBVA, definí el responsive como requisito técnico desde el inicio.
 
-### Deliver
+## Proceso & decisiones clave
 
-Resolver personalización, responsive, dark mode y medición.
+### Cómo organicé el trabajo
 
-## Discover · El contexto real
+Agrupo el proceso en las cuatro fases de Double Diamond. Durante los tres meses recibí observaciones, ajusté el diseño, envié pruebas y corregí problemas antes de publicar la campaña.
 
-## Una oferta financiera que se leía como documento legal.
+### Discover · Entender el sistema
 
-El objetivo era aumentar los desembolsos del Préstamo de Libre Disponibilidad comunicando que el cliente ya tenía liquidez a la mano. Sin embargo, el peso visual de los textos regulatorios y una jerarquía débil convertían el beneficio en carga cognitiva.
+Revisé el brief, el producto, las variables disponibles y las restricciones de marca y compliance. También identifiqué qué contenido debía permanecer estable y qué elementos cambiarían para cada segmento.
 
-El reto no era embellecer el email. Era lograr que alguien que lo abre en movimiento y con atención fragmentada entienda en segundos que tiene dinero disponible.
+El mapa de requisitos quedó así:
 
-### Restricciones
+- datos personalizados por registro;
+- cinco perfiles de comunicación;
+- una acción comercial principal;
+- beneficios comunes;
+- canales alternativos;
+- condiciones regulatorias completas;
+- compatibilidad mobile y desktop.
 
-#### Brand system cerrado
+### Define · Ordenar antes de diseñar
 
-Tipografía, paleta, componentes y espaciados definidos globalmente por BBVA.
+Antes de trabajar la dirección visual, organicé la campaña mediante blockframes en Figma. Los blockframes fijaron la secuencia, la proporción y la dependencia entre módulos antes de revisar color y tipografía.
 
-#### Compliance ASBANC / SBS
+Definí este orden:
 
-TCEA, condiciones y disclaimers obligatorios; podían jerarquizarse, no eliminarse.
+1. banner contextual para reconocer el perfil;
+2. franja de vigencia o beneficio comercial;
+3. saludo y argumento personalizado;
+4. monto disponible y CTA;
+5. beneficios del préstamo;
+6. canales alternativos;
+7. bloque de TCEA, requisitos y condiciones.
 
-#### Sin JavaScript
+#### Patrones de lectura como referencia
 
-La percepción de interactividad debía resolverse con HTML y CSS estático, table-based.
+Usé el recorrido en Z como heurística para relacionar marca, propuesta y CTA dentro del banner. En los bloques de texto tomé como referencia el escaneo en F: coloqué conceptos clave al inicio de titulares y párrafos y dividí el contenido para evitar una pared de texto.
 
-#### Render multicliente
+[Nielsen Norman Group señala que el patrón F puede aparecer tanto en desktop como en mobile](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/). Su investigación también documenta otros recorridos de lectura. Apliqué encabezados, módulos breves y palabras clave al inicio para facilitar el escaneo sin imponer una trayectoria única.
 
-Gmail, Outlook, Apple Mail, Samsung Mail y vista web debían conservar la intención.
+### Develop · Diseñar un sistema de variaciones
 
-### El problema no era solo el diseño. Era el contexto de lectura.
+Definí un cuerpo común para la oferta y limité las variaciones al contexto de cada segmento.
 
-#### Mobile, en segundos
+#### Un banner para cada perfil
 
-La mayoría de aperturas ocurre desde el teléfono y en tránsito. La jerarquía define si el mensaje sobrevive el primer vistazo.
+Diseñé cinco aperturas que modificaban imagen, titular, argumento y CTA según el segmento. La estructura posterior conservaba la misma lógica para que la personalización no fragmentara la implementación.
 
-#### “Preaprobado” cambia la ecuación
+#### El monto como punto de decisión
 
-El cliente no empieza una solicitud desde cero; activa algo que ya está disponible. La comunicación debía confirmar, no suplicar.
+Convertí el rango disponible en el centro del módulo comercial. El indicador estático relaciona el monto mínimo con el máximo personalizado y conduce hacia el CTA “Empezar aquí”. Su función es comunicar disponibilidad dentro de las restricciones estáticas del email.
 
-## Define · Arquitectura de información
+![Closeup mobile del módulo de oferta con monto mínimo, máximo personalizado, indicador de rango y CTA.](../assets/cases/bbva/bbva-closeup-progress.png)
 
-## Primero el valor. Después la evidencia y las condiciones.
+#### Compliance visible sin competir con la oferta
 
-Antes de trabajar color o tipografía se definieron blockframes: cajas sin estilo para acordar jerarquía, proporción y secuencia de lectura.
+Separé el bloque regulatorio del módulo comercial para evitar que todos los niveles de información compitieran en el primer vistazo. La tasa y las condiciones permanecieron completas y accesibles dentro de la misma pieza.
 
-### Orden de la información
+![Closeup anonimizado del bloque regulatorio con TCEA, requisitos, vigencia y condiciones de la oferta.](../assets/cases/bbva/bbva-closeup-compliance.png)
 
-1. Header: reconocimiento inmediato de la entidad.
-2. Monto protagonista: el beneficio se entiende en el primer vistazo.
-3. CTA: la acción queda unida a la oferta, sin scroll intermedio.
-4. Beneficios: respaldan una decisión que ya se comprende.
-5. Bloque legal: cierra con la información regulatoria completa e inalterada.
+## Solución & UX writing
 
-### Patrones de lectura
+### Variantes por segmento
 
-#### Patrón Z
+El sistema adapta la apertura del email al contexto de cada perfil. Los nombres y montos que aparecen a continuación están anonimizados.
 
-Logo, titular y botón organizan el banner de apertura.
+#### 1. Estabilidad · Cuenta Sueldo
 
-#### Patrón F
+- Enfoque: reconocer la relación existente con el banco.
+- Titular: “Tu sueldo merece un beneficio real”.
+- CTA: “Accede ahora”.
+- Imagen: reutiliza la captura principal del caso.
 
-El cuerpo permite escanear bloques de valor de arriba hacia abajo.
+#### 2. Experiencias · Viajes y ocio
 
-La posición final del bloque de TCEA no busca ocultarlo. Busca evitar que todos los niveles de información compitan simultáneamente, manteniendo las condiciones accesibles y completas.
+- Enfoque: presentar la liquidez como medio para financiar una experiencia pendiente.
+- Titular: “Tus próximas aventuras empiezan hoy”.
+- CTA: “Planifica tu viaje”.
 
-## Develop · UI craft y nudges
+![Variante anonimizada del mailing para el segmento de viajes y experiencias.](../assets/cases/bbva/bbva-segment-experiences.png)
 
-## Cuatro decisiones cambian cómo se interpreta la oferta.
+#### 3. Formación · Desarrollo profesional
 
-El margen de diseño no estaba en cambiar la marca o reducir los legales. Estaba en controlar atención, expectativa y lenguaje dentro de esas restricciones.
+- Enfoque: relacionar la oferta con estudios y crecimiento profesional.
+- Titular: “Invierte en lo que más importa: tú”.
+- CTA: “Empieza a crecer”.
 
-### Barra de avance al 82%
+![Variante anonimizada del mailing para el segmento de formación y desarrollo profesional.](../assets/cases/bbva/bbva-segment-education.png)
 
-Un fill estático comunica que falta una acción, no que el trámite recién empieza. Se resolvió solo con CSS.
+#### 4. Hogar · Mejora del espacio
 
-### Monto como ancla visual
+- Enfoque: conectar el préstamo con una mejora concreta del hogar.
+- Titular: “Tu hogar, tal como lo imaginas”.
+- CTA: “Mejora tu hogar”.
 
-El máximo gana tamaño y color; el mínimo mantiene presencia sin competir por atención.
+![Variante anonimizada del mailing para el segmento de mejora del hogar.](../assets/cases/bbva/bbva-segment-home.png)
 
-### Compliance después de la acción
+#### 5. Emprendimiento · Actividad independiente
 
-Las condiciones permanecen completas, pero dejan de interrumpir la comprensión inicial del beneficio.
+- Enfoque: presentar la liquidez como apoyo para continuar una actividad ya iniciada.
+- Titular: “Haz crecer lo que ya construiste”.
+- CTA: “Impulsa tu negocio”.
 
-### De solicitar a activar
+![Variante anonimizada del mailing para el segmento de emprendimiento.](../assets/cases/bbva/bbva-segment-entrepreneurship.png)
 
-“Solicita tu préstamo” cambia por una narrativa coherente con una oferta ya preaprobada.
+## Deliver · Implementación y testing
 
-#### Antes
+### Personalización mediante AMPscript
 
-Solicita tu préstamo
+Construí una sola implementación y configuré con AMPscript las variaciones de segmento. Banner, saludo, argumento, monto y otros datos se completaban según el registro; los beneficios, canales y condiciones compartían la misma base.
 
-#### Después
+Mantuve un único template para los cinco segmentos, con la misma estructura comercial y regulatoria.
 
-Ya está aprobado para ti. Solo actívalo.
+### Responsive
 
-### Texto del prototipo
+En desktop, los beneficios podían mostrarse en una fila de tres columnas. En mobile, las mismas tarjetas se apilaban para conservar tamaño de texto, separación y área táctil.
 
-- BBVA
-- Oferta preaprobada
-- Hasta
-- S/ 34,600
-- Empezar aquí
-- TCEA y condiciones siempre accesibles
+![Vista desktop del bloque de beneficios distribuido en tres columnas y de los canales alternativos.](../assets/cases/bbva/bbva-responsive-desktop-cards.png)
 
-Alt text propuesto: Previsualización de un email de BBVA Perú con una oferta preaprobada de hasta S/ 34,600 y el CTA “Empezar aquí”.
+![Vista mobile del mismo bloque con las tarjetas de beneficios apiladas verticalmente.](../assets/cases/bbva/bbva-responsive-mobile-stacked.png)
 
-## Deliver · Sistema listo para producción
+### Testing multicliente
 
-## Un template, cinco aperturas y una estructura estable.
+Antes del envío realicé pruebas de contenido dinámico, enlaces, responsive y render. Revisé que nombres, montos y condiciones correspondieran al registro y que la jerarquía se mantuviera en mobile y desktop.
 
-AMPScript adapta banner, mensaje central y propuesta de valor según el perfil. El cuerpo, la acción y los legales permanecen iguales para evitar cinco piezas independientes.
+El testing se concentró en fallos que aparecen al ejecutar el email con datos y motores de render distintos.
 
-Seleccionar segmento
+### Modo claro y oscuro
 
-### Estabilidad
+Los clientes de correo pueden transformar automáticamente fondos, textos e imágenes al activar dark mode. Probé la campaña en ambos entornos y ajusté contraste y assets para mantener la información legible dentro de ese comportamiento.
 
-#### Tu sueldo merece un beneficio real.
+![Mailing anonimizado del segmento hogar renderizado en modo claro dentro de un cliente mobile.](../assets/cases/bbva/bbva-theme-mobile-light.png)
 
-- Perfil: Cuenta Sueldo activa
-- Descripción: Reconoce la recurrencia del ingreso y presenta la oferta como consecuencia de la relación con el banco.
-- Tono: Reconocimiento
-- CTA: Accede ahora
+![El mismo mailing renderizado en modo oscuro, con transformaciones de color aplicadas por el cliente de correo.](../assets/cases/bbva/bbva-theme-mobile-dark.png)
 
-### Experiencias
+## Impacto & medición
 
-#### Tus próximas aventuras empiezan hoy.
+### Una campaña implementada para cinco segmentos
 
-- Perfil: Viajes y ocio
-- Descripción: El préstamo funciona como habilitador de una experiencia pendiente, no como protagonista del mensaje.
-- Tono: Aspiracional
-- CTA: Planifica tu viaje
+La campaña fue configurada, probada y enviada desde Salesforce Marketing Cloud. Una sola estructura soportó cinco aperturas personalizadas, montos variables, responsive y el bloque regulatorio completo.
 
-### Formación
+Mantengo los resultados comerciales en reserva por confidencialidad. El siguiente marco muestra cómo se evaluó la campaña:
 
-#### Invierte en lo que más importa: tú.
+```text
+Alcance             Lectura          Respuesta          Conversión              Valor
+Enviados      →      OR       →       CTOR       →      Altas · Efectividad  →  Facturación · Ticket promedio
+```
 
-- Perfil: Desarrollo personal
-- Descripción: Posiciona el financiamiento como inversión en formación y crecimiento profesional.
-- Tono: Crecimiento
-- CTA: Empieza a crecer
+### Enviados
 
-### Hogar
+Define el tamaño de la base impactada y permite leer el resto de indicadores sobre un alcance concreto.
 
-#### Tu hogar, tal como lo imaginas.
+### OR · Open Rate
 
-- Perfil: Mejora del hogar
-- Descripción: Conecta con gastos de equipamiento y presenta la liquidez como continuidad de un proyecto existente.
-- Tono: Realización
-- CTA: Mejora tu hogar
+Mide aperturas y ayuda a evaluar asunto, remitente y preview text. Interpreté esta señal por separado del diseño del cuerpo del email.
 
-### Emprendimiento
+### CTOR · Click-to-Open Rate
 
-#### Haz crecer lo que ya construiste.
+Relaciona clics con aperturas y permite observar si la jerarquía, el contenido y el CTA movilizaron a quienes llegaron a ver la pieza.
 
-- Perfil: Actividad independiente
-- Descripción: Habla de capital de trabajo y de avance, con un tono de socio financiero.
-- Tono: Impulso
-- CTA: Impulsa tu negocio
+### Altas
 
-### Texto del mockup de segmentación
+Registra las conversiones comerciales asociadas a la campaña dentro del modelo de medición del banco.
 
-- mail.bbva.pe
-- BBVA
-- Hola Julia
-- Tienes una oferta preaprobada y disponible para activar.
-- Hasta
-- S/ 34,600
-- TCEA 24.90% · Ver condiciones
+### Efectividad
 
-Alt text propuesto: Email personalizado de BBVA Perú para Julia con una oferta preaprobada, monto de S/ 34,600, condiciones y un CTA adaptado a su segmento.
+Expresa la conversión sobre el universo definido internamente para la campaña. La fórmula y el resultado permanecen bajo confidencialidad.
 
-### Implementación
+### Facturación
 
-Ejecución técnica
+Representa el volumen económico generado por las altas atribuidas a la campaña.
 
-## El mismo diseño en cada pantalla.
+### Ticket promedio
 
-#### Mobile
-
-Columnas apiladas, CTA full-width y touch targets de al menos 44 px.
-
-#### Desktop
-
-Dos columnas fluidas y más aire sin añadir contenido.
-
-#### Datos dinámicos
-
-Nombre, monto, TCEA y cuota personalizados por registro.
-
-### El mismo email debe sobrevivir dos entornos de lectura.
-
-#### Contraste contextual
-
-El azul corporativo oscuro se sustituye por un azul claro cuando el fondo lo exige.
-
-#### Banner profundo
-
-En dark mode el gradiente baja luminosidad para integrarse con el cliente de correo.
-
-#### CTA estable
-
-El amarillo BBVA conserva contraste suficiente en ambos modos.
-
-Alt text propuesto: Comparación del email de BBVA Perú en modo claro y modo oscuro, con el monto de S/ 34,600 y el CTA “Empezar aquí”.
-
-## Métricas y resultados
-
-Instrumentación
-
-## Qué observar cuando la pieza sale al aire.
-
-### Delivered y Bounce Rate
-
-Validan que el HTML llegue y no falle antes de interpretar cualquier otra señal.
-
-### Open Rate
-
-Evalúa asunto y preview text; todavía no el diseño del cuerpo.
-
-### CTR del CTA
-
-Comprueba si la secuencia monto–acción dirige el clic.
-
-### Unsubscribe Rate
-
-Advierte si la comunicación se percibe invasiva o manipuladora.
-
-Journey Builder puede cruzar estas señales con la Data Extension de desembolsos para cerrar el ciclo hasta conversión. El caso no presenta porcentajes sin resultados auditables.
+Permite observar el valor promedio asociado a cada alta y evita evaluar el desempeño únicamente por cantidad de conversiones.
 
 ## Aprendizajes
 
-Reflexión
+### El email exigió decisiones de UX concretas
 
-### El dominio importa
+En este email apliqué arquitectura de información, UX writing, personalización, responsive y testing sobre HTML basado en tablas, datos dinámicos y motores de render distintos.
 
-Comprender PLD, TCEA y la percepción de “preaprobado” mejora decisiones que no son solamente visuales.
+### Cinco variantes necesitan reglas compartidas
 
-### Las restricciones revelan criterio
+Antes de configurar AMPscript definí las variables de cada segmento y los módulos que compartirían la misma estructura. Esa separación mantuvo la personalización dentro de una pieza controlable.
 
-Un sistema cerrado obliga a identificar con precisión dónde sí existe margen de acción.
+### El render cambió según el cliente de correo
 
-### Email UX tiene consecuencias
+Validé el diseño con contenido real, distintos tamaños y las transformaciones de cada cliente de correo. Varias correcciones surgieron durante esas pruebas, después de cerrar la propuesta en Figma.
 
-Una comunicación financiera clara puede facilitar o bloquear una decisión económica real.
+### Qué haría diferente hoy
+
+Documentaría desde el inicio una matriz con componente, variable, segmento y cliente de correo. También definiría junto con producto el plan de medición antes de diseñar las variantes, para conectar cada hipótesis de contenido con una señal concreta del funnel.
 
 ## Siguiente caso
 
 ### Yape
 
-Arquitectura de estados para la incertidumbre transaccional.
+¿Qué haces cuando Yape no puede confirmar si tu dinero llegó?
 
-Rediseño conductual del estado “en revisión” para evitar reintentos, pagos duplicados y dudas que terminan en soporte.
+Propuesta conceptual para comunicar la espera, evitar interpretaciones equivocadas y ofrecer una siguiente acción clara.
 
-- Behavioral UX
-- State Systems
+- UX Audit
+- Estados transaccionales
 - Microcopy
 
 CTA: Ver caso

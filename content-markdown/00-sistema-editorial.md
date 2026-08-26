@@ -57,10 +57,11 @@ También deben sustituirse las afirmaciones de superioridad sin prueba, como “
 
 - No usar aperturas trilladas como “En el vertiginoso mundo de...” o “En el panorama digital actual...”.
 - Evitar el paralelismo forzado: “No solo diseñé X, sino que transformé Y para elevar Z”.
+- Evitar oposiciones sentenciosas en cualquiera de sus variantes: “no es X, es Y”, “no era X, era Y”, “no necesitaba X, necesitaba Y” o “X no termina en A; también exige B”. Reescribir la relación de forma directa y factual.
 - Evitar cierres moralistas o inflados: “Este proyecto demostró que el diseño centrado en el usuario es la clave del éxito futuro”.
 - Evitar el uso excesivo de *navegar*, en especial fórmulas como “navegar la complejidad” o “navegar por los desafíos”.
 - Evitar series de tres conceptos abstractos si no se explica su relación concreta.
-- Evitar oposiciones sentenciosas como “X no es un detalle: es Y” cuando funcionan como eslogan y no como argumento verificable.
+- Evitar oposiciones sentenciosas como “X no es un detalle: es Y” incluso cuando la segunda parte sea verificable; la estructura sigue sonando prefabricada.
 
 ### Descripciones abstractas sin sustancia
 

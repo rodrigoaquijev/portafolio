@@ -1,6 +1,6 @@
 ---
-title: "Rodrigo Aquije — Product Designer & Design Engineer"
-description: "Portafolio de Rodrigo Aquije, diseñador de producto digital especializado en FinTech, sistemas de diseño, conversión y diseño conductual."
+title: "Rodrigo Aquije — Product Designer & UX/UI Designer"
+description: "Portafolio de Rodrigo Aquije, Product Designer y UX/UI Designer con experiencia en banca, riesgo crediticio, UX para email y productos digitales."
 slug: "/"
 ---
 
@@ -35,17 +35,17 @@ slug: "/"
 
 ## Hero
 
-Producto digital · FinTech · Design Engineering
+Producto digital · Banca · UX/UI
 
-Product Designer & Design Engineer
+Product Designer & UX/UI Designer
 
 Lima, Perú
 
-Economía · FinTech · Diseño
+Economía · Banca · Diseño
 
-Diseñador de producto digital con formación en economía. Conecto rigor analítico, sistemas de diseño escalables y conversión para construir interfaces financieras intuitivas, viables y de alto impacto.
+Soy Product Designer y UX/UI Designer con formación en Economía y más de cuatro años de experiencia previa en riesgo crediticio y evaluación de portafolios. Esa base me ayuda a conectar decisiones de interfaz con regulación, comportamiento y objetivos de negocio.
 
-Trabajo desde el problema conductual hasta la interfaz funcional: investigación, arquitectura de estados, UI, sistemas de diseño y prototipos en código. Busco que una decisión compleja se sienta clara, confiable y medible.
+Actualmente trabajo en Fahrenheit DDB para Préstamos de Libre Disponibilidad de BBVA Perú. Diseño jerarquías de información, módulos responsive y activos en Salesforce Marketing Cloud orientados a conversión.
 
 ### Acciones
 
@@ -67,7 +67,7 @@ Cuéntame el producto, el reto y el horizonte del proyecto.
 
 Rodrigo Aquije V.
 
-Product Designer & Design Engineer
+Product Designer & UX/UI Designer
 
 Lima, Perú
 
@@ -81,13 +81,13 @@ Conectar en LinkedIn
 
 ### Trabajo seleccionado
 
-Cuatro problemas financieros abordados desde conversión, comportamiento y sistemas de interfaz.
+Un caso profesional de UX para email y tres proyectos conceptuales sobre estados transaccionales, decisiones financieras y gastos compartidos.
 
 ### BBVA Perú
 
-Financial Design · Salesforce MC
+Caso profesional · UX para email
 
-Optimización técnica y visual de comunicaciones masivas para BBVA Perú, manteniendo conversión e integridad regulatoria.
+Una oferta distinta para cada cliente. Un email que debía funcionar para todos.
 
 - Email UX
 - Compliance
@@ -95,9 +95,9 @@ Optimización técnica y visual de comunicaciones masivas para BBVA Perú, mante
 
 #### Información al interactuar
 
-- Rol: UX/UI & Email Design
-- Problema: Una oferta variable, compleja y regulada competía por atención.
-- Contribución: Jerarquía de decisión y sistema modular para campañas.
+- Rol: Product Designer / UX/UI Designer
+- Problema: Cada cliente recibía una oferta variable que debía entenderse rápido y cumplir restricciones bancarias.
+- Contribución: Jerarquía de información, módulos responsive y preparación de activos para Salesforce Marketing Cloud.
 
 CTA: Explorar caso completo
 
@@ -107,9 +107,9 @@ Alt text: BBVA Perú project cover
 
 ### Yape
 
-Behavioral Audit · State Systems
+Proyecto conceptual · Estados transaccionales
 
-Rediseño conductual del estado “en revisión” para mitigar ansiedad, reintentos y abandono transaccional.
+¿Qué haces cuando Yape no puede confirmar si tu dinero llegó? Una propuesta para comunicar la espera y ofrecer una siguiente acción clara.
 
 - UX Audit
 - Microcopy
@@ -117,9 +117,9 @@ Rediseño conductual del estado “en revisión” para mitigar ansiedad, reinte
 
 #### Información al interactuar
 
-- Rol: Behavioral UX
-- Problema: La incertidumbre operativa provocaba interpretaciones y acciones equivocadas.
-- Contribución: Nueva arquitectura de estado, expectativa y recuperación.
+- Rol: UX/UI Designer
+- Problema: Un estado sin confirmación puede llevar al usuario a repetir una transferencia o buscar ayuda.
+- Contribución: Arquitectura propuesta de estados, expectativas y opciones de recuperación.
 
 CTA: Explorar caso completo
 
@@ -129,9 +129,9 @@ Alt text: Yape project cover
 
 ### Allpa
 
-Behavioral Finance · Apple Ecosystem
+Proyecto conceptual · Finanzas conductuales
 
-Concepto para Apple Watch e iOS que interviene en el flujo de caja antes de una compra impulsiva.
+¿Puede tu reloj hacerte pensar dos veces antes de pagar? Un concepto para mostrar el efecto de una compra sobre el flujo de caja antes de confirmarla.
 
 - watchOS
 - Behavioral Economics
@@ -139,9 +139,9 @@ Concepto para Apple Watch e iOS que interviene en el flujo de caja antes de una 
 
 #### Información al interactuar
 
-- Rol: Product Concept
-- Problema: La información financiera llega después de que el impulso ya ganó.
-- Contribución: Intervención contextual antes del momento de gasto.
+- Rol: Product Designer
+- Problema: El impacto de una compra suele revisarse después del gasto, cuando ya no puede cambiar la decisión.
+- Contribución: Intervención contextual propuesta para Apple Watch e iOS antes de confirmar el pago.
 
 CTA: Explorar caso completo
 
@@ -151,9 +151,9 @@ Alt text: Allpa project cover
 
 ### Vaca
 
-Social FinTech · Shared Wallet
+Proyecto conceptual · Gastos compartidos
 
-Fondo compartido para roommates que mueve el dinero antes del gasto y elimina la fricción de cobrar reembolsos.
+Dividir la cuenta es fácil. Cobrarle a tus roommates no. Vaca propone reunir el dinero antes de pagar los gastos comunes.
 
 - Product Strategy
 - Wallet UX
@@ -161,9 +161,9 @@ Fondo compartido para roommates que mueve el dinero antes del gasto y elimina la
 
 #### Información al interactuar
 
-- Rol: Product Concept
+- Rol: Product Designer
 - Problema: Dividir la deuda no elimina el momento incómodo de cobrar.
-- Contribución: Fondo prepagado, arquitectura financiera y flujo de ocho pantallas.
+- Contribución: Definición conceptual de un fondo prepagado para cubrir gastos del hogar antes de que aparezca la deuda.
 
 CTA: Explorar caso completo
 
@@ -182,11 +182,11 @@ Alt text propuesto: Vista conceptual del fondo compartido Vaca con saldo de S/ 4
 
 ## Sobre mí
 
-### Diseño en la intersección entre personas, negocio y tecnología.
+### Primero aprendí a evaluar riesgo. Ahora diseño decisiones financieras.
 
-Mi formación en economía me ayuda a leer incentivos, riesgo y comportamiento. Mi práctica en diseño convierte esa lectura en flujos, estados y sistemas que un equipo puede implementar y medir.
+Antes de trabajar en UX/UI pasé más de cuatro años analizando riesgo crediticio y portafolios. Esa experiencia me ayuda a entender cómo una decisión de interfaz afecta al usuario, la operación y los objetivos comerciales.
 
-He trabajado en productos financieros, comunicaciones de alto volumen y experiencias digitales donde la confianza no es un detalle visual: es parte del producto.
+Hoy aplico esa base en UX para email dentro de BBVA Perú y la complemento con diseño visual, prototipado y desarrollo front-end asistido por IA.
 
 CTA: Conocer más sobre mi trayectoria
 
@@ -194,56 +194,57 @@ Enlace: /sobre-mi
 
 ### Experiencia y colaboraciones
 
-- Fahrenheit DDB — Agency
-- BBVA Perú — Banking
-- CENTRUM PUCP — Business School
-- Amsterdam Agency — Digital
-- Utopiq — Tech
+- Fahrenheit DDB — Agencia
+- BBVA Perú — Banca
+- Amsterdam — Agencia digital
+- CENTRUM PUCP — Educación ejecutiva
+- UTOPIQ — EdTech
 
 ## Habilidades y especialidades
 
-### Product & Interface Design
+### Producto y UX/UI
 
-Investigación conductual, flujos transaccionales y arquitectura de interfaces de alta conversión.
+Defino arquitectura de información, flujos, estados y prototipos para convertir requisitos de usuario y negocio en decisiones de interfaz.
 
-Del mapa de decisiones al prototipo funcional.
+Del problema al prototipo que se puede revisar y probar.
 
 - Figma
 - Framer
-- UX Audit
-- Prototyping
+- Investigación de usuarios
+- Prototipado
 
-### Design Systems & Code
+### Interfaces y front-end
 
-Sistemas modulares escalables en Figma y componentes vivos con React y CSS Tokens.
+Construyo prototipos funcionales y sistemas de componentes para comprobar comportamiento, responsive y consistencia fuera del archivo de diseño.
 
-Diseño que conserva intención cuando llega a producción.
+El código funciona como una herramienta para validar y comunicar decisiones de diseño.
 
-- Design Tokens
+- HTML
+- CSS
+- JavaScript
 - React
-- HTML / CSS
-- SFMC
 
-### AI-Augmented Prototyping
+### Diseño visual e IA
 
-Aceleración del prototipado funcional mediante agentes generativos sin delegar el criterio de producto.
+Combino herramientas visuales con agentes de IA para explorar alternativas, documentar decisiones y construir prototipos con mayor rapidez.
 
-Más iteraciones útiles antes de comprometer ingeniería.
+La IA acelera la ejecución; el criterio de producto y la revisión siguen siendo míos.
 
+- Adobe Creative Cloud
+- Photoshop · Illustrator · InDesign
+- Gemini
 - Codex
 - Claude Code
-- Cursor
-- Prompt-to-UI
 
 ## Contacto
 
 Conectemos
 
-### Conversemos sobre el problema real.
+### Cuéntame qué producto estás construyendo y qué decisión necesitas aclarar.
 
 ### Email
 
-- rodrigoaq996@gmail.com
+- rodriaquij1994@gmail.com
 - Copiar email
 - Email copiado
 
