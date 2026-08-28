@@ -8,7 +8,7 @@ export default function SiteContact({ id = 'contact', label, title, lang, linked
     <SectionLabel>{label}</SectionLabel>
     <h2>{title}</h2>
     <div className="contact-links">
-      <button onClick={onCopy}><Mail /><span><strong>Email</strong><small>rodrigoaq996@gmail.com</small></span><ArrowBendUpRightIcon weight="bold" /></button>
+      <button onClick={onCopy}><Mail /><span><strong>Email</strong><small>rodriaquij1994@gmail.com</small></span><ArrowBendUpRightIcon weight="bold" /></button>
       <a href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer"><Linkedin /><span><strong>LinkedIn</strong><small>{linkedinNetwork}</small></span><ArrowBendUpRightIcon weight="bold" /></a>
       <div className="cv-card"><FileText /><span><strong>{lang === 'es' ? 'Currículum Vitae' : 'Curriculum Vitae'}</strong><small>{lang === 'es' ? 'Descargar versión' : 'Download version'}</small></span><div className="cv-actions"><a href="/cv-es.pdf" download>Español</a><a href="/cv-en.pdf" download>English</a></div></div>
     </div>

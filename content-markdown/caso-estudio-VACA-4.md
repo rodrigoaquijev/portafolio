@@ -1,351 +1,236 @@
 ---
-title: "Vaca — Fondo compartido para roommates | Rodrigo Aquije"
-description: "Caso conceptual de FinTech social sobre un fondo prepagado para roommates que elimina adelantos personales y la fricción de cobrar reembolsos."
+title: "Vaca — Fondo compartido para gastos del hogar | Rodrigo Aquije"
+description: "Diseñé Vaca a partir de una necesidad personal: compartir gastos sin adelantar dinero ni perseguir reembolsos."
 slug: "/casos/vaca"
+role: "Product Designer / UX/UI Designer"
+timeline: "Iteración inicial · 3 semanas"
+tools:
+  - "Figma"
+metrics:
+  - "5 momentos en el flujo principal"
+  - "12 pantallas diseñadas para el ciclo completo"
+  - "Pruebas de usabilidad pendientes"
+project_type: "Proyecto conceptual"
+status: "Flujo, interfaz y prototipo definidos"
 ---
 
-# El fondo compartido que reemplaza al “me debes”.
+# Quería compartir gastos sin convertirme en el cobrador del grupo
 
-## Navegación
+Vaca nació de una necesidad personal. Cuando varias personas comparten gastos, una suele pagar primero y después empieza la parte incómoda: calcular, avisar, esperar y recordar cuánto falta.
 
-- Rodrigo Aquije
-- Caso de estudio · Vaca
-- Empatizar
-- Definir
-- Idear
-- Prototipar
-- Testear
-- Activar sonido
-- Desactivar sonido
-- Sonido apagado
-- Sonido activo
-- Cambiar tema
-- Modo oscuro
-- Modo claro
-- Cambiar idioma
-- View in English
-- ES
-- Abrir navegación
-- Cerrar navegación
+Las apps para dividir cuentas podían decirme quién debía qué. El dinero seguía saliendo del bolsillo de una sola persona y el reembolso todavía dependía de que alguien lo pidiera.
 
-## Contexto
+Decidí mover ese momento. En Vaca, el grupo aporta antes del gasto y paga desde un fondo común. Así, todos pueden ver cuánto dinero hay, qué falta cubrir y en qué se usó.
 
-Vaca · Producto especulativo · FinTech social
+## El proyecto
 
-Una experiencia para roommates que mueve el dinero antes del gasto: todos aportan a un fondo común y los servicios de la casa se pagan desde ahí, sin convertir a una persona en cobrador informal.
+- Tipo: proyecto conceptual independiente
+- Rol: Product Designer / UX/UI Designer
+- Duración: iteración inicial de 3 semanas
+- Alcance: estrategia de producto, flujo de usuario, interfaz y prototipo
+- Herramienta: Figma
 
-Proyecto conceptual independiente. El modelo financiero y regulatorio requeriría validación especializada antes de un piloto.
+## El problema cotidiano detrás de la idea
 
-### Ficha del proyecto
+Partí de mi propia experiencia para reconstruir lo que ocurre alrededor de un gasto compartido:
 
-- Rol: Product Designer · Solo
-- Duración: 3 semanas
-- Herramientas: Figma · React/CSS
-- Alcance: Flujo core · 8 pantallas
+1. Llega un recibo o aparece una compra para la casa.
+2. Alguien paga el monto completo.
+3. Esa persona calcula cuánto corresponde a cada integrante.
+4. Comparte el comprobante y espera las transferencias.
+5. Si el dinero no llega, envía uno o más recordatorios.
 
-### Problema: después del gasto
+El cálculo ocupa poco tiempo. La espera y los recordatorios pueden extenderse durante varios días.
 
-Alguien paga, registra la deuda, espera y finalmente recuerda al grupo que transfiera.
+### La pregunta que guio el proyecto
 
-### Solución: antes del gasto
+¿Cómo podríamos pagar los gastos de una casa compartida sin que una persona tenga que adelantar el dinero y cobrarlo después?
 
-Todos aportan al inicio; el fondo paga y nadie queda debiendo a otra persona.
+## Explorar una secuencia diferente
 
-### Texto del demo del fondo
+Seguí las etapas clásicas de Design Thinking para llevar la experiencia personal hacia una propuesta de UX/UI: entender el recorrido actual, definir el momento de mayor fricción, comparar alternativas, ordenar el flujo y preparar una prueba de usabilidad.
 
-- VACA
-- Fondo del depa
-- Balance compartido
-- S/ 320
-- 2/3 aportes listos
-- Rodrigo · Aportó S/ 160
-- Caro · Aportó S/ 160
-- Diego · Aporte pendiente
-- Prueba el fondo: activa o retira cada aporte.
+Durante la ideación comparé tres caminos:
 
-Alt text propuesto: Demo interactivo del fondo compartido Vaca con aportes de Rodrigo y Caro, un aporte pendiente de Diego y balance de S/ 320.
+| Idea | Qué resolvía | Qué dejaba pendiente |
+| --- | --- | --- |
+| Registrar deudas | Ordenaba cuánto debía cada persona. | Alguien todavía adelantaba el dinero. |
+| Enviar recordatorios automáticos | Reducía el trabajo de escribir al grupo. | El pago seguía ocurriendo después del gasto. |
+| Crear un fondo previo | Permitía reunir el dinero antes de pagar. | Exigía reglas claras y confianza entre integrantes. |
 
-## Proceso
+Elegí desarrollar el fondo porque cambiaba el orden completo del problema. Cada integrante aporta su parte, el saldo queda visible y los gastos salen desde un mismo lugar.
 
-El caso sigue cinco fases de Design Thinking: Empatizar, Definir, Idear, Prototipar y Testear.
+## La idea de Vaca
 
-## Empatizar con la fricción social
+Cada casa crea su propio fondo y define tres cosas desde el inicio:
 
-## La matemática estaba resuelta. La ejecución seguía incomodando.
+- cuánto aportará cada persona;
+- qué gastos se pagarán con ese dinero;
+- qué reglas necesita el grupo para usarlo.
 
-Cuatro conversaciones informales con personas que viven con roommates confirmaron un patrón: registrar una deuda no elimina el mensaje incómodo, la espera ni el rol involuntario de “tesorero del depa”.
+Los aportes pueden hacerse con medios familiares como Yape, Plin o una transferencia bancaria. Vaca reúne el estado de esos movimientos para que el grupo tenga una sola lectura del fondo.
 
-### Conversaciones
+La propuesta protege una idea sencilla: el dinero compartido debe sentirse compartido. Ningún integrante debería aparecer como dueño informal del saldo ni tener más información que los demás.
 
-> “Uso una app para dividir, pero igual termino mandando un audio para que me transfieran.”
+## El flujo de la app
 
-Roommate · 25 años
+Organicé la experiencia en cinco momentos. Esta estructura cubre el primer ingreso y el uso mensual sin convertir cada decisión en un paso independiente.
 
-> “No me molesta tanto que se demoren como tener que recordarles cada mes.”
+### 1. Crear o unirse
 
-Roommate · 27 años
+Una persona puede abrir un fondo nuevo o entrar mediante un enlace, código o QR. Antes de unirse ve el nombre del grupo, el aporte esperado y las reglas principales.
 
-> “Preferiría que la plata ya esté puesta antes, así nadie tiene que pedir nada.”
+### 2. Acordar cómo funcionará
 
-Roommate · 23 años
+Al crear el fondo se define:
 
-### Sofía, 26
+- aporte igual o personalizado;
+- fecha objetivo;
+- gastos que se cubrirán;
+- quién puede pagar;
+- qué montos necesitan aprobación del grupo.
 
-Diseñadora freelance
+El resumen aparece antes de enviar las invitaciones para que todos lleguen con el mismo acuerdo.
 
-“No quiero ser la tesorera del departamento.”
+### 3. Completar el primer aporte
 
-- Contexto: Ingresos variables; prefiere aportar cuando recibe un pago y no en una fecha fija.
-- Fricción: Carga con los recordatorios y teme que cobrar se lea como desconfianza.
+Cada integrante elige Yape, Plin o transferencia bancaria, revisa el monto y completa la operación. Al regresar a Vaca puede ver si el aporte fue confirmado, sigue pendiente o necesita intentarse otra vez.
 
-### Diego, 29
+### 4. Usar el fondo
 
-Ingeniero de software
+Desde Inicio, el grupo ve:
 
-“Quiero que la casa se pague sola.”
+- saldo disponible;
+- dinero reservado para próximos recibos;
+- aportes completos y pendientes;
+- gastos recientes;
+- siguiente pago por atender.
 
-- Contexto: Sueldo fijo; abandonó las apps de deuda porque aún debía acordarse de transferir.
-- Fricción: El software calcula el monto, pero él sigue ejecutando la acción todos los meses.
+Para pagar, una persona registra o selecciona el gasto, revisa cuánto quedará en el fondo y confirma. Si el monto supera la regla acordada, la app pide una segunda aprobación.
 
-### Viaje actual
+### 5. Revisar y comenzar otro ciclo
 
-1. Ocurre el gasto. Alguien adelanta de su bolsillo. Estado emocional: Neutral.
-2. Se registra. El grupo ve quién debe cuánto. Estado emocional: Neutral.
-3. Pasan los días. La transferencia no ocurre. Estado emocional: Duda.
-4. Se recuerda. Aparece el mensaje incómodo. Estado emocional: Tensión.
-5. Se resuelve. Todos quedan al día hasta el próximo gasto. Estado emocional: Alivio.
+Cada movimiento muestra quién aportó o pagó, cuándo ocurrió y cuál fue el resultado. Al terminar el periodo, el grupo revisa los gastos, conserva el saldo restante o ajusta los aportes del siguiente mes.
 
-El punto de dolor no es calcular una deuda. Es tener que activar socialmente el reembolso.
+```text
+Crear fondo ──────── Unirse al fondo
+       \                 /
+        Revisar y aceptar reglas
+                  ↓
+      Aportar con Yape, Plin o banco
+                  ↓
+      Ver saldo y próximos gastos
+             ↙            ↘
+         Aportar          Pagar
+             \            /
+        Confirmación y actividad
+                  ↓
+        Cierre del periodo
+```
 
-## Definir la secuencia correcta
+## Las decisiones de UX que sostienen el concepto
 
-## Si el dinero llega primero, el cobro deja de existir.
+### Mostrar el dinero antes de mostrar funciones
 
-La hipótesis invierte el orden habitual. Vaca no registra una deuda después del pago; crea disponibilidad compartida antes de que exista el gasto.
+El saldo disponible ocupa el lugar principal en Inicio. Cerca aparecen los aportes pendientes y los recibos próximos. Quise que una persona pudiera entender el estado de la casa antes de tocar cualquier botón.
 
-### Pregunta de diseño
+### Explicar qué cambiará antes de confirmar
 
-¿Cómo podríamos pagar los gastos del hogar sin que una persona tenga que adelantar dinero ni perseguir reembolsos?
+Cuando alguien aporta o paga, Vaca muestra el saldo actual y el saldo posterior. La consecuencia de la acción aparece en el momento en que todavía puede revisarse.
 
-### Flujo propuesto
+Ejemplo:
 
-1. Crear o unirse al fondo. Un link conecta a todos los roommates con una misma cuenta de grupo.
-2. Aportar una parte inicial. Cada miembro recarga con un método familiar y ve su contribución.
-3. Activar el fondo. El balance queda visible para todos y reemplaza las deudas individuales.
-4. Pagar desde el fondo. El gasto descuenta del saldo común y se registra automáticamente.
-5. Reponer y cerrar el mes. El sistema alerta por umbral y deja una lectura transparente del ciclo.
+> Vas a pagar S/ 99 de internet. Quedarán S/ 381 disponibles y S/ 120 reservados para luz.
 
-### Arquitectura de información
+### Usar hábitos que ya existen
 
-- Onboarding: Crear fondo · Unirse con link
-- Inicio: Balance · Movimientos
-- Fondo: Aportar · Registrar gasto · Reglas
-- Grupo: Miembros · Invitaciones · Alertas
+Yape y Plin aparecen como opciones al momento de aportar porque ya forman parte de la rutina de pago de muchas personas en Perú. Esa familiaridad permite concentrar la interfaz en el monto, la confirmación y el estado posterior de la operación.
 
-## Idear con restricciones reales
+### Hacer visibles los estados intermedios
 
-## Tres decisiones definieron el producto y también sus riesgos.
+Una transferencia puede tardar o fallar. En esos casos, la app evita sumar el monto antes de confirmarlo y explica qué puede hacer la persona.
 
-El concepto solo funciona si sostiene confianza, baja la fricción de adopción y explica con honestidad dónde vive el dinero.
+> Estamos confirmando tu aporte. Puede tardar unos minutos en aparecer en el fondo.
 
-### Fondo prepagado, no deuda posterior
+### Convertir las reglas en parte de la interfaz
 
-Exige confianza inicial y capital por adelantado, pero elimina el cobro recurrente y la espera.
+La app reúne los aportes, permisos y límites que normalmente quedarían dispersos en una conversación. Cualquier cambio deja un registro visible para el grupo.
 
-### Recarga con hábitos locales
+> Este pago necesita una aprobación más porque supera el límite acordado por el grupo.
 
-Usar métodos de transferencia ya conocidos reduce aprendizaje, aunque limita el producto a un ecosistema regional.
+### Diseñar también la salida
 
-### Balance como protagonista
+Una persona puede mudarse o dejar de participar. El flujo permite revisar su saldo, los pagos pendientes y la fecha de devolución antes de abandonar el fondo.
 
-Sacrifica detalle inmediato a cambio de transparencia: todos ven cuánto existe antes de gastar.
+## Las pantallas que necesita el flujo
 
-### Una promesa compartida necesita una arquitectura financiera creíble.
+Diseñé doce pantallas principales para representar el ciclo completo, desde la creación del fondo hasta el cierre del periodo.
 
-Para un MVP, Vaca no debería custodiar fondos directamente ni convertir la cuenta de un roommate en cuenta del grupo. El modelo conceptual requiere un partner regulado que mantenga el dinero segregado y un ledger que represente cada fondo.
+### Onboarding
 
-1. Aporte. El usuario transfiere desde su cuenta personal.
-2. Ledger Vaca. La app registra cuánto corresponde a cada grupo.
-3. Partner regulado. Procesa el dinero y mantiene la custodia.
-4. Fondo del grupo. El saldo queda respaldado y separado de una persona individual.
+1. **Bienvenida y acceso.** Presenta la idea y permite ingresar con el número de celular.
+2. **Crear o unirse.** Abre las dos rutas principales sin pedir datos innecesarios.
+3. **Crear fondo.** Define nombre, integrantes y gastos previstos.
+4. **Aportes y reglas.** Configura montos, fechas, permisos y aprobaciones.
+5. **Invitación.** Resume el acuerdo y permite compartir enlace, código o QR.
+6. **Unirse al fondo.** Muestra integrantes, aporte y reglas antes de aceptar.
 
-Hipótesis de arquitectura. La operación, licencias, custodia y compliance deben validarse con especialistas antes de construir.
+### Uso principal
 
-## Prototipar el ciclo completo
+7. **Elegir método y aportar.** Incluye Yape, Plin y transferencia bancaria.
+8. **Inicio.** Reúne saldo, aportes, próximos pagos y actividad reciente.
+9. **Detalle del fondo.** Muestra el avance del periodo y lo que todavía falta cubrir.
+10. **Pagar un gasto.** Permite revisar destinatario, monto y saldo posterior.
+11. **Confirmación y movimiento.** Comunica el resultado y conserva el comprobante.
+12. **Grupo y reglas.** Gestiona integrantes, aprobaciones, cambios y salida.
 
-## Ocho pantallas, una misma promesa: todos ven la misma plata.
+### Estados que acompañan las pantallas
 
-El prototipo cubre la creación, el aporte, el gasto, la reposición y el cierre. Las pantallas se exploran como un sistema vivo, no como una galería estática.
+Cada pantalla debe contemplar las situaciones que cambian la decisión de una persona:
 
-Explorar pantalla
+- fondo vacío, parcial, completo o con saldo bajo;
+- aporte pendiente, confirmado o fallido;
+- pago directo o pendiente de aprobación;
+- invitación pendiente o vencida;
+- integrante que todavía no aporta;
+- salida del grupo y devolución del saldo;
+- falta de conexión o acceso perdido.
 
-### Crear
+La seguridad, la biometría, las notificaciones, la privacidad y la accesibilidad acompañan estos flujos. Las integré como soporte de las tareas principales, con presencia solo cuando una decisión las requiere.
 
-#### Arma tu fondo
+## Cómo quiero probarlo
 
-- Nombre: Depa San Isidro
-- Mensaje: Invita a tus roommates y define cómo funcionará el fondo.
-- CTA: Crear fondo
-- Detalle: Todos aportan · El fondo paga · Todos ven
-- Decisión: Explica el modelo antes de pedir un compromiso financiero.
+La primera prueba debe responder una pregunta concreta: ¿las personas entienden y aceptarían aportar antes del gasto?
 
-### Inicio
+El prototipo permite observar seis tareas:
 
-#### Fondo del depa
+1. Crear un fondo para una casa con tres integrantes.
+2. Entender cuánto debe aportar cada persona.
+3. Unirse y completar un aporte con Yape o Plin.
+4. Identificar por qué un aporte continúa pendiente.
+5. Pagar un servicio sin comprometer el siguiente recibo.
+6. Salir del grupo y entender qué ocurrirá con el saldo.
 
-- Saldo: S/ 480
-- Mensaje: S/ 85 gastados · S/ 395 disponibles
-- CTA: Aportar
-- Detalle: Movimientos visibles para todo el grupo
-- Decisión: La confianza empieza con un balance compartido, legible y siempre visible.
+También contrastaré la idea con personas que compartan vivienda. Esta iteración nació de mi experiencia; las entrevistas permitirán descubrir qué partes se repiten en otros hogares y cuáles responden solo a mi manera de organizarme.
 
-### Aportar
+## Estado del caso y siguiente paso
 
-#### Recargar fondo
+El resultado actual conecta la necesidad personal con una propuesta de producto, un flujo end-to-end y doce pantallas que representan el ciclo del fondo.
 
-- Monto: S/ 50
-- Mensaje: El fondo pasará de S/ 430 a S/ 480.
-- CTA: Confirmar aporte
-- Detalle: Método habitual de transferencia
-- Decisión: El antes y después evita que el monto quede aislado de su efecto real.
+Todavía no existen resultados de usabilidad ni métricas de uso. La siguiente fase consiste en probar el prototipo y comprobar si el fondo previo se entiende, genera confianza y reduce la necesidad de recordar pagos.
 
-### Gasto
-
-#### Nuevo gasto
-
-- Monto: S/ 99
-- Mensaje: Internet · El fondo quedará en S/ 381.
-- CTA: Pagar desde el fondo
-- Detalle: Nadie adelanta dinero personal
-- Decisión: La consecuencia aparece antes de confirmar, sin abrir una deuda entre personas.
-
-### Invitar
-
-#### Invita a tu depa
-
-- Código: VACA-8F2K
-- Mensaje: 2 de 4 roommates confirmados.
-- CTA: Copiar invitación
-- Detalle: Andrea invitada · Bruno pendiente
-- Decisión: El progreso de activación hace visible qué falta para poner el fondo en marcha.
-
-### Alerta
-
-#### Fondo bajo
-
-- Saldo: S/ 40
-- Mensaje: No alcanza para internet y luz de los próximos días.
-- CTA: Aportar ahora
-- Detalle: Necesidad mensual estimada: S/ 165
-- Decisión: La alerta conecta el saldo con compromisos concretos, no con miedo abstracto.
-
-### Reglas
-
-#### Quién aporta cuánto
-
-- Aporte: S/ 160 × 3
-- Mensaje: Rodrigo · Caro · Diego aportan partes iguales.
-- CTA: Guardar cambios
-- Detalle: Recordatorio automático activo
-- Decisión: Una barra proporcional comunica equidad más rápido que una lista de números.
-
-### Cierre
-
-#### Cierre de julio
-
-- Saldo: S/ 480
-- Mensaje: Aportes completos y gastos visibles para el grupo.
-- CTA: Ver detalle
-- Detalle: Comparación con mayo y junio
-- Decisión: El cierre cuenta una historia del fondo sin convertirse en una hoja contable.
-
-### Navegación de los mockups
-
-- vaca
-- 9:41
-- •••
-- Inicio
-- Fondo
-- Grupo
-- Una decisión principal por pantalla
-
-Alt text propuesto: Prototipo móvil de Vaca con ocho estados del ciclo del fondo: creación, inicio, aporte, gasto, invitación, alerta, reglas y cierre mensual.
-
-### Sistema visual
-
-## El sistema se construye desde lo que se repite.
-
-- Cream · #F1EBDC · Superficie base
-- Green 900 · #16352A · Acción y confianza
-- Gold · #D9A438 · Aportes y logros
-- Alert · #C15B3B · Atención con contexto
-
-### Componentes
-
-- Tab bar: 8 pantallas
-- Botón: 7 pantallas · Primary, Ghost, Alert
-- Movimiento: 3 pantallas · Normal y alerta
-- Barra comparativa: 4 pantallas · Saldo antes/después
-
-## Métricas y resultados
-
-## La asunción más grande todavía está abierta.
-
-El concepto no fue validado con un piloto. El siguiente paso es comprobar si los grupos realmente prefieren aportar por adelantado y si el fondo reduce la tensión sin crear una nueva desconfianza.
-
-### Asunciones
-
-#### Confianza inicial
-
-¿Las personas pondrían dinero antes de que exista un gasto?
-
-#### Gobernanza
-
-¿Qué ocurre cuando alguien se muda, discrepa o quiere retirar su aporte?
-
-#### Transparencia
-
-¿El balance compartido reduce dudas o genera vigilancia entre roommates?
-
-### Señales para medir
-
-#### Fondos activos en el segundo mes
-
-La reposición mensual indica que el modelo sobrevivió a la novedad inicial.
-
-#### Tiempo entre gasto y pago
-
-El objetivo es pasar de días de espera a una operación inmediata desde el fondo.
-
-#### Recordatorios en el chat
-
-La señal humana más clara: que desaparezca el mensaje “¿ya depositaste?”.
-
-### Siguiente experimento
-
-Prototipo clicable con 3 o 4 hogares reales durante dos ciclos mensuales, incluyendo escenarios de aporte incompleto y desacuerdo.
-
-Vaca no busca que dividir gastos sea más eficiente. Busca que compartir una casa necesite menos negociación cotidiana.
+Si esa hipótesis no se sostiene, retomaría la alternativa de recordatorios automáticos sin fondo compartido.
 
 ## Siguiente caso
 
 ### BBVA Perú
 
-Convertir una oferta de crédito en una experiencia clara.
+Diseñar un mailing de préstamo bajo restricciones de marca, canal y compliance.
 
-Diseño e implementación de comunicaciones CRM con jerarquía, personalización dinámica y compliance bancario.
-
-- Email UX
-- Salesforce MC
-- Design Engineering
+- UX para email
+- Salesforce Marketing Cloud
+- Diseño responsive
 
 CTA: Ver caso
 
 Enlace: /casos/bbva
-
-## Pie de página
-
-- © 2026 Rodrigo Aquije
-- Diseñado y construido en Lima.
-- Email
-- LinkedIn

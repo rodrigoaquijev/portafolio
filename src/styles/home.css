@@ -730,7 +730,6 @@ body.is-loading { overflow: hidden; }
   .hero-avatar-block small { display: none; }
   .ref-home--contrast .ref-bio, .about-layout { grid-template-columns: 1fr; gap: 24px; }
   .ref-home--contrast .ref-bio { padding-top: 18px; font-size: 16px; line-height: 1.48; }
-  .ref-home--contrast .ref-bio p:nth-child(2) { display: none; }
   .ref-home--contrast .ref-actions { flex-wrap: nowrap; gap: 6px; }
   .ref-home--contrast .hire-console { width: 132px; flex: 0 0 auto; }
   .ref-home--contrast .hire-trigger, .ref-home--contrast .ref-secondary { height: 44px; padding-inline: 10px; font-size: 11px; }
@@ -759,4 +758,3 @@ body.is-loading { overflow: hidden; }
   .loading-screen { transition-duration: .01ms !important; }
   .loading-screen i::after { animation-duration: .01ms !important; }
 }
-
