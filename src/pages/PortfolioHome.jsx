@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { GrainGradient } from '@paper-design/shaders-react';
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
 import { ArrowCircleRightIcon } from '@phosphor-icons/react/dist/csr/ArrowCircleRight';
-import { Check, Copy, Linkedin, Send } from 'lucide-react';
+import { Check, Copy, Linkedin, Send, Sparkles } from 'lucide-react';
 import SiteHeader from '../components/SiteHeader.jsx';
 import SiteLoader from '../components/SiteLoader.jsx';
 import SectionLabel from '../components/SectionLabel.jsx';
@@ -36,6 +36,8 @@ const CONTENT = {
     workIntro: 'Cuatro casos de estudio: uno profesional de UX para email y tres proyectos conceptuales sobre estados transaccionales, decisiones financieras y gastos compartidos.', open: 'Explorar caso completo', soon: 'Caso en desarrollo',
     capabilities: 'Habilidades & especialidades', connect: 'Conectemos', footer: 'Diseñado y construido en Lima.',
     linkedinAction: 'Conectar en LinkedIn', linkedinNetwork: 'Red profesional', overlayLabels: ['Rol', 'Problema', 'Contribución'],
+    avatarAction: 'Abrir nota de close friends', avatarHint: 'Close friends', avatarNote: 'Close friends · Nota personal', avatarStoryTitle: 'Si llegaste hasta aquí, ya estás dentro.',
+    avatarStoryCopy: 'Escucho álbumes completos, vivo con Lola y Perlita y estoy aprendiendo a cocinar.', avatarStoryCta: 'Conocer mi lado personal',
     capabilityData: [
       { title: 'Producto y UX/UI', desc: 'Defino arquitectura de información, flujos, estados y prototipos para convertir requisitos de usuario y negocio en decisiones de interfaz.', proof: 'Del problema al prototipo que se puede revisar y probar.', chips: ['Figma', 'Framer', 'Investigación de usuarios', 'Prototipado'] },
       { title: 'Interfaces y front-end', desc: 'Construyo prototipos funcionales y sistemas de componentes para comprobar comportamiento, responsive y consistencia fuera del archivo de diseño.', proof: 'El código funciona como una herramienta para validar y comunicar decisiones de diseño.', chips: ['HTML', 'CSS', 'JavaScript', 'React'] },
@@ -62,6 +64,8 @@ const CONTENT = {
     workIntro: 'Four case studies: one professional email UX case and three conceptual projects about transaction states, financial decisions and shared expenses.', open: 'Explore full case', soon: 'Case in progress',
     capabilities: 'Capabilities & craft', connect: 'Let’s connect', footer: 'Designed and built in Lima.',
     linkedinAction: 'Connect on LinkedIn', linkedinNetwork: 'Professional network', overlayLabels: ['Role', 'Problem', 'Contribution'],
+    avatarAction: 'Open close friends note', avatarHint: 'Close friends', avatarNote: 'Close friends · Personal note', avatarStoryTitle: 'If you made it here, you are already in.',
+    avatarStoryCopy: 'I listen to full albums, live with Lola and Perlita, and I am learning to cook.', avatarStoryCta: 'See my personal side',
     capabilityData: [
       { title: 'Product and UX/UI', desc: 'I define information architecture, flows, states and prototypes to turn user and business requirements into interface decisions.', proof: 'From the problem to a prototype that can be reviewed and tested.', chips: ['Figma', 'Framer', 'User research', 'Prototyping'] },
       { title: 'Interfaces and front-end', desc: 'I build functional prototypes and component systems to check behavior, responsiveness and consistency outside the design file.', proof: 'Code is a tool for validating and communicating design decisions.', chips: ['HTML', 'CSS', 'JavaScript', 'React'] },
@@ -86,7 +90,9 @@ export default function PortfolioHome() {
   const [scrolled, setScrolled] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [avatarOpen, setAvatarOpen] = useState(false);
   const t = CONTENT[lang];
+  const emailCopied = toast === t.copied;
 
   useEffect(() => { document.title = 'Rodrigo Aquije — Product Designer & UX/UI Designer'; }, [lang]);
 
@@ -101,6 +107,7 @@ export default function PortfolioHome() {
   }, []);
 
   useEffect(() => { if (!toast) return undefined; const timer = setTimeout(() => setToast(''), 2400); return () => clearTimeout(timer); }, [toast]);
+  useEffect(() => { if (!avatarOpen) return undefined; const closeOnEscape = (event) => { if (event.key !== 'Escape') return; setAvatarOpen(false); if (document.activeElement instanceof HTMLElement && document.activeElement.closest('.hero-avatar-interaction')) document.activeElement.blur(); }; window.addEventListener('keydown', closeOnEscape); return () => window.removeEventListener('keydown', closeOnEscape); }, [avatarOpen]);
   useEffect(() => { const nodes = document.querySelectorAll('.ref-reveal'); const observer = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('is-visible')), { threshold: .1 }); nodes.forEach((node) => observer.observe(node)); return () => observer.disconnect(); }, []);
   useEffect(() => { const sections = document.querySelectorAll('[data-section]'); const observer = new IntersectionObserver((entries) => { const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]; if (visible) setCurrentSection(visible.target.dataset.section); }, { rootMargin: '-24% 0px -58% 0px', threshold: [0, .2, .45] }); sections.forEach((section) => observer.observe(section)); return () => observer.disconnect(); }, []);
 
@@ -114,7 +121,28 @@ export default function PortfolioHome() {
     <div className="ref-ambient" aria-hidden="true" />
     <div className="ref-column">
       <SiteHeader items={[{ id: 'about', label: t.nav.about }, { id: 'projects', label: t.nav.work }, { id: 'capabilities', label: t.nav.capabilities }, { id: 'contact', label: t.nav.contact }]} open={menuOpen} setOpen={setMenuOpen} onNavigate={scrollTo} currentSection={currentSection} scrolled={scrolled} />
-      <section className="ref-section ref-hero ref-reveal"><div className="hero-heading-grid"><div><EditorialKicker>{t.eyebrow}</EditorialKicker><h1 className="ref-hero-title">{t.title}</h1><p className="ref-hero-role">{t.role}</p></div><div className="hero-avatar-block"><span className="hero-avatar-ring"><img src={avatarImage} alt="Rodrigo Aquije" /></span><span>{t.location}</span><small>{t.profile}</small></div></div><div className="ref-bio"><p>{t.bio}</p><p>{t.bioDetail}</p></div><div className="ref-actions"><HireConsole t={t} open={hireOpen} setOpen={setHireOpen} sound={sound} /><button className="ref-secondary ref-press" onClick={copyEmail}><Copy size={18} /> {t.copy}</button><LinkedInButton t={t} /></div></section>
+      <section className="ref-section ref-hero ref-reveal">
+        <div className="hero-heading-grid">
+          <div><EditorialKicker>{t.eyebrow}</EditorialKicker><h1 className="ref-hero-title">{t.title}</h1><p className="ref-hero-role">{t.role}</p></div>
+          <div className="hero-avatar-block">
+            <div className={`hero-avatar-interaction ${avatarOpen ? 'is-open' : ''}`}>
+              <button className="hero-avatar-ring" type="button" aria-label={t.avatarAction} aria-expanded={avatarOpen} aria-controls="avatar-close-friends-card" onClick={() => { setAvatarOpen((open) => !open); sound(720); }}>
+                <img src={avatarImage} alt="Rodrigo Aquije" />
+                <span className="hero-avatar-badge" aria-hidden="true"><Sparkles size={15} /></span>
+              </button>
+              <div id="avatar-close-friends-card" className="avatar-story-card" role="note">
+                <span>{t.avatarNote}</span>
+                <strong>{t.avatarStoryTitle}</strong>
+                <p>{t.avatarStoryCopy}</p>
+                <Link to="/sobre-mi" onClick={() => setAvatarOpen(false)}>{t.avatarStoryCta}<ArrowBendUpRightIcon weight="bold" /></Link>
+              </div>
+            </div>
+            <span>{t.location}</span><small>{t.profile}</small><em>{t.avatarHint}</em>
+          </div>
+        </div>
+        <div className="ref-bio"><p>{t.bio}</p><p>{t.bioDetail}</p></div>
+        <div className="ref-actions"><HireConsole t={t} open={hireOpen} setOpen={setHireOpen} sound={sound} /><button className={`ref-secondary ref-press copy-email-button ${emailCopied ? 'is-copied' : ''}`} onClick={copyEmail} aria-label={emailCopied ? t.copied : t.copy}><span className="copy-email-icon" aria-hidden="true">{emailCopied ? <Check size={17} /> : <Copy size={17} />}</span><span>{emailCopied ? t.copied : t.copy}</span></button><LinkedInButton t={t} /></div>
+      </section>
       <section id="projects" data-section="projects" className="ref-section projects-section ref-reveal"><div className="ref-heading-row"><div><SectionLabel>{t.selected}</SectionLabel><h2>{t.workTitle}</h2></div><p>{t.workIntro}</p></div><div className="case-square-grid">{t.projects.map((project) => <CaseCard key={project.name} project={project} t={t} onOpen={() => project.href ? window.location.assign(project.href) : notify(t.soon)} />)}</div></section>
       <section id="about" data-section="about" className="ref-section about-section ref-reveal"><SectionLabel>{t.about}</SectionLabel><div className="about-layout"><h2>{t.aboutTitle}</h2><div><p>{t.aboutCopy}</p><p>{t.aboutAside}</p><Link className="about-page-cta" to="/sobre-mi"><span>{t.aboutCta}</span><ArrowBendUpRightIcon weight="bold" /></Link></div></div><div className="ref-client-strip" aria-label={t.trust}>{CLIENTS[lang].map(([name, type]) => <span key={name}><strong>{name}</strong><small>{type}</small></span>)}</div></section>
       <section id="capabilities" data-section="capabilities" className="ref-section capabilities-section capabilities-section--shader ref-reveal"><CapabilityShader theme={theme} reducedMotion={reducedMotion} /><div className="capabilities-content"><SectionLabel>{t.capabilities}</SectionLabel><div className="capability-list capability-list--expressive">{t.capabilityData.map((capability) => <article key={capability.title} className="capability-row capability-row--expressive"><div><h3>{capability.title}</h3><p>{capability.desc}</p></div><div className="capability-reveal"><strong>{capability.proof}</strong><span>{capability.chips.map((chip) => <small key={chip}>{chip}</small>)}</span><ArrowBendUpRightIcon weight="duotone" /></div></article>)}</div></div></section>

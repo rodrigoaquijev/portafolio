@@ -76,6 +76,9 @@ Conectar en LinkedIn
 ### Imagen
 
 - Alt text: Rodrigo Aquije
+- Interacción del aro: revela una nota “Close friends” con intereses personales y acceso a “Sobre mí”.
+- Etiqueta: Close friends
+- Nota: Escucho álbumes completos, vivo con Lola y Perlita y estoy aprendiendo a cocinar.
 
 ## Casos de estudio
 

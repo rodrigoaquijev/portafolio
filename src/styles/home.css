@@ -70,6 +70,16 @@ body:has(.ref-home) { padding-bottom: 0; }
 .ref-press { transition: transform .22s cubic-bezier(.175,.885,.32,1.275), filter .2s, border-color .2s; }
 .ref-press:hover { border-color: var(--ref-line-strong); transform: translateY(-2px); }
 .ref-press:active { transform: translateY(1px) scale(.975); filter: brightness(.94); }
+.copy-email-button { position: relative; min-width: 136px; overflow: hidden; isolation: isolate; transition: color .25s, border-color .25s, box-shadow .3s, transform .22s cubic-bezier(.175,.885,.32,1.275); }
+.copy-email-button::before { content: ''; position: absolute; inset: 0; z-index: -1; background: color-mix(in srgb, var(--close-friends) 16%, var(--ref-panel)); transform: translateX(-102%); transition: transform .42s cubic-bezier(.16,1,.3,1), background .25s; }
+.copy-email-button:hover { color: var(--text-pure); border-color: color-mix(in srgb, var(--close-friends) 62%, var(--ref-line)); box-shadow: 0 12px 28px color-mix(in srgb, var(--close-friends) 15%, transparent); }
+.copy-email-button:hover::before, .copy-email-button:focus-visible::before, .copy-email-button.is-copied::before { transform: none; }
+.copy-email-button > span { position: relative; z-index: 1; }
+.copy-email-icon { width: 27px; height: 27px; display: grid; place-items: center; border: 1px solid var(--ref-line); border-radius: 8px; transition: color .25s, background .25s, border-color .25s, transform .35s cubic-bezier(.175,.885,.32,1.275); }
+.copy-email-button:hover .copy-email-icon, .copy-email-button:focus-visible .copy-email-icon { color: #06120d; border-color: transparent; background: var(--close-friends); transform: rotate(-7deg) scale(1.06); }
+.copy-email-button.is-copied { color: #06120d; border-color: var(--close-friends); background: var(--close-friends); box-shadow: 0 12px 30px color-mix(in srgb, var(--close-friends) 22%, transparent); }
+.copy-email-button.is-copied::before { background: var(--close-friends); }
+.copy-email-button.is-copied .copy-email-icon { color: #06120d; border-color: color-mix(in srgb, #06120d 15%, transparent); background: rgba(255,255,255,.24); transform: none; }
 
 .project-console { overflow: hidden; border: 1px solid var(--ref-line-strong); border-radius: 18px; background: var(--ref-panel); box-shadow: 0 28px 80px -45px rgba(0,0,0,.7), inset 0 1px 1px rgba(255,255,255,.08); }
 .console-topbar { min-height: 54px; padding: 8px 10px; display: grid; grid-template-columns: 36px 1fr 36px; align-items: center; border-bottom: 1px solid var(--ref-line); background: color-mix(in srgb, var(--ref-raised) 72%, transparent); }
@@ -580,10 +590,27 @@ body.is-loading { overflow: hidden; }
 .ref-home--contrast .ref-hero-title { max-width: 890px; font-family: var(--font-display); font-size: clamp(76px, 10.5vw, 124px); font-weight: 500; line-height: .82; letter-spacing: -.055em; }
 .ref-home--contrast .ref-hero-title { color: var(--text-pure); }
 .ref-home--contrast .ref-hero-role { margin-top: 24px; font-family: var(--font-ui); font-size: var(--type-step-1); font-weight: 600; letter-spacing: -.025em; }
-.hero-avatar-block { display: flex; flex-direction: column; align-items: center; padding-bottom: 8px; color: var(--text-muted); font-family: var(--font-ui); font-size: 13px; text-align: center; }
-.hero-avatar-ring { width: 138px; height: 138px; margin-bottom: 16px; padding: 5px; display: block; border-radius: 50%; background: conic-gradient(from 20deg, var(--close-friends), var(--close-friends-highlight), var(--close-friends)); box-shadow: 0 0 0 5px color-mix(in srgb, var(--close-friends) 11%, transparent), 0 20px 55px var(--close-friends-shadow); }
-.hero-avatar-ring img { width: 100%; height: 100%; display: block; border: 4px solid var(--bg-deep); border-radius: inherit; object-fit: cover; }
+.hero-avatar-block { position: relative; display: flex; flex-direction: column; align-items: center; padding-bottom: 8px; color: var(--text-muted); font-family: var(--font-ui); font-size: 13px; text-align: center; }
+.hero-avatar-interaction { position: relative; z-index: 85; margin-bottom: 16px; }
+.hero-avatar-interaction::after { content: ''; position: absolute; top: 100%; left: 50%; width: 300px; height: 14px; transform: translateX(-50%); }
+.hero-avatar-ring { position: relative; width: 138px; height: 138px; padding: 5px; display: block; border: 0; border-radius: 50%; outline: 0; background: conic-gradient(from 20deg, var(--close-friends), var(--close-friends-highlight), var(--close-friends)); box-shadow: 0 0 0 5px color-mix(in srgb, var(--close-friends) 11%, transparent), 0 20px 55px var(--close-friends-shadow); cursor: pointer; transition: transform .45s cubic-bezier(.175,.885,.32,1.275), box-shadow .35s, filter .3s; }
+.hero-avatar-ring:hover, .hero-avatar-ring:focus-visible, .hero-avatar-interaction.is-open .hero-avatar-ring { filter: saturate(1.12); transform: translateY(-5px) rotate(-2deg) scale(1.025); box-shadow: 0 0 0 7px color-mix(in srgb, var(--close-friends) 15%, transparent), 0 24px 64px var(--close-friends-shadow); }
+.hero-avatar-ring:focus-visible { box-shadow: 0 0 0 3px var(--bg-deep), 0 0 0 7px var(--close-friends), 0 24px 64px var(--close-friends-shadow); }
+.hero-avatar-ring img { width: 100%; height: 100%; display: block; border: 4px solid var(--bg-deep); border-radius: inherit; object-fit: cover; pointer-events: none; }
+.hero-avatar-badge { position: absolute; right: -2px; bottom: 8px; width: 34px; height: 34px; display: grid; place-items: center; border: 4px solid var(--bg-deep); border-radius: 50%; color: #06120d; background: var(--close-friends); box-shadow: 0 0 0 1px color-mix(in srgb, var(--close-friends) 55%, transparent), 0 7px 20px var(--close-friends-shadow); animation: closeFriendsPulse 2.8s ease-in-out infinite; transition: transform .4s cubic-bezier(.175,.885,.32,1.275), background .25s; }
+.hero-avatar-ring:hover .hero-avatar-badge, .hero-avatar-ring:focus-visible .hero-avatar-badge { transform: rotate(12deg) scale(1.08); }
+.hero-avatar-interaction.is-open .hero-avatar-badge { background: var(--close-friends-highlight); transform: rotate(180deg); }
+.avatar-story-card { position: absolute; top: calc(100% + 12px); left: 50%; z-index: 90; width: 310px; padding: 18px; display: grid; gap: 10px; border: 1px solid color-mix(in srgb, var(--close-friends) 38%, var(--ref-line)); border-radius: 18px; color: var(--text-pure); background: color-mix(in srgb, var(--bg-surface-elevated) 90%, transparent); box-shadow: 0 26px 70px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.08); backdrop-filter: blur(24px) saturate(135%); opacity: 0; visibility: hidden; transform: translate(-50%, -8px) scale(.96); transform-origin: top center; transition: opacity .2s, visibility .2s, transform .38s cubic-bezier(.16,1,.3,1); pointer-events: none; text-align: left; }
+.hero-avatar-interaction:hover .avatar-story-card, .hero-avatar-interaction:focus-within .avatar-story-card, .hero-avatar-interaction.is-open .avatar-story-card { opacity: 1; visibility: visible; transform: translate(-50%, 0) scale(1); pointer-events: auto; }
+.avatar-story-card > span { color: var(--close-friends); font: 650 9px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+.avatar-story-card > strong { max-width: 20ch; font: 500 25px/1.02 var(--font-display); letter-spacing: -.035em; text-wrap: balance; }
+.avatar-story-card > p { max-width: 34ch; color: var(--text-muted); font-size: 13px; line-height: 1.52; }
+.avatar-story-card > a { margin-top: 3px; padding-top: 11px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--ref-line); color: var(--text-pure); font: 650 12px var(--font-ui); transition: color .2s, padding-left .25s; }
+.avatar-story-card > a:hover, .avatar-story-card > a:focus-visible { padding-left: 4px; color: var(--close-friends); }
+.avatar-story-card > a svg { width: 17px; height: 17px; }
 .hero-avatar-block small { margin-top: 4px; color: var(--text-subtle); font-family: var(--font-sans); font-size: 11px; }
+.hero-avatar-block em { margin-top: 7px; color: var(--close-friends); font: 650 8px var(--font-mono); font-style: normal; letter-spacing: .1em; text-transform: uppercase; }
+@keyframes closeFriendsPulse { 50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--close-friends) 12%, transparent), 0 9px 24px var(--close-friends-shadow); } }
 .ref-home--contrast .ref-bio { padding-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 58px; font-size: clamp(18px, 2vw, 22px); line-height: 1.62; }
 .ref-home--contrast .ref-actions { margin-top: 4px; }
 .ref-home--contrast .hire-console { width: 190px; }
@@ -591,9 +618,11 @@ body.is-loading { overflow: hidden; }
 .ref-home--contrast .hire-trigger, .ref-home--contrast .ref-secondary { height: 50px; font: 600 13px var(--font-ui); }
 .ref-home--contrast .ref-icon-button { width: 50px; height: 50px; overflow: visible; }
 
-.linkedin-hover { position: relative; }
+.linkedin-hover { position: relative; transition: color .22s, border-color .22s, background .22s, transform .28s cubic-bezier(.175,.885,.32,1.275), box-shadow .28s; }
+.linkedin-hover::before { content: ''; position: absolute; left: 50%; bottom: 100%; width: 330px; height: 18px; transform: translateX(-50%); }
+.linkedin-hover:hover, .linkedin-hover:focus-visible { color: #fff; border-color: #0a66c2; background: #0a66c2; box-shadow: 0 12px 28px rgba(10,102,194,.26); transform: translateY(-2px); }
 .linkedin-profile-card { position: absolute; left: 50%; bottom: calc(100% + 15px); z-index: 70; width: 330px; overflow: hidden; border: 1px solid rgba(10,102,194,.25); border-radius: 14px; color: #191919; background: #fff; box-shadow: 0 28px 70px rgba(0,0,0,.3); opacity: 0; visibility: hidden; transform: translate(-50%, 12px) scale(.97); transform-origin: bottom center; transition: opacity .2s, visibility .2s, transform .35s cubic-bezier(.16,1,.3,1); pointer-events: none; text-align: left; }
-.linkedin-hover:hover .linkedin-profile-card, .linkedin-hover:focus-visible .linkedin-profile-card { opacity: 1; visibility: visible; transform: translate(-50%, 0) scale(1); }
+.linkedin-hover:hover .linkedin-profile-card, .linkedin-hover:focus-visible .linkedin-profile-card, .linkedin-hover:focus-within .linkedin-profile-card { opacity: 1; visibility: visible; transform: translate(-50%, 0) scale(1); pointer-events: auto; }
 .linkedin-banner { height: 82px; display: flex; align-items: flex-start; justify-content: flex-end; padding: 12px 15px; background: linear-gradient(120deg, #0a66c2, #004182); }
 .linkedin-banner b { color: #fff; font: 700 25px/1 Arial, sans-serif; }
 .linkedin-card-body { position: relative; padding: 48px 20px 19px; display: flex; flex-direction: column; }
@@ -726,9 +755,17 @@ body.is-loading { overflow: hidden; }
   .ref-home--contrast .ref-hero-title { font-size: clamp(54px, 17vw, 68px); line-height: .84; }
   .ref-home--contrast .ref-hero-role { margin-top: 13px; font-size: 15px; line-height: 1.2; }
   .hero-avatar-block { align-items: center; padding-bottom: 2px; font-size: 10px; text-align: center; }
-  .hero-avatar-ring { width: 74px; height: 74px; margin-bottom: 8px; padding: 3px; box-shadow: 0 0 0 3px color-mix(in srgb, var(--close-friends) 11%, transparent), 0 12px 30px var(--close-friends-shadow); }
+  .hero-avatar-interaction { margin-bottom: 8px; }
+  .hero-avatar-interaction::after { width: min(300px, calc(100vw - 28px)); height: 10px; }
+  .hero-avatar-ring { width: 74px; height: 74px; padding: 3px; box-shadow: 0 0 0 3px color-mix(in srgb, var(--close-friends) 11%, transparent), 0 12px 30px var(--close-friends-shadow); }
   .hero-avatar-ring img { border-width: 2px; }
+  .hero-avatar-badge { right: -4px; bottom: 2px; width: 25px; height: 25px; border-width: 3px; }
+  .hero-avatar-badge svg { width: 11px; height: 11px; }
+  .avatar-story-card { right: 0; left: auto; width: min(300px, calc(100vw - 28px)); padding: 16px; transform: translate(0, -6px) scale(.97); transform-origin: top right; }
+  .hero-avatar-interaction:hover .avatar-story-card, .hero-avatar-interaction:focus-within .avatar-story-card, .hero-avatar-interaction.is-open .avatar-story-card { transform: none; }
+  .avatar-story-card > strong { font-size: 23px; }
   .hero-avatar-block small { display: none; }
+  .hero-avatar-block em { margin-top: 4px; font-size: 6px; }
   .ref-home--contrast .ref-bio, .about-layout { grid-template-columns: 1fr; gap: 24px; }
   .ref-home--contrast .ref-bio { padding-top: 18px; font-size: 16px; line-height: 1.48; }
   .ref-home--contrast .ref-actions { flex-wrap: nowrap; gap: 6px; }
@@ -747,15 +784,16 @@ body.is-loading { overflow: hidden; }
   .capability-row--expressive:hover > div:first-child { padding-left: 0; color: inherit; }
   .capability-row--expressive:hover p { color: var(--text-muted); }
   .capability-reveal, .capability-row--expressive:hover .capability-reveal { padding-right: 40px; color: var(--text-pure); opacity: .72; transform: none; }
-  .linkedin-profile-card { left: 0; width: min(330px, calc(100vw - 28px)); transform: translate(0, 12px) scale(.97); }
-  .linkedin-hover:hover .linkedin-profile-card, .linkedin-hover:focus-visible .linkedin-profile-card { transform: none; }
+  .linkedin-hover::before { right: 0; left: auto; width: min(330px, calc(100vw - 28px)); transform: none; }
+  .linkedin-profile-card { right: 0; left: auto; width: min(330px, calc(100vw - 28px)); transform: translate(0, 12px) scale(.97); transform-origin: bottom right; }
+  .linkedin-hover:hover .linkedin-profile-card, .linkedin-hover:focus-visible .linkedin-profile-card, .linkedin-hover:focus-within .linkedin-profile-card { transform: none; }
   .ref-home--contrast .contact-links > .cv-card { grid-template-columns: 34px 1fr; }
   .cv-actions { grid-column: 2; width: 100%; }
   .cv-actions a { flex: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .command-deck--refined, .case-square-media > img, .capability-row--expressive::before, .capability-reveal { transition-duration: .01ms !important; }
+  .command-deck--refined, .case-square-media > img, .capability-row--expressive::before, .capability-reveal, .hero-avatar-ring, .hero-avatar-badge, .avatar-story-card, .copy-email-button, .copy-email-icon, .linkedin-hover, .linkedin-profile-card { transition-duration: .01ms !important; animation: none !important; }
   .loading-screen { transition-duration: .01ms !important; }
   .loading-screen i::after { animation-duration: .01ms !important; }
 }
