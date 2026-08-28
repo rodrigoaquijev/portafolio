@@ -37,7 +37,7 @@ Product Designer & UX/UI Designer
 
 Estudié Economía y pasé más de cuatro años trabajando en riesgo crediticio y evaluación de portafolios. Con el tiempo decidí acercarme a otra parte del problema: cómo se presenta la información y qué necesita una persona para tomar una decisión.
 
-Hoy trabajo como Product Designer y UX/UI Designer. En Fahrenheit DDB diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad de BBVA Perú, combinando lo que aprendí en banca con diseño visual, producto y tecnología.
+En Fahrenheit DDB diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad de BBVA Perú. Trabajo con versiones para móvil y escritorio y con las restricciones propias del canal, la marca y el compliance bancario.
 
 ### Retrato
 
@@ -282,7 +282,7 @@ Me gusta entender cómo funcionan las computadoras y las laptops, comparar sus c
 
 ### Arte, cine y música
 
-El arte, el cine y la música alimentan mi criterio visual. En música prefiero recorrer álbumes completos para entender la intención detrás del proyecto, no solo una canción aislada.
+El arte, el cine y la música alimentan mi criterio visual. Me interesa observar cómo cada disciplina construye una atmósfera y sostiene una intención.
 
 ### Cocina
 

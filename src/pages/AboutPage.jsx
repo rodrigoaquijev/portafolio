@@ -25,14 +25,14 @@ const CONTENT = {
     role: 'Product Designer & UX/UI Designer',
     quote: 'No empecé mi carrera en diseño.',
     intro: 'Estudié Economía y pasé más de cuatro años trabajando en riesgo crediticio y evaluación de portafolios. Con el tiempo decidí acercarme a otra parte del problema: cómo se presenta la información y qué necesita una persona para tomar una decisión.',
-    introTwo: 'Hoy trabajo como Product Designer y UX/UI Designer. En Fahrenheit DDB diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad de BBVA Perú, combinando lo que aprendí en banca con diseño visual, producto y tecnología.',
+    introTwo: 'En Fahrenheit DDB diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad de BBVA Perú. Trabajo con versiones para móvil y escritorio y con las restricciones propias del canal, la marca y el compliance bancario.',
     portraitCaption: 'Lima, Perú · GMT−5',
     personalLabel: 'Fuera del trabajo', personalTitle: 'Prefiero escuchar un álbum completo.',
     personalIntro: 'Me interesa entender cómo un artista construye un proyecto de principio a fin: el orden de las canciones, los cambios de ritmo y la identidad visual. Algún día me gustaría aprender a mezclar como DJ o producir mi propia música.',
     hobbies: [
       { title: 'Lola y Perlita', body: 'Tengo dos gatas, Lola y Perlita. Compartir la casa con ellas es parte de mi rutina diaria.', action: 'Compañía' },
       { title: 'Tecnología y ciencia', body: 'Me gusta entender cómo funcionan las computadoras y las laptops, comparar sus componentes y seguir los cambios de la industria. La ciencia también ocupa buena parte de lo que leo y veo por curiosidad.', action: 'Aprender' },
-      { title: 'Arte, cine y música', body: 'El arte, el cine y la música alimentan mi criterio visual. En música prefiero recorrer álbumes completos para entender la intención detrás del proyecto.', action: 'Observar' },
+      { title: 'Arte, cine y música', body: 'El arte, el cine y la música alimentan mi criterio visual. Me interesa observar cómo cada disciplina construye una atmósfera y sostiene una intención.', action: 'Observar' },
       { title: 'Cocina', body: 'Desde 2025 aprendo cocina por mi cuenta. Pruebo recetas nuevas y algunas variaciones propias. Mi postre favorito es el suspiro a la limeña.', action: 'Probar' },
       { title: 'Movimiento y objetos', body: 'Me gusta el fútbol y salir a correr. También me interesan las zapatillas New Balance por su comodidad y su diseño retrofuturista.', action: 'Moverme' }
     ],
@@ -89,14 +89,14 @@ const CONTENT = {
     role: 'Product Designer & UX/UI Designer',
     quote: 'I did not begin my career in design.',
     intro: 'I studied Economics and spent more than four years working in credit risk and portfolio evaluation. Over time, I moved closer to another part of the problem: how information is presented and what a person needs to make a decision.',
-    introTwo: 'Today I work as a Product Designer and UX/UI Designer. At Fahrenheit DDB, I design email UX for BBVA Peru’s personal-loan campaigns, combining what I learned in banking with visual design, product and technology.',
+    introTwo: 'At Fahrenheit DDB, I design UX for BBVA Peru’s personal-loan email campaigns. I work across mobile and desktop versions within the channel, brand and banking-compliance constraints.',
     portraitCaption: 'Lima, Peru · GMT−5',
     personalLabel: 'Outside work', personalTitle: 'I prefer listening to a full album.',
     personalIntro: 'I am interested in how an artist builds a project from beginning to end: the sequence of songs, shifts in rhythm and visual identity. Someday I would like to learn to DJ or produce my own music.',
     hobbies: [
       { title: 'Lola and Perlita', body: 'I have two cats, Lola and Perlita. Sharing my home with them is part of my daily routine.', action: 'Company' },
       { title: 'Technology and science', body: 'I like understanding how computers and laptops work, comparing their components and following changes in the industry. Science also takes up a good part of what I read and watch out of curiosity.', action: 'Learn' },
-      { title: 'Art, film and music', body: 'Art, film and music feed my visual judgment. With music, I prefer full albums so I can understand the intention behind the project.', action: 'Observe' },
+      { title: 'Art, film and music', body: 'Art, film and music feed my visual judgment. I am interested in how each discipline builds an atmosphere and sustains an intention.', action: 'Observe' },
       { title: 'Cooking', body: 'Since 2025, I have been teaching myself to cook. I try new recipes and some variations of my own. My favorite dessert is suspiro a la limeña.', action: 'Try' },
       { title: 'Movement and objects', body: 'I like football and running. I am also interested in New Balance sneakers for their comfort and retrofuturist design.', action: 'Move' }
     ],

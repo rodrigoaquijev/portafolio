@@ -651,9 +651,10 @@ body.is-loading { overflow: hidden; }
 .case-square-overlay strong { max-width: 29ch; color: #fff; font: 500 12px/1.35 var(--font-ui); }
 .case-square-copy { padding: 20px 4px 0; }
 .case-square-copy > span { color: var(--accent-emerald); font: 500 11px var(--font-ui); }
-.case-square-copy h3 { margin-top: 11px; font: 500 var(--type-step-2) var(--font-display); letter-spacing: -.035em; }
-.case-square-copy p { min-height: 92px; margin-top: 12px; color: var(--text-muted); font-size: 15px; line-height: 1.55; }
-.case-square-copy > div { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+.case-square-name { display: block; margin-top: 12px; color: var(--text-muted); font: 650 13px var(--font-ui); letter-spacing: -.015em; }
+.case-square-copy h3 { max-width: 21ch; margin-top: 8px; font: 500 clamp(30px, 3.3vw, 42px)/1.02 var(--font-display); letter-spacing: -.045em; text-wrap: balance; }
+.case-square-copy p { max-width: 46ch; margin-top: 14px; color: var(--text-muted); font-size: 15px; line-height: 1.5; }
+.case-square-copy > div { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
 .case-square-copy small { padding: 5px 9px; border: 1px solid var(--ref-line); border-radius: 999px; color: var(--text-subtle); font: 500 10px var(--font-ui); }
 
 .capabilities-section--shader { position: relative; margin-inline: calc(50% - 50vw); padding: 108px max(24px, calc((100vw - 1120px) / 2)); overflow: hidden; isolation: isolate; }
@@ -739,7 +740,7 @@ body.is-loading { overflow: hidden; }
   .projects-section .ref-heading-row { grid-template-columns: 1fr; gap: 18px; }
   .case-square-grid { grid-template-columns: 1fr; gap: 56px; }
   .case-square-card:last-child { grid-column: auto; width: 100%; }
-  .case-square-copy p { min-height: 0; }
+  .case-square-copy h3 { max-width: 18ch; font-size: clamp(30px, 9vw, 38px); }
   .capabilities-section--shader { padding-block: 76px; }
   .capability-row--expressive { grid-template-columns: 1fr; gap: 24px; padding: 30px 0; }
   .capability-row--expressive::before { display: none; }

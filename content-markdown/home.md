@@ -45,7 +45,7 @@ Economía · Banca · Diseño
 
 Soy Product Designer y UX/UI Designer con formación en Economía y más de cuatro años de experiencia previa en riesgo crediticio y evaluación de portafolios. Esa base me ayuda a conectar decisiones de interfaz con regulación, comportamiento y objetivos de negocio.
 
-Actualmente trabajo en Fahrenheit DDB para Préstamos de Libre Disponibilidad de BBVA Perú. Diseño jerarquías de información, módulos responsive y activos en Salesforce Marketing Cloud orientados a conversión.
+Actualmente trabajo en Fahrenheit DDB, donde diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad de BBVA Perú. Trabajo con versiones para móvil y escritorio y con las restricciones propias del canal, la marca y el compliance bancario.
 
 ### Acciones
 
@@ -81,7 +81,7 @@ Conectar en LinkedIn
 
 ### Trabajo seleccionado
 
-Un caso profesional de UX para email y tres proyectos conceptuales sobre estados transaccionales, decisiones financieras y gastos compartidos.
+Cuatro casos de estudio: uno profesional de UX para email y tres proyectos conceptuales sobre estados transaccionales, decisiones financieras y gastos compartidos.
 
 ### BBVA Perú
 
@@ -182,7 +182,7 @@ Alt text propuesto: Vista conceptual del fondo compartido Vaca con saldo de S/ 4
 
 ## Sobre mí
 
-### Primero aprendí a evaluar riesgo. Ahora diseño decisiones financieras.
+### Pasé del análisis de riesgo crediticio al diseño UX para banca.
 
 Antes de trabajar en UX/UI pasé más de cuatro años analizando riesgo crediticio y portafolios. Esa experiencia me ayuda a entender cómo una decisión de interfaz afecta al usuario, la operación y los objetivos comerciales.
 

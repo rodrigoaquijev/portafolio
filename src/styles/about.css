@@ -49,11 +49,11 @@ body:has(.about-page) { padding-bottom: 0; }
 .about-portrait figcaption span { font-size: 12px; font-weight: 600; }
 .about-portrait figcaption small { max-width: 16ch; color: rgba(238,248,244,.65); font-size: 10px; line-height: 1.25; text-align: right; }
 .about-hero-profile > div { display: grid; gap: 19px; }
-.about-hero-profile strong { max-width: 28ch; font: 600 clamp(23px, 2.6vw, 32px)/1.13 var(--font-display); letter-spacing: -.035em; }
+.about-hero-profile strong { max-width: 28ch; font: 600 clamp(23px, 2.6vw, 32px)/1.13 var(--font-display); letter-spacing: -.035em; text-wrap: balance; }
 .about-hero-profile p { color: var(--text-muted); font-size: 17px; line-height: 1.6; }
 
 .about-personal { position: relative; padding-block: 128px 138px; overflow: hidden; background: color-mix(in srgb, var(--bg-surface) 72%, var(--bg-deep)); }
-.about-personal::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .42; background: radial-gradient(circle at 78% 16%, color-mix(in srgb, var(--accent-cyan) 12%, transparent), transparent 29%), linear-gradient(90deg, transparent 49.9%, var(--about-line) 50%, transparent 50.1%); }
+.about-personal::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .42; background: radial-gradient(circle at 78% 16%, color-mix(in srgb, var(--accent-cyan) 12%, transparent), transparent 29%); }
 .about-personal > .about-shell { position: relative; }
 .about-personal-heading { margin-bottom: 54px; }
 
