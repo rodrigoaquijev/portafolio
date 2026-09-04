@@ -207,8 +207,10 @@
 .vaca-device-lab { display: grid; grid-template-columns: 190px minmax(360px, 1fr) minmax(240px, .65fr); border: 1px solid var(--ref-line); border-radius: 28px; overflow: hidden; background: var(--bg-base); }
 .vaca-device-lab > nav { padding: 18px; display: grid; align-content: center; gap: 6px; border-right: 1px solid var(--ref-line); }
 .vaca-device-lab > nav button { min-height: 48px; padding: 0 13px; display: flex; align-items: center; justify-content: space-between; border: 0; border-radius: 12px; color: var(--text-muted); background: transparent; font: 600 12px var(--font-ui); text-align: left; transition: color .2s, background .2s, transform .25s; }
-.vaca-device-lab > nav button:hover { transform: translateX(3px); color: var(--text-pure); }
-.vaca-device-lab > nav button.is-active { color: var(--vaca-cream); background: var(--vaca-green); }
+.vaca-device-lab > nav button:not(.is-active):not([aria-current="page"]):hover { color: var(--text-pure); background: color-mix(in srgb, var(--vaca-green) 9%, transparent); transform: translateX(3px); }
+.vaca-device-lab > nav button:is(.is-active, [aria-current="page"]),
+.vaca-device-lab > nav button:is(.is-active, [aria-current="page"]):hover { color: var(--vaca-cream); background: var(--vaca-green); transform: none; }
+.vaca-device-lab > nav button:focus-visible { outline: 2px solid var(--vaca-gold); outline-offset: 2px; }
 .vaca-device-lab > nav svg { width: 17px; }
 .vaca-device-stage { min-height: 710px; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--vaca-gold) 14%, transparent), transparent 45%), var(--vaca-cream); }
 .vaca-device-lab > aside { padding: 34px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--ref-line); }
@@ -235,7 +237,13 @@
 .vaca-phone.tone-alert .vaca-phone-progress i, .vaca-phone.tone-alert .vaca-phone-screen > button { background: var(--vaca-alert); }
 .vaca-phone.tone-green .vaca-phone-progress i { background: var(--vaca-green-mid); }
 .vaca-phone-screen > button { margin-top: auto; min-height: 45px; border: 0; border-radius: 13px; color: var(--vaca-cream); background: var(--vaca-green); font: 700 11px var(--font-ui); }
-.vaca-phone > nav { position: absolute; bottom: 23px; inset-inline: 30px; display: flex; justify-content: space-between; color: rgba(22,53,42,.48); font-size: 8px; }
+.vaca-phone > nav { position: absolute; bottom: 17px; inset-inline: 25px; display: flex; gap: 5px; }
+.vaca-phone > nav button { min-width: 0; min-height: 38px; flex: 1; padding: 4px 6px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border: 0; border-radius: 11px; color: rgba(22,53,42,.56); background: transparent; cursor: pointer; font: 600 8px var(--font-ui); transition: background .18s ease, transform .18s ease; }
+.vaca-phone > nav button:not(.is-active):not([aria-current="page"]):hover { color: var(--vaca-green); background: rgba(22,53,42,.08); transform: translateY(-1px); }
+.vaca-phone > nav button:is(.is-active, [aria-current="page"]),
+.vaca-phone > nav button:is(.is-active, [aria-current="page"]):hover { color: var(--vaca-cream); background: var(--vaca-green); transform: none; }
+.vaca-phone > nav button:focus-visible { outline: 2px solid var(--vaca-gold); outline-offset: 2px; }
+.vaca-phone > nav svg { width: 12px; height: 12px; stroke-width: 2; }
 .vaca-system { margin-top: 120px; }
 .vaca-system > header { margin-bottom: 38px; display: grid; grid-template-columns: .55fr 1.45fr; align-items: end; }
 .vaca-system h2 { font: 500 clamp(36px, 4.8vw, 62px)/1 var(--font-display); letter-spacing: -.05em; }
@@ -379,4 +387,3 @@
   .yape-case .ref-section-label,
   .case-chapter { font-size: 14px; }
 }
-

@@ -571,9 +571,16 @@ body.is-loading { overflow: hidden; }
 .command-wordmark small { margin-top: 1px; color: var(--text-subtle); font-family: var(--font-sans); font-size: 11px; transition: opacity .25s, transform .35s; }
 .command-deck--refined.is-scrolled .command-wordmark small { opacity: 0; transform: translateY(-5px); }
 .command-direct-nav { justify-self: center; padding: 4px; }
-.command-direct-nav button, .command-direct-nav a { height: 36px; padding: 0 14px; display: inline-flex; align-items: center; border: 0; border-radius: 999px; color: var(--text-muted); background: transparent; cursor: pointer; font: 500 12px var(--font-ui); letter-spacing: -.01em; transition: color .2s, background .2s, transform .2s; }
-.command-direct-nav button:hover, .command-direct-nav a:hover { color: var(--text-pure); transform: translateY(-1px); }
-.command-direct-nav button.is-active, .command-direct-nav a.is-active { background: var(--text-pure); color: var(--bg-deep); box-shadow: none; }
+.command-deck--refined .command-direct-nav button,
+.command-deck--refined .command-direct-nav a { height: 36px; padding: 0 14px; display: inline-flex; align-items: center; border: 0; border-radius: 999px; color: var(--text-muted); background: transparent; cursor: pointer; font: 500 12px var(--font-ui); letter-spacing: -.01em; transition: color .2s, background .2s, transform .2s, box-shadow .2s; }
+.command-deck--refined .command-direct-nav button:not(.is-active):not([aria-current="page"]):hover,
+.command-deck--refined .command-direct-nav a:not(.is-active):not([aria-current="page"]):hover { color: var(--text-pure); background: color-mix(in srgb, var(--text-pure) 8%, transparent); transform: translateY(-1px); }
+.command-deck--refined .command-direct-nav button:is(.is-active, [aria-current="page"]),
+.command-deck--refined .command-direct-nav a:is(.is-active, [aria-current="page"]),
+.command-deck--refined .command-direct-nav button:is(.is-active, [aria-current="page"]):hover,
+.command-deck--refined .command-direct-nav a:is(.is-active, [aria-current="page"]):hover { color: var(--bg-deep); background: var(--text-pure); box-shadow: none; transform: none; }
+.command-deck--refined .command-direct-nav button:focus-visible,
+.command-deck--refined .command-direct-nav a:focus-visible { outline: 2px solid var(--accent-emerald); outline-offset: 2px; }
 .command-controls { justify-self: end; display: flex; align-items: center; gap: 7px; }
 .nav-control, .command-deck--refined .command-menu { position: relative; height: 42px; min-width: 42px; padding: 0 11px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--ref-line); border-radius: 13px; color: var(--text-muted); background: var(--ref-raised); cursor: pointer; transition: color .2s, border-color .2s, background .2s, transform .25s cubic-bezier(.175,.885,.32,1.275); }
 .nav-control:hover { color: var(--text-pure); border-color: var(--ref-line-strong); transform: translateY(-2px); }
@@ -729,7 +736,14 @@ body.is-loading { overflow: hidden; }
   .command-deck--refined.is-open .command-mobile-panel { max-height: 330px; visibility: visible; opacity: 1; }
   .command-mobile-panel nav { padding: 8px 12px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .command-mobile-panel button, .command-mobile-panel a { min-height: 58px; padding: 14px; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--ref-line); border-radius: 12px; color: var(--text-muted); background: var(--ref-raised); font: 600 13px var(--font-ui); }
-  .command-mobile-panel button.is-active, .command-mobile-panel a.is-active { color: var(--text-pure); border-color: var(--ref-line-strong); }
+  .command-deck--refined .command-mobile-panel button:not(.is-active):not([aria-current="page"]):hover,
+  .command-deck--refined .command-mobile-panel a:not(.is-active):not([aria-current="page"]):hover { color: var(--text-pure); border-color: var(--ref-line-strong); background: color-mix(in srgb, var(--text-pure) 7%, var(--ref-raised)); }
+  .command-deck--refined .command-mobile-panel button:is(.is-active, [aria-current="page"]),
+  .command-deck--refined .command-mobile-panel a:is(.is-active, [aria-current="page"]),
+  .command-deck--refined .command-mobile-panel button:is(.is-active, [aria-current="page"]):hover,
+  .command-deck--refined .command-mobile-panel a:is(.is-active, [aria-current="page"]):hover { color: var(--bg-deep); border-color: var(--text-pure); background: var(--text-pure); }
+  .command-deck--refined .command-mobile-panel button:focus-visible,
+  .command-deck--refined .command-mobile-panel a:focus-visible { outline: 2px solid var(--accent-emerald); outline-offset: 2px; }
   .command-mobile-panel svg { width: 17px; }
   .case-square-grid { grid-template-columns: repeat(2, 1fr); }
   .case-square-card:last-child { grid-column: auto; width: auto; }

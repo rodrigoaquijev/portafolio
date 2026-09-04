@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, Check, CircleAlert, Landmark, ReceiptText, ShieldCheck, UsersRound, WalletCards } from 'lucide-react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { ArrowRight, Check, CircleAlert, House, Landmark, ReceiptText, ShieldCheck, UsersRound, WalletCards } from 'lucide-react';
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
 import CaseStudyLayout from '../components/CaseStudyLayout.jsx';
 import EditorialKicker from '../components/EditorialKicker.jsx';
@@ -13,9 +13,19 @@ export default function CaseVaca() {
   const { lang } = useSiteDesignSystem();
   const t = VACA_CASE[lang];
   const [screenId, setScreenId] = useState('home');
+  const selectorNavRef = useRef(null);
   const activeScreen = useMemo(() => t.prototype.screens.find((screen) => screen.id === screenId) || t.prototype.screens[0], [screenId, t]);
 
   useEffect(() => { setScreenId('home'); }, [lang]);
+  useEffect(() => {
+    const selector = selectorNavRef.current;
+    const activeButton = selector?.querySelector('[aria-current="page"]');
+    if (!selector || !activeButton) return;
+
+    const left = activeButton.offsetLeft - ((selector.clientWidth - activeButton.offsetWidth) / 2);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    selector.scrollTo({ left: Math.max(0, left), behavior: reduceMotion ? 'auto' : 'smooth' });
+  }, [activeScreen.id]);
   return <CaseStudyLayout className="vaca-case" pageTitle={t.pageTitle} headerSubtitle={t.headerSubtitle} nav={t.nav}>
     <div className="vaca-case-shell">
       <section className="vaca-hero case-reveal">
@@ -81,8 +91,8 @@ export default function CaseVaca() {
       <div className="vaca-case-shell">
         <PhaseHeading label={t.prototype.label} title={t.prototype.title} intro={t.prototype.intro} />
         <div className="vaca-device-lab">
-          <nav aria-label={t.prototype.selector}>{t.prototype.screens.map((screen) => <button key={screen.id} className={screen.id === activeScreen.id ? 'is-active' : ''} onClick={() => setScreenId(screen.id)}><span>{screen.tab}</span><ArrowBendUpRightIcon weight="duotone" /></button>)}</nav>
-          <div className="vaca-device-stage"><VacaPhone screen={activeScreen} lang={lang} /></div>
+          <nav ref={selectorNavRef} aria-label={t.prototype.selector}>{t.prototype.screens.map((screen) => <button type="button" key={screen.id} className={screen.id === activeScreen.id ? 'is-active' : ''} aria-current={screen.id === activeScreen.id ? 'page' : undefined} onClick={() => setScreenId(screen.id)}><span>{screen.tab}</span><ArrowBendUpRightIcon weight="duotone" /></button>)}</nav>
+          <div className="vaca-device-stage"><VacaPhone screen={activeScreen} lang={lang} onNavigate={setScreenId} /></div>
           <aside><small>{t.prototype.selector}</small><h3>{activeScreen.title}</h3><p>{activeScreen.rationale}</p><span><Check />{lang === 'es' ? 'Una decisión principal por pantalla' : 'One primary decision per screen'}</span></aside>
         </div>
         <div className="vaca-system">
@@ -126,7 +136,14 @@ function VacaFundDemo({ lang }) {
   </div>;
 }
 
-function VacaPhone({ screen, lang }) {
+function VacaPhone({ screen, lang, onNavigate }) {
+  const activeTab = screen.id === 'home' ? 'home' : ['onboarding', 'invite'].includes(screen.id) ? 'group' : 'fund';
+  const tabs = [
+    { id: 'home', label: lang === 'es' ? 'Inicio' : 'Home', screenId: 'home', icon: House },
+    { id: 'fund', label: lang === 'es' ? 'Fondo' : 'Fund', screenId: 'topup', icon: WalletCards },
+    { id: 'group', label: lang === 'es' ? 'Grupo' : 'Group', screenId: 'invite', icon: UsersRound }
+  ];
+
   return <div className={`vaca-phone tone-${screen.tone}`}>
     <div className="vaca-phone-island" />
     <div className="vaca-phone-status"><span>9:41</span><span>•••</span></div>
@@ -137,6 +154,6 @@ function VacaPhone({ screen, lang }) {
       <div className="vaca-phone-progress"><i /><i /><i /></div>
       <button>{screen.action}</button>
     </div>
-    <nav><span>{lang === 'es' ? 'Inicio' : 'Home'}</span><span>{lang === 'es' ? 'Fondo' : 'Fund'}</span><span>{lang === 'es' ? 'Grupo' : 'Group'}</span></nav>
+    <nav aria-label={lang === 'es' ? 'Navegación del fondo' : 'Fund navigation'}>{tabs.map((tab) => <button type="button" key={tab.id} className={activeTab === tab.id ? 'is-active' : ''} aria-current={activeTab === tab.id ? 'page' : undefined} onClick={() => onNavigate(tab.screenId)}><tab.icon aria-hidden="true" /><span>{tab.label}</span></button>)}</nav>
   </div>;
 }
