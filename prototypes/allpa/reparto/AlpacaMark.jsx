@@ -1,0 +1,11 @@
+import React from 'react';
+
+// Original silhouette: curved torso, upright neck and small, pointed ears.
+// Negative space separates the legs so the mark stays readable at small sizes.
+export default function AlpacaMark({ className = '', ...props }) {
+  return <svg viewBox="0 0 80 80" fill="none" aria-hidden="true" className={className} {...props}>
+    <path fill="currentColor" d="M15 40c6-7 17-8 29-5V22c0-4 2-7 5-9l-1-9c0-2 2-3 3-1l6 8 5-9c1-2 3-1 3 1v11c4 2 7 6 8 10l-8 5h-7v22c0 7-4 12-10 14v10h-8V65H25v10h-8V62C9 58 7 51 11 44l-6-6c-1-2 0-4 2-3l8 5Z" />
+    <path d="M46 42c-8-2-16-2-22 0" stroke="var(--surface-raised, #FFFCF5)" strokeWidth="3" strokeLinecap="round" />
+    <circle cx="63" cy="20" r="1.5" fill="var(--surface-raised, #FFFCF5)" />
+  </svg>;
+}

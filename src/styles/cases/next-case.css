@@ -3,6 +3,7 @@
 .next-case--allpa { --next-accent: #f0ae39; }
 .next-case--vaca { --next-accent: #62bd8d; }
 .next-case--bbva { --next-accent: #62b5e5; }
+.next-case--banco-nacion { --next-accent: #FF6B57; }
 .next-case-panel::before { content: ''; position: absolute; inset: auto -12% -65% 38%; height: 115%; background: radial-gradient(circle, color-mix(in srgb, var(--next-accent) 17%, transparent), transparent 64%); filter: blur(34px); pointer-events: none; }
 .next-case-heading, .next-case-context { position: relative; z-index: 2; }
 .next-case-heading > span { display: flex; align-items: center; gap: 12px; color: rgba(242,240,234,.42); font: 600 13px var(--font-ui); }

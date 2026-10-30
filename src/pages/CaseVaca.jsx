@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, Check, CircleAlert, House, Landmark, ReceiptText, ShieldCheck, UsersRound, WalletCards } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ArrowRight, CircleAlert, Code2, Compass, Layers3, ShieldCheck, Sparkles, Target, Workflow } from 'lucide-react';
 import { ArrowBendUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowBendUpRight';
 import CaseStudyLayout from '../components/CaseStudyLayout.jsx';
 import EditorialKicker from '../components/EditorialKicker.jsx';
@@ -8,152 +8,150 @@ import NextCase from '../components/NextCase.jsx';
 import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import { VACA_CASE } from '../content/vacaCase.js';
+import heroInicio from '../../assets/cases/vaca/hero-inicio.webp';
+import heroVaca from '../../assets/cases/vaca/hero-vaca-3d.webp';
+import mainFlow from '../../assets/cases/vaca/flujo-principal.webp';
+import p01 from '../../assets/cases/vaca/proceso/p01-benchmark.webp';
+import p02 from '../../assets/cases/vaca/proceso/p02-journey.webp';
+import p03 from '../../assets/cases/vaca/proceso/p03-definicion.webp';
+import p04 from '../../assets/cases/vaca/proceso/p04-flujo-pagar.webp';
+import p05 from '../../assets/cases/vaca/proceso/p05-flujo-aportar.webp';
+import p06 from '../../assets/cases/vaca/proceso/p06-flujo-unirse.webp';
+import p07 from '../../assets/cases/vaca/proceso/p07-arquitectura.webp';
+import p08 from '../../assets/cases/vaca/proceso/p08-estados.webp';
+import p09 from '../../assets/cases/vaca/proceso/p09-ui-kit.webp';
+import p10 from '../../assets/cases/vaca/proceso/p10-piloto-antes-despues.webp';
+import s13 from '../../assets/cases/vaca/estados/s13.webp';
+import s14 from '../../assets/cases/vaca/estados/s14.webp';
+import s15 from '../../assets/cases/vaca/estados/s15.webp';
+import s16 from '../../assets/cases/vaca/estados/s16.webp';
+import s17 from '../../assets/cases/vaca/estados/s17.webp';
+import s18 from '../../assets/cases/vaca/estados/s18.webp';
+import s19 from '../../assets/cases/vaca/estados/s19.webp';
+import s20 from '../../assets/cases/vaca/estados/s20.webp';
+import s21 from '../../assets/cases/vaca/estados/s21.webp';
+
+const IMG = { p04, p05, p06, p07, p08, s13, s14, s15, s16, s17, s18, s19, s20, s21 };
 
 export default function CaseVaca() {
   const { lang } = useSiteDesignSystem();
   const t = VACA_CASE[lang];
-  const [screenId, setScreenId] = useState('home');
-  const selectorNavRef = useRef(null);
-  const activeScreen = useMemo(() => t.prototype.screens.find((screen) => screen.id === screenId) || t.prototype.screens[0], [screenId, t]);
+  const es = lang === 'es';
+  const [stateId, setStateId] = useState('s13');
+  const [flowId, setFlowId] = useState('pagar');
+  const activeState = useMemo(() => t.deliver.states.find((s) => s.id === stateId) || t.deliver.states[0], [stateId, t]);
+  const activeFlow = useMemo(() => t.develop.flows.find((f) => f.id === flowId) || t.develop.flows[0], [flowId, t]);
 
-  useEffect(() => { setScreenId('home'); }, [lang]);
-  useEffect(() => {
-    const selector = selectorNavRef.current;
-    const activeButton = selector?.querySelector('[aria-current="page"]');
-    if (!selector || !activeButton) return;
+  useEffect(() => { setStateId('s13'); setFlowId('pagar'); }, [lang]);
 
-    const left = activeButton.offsetLeft - ((selector.clientWidth - activeButton.offsetWidth) / 2);
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    selector.scrollTo({ left: Math.max(0, left), behavior: reduceMotion ? 'auto' : 'smooth' });
-  }, [activeScreen.id]);
   return <CaseStudyLayout className="vaca-case" pageTitle={t.pageTitle} headerSubtitle={t.headerSubtitle} nav={t.nav}>
-    <div className="vaca-case-shell">
-      <section className="vaca-hero case-reveal">
-        <div className="vaca-hero-copy">
+    <div className="vc-shell">
+      <section className="vc-hero case-reveal">
+        <div className="vc-hero-copy">
           <EditorialKicker>{t.hero.eyebrow}</EditorialKicker>
           <h1>{t.hero.title}</h1>
-          <div className="vaca-hero-summary">
-            <p>{t.hero.intro}</p>
-            <span><CircleAlert />{t.hero.disclosure}</span>
-          </div>
-          <div className="vaca-meta">{t.hero.meta.map(([label, value]) => <span key={label}><small>{label}</small><strong>{value}</strong></span>)}</div>
+          <p>{t.hero.intro}</p>
+          <span className="vc-disclosure"><CircleAlert />{t.hero.disclosure}</span>
+          <div className="vc-meta">{t.hero.meta.map(([label, value]) => <span key={label}><small>{label}</small><strong>{value}</strong></span>)}</div>
         </div>
-        <VacaFundDemo lang={lang} />
-        <div className="vaca-thesis">
-          <article><ReceiptText /><div><small>{t.hero.current}</small><p>{t.hero.currentBody}</p></div></article>
-          <ArrowRight aria-hidden="true" />
-          <article><WalletCards /><div><small>{t.hero.proposal}</small><p>{t.hero.proposalBody}</p></div></article>
+        <div className="vc-hero-visual" aria-hidden="true">
+          <img className="vc-hero-cow" src={heroVaca} alt="" />
+          <img className="vc-hero-phone" src={heroInicio} alt="" />
         </div>
+        <div className="vc-summary">
+          {[[t.hero.problem, Target, es ? 'Problema' : 'Problem'], [t.hero.solution, Workflow, es ? 'Solución' : 'Solution'], [t.hero.role, Code2, es ? 'Mi rol' : 'My role']].map(([body, Icon, label]) => <article key={label}><Icon /><small>{label}</small><p>{body}</p></article>)}
+        </div>
+        <div className="vc-method"><header><SectionLabel>{t.method.label}</SectionLabel><h2>{t.method.title}</h2><p>{t.method.intro}</p></header><div>{t.method.phases.map(([title, body], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><i /><h3>{title}</h3><p>{body}</p></article>)}</div></div>
       </section>
     </div>
 
-    <section id="empathize" data-case-phase="empathize" className="vaca-phase vaca-empathize case-reveal">
-      <div className="vaca-case-shell">
-        <PhaseHeading label={t.empathize.label} title={t.empathize.title} intro={t.empathize.intro} />
-        <div className="vaca-quote-rail">{t.empathize.quotes.map(([quote, source]) => <blockquote key={quote}><p>{quote}</p><cite>{source}</cite></blockquote>)}</div>
-        <div className="vaca-personas">{t.empathize.personas.map((persona) => <article key={persona.name}>
-          <header><span>{persona.role}</span><h3>{persona.name}</h3></header>
-          <blockquote>{persona.quote}</blockquote>
-          <dl><div><dt>{lang === 'es' ? 'Contexto' : 'Context'}</dt><dd>{persona.context}</dd></div><div><dt>{lang === 'es' ? 'Fricción' : 'Friction'}</dt><dd>{persona.friction}</dd></div></dl>
-        </article>)}</div>
-        <div className="vaca-journey">
-          <SectionLabel>{lang === 'es' ? 'Viaje actual' : 'Current journey'}</SectionLabel>
-          <div>{t.empathize.journey.map(([title, body, mood], index) => <article key={title} className={index === 3 ? 'is-pain' : ''}><span>{index + 1}</span><h3>{title}</h3><p>{body}</p><small>{mood}</small></article>)}</div>
-        </div>
-        <blockquote className="vaca-insight">{t.empathize.insight}</blockquote>
+    <section id="discover" data-case-phase="discover" className="vc-phase vc-discover case-reveal">
+      <div className="vc-shell">
+        <PhaseHeading label={t.discover.label} title={t.discover.title} intro={t.discover.intro} />
+        <blockquote className="vc-quote">{t.discover.quote}</blockquote>
+        <Figure src={p02} alt={t.discover.journeyAlt} wide />
+        <h3 className="vc-subtitle">{t.discover.benchmarkTitle}</h3>
+        <Figure src={p01} alt={t.discover.benchmarkAlt} wide />
+        <div className="vc-grid4">{t.discover.findings.map(([title, body], index) => <article key={title} className={index === 3 ? 'is-key' : ''}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
       </div>
     </section>
 
-    <section id="define" data-case-phase="define" className="vaca-phase vaca-define case-reveal">
-      <div className="vaca-case-shell">
+    <section id="define" data-case-phase="define" className="vc-phase vc-define case-reveal">
+      <div className="vc-shell">
         <PhaseHeading label={t.define.label} title={t.define.title} intro={t.define.intro} />
-        <div className="vaca-hmw"><small>How might we</small><p>{t.define.hmw}</p></div>
-        <div className="vaca-flow">{t.define.steps.map((step, index) => <React.Fragment key={step.title}>
-          <article><span>{React.createElement([UsersRound, WalletCards, ShieldCheck, ReceiptText, Landmark][index])}</span><div><small>{String(index + 1).padStart(2, '0')}</small><h3>{step.title}</h3><p>{step.body}</p></div></article>
-          {index < t.define.steps.length - 1 && <ArrowRight aria-hidden="true" />}
-        </React.Fragment>)}</div>
-        <div className="vaca-information-architecture"><header><SectionLabel>{lang === 'es' ? 'Arquitectura de información' : 'Information architecture'}</SectionLabel></header><div>{t.define.architecture.map(([area, children]) => <article key={area}><strong>{area}</strong><span>{children}</span></article>)}</div></div>
+        <div className="vc-jtbd"><div><small>Job to be Done</small><p>{t.define.jtbd}</p></div><div><small>How Might We</small><p>{t.define.hmw}</p></div></div>
+        <div className="vc-assumptions"><header><SectionLabel>{es ? 'Supuestos más riesgosos' : 'Riskiest assumptions'}</SectionLabel></header><div>{t.define.assumptions.map(([title, body]) => <article key={title}><CircleAlert /><h3>{title}</h3><p>{body}</p></article>)}</div></div>
+        <Figure src={p03} alt={t.define.definitionAlt} wide />
+        <div className="vc-grid4 vc-constraints"><header><SectionLabel>{es ? 'Restricciones y trade-offs' : 'Constraints and trade-offs'}</SectionLabel></header>{t.define.constraints.map(([title, body], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
       </div>
     </section>
 
-    <section id="ideate" data-case-phase="ideate" className="vaca-phase vaca-ideate case-reveal">
-      <div className="vaca-ideate-glow" aria-hidden="true" />
-      <div className="vaca-case-shell">
-        <PhaseHeading label={t.ideate.label} title={t.ideate.title} intro={t.ideate.intro} />
-        <div className="vaca-decisions">{t.ideate.decisions.map(([title, body], index) => <article key={title}><span>{index + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
-        <div className="vaca-money-heading"><Landmark /><div><h2>{t.ideate.moneyTitle}</h2><p>{t.ideate.moneyIntro}</p></div></div>
-        <div className="vaca-money-flow">{t.ideate.moneyFlow.map(([title, body], index) => <React.Fragment key={title}><article><small>{index + 1}</small><h3>{title}</h3><p>{body}</p></article>{index < t.ideate.moneyFlow.length - 1 && <ArrowRight />}</React.Fragment>)}</div>
-        <p className="vaca-scope"><ShieldCheck />{t.ideate.scope}</p>
-      </div>
-    </section>
-
-    <section id="prototype" data-case-phase="prototype" className="vaca-phase vaca-prototype case-reveal">
-      <div className="vaca-case-shell">
-        <PhaseHeading label={t.prototype.label} title={t.prototype.title} intro={t.prototype.intro} />
-        <div className="vaca-device-lab">
-          <nav ref={selectorNavRef} aria-label={t.prototype.selector}>{t.prototype.screens.map((screen) => <button type="button" key={screen.id} className={screen.id === activeScreen.id ? 'is-active' : ''} aria-current={screen.id === activeScreen.id ? 'page' : undefined} onClick={() => setScreenId(screen.id)}><span>{screen.tab}</span><ArrowBendUpRightIcon weight="duotone" /></button>)}</nav>
-          <div className="vaca-device-stage"><VacaPhone screen={activeScreen} lang={lang} onNavigate={setScreenId} /></div>
-          <aside><small>{t.prototype.selector}</small><h3>{activeScreen.title}</h3><p>{activeScreen.rationale}</p><span><Check />{lang === 'es' ? 'Una decisión principal por pantalla' : 'One primary decision per screen'}</span></aside>
+    <section id="develop" data-case-phase="develop" className="vc-phase vc-develop case-reveal">
+      <div className="vc-shell">
+        <PhaseHeading label={t.develop.label} title={t.develop.title} intro={t.develop.intro} />
+        <div className="vc-decisions">{t.develop.decisions.map(([title, body], index) => <article key={title}><span>{index + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
+        <div className="vc-equation" aria-label={`${t.develop.equation.total} S/ 480 = ${t.develop.equation.reserved} S/ 219 + ${t.develop.equation.free} S/ 261`}>
+          <div><small>{t.develop.equation.total}</small><strong>S/ 480</strong></div><b>=</b>
+          <div><small>{t.develop.equation.reserved}</small><strong>S/ 219</strong></div><b>+</b>
+          <div className="is-free"><small>{t.develop.equation.free}</small><strong>S/ 261</strong></div>
+          <p>{t.develop.equation.note}</p>
         </div>
-        <div className="vaca-system">
-          <header><SectionLabel>{lang === 'es' ? 'Sistema de producto' : 'Product system'}</SectionLabel><h2>{t.prototype.systemTitle}</h2></header>
-          <div className="vaca-token-list">{t.prototype.tokens.map(([name, color, role]) => <article key={name}><i style={{ '--vaca-token': color }} /><strong>{name}</strong><span>{color}</span><p>{role}</p></article>)}</div>
-          <div className="vaca-component-list">{t.prototype.components.map(([name, use]) => <article key={name}><strong>{name}</strong><span>{use}</span></article>)}</div>
+        <div className="vc-lab vc-flow-lab">
+          <nav aria-label={t.develop.flowsLabel}>{t.develop.flows.map((flow) => <button type="button" key={flow.id} className={flow.id === activeFlow.id ? 'is-active' : ''} aria-pressed={flow.id === activeFlow.id} onClick={() => setFlowId(flow.id)}><span>{flow.tab}</span><ArrowBendUpRightIcon weight="duotone" /></button>)}</nav>
+          <div className="vc-flow-stage"><Figure src={IMG[activeFlow.src]} alt={`${activeFlow.tab}. ${activeFlow.caption}`} caption={activeFlow.caption} wide key={activeFlow.id} /></div>
         </div>
+        <div className="vc-discarded"><SectionLabel>{es ? 'Lo que descarté' : 'What I discarded'}</SectionLabel><div>{t.develop.discarded.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div>
       </div>
     </section>
 
-    <section id="test" data-case-phase="test" className="vaca-phase vaca-test case-reveal">
-      <div className="vaca-case-shell">
-        <PhaseHeading label={t.test.label} title={t.test.title} intro={t.test.intro} />
-        <div className="vaca-assumptions">{t.test.assumptions.map(([title, body]) => <article key={title}><CircleAlert /><h3>{title}</h3><p>{body}</p></article>)}</div>
-        <div className="vaca-signal-board"><SectionLabel>{lang === 'es' ? 'Señales para medir' : 'Signals to measure'}</SectionLabel>{t.test.signals.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p><ArrowBendUpRightIcon weight="duotone" /></article>)}</div>
-        <div className="vaca-next-step"><small>{lang === 'es' ? 'Siguiente experimento' : 'Next experiment'}</small><p>{t.test.nextStep}</p></div>
-        <blockquote className="vaca-closing">{t.test.closing}</blockquote>
+    <section id="deliver" data-case-phase="deliver" className="vc-phase vc-deliver case-reveal">
+      <div className="vc-shell">
+        <PhaseHeading label={t.deliver.label} title={t.deliver.title} intro={t.deliver.intro} />
+        <div className="vc-lab vc-state-lab">
+          <nav aria-label={t.deliver.statesLabel}>{t.deliver.states.map((state) => <button type="button" key={state.id} className={state.id === activeState.id ? 'is-active' : ''} aria-pressed={state.id === activeState.id} onClick={() => setStateId(state.id)}><span>{state.tab}</span><ArrowBendUpRightIcon weight="duotone" /></button>)}</nav>
+          <div className="vc-state-stage"><img key={activeState.id} src={IMG[activeState.id]} alt={`${activeState.tab}: ${activeState.title}`} width="390" height="844" /></div>
+          <aside><small>{activeState.tab}</small><h3>{activeState.title}</h3><p>{activeState.body}</p><span><ShieldCheck />{activeState.rule}</span></aside>
+        </div>
+
+        <div className="vc-block"><header><Layers3 /><h2>{t.deliver.mainFlowTitle}</h2></header><Figure src={mainFlow} alt={t.deliver.mainFlowAlt} tall /></div>
+
+        <div className="vc-block"><header><Compass /><h2>{t.deliver.systemTitle}</h2></header>
+          <div className="vc-system"><Figure src={p09} alt={t.deliver.systemAlt} /><div>{t.deliver.system.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div>
+        </div>
+
+        <div className="vc-writing"><SectionLabel>{t.deliver.writingLabel}</SectionLabel>{t.deliver.writing.map(([before, after]) => <div key={before}><p className="is-before">{before}</p><ArrowRight aria-hidden="true" /><p className="is-after">{after}</p></div>)}</div>
+
+        <div className="vc-block"><header><Sparkles /><h2>{t.deliver.aiTitle}</h2></header>
+          <div className="vc-grid4 vc-ai">{t.deliver.ai.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div>
+          <p className="vc-note"><CircleAlert />{t.deliver.aiNote}</p>
+        </div>
+
+        <div className="vc-block"><header><Target /><div><h2>{t.deliver.pilotTitle}</h2><p>{t.deliver.pilotIntro}</p></div></header>
+          <Figure src={p10} alt={t.deliver.pilotAlt} wide />
+          <div className="vc-grid4">{t.deliver.pilot.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div>
+        </div>
+
+        <div className="vc-block vc-tests"><header><Workflow /><h2>{t.deliver.testTitle}</h2></header>
+          <ol>{t.deliver.tests.map(([task, criterion]) => <li key={task}><strong>{task}</strong><span>{criterion}</span></li>)}</ol>
+          <p className="vc-note"><ShieldCheck />{t.deliver.rules}</p>
+        </div>
+
+        <div className="vc-learnings"><SectionLabel>{es ? 'Reflexión' : 'Reflection'}</SectionLabel><div>{t.deliver.learnings.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div>
       </div>
     </section>
 
     <NextCase current="vaca" />
-    <SiteFooter text={t.footer} className="vaca-case-shell" />
+    <SiteFooter text={t.footer} className="vc-shell" />
   </CaseStudyLayout>;
 }
 
 function PhaseHeading({ label, title, intro }) {
-  return <header className="vaca-phase-heading"><div><SectionLabel>{label}</SectionLabel><h2>{title}</h2></div><p>{intro}</p></header>;
+  return <header className="vc-phase-heading"><div><SectionLabel>{label}</SectionLabel><h2>{title}</h2></div><p>{intro}</p></header>;
 }
 
-function VacaFundDemo({ lang }) {
-  const people = lang === 'es' ? ['Rodrigo', 'Caro', 'Diego'] : ['Rodrigo', 'Caro', 'Diego'];
-  const [active, setActive] = useState([true, true, false]);
-  const balance = active.filter(Boolean).length * 160;
-  const toggle = (index) => setActive((current) => current.map((value, itemIndex) => itemIndex === index ? !value : value));
-
-  return <div className="vaca-fund-demo">
-    <div className="vaca-fund-brand"><span>VACA</span><small>{lang === 'es' ? 'Fondo del depa' : 'Apartment fund'}</small></div>
-    <div className="vaca-fund-balance"><small>{lang === 'es' ? 'Balance compartido' : 'Shared balance'}</small><strong>S/ {balance}</strong><span>{active.filter(Boolean).length} / 3 {lang === 'es' ? 'aportes listos' : 'contributions ready'}</span></div>
-    <div className="vaca-fund-members">{people.map((person, index) => <button key={person} className={active[index] ? 'is-active' : ''} onClick={() => toggle(index)} aria-pressed={active[index]}><i>{person[0]}</i><span><strong>{person}</strong><small>{active[index] ? (lang === 'es' ? 'Aportó S/ 160' : 'Added S/ 160') : (lang === 'es' ? 'Aporte pendiente' : 'Contribution pending')}</small></span><b>{active[index] ? '✓' : '+'}</b></button>)}</div>
-    <p>{lang === 'es' ? 'Prueba el fondo: activa o retira cada aporte.' : 'Try the fund: add or remove each contribution.'}</p>
-  </div>;
-}
-
-function VacaPhone({ screen, lang, onNavigate }) {
-  const activeTab = screen.id === 'home' ? 'home' : ['onboarding', 'invite'].includes(screen.id) ? 'group' : 'fund';
-  const tabs = [
-    { id: 'home', label: lang === 'es' ? 'Inicio' : 'Home', screenId: 'home', icon: House },
-    { id: 'fund', label: lang === 'es' ? 'Fondo' : 'Fund', screenId: 'topup', icon: WalletCards },
-    { id: 'group', label: lang === 'es' ? 'Grupo' : 'Group', screenId: 'invite', icon: UsersRound }
-  ];
-
-  return <div className={`vaca-phone tone-${screen.tone}`}>
-    <div className="vaca-phone-island" />
-    <div className="vaca-phone-status"><span>9:41</span><span>•••</span></div>
-    <div className="vaca-phone-screen">
-      <header><span>vaca</span><i>{screen.tab}</i></header>
-      <small>{screen.title}</small><strong>{screen.amount}</strong><p>{screen.body}</p>
-      <div className="vaca-phone-card"><WalletCards /><span>{screen.detail}</span></div>
-      <div className="vaca-phone-progress"><i /><i /><i /></div>
-      <button>{screen.action}</button>
-    </div>
-    <nav aria-label={lang === 'es' ? 'Navegación del fondo' : 'Fund navigation'}>{tabs.map((tab) => <button type="button" key={tab.id} className={activeTab === tab.id ? 'is-active' : ''} aria-current={activeTab === tab.id ? 'page' : undefined} onClick={() => onNavigate(tab.screenId)}><tab.icon aria-hidden="true" /><span>{tab.label}</span></button>)}</nav>
-  </div>;
+function Figure({ src, alt, caption, wide = false, tall = false }) {
+  return <figure className={`vc-figure ${wide ? 'is-wide' : ''} ${tall ? 'is-tall' : ''}`}>
+    <a href={src} target="_blank" rel="noreferrer" aria-label={alt}><img src={src} alt={alt} loading="lazy" decoding="async" /></a>
+    {caption && <figcaption>{caption}</figcaption>}
+  </figure>;
 }

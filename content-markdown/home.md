@@ -84,7 +84,7 @@ Conectar en LinkedIn
 
 ### Trabajo seleccionado
 
-Cuatro casos de estudio: uno profesional de UX para email y tres proyectos conceptuales sobre estados transaccionales, decisiones financieras y gastos compartidos.
+Un caso profesional de UX para email en BBVA Perú, un sistema de diseño para la app del Banco de la Nación y un producto conceptual llevado hasta un prototipo navegable.
 
 ### BBVA Perú
 
@@ -92,13 +92,13 @@ Caso profesional · UX para email
 
 Una oferta distinta para cada cliente. Un email que debía funcionar para todos.
 
-- Email UX
+- UX para email
 - Compliance
 - SFMC
 
 #### Información al interactuar
 
-- Rol: Product Designer / UX/UI Designer
+- Rol: Diseñador UX
 - Problema: Cada cliente recibía una oferta variable que debía entenderse rápido y cumplir restricciones bancarias.
 - Contribución: Jerarquía de información, módulos responsive y preparación de activos para Salesforce Marketing Cloud.
 
@@ -108,49 +108,29 @@ Enlace: /casos/bbva
 
 Alt text: BBVA Perú project cover
 
-### Yape
+### Banco de la Nación
 
-Proyecto conceptual · Estados transaccionales
+Proyecto conceptual · Sistema de diseño
 
-¿Qué haces cuando Yape no puede confirmar si tu dinero llegó? Una propuesta para comunicar la espera y ofrecer una siguiente acción clara.
+Once tareas escondidas en un solo menú. Nación, un sistema de 68 tokens y 22 componentes documentados, aplicado a una transferencia a celular de principio a fin.
 
-- UX Audit
-- Microcopy
-- State System
-
-#### Información al interactuar
-
-- Rol: UX/UI Designer
-- Problema: Un estado sin confirmación puede llevar al usuario a repetir una transferencia o buscar ayuda.
-- Contribución: Arquitectura propuesta de estados, expectativas y opciones de recuperación.
-
-CTA: Explorar caso completo
-
-Enlace: /casos/yape
-
-Alt text: Yape project cover
-
-### Allpa
-
-Proyecto conceptual · Finanzas conductuales
-
-¿Puede tu reloj hacerte pensar dos veces antes de pagar? Un concepto para mostrar el efecto de una compra sobre el flujo de caja antes de confirmarla.
-
-- watchOS
-- Behavioral Economics
-- Cash-flow UX
+- Design system
+- Tokens
+- Documentación
 
 #### Información al interactuar
 
 - Rol: Product Designer
-- Problema: El impacto de una compra suele revisarse después del gasto, cuando ya no puede cambiar la decisión.
-- Contribución: Intervención contextual propuesta para Apple Watch e iOS antes de confirmar el pago.
+- Problema: Las tareas estaban escondidas en un menú de once opciones y la app no compartía reglas con la web del banco.
+- Contribución: Auditoría, tokens en dos niveles, foundations, 22 componentes documentados, roadmap y un flujo de 10 pantallas.
 
 CTA: Explorar caso completo
 
-Enlace: /casos/allpa
+Enlace: /casos/banco-nacion
 
-Alt text: Allpa project cover
+Portada: `assets/cases/banco-nacion/caso/bn-portada.jpg` (pantallas de inicio y revisión de la transferencia).
+
+Alt text: Banco de la Nación project cover
 
 ### Vaca
 

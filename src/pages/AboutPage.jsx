@@ -22,7 +22,7 @@ const CONTENT = {
     nav: { personal: 'Personal', story: 'Historia', experience: 'Experiencia', contact: 'Contacto' },
     eyebrow: 'Producto digital · Banca · UX/UI',
     name: 'Rodrigo Aquije Vásquez',
-    role: 'Product Designer & UX/UI Designer',
+    role: 'Product Designer',
     quote: 'No empecé mi carrera en diseño.',
     intro: 'Estudié Economía y pasé más de cuatro años trabajando en riesgo crediticio y evaluación de portafolios. Con el tiempo decidí acercarme a otra parte del problema: cómo se presenta la información y qué necesita una persona para tomar una decisión.',
     introTwo: 'En Fahrenheit DDB diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad de BBVA Perú. Trabajo con versiones para móvil y escritorio y con las restricciones propias del canal, la marca y el compliance bancario.',
@@ -59,8 +59,8 @@ const CONTENT = {
     experienceTitle: 'Trayectoria profesional.',
     experienceIntro: 'Cargos, fechas y responsabilidades verificadas.',
     roles: [
-      { company: 'Fahrenheit DDB · BBVA Perú', date: 'Ago 2026 — Presente', role: 'Product Designer / UX/UI Designer', body: 'Diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad. Construyo módulos responsive, organizo contenido variable y preparo activos para Salesforce Marketing Cloud bajo requisitos de marca, compatibilidad y compliance bancario.' },
-      { company: 'Amsterdam · BBVA Perú', date: 'Ago 2025 — Ago 2026', role: 'Product Designer / UX/UI Designer', body: 'Asumí el diseño y la ejecución de campañas de mailing para el mismo producto de BBVA Perú. Trabajé con producto y marketing para alinear jerarquía, contenido y llamadas a la acción con los objetivos de cada campaña.' },
+      { company: 'Fahrenheit DDB · BBVA Perú', date: 'Ago 2026 — Presente', role: 'Diseñador UX', body: 'Diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad. Construyo módulos responsive, organizo contenido variable y preparo activos para Salesforce Marketing Cloud bajo requisitos de marca, compatibilidad y compliance bancario.' },
+      { company: 'Amsterdam · BBVA Perú', date: 'Ago 2025 — Ago 2026', role: 'Diseñador UX', body: 'Asumí el diseño y la ejecución de campañas de mailing para el mismo producto de BBVA Perú. Trabajé con producto y marketing para alinear jerarquía, contenido y llamadas a la acción con los objetivos de cada campaña.' },
       { company: 'UTOPIQ · CENTRUM PUCP', date: 'Feb 2025 — Ago 2025', role: 'Diseñador UX/UI & Gráfico', body: 'Diseñé y mantuve landing pages, productos de capacitación y piezas de adquisición para CENTRUM PUCP, con foco en coherencia de marca y conversión.' },
       { company: 'Restaurante Reina Inca', date: '2022 — 2024', role: 'Diseñador Gráfico & Visual', body: 'Desarrollé la identidad visual del restaurante y un sistema de contenidos para redes sociales, materiales promocionales y otros puntos de contacto de marca.' },
       { company: 'Caja Prymera', date: '2021 — 2022', role: 'Analista de Portafolio', body: 'Analicé riesgo crediticio y evalué el comportamiento de portafolios para apoyar su seguimiento y control.' },
@@ -79,14 +79,14 @@ const CONTENT = {
     connect: 'Conectemos', connectTitle: 'Conversemos sobre el problema real.', linkedinNetwork: 'Red profesional',
     ctaLabel: 'Próxima conversación',
     ctaTitle: 'Trabajemos en productos donde la claridad sí importa.',
-    ctaBody: 'Estoy abierto a roles y proyectos donde producto, sistemas y contexto financiero se encuentren. Si ese es el reto, conversemos.',
+    ctaBody: 'Busco roles de Product Designer donde las decisiones de diseño se prueben con usuarios y se midan. Si ese es el reto, conversemos.',
     email: 'Copiar email', copied: 'Email copiado', linkedin: 'Conectar en LinkedIn', cv: 'Ver currículum', footer: 'Diseñado y construido en Lima.'
   },
   en: {
     nav: { personal: 'Personal', story: 'Story', experience: 'Experience', contact: 'Contact' },
     eyebrow: 'Digital product · Banking · UX/UI',
     name: 'Rodrigo Aquije Vásquez',
-    role: 'Product Designer & UX/UI Designer',
+    role: 'Product Designer',
     quote: 'I did not begin my career in design.',
     intro: 'I studied Economics and spent more than four years working in credit risk and portfolio evaluation. Over time, I moved closer to another part of the problem: how information is presented and what a person needs to make a decision.',
     introTwo: 'At Fahrenheit DDB, I design UX for BBVA Peru’s personal-loan email campaigns. I work across mobile and desktop versions within the channel, brand and banking-compliance constraints.',
@@ -120,8 +120,8 @@ const CONTENT = {
     experienceLabel: 'Experience', experienceTitle: 'Professional experience.',
     experienceIntro: 'Verified roles, dates and responsibilities.',
     roles: [
-      { company: 'Fahrenheit DDB · BBVA Peru', date: 'Aug 2026 — Present', role: 'Product Designer / UX/UI Designer', body: 'I design email UX for personal-loan campaigns. I build responsive modules, organize variable content and prepare assets for Salesforce Marketing Cloud under brand, compatibility and banking-compliance requirements.' },
-      { company: 'Amsterdam · BBVA Peru', date: 'Aug 2025 — Aug 2026', role: 'Product Designer / UX/UI Designer', body: 'I handled the design and execution of email campaigns for the same BBVA Peru product. I worked with product and marketing to align hierarchy, content and calls to action with each campaign’s goals.' },
+      { company: 'Fahrenheit DDB · BBVA Peru', date: 'Aug 2026 — Present', role: 'UX Designer', body: 'I design email UX for personal-loan campaigns. I build responsive modules, organize variable content and prepare assets for Salesforce Marketing Cloud under brand, compatibility and banking-compliance requirements.' },
+      { company: 'Amsterdam · BBVA Peru', date: 'Aug 2025 — Aug 2026', role: 'UX Designer', body: 'I handled the design and execution of email campaigns for the same BBVA Peru product. I worked with product and marketing to align hierarchy, content and calls to action with each campaign’s goals.' },
       { company: 'UTOPIQ · CENTRUM PUCP', date: 'Feb 2025 — Aug 2025', role: 'UX/UI & Graphic Designer', body: 'I designed and maintained landing pages, training products and acquisition assets for CENTRUM PUCP, focusing on brand consistency and conversion.' },
       { company: 'Restaurante Reina Inca', date: '2022 — 2024', role: 'Graphic & Visual Designer', body: 'I developed the restaurant’s visual identity and a content system for social media, promotional materials and other brand touchpoints.' },
       { company: 'Caja Prymera', date: '2021 — 2022', role: 'Portfolio Analyst', body: 'I analyzed credit risk and evaluated portfolio behavior to support monitoring and control.' },
@@ -139,7 +139,7 @@ const CONTENT = {
     ],
     connect: 'Let’s connect', connectTitle: 'Let’s discuss the real problem.', linkedinNetwork: 'Professional network',
     ctaLabel: 'Next conversation', ctaTitle: 'Let’s work on products where clarity matters.',
-    ctaBody: 'I am open to roles and projects where product, systems and financial context meet. If that is the challenge, let’s talk.',
+    ctaBody: 'I am looking for Product Designer roles where design decisions are tested with users and measured. If that is the challenge, let’s talk.',
     email: 'Copy email', copied: 'Email copied', linkedin: 'Connect on LinkedIn', cv: 'View résumé', footer: 'Designed and built in Lima.'
   }
 };

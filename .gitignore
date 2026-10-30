@@ -4,3 +4,13 @@ dist-ssr
 *.local
 .DS_Store
 package-lock.json
+# Archivos locales de herramientas y respaldos
+portafolio.rar
+*.rar
+profile-claim.json
+profile-claim.lock
+.linkedin-mcp-profile/
+.runtime/
+tmp/
+trace-runs/
+patchright-browsers/

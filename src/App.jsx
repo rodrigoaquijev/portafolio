@@ -7,6 +7,7 @@ import CaseBBVA from './pages/CaseBBVA.jsx';
 import CaseYape from './pages/CaseYape.jsx';
 import CaseAllpa from './pages/CaseAllpa.jsx';
 import CaseVaca from './pages/CaseVaca.jsx';
+import CaseBancoNacion from './pages/CaseBancoNacion.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
       <Route path="/casos/yape" element={<CaseYape />} />
       <Route path="/casos/allpa" element={<CaseAllpa />} />
       <Route path="/casos/vaca" element={<CaseVaca />} />
+      <Route path="/casos/banco-nacion" element={<CaseBancoNacion />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </SiteDesignSystemProvider>;

@@ -11,11 +11,11 @@ export const BBVA_CASE = defineCaseStudy({
       headerSubtitle: 'Caso de estudio · BBVA Perú',
       nav: { discover: 'Discover', define: 'Define', develop: 'Develop', deliver: 'Deliver' },
       hero: {
-        eyebrow: 'BBVA Perú · CRM & Email UX · 2024–2025',
+        eyebrow: 'BBVA Perú · CRM & Email UX · 2025',
         title: 'Convertir una oferta de crédito en una experiencia clara.',
         intro: 'Diseño y desarrollo end-to-end de comunicaciones CRM para BBVA Perú: jerarquía visual, compliance regulatorio y personalización dinámica, implementados directamente en Salesforce Marketing Cloud.',
         disclosure: 'Por confidencialidad, algunos nombres y datos fueron modificados. La implementación técnica y las decisiones de diseño son reales.',
-        meta: [['Rol', 'UX/UI Designer · CRM'], ['Cliente', 'BBVA Perú · Agencia Amsterdam'], ['Plataforma', 'Salesforce Marketing Cloud'], ['Periodo', '2024–2025']],
+        meta: [['Rol', 'Diseñador UX'], ['Cliente', 'BBVA Perú · Agencia Amsterdam'], ['Plataforma', 'Salesforce Marketing Cloud'], ['Periodo', '2025']],
         problem: 'Un correo que se leía como documento legal, no como una oferta.',
         solution: 'Reordenar la jerarquía para que el beneficio aparezca primero, sin alterar el bloque de compliance.',
         role: 'UX/UI e implementación técnica end-to-end en Salesforce Marketing Cloud.'
@@ -93,11 +93,11 @@ export const BBVA_CASE = defineCaseStudy({
       headerSubtitle: 'Case study · BBVA Peru',
       nav: { discover: 'Discover', define: 'Define', develop: 'Develop', deliver: 'Deliver' },
       hero: {
-        eyebrow: 'BBVA Peru · CRM & Email UX · 2024–2025',
+        eyebrow: 'BBVA Peru · CRM & Email UX · 2025',
         title: 'Turning a credit offer into a clear experience.',
         intro: 'End-to-end design and development of CRM communications for BBVA Peru: visual hierarchy, regulatory compliance and dynamic personalization implemented directly in Salesforce Marketing Cloud.',
         disclosure: 'Some names and data were modified for confidentiality. The implementation and design decisions are real.',
-        meta: [['Role', 'UX/UI Designer · CRM'], ['Client', 'BBVA Peru · Amsterdam Agency'], ['Platform', 'Salesforce Marketing Cloud'], ['Period', '2024–2025']],
+        meta: [['Role', 'UX Designer'], ['Client', 'BBVA Peru · Amsterdam Agency'], ['Platform', 'Salesforce Marketing Cloud'], ['Period', '2025']],
         problem: 'An email that read like a legal document rather than an offer.',
         solution: 'Reorder hierarchy so the benefit comes first without changing compliance content.',
         role: 'End-to-end UX/UI and technical implementation in Salesforce Marketing Cloud.'

@@ -12,7 +12,7 @@ export default function NextCase({ current }) {
   if (!entry || !content) return null;
 
   return <section className={`next-case-panel next-case--${entry.next} case-reveal`} aria-labelledby={`next-${current}-title`}>
-    <div className="next-case-orbit" aria-hidden="true"><i /><i /><span>{entry.next}</span></div>
+    <div className="next-case-orbit" aria-hidden="true"><i /><i /><span>{entry.mark || entry.next}</span></div>
     <div className="next-case-heading">
       <span>{lang === 'es' ? 'Siguiente caso' : 'Next case'}</span>
       <h2 id={`next-${current}-title`}>{content.title}</h2>

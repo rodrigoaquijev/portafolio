@@ -655,7 +655,7 @@ body.is-loading { overflow: hidden; }
 .projects-section .ref-heading-row { grid-template-columns: 1fr minmax(320px, 430px); align-items: end; }
 .projects-section .ref-heading-row > div { display: grid; gap: 18px; }
 .projects-section .ref-heading-row > p { padding-bottom: 4px; font-size: var(--type-step-0); }
-.case-square-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 24px; align-items: start; }
+.case-square-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 24px; align-items: start; }
 .case-square-card { min-width: 0; }
 .case-square-link { display: block; color: inherit; }
 .case-square-link:focus-visible { outline: 2px solid var(--accent-emerald); outline-offset: 5px; border-radius: 22px; }

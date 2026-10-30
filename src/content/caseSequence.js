@@ -1,9 +1,10 @@
 export const CASE_SEQUENCE = {
   bbva: {
-    next: 'yape',
-    href: '/casos/yape',
-    es: { title: 'Yape', subtitle: 'Arquitectura de estados para la incertidumbre transaccional.', description: 'Rediseño conductual del estado “en revisión” para evitar reintentos, pagos duplicados y dudas que terminan en soporte.', tags: ['Behavioral UX', 'State Systems', 'Microcopy'] },
-    en: { title: 'Yape', subtitle: 'State architecture for transactional uncertainty.', description: 'A behavioral redesign of the under-review state to prevent retries, duplicate payments and uncertainty that becomes support demand.', tags: ['Behavioral UX', 'State Systems', 'Microcopy'] }
+    next: 'banco-nacion',
+    mark: 'nación',
+    href: '/casos/banco-nacion',
+    es: { title: 'Banco de la Nación', subtitle: 'Un sistema de diseño para la app del banco.', description: 'Tokens primitivos y semánticos, foundations, 22 componentes documentados y una transferencia a celular construida solo con la biblioteca.', tags: ['Design system', 'Tokens', 'Documentación'] },
+    en: { title: 'Banco de la Nación', subtitle: 'A design system for the bank’s app.', description: 'Primitive and semantic tokens, foundations, 22 documented components and a phone transfer built only with the library.', tags: ['Design system', 'Tokens', 'Documentation'] }
   },
   yape: {
     next: 'allpa',
@@ -14,13 +15,19 @@ export const CASE_SEQUENCE = {
   allpa: {
     next: 'vaca',
     href: '/casos/vaca',
-    es: { title: 'Vaca', subtitle: 'Un fondo compartido que reemplaza al “me debes”.', description: 'Producto conceptual para roommates: todos aportan antes del gasto y la casa paga desde un balance común.', tags: ['Social FinTech', 'Wallet UX', 'Design Thinking'] },
-    en: { title: 'Vaca', subtitle: 'A shared fund that replaces “you owe me.”', description: 'A concept for roommates: everyone contributes before spending and the household pays from one shared balance.', tags: ['Social FinTech', 'Wallet UX', 'Design Thinking'] }
+    es: { title: 'Vaca', subtitle: 'Un fondo compartido que reemplaza al “me debes”.', description: 'Producto conceptual para roommates: todos aportan antes del gasto y la casa paga desde un fondo común.', tags: ['Product design', 'User flows', 'Prototipo navegable'] },
+    en: { title: 'Vaca', subtitle: 'A shared fund that replaces “you owe me.”', description: 'A concept for roommates: everyone contributes before spending and the household pays from one shared fund.', tags: ['Product design', 'User flows', 'Clickable prototype'] }
+  },
+  'banco-nacion': {
+    next: 'vaca',
+    href: '/casos/vaca',
+    es: { title: 'Vaca', subtitle: 'Un fondo compartido que reemplaza al “me debes”.', description: 'Producto conceptual para roommates: todos aportan antes del gasto y la casa paga desde un fondo común.', tags: ['Product design', 'User flows', 'Prototipo navegable'] },
+    en: { title: 'Vaca', subtitle: 'A shared fund that replaces “you owe me.”', description: 'A concept for roommates: everyone contributes before spending and the household pays from one shared fund.', tags: ['Product design', 'User flows', 'Clickable prototype'] }
   },
   vaca: {
     next: 'bbva',
     href: '/casos/bbva',
-    es: { title: 'BBVA Perú', subtitle: 'Convertir una oferta de crédito en una experiencia clara.', description: 'Diseño e implementación de comunicaciones CRM con jerarquía, personalización dinámica y compliance bancario.', tags: ['Email UX', 'Salesforce MC', 'Design Engineering'] },
-    en: { title: 'BBVA Peru', subtitle: 'Turning a credit offer into a clear experience.', description: 'Design and implementation of CRM communications balancing hierarchy, dynamic personalization and bank compliance.', tags: ['Email UX', 'Salesforce MC', 'Design Engineering'] }
+    es: { title: 'BBVA Perú', subtitle: 'Convertir una oferta de crédito en una experiencia clara.', description: 'Diseño e implementación de comunicaciones CRM con jerarquía, personalización dinámica y compliance bancario.', tags: ['Email UX', 'Salesforce MC', 'Diseño responsive'] },
+    en: { title: 'BBVA Peru', subtitle: 'Turning a credit offer into a clear experience.', description: 'Design and implementation of CRM communications balancing hierarchy, dynamic personalization and bank compliance.', tags: ['Email UX', 'Salesforce MC', 'Responsive design'] }
   }
 };

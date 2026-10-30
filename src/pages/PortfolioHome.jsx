@@ -13,8 +13,7 @@ import SiteFooter from '../components/SiteFooter.jsx';
 import { useSiteDesignSystem } from '../components/SiteDesignSystem.jsx';
 import avatarImage from '../../assets/avatar.webp';
 import bbvaCover from '../../assets/359shots_so.webp';
-import yapeCover from '../../assets/216shots_so.webp';
-import allpaCover from '../../assets/344shots_so.webp';
+import nacionCover from '../../assets/cases/banco-nacion/caso/bn-portada.jpg';
 
 const CLIENTS = {
   es: [['Fahrenheit DDB', 'Agencia'], ['BBVA Perú', 'Banca'], ['Amsterdam', 'Agencia digital'], ['CENTRUM PUCP', 'Educación ejecutiva'], ['UTOPIQ', 'EdTech']],
@@ -24,19 +23,19 @@ const CLIENTS = {
 const CONTENT = {
   es: {
     nav: { about: 'Sobre mí', work: 'Proyectos', capabilities: 'Especialidades', contact: 'Contacto' },
-    role: 'Product Designer & UX/UI Designer', location: 'Lima, Perú', eyebrow: 'Producto digital · Banca · UX/UI', title: 'Rodrigo Aquije',
-    profile: 'Economía · Banca · Diseño',
-    bio: 'Soy Product Designer y UX/UI Designer con formación en Economía y más de cuatro años de experiencia previa en riesgo crediticio y evaluación de portafolios. Esa base me ayuda a conectar decisiones de interfaz con regulación, comportamiento y objetivos de negocio.',
-    bioDetail: 'Actualmente trabajo en Fahrenheit DDB, donde diseño UX para campañas de mailing de Préstamos de Libre Disponibilidad de BBVA Perú. Trabajo con versiones para móvil y escritorio y con las restricciones propias del canal, la marca y el compliance bancario.',
-    about: 'Sobre mí', aboutTitle: 'Pasé del análisis de riesgo crediticio al diseño UX para banca.',
-    aboutCopy: 'Antes de trabajar en UX/UI pasé más de cuatro años analizando riesgo crediticio y portafolios. Esa experiencia me ayuda a entender cómo una decisión de interfaz afecta al usuario, la operación y los objetivos comerciales.',
-    aboutAside: 'Hoy aplico esa base en UX para email dentro de BBVA Perú y la complemento con diseño visual, prototipado y desarrollo front-end asistido por IA.', aboutCta: 'Conocer más sobre mi trayectoria',
+    role: 'Product Designer', location: 'Lima, Perú', eyebrow: 'Producto digital · UX/UI · Prototipos en código', title: 'Rodrigo Aquije',
+    profile: 'Producto · UX/UI · Código',
+    bio: 'Soy Product Designer en Lima. Diseño flujos, estados e interfaces, y construyo prototipos en código con IA para probar las decisiones antes de que lleguen a desarrollo.',
+    bioDetail: 'Hoy trabajo como Diseñador UX en Fahrenheit DDB para BBVA Perú. Diseño las campañas de mailing de Préstamos de Libre Disponibilidad para móvil y escritorio, y trabajo con producto y marketing en torno a los KPIs de cada campaña.',
+    about: 'Sobre mí', aboutTitle: 'Empecé analizando datos. Hoy diseño productos.',
+    aboutCopy: 'Estudié Economía y pasé más de cuatro años en análisis de riesgo crediticio antes de dedicarme al diseño. De esa etapa conservo una forma de trabajar: partir de datos, entender las restricciones y medir las consecuencias de cada decisión.',
+    aboutAside: 'Hoy la aplico en UX para email dentro de BBVA Perú y la complemento con diseño visual y prototipos en código construidos con IA.', aboutCta: 'Conocer más sobre mi trayectoria',
     hire: 'Contactar', hireDesc: 'Cuéntame el producto, el reto y el horizonte del proyecto.', name: 'Nombre', email: 'Email', brief: 'Contexto del proyecto', send: 'Preparar mensaje',
     copy: 'Copiar email', copied: 'Email copiado', trust: 'Experiencia & colaboraciones', selected: 'Casos de estudio', workTitle: 'Trabajo seleccionado',
-    workIntro: 'Cuatro casos de estudio: uno profesional de UX para email y tres proyectos conceptuales sobre estados transaccionales, decisiones financieras y gastos compartidos.', open: 'Explorar caso completo', soon: 'Caso en desarrollo',
+    workIntro: 'Un caso profesional de UX para email en BBVA Perú, un sistema de diseño para la app del Banco de la Nación y un producto conceptual llevado hasta un prototipo navegable.', open: 'Explorar caso completo', soon: 'Caso en desarrollo',
     capabilities: 'Habilidades & especialidades', connect: 'Conectemos', footer: 'Diseñado y construido en Lima.',
     linkedinAction: 'Conectar en LinkedIn', linkedinNetwork: 'Red profesional', overlayLabels: ['Rol', 'Problema', 'Contribución'],
-    avatarAction: 'Abrir nota de close friends', avatarHint: 'Close friends', avatarNote: 'Close friends · Nota personal', avatarStoryTitle: 'Si llegaste hasta aquí, ya estás dentro.',
+    avatarAction: 'Abrir nota personal', avatarHint: 'Lado personal', avatarNote: 'Nota personal', avatarStoryTitle: 'Si llegaste hasta aquí, ya estás dentro.',
     avatarStoryCopy: 'Escucho álbumes completos, vivo con Lola y Perlita y estoy aprendiendo a cocinar.', avatarStoryCta: 'Conocer mi lado personal',
     capabilityData: [
       { title: 'Producto y UX/UI', desc: 'Defino arquitectura de información, flujos, estados y prototipos para convertir requisitos de usuario y negocio en decisiones de interfaz.', proof: 'Del problema al prototipo que se puede revisar y probar.', chips: ['Figma', 'Framer', 'Investigación de usuarios', 'Prototipado'] },
@@ -44,27 +43,26 @@ const CONTENT = {
       { title: 'Diseño visual e IA', desc: 'Combino herramientas visuales con agentes de IA para explorar alternativas, documentar decisiones y construir prototipos con mayor rapidez.', proof: 'La IA acelera la ejecución; el criterio de producto y la revisión siguen siendo míos.', chips: ['Adobe Creative Cloud', 'Codex', 'Claude Code', 'Gemini'] }
     ],
     projects: [
-      { name: 'BBVA Perú', tag: 'Caso profesional · UX para email', headline: 'Una oferta distinta para cada cliente.', summary: 'Un email que debía funcionar para todos.', image: bbvaCover, href: '/casos/bbva', chips: ['UX para email', 'Compliance', 'SFMC'], overlay: { role: 'Product Designer / UX/UI Designer', problem: 'Cada cliente recibía una oferta variable que debía entenderse rápido y cumplir restricciones bancarias.', contribution: 'Jerarquía de información, módulos responsive y preparación de activos para Salesforce Marketing Cloud.' } },
-      { name: 'Yape', tag: 'Proyecto conceptual · Estados transaccionales', headline: '¿Qué haces cuando Yape no puede confirmar si tu dinero llegó?', summary: 'Una propuesta para comunicar la espera y ofrecer una siguiente acción clara.', image: yapeCover, href: '/casos/yape', chips: ['Auditoría UX', 'Microcopy', 'Sistema de estados'], overlay: { role: 'UX/UI Designer', problem: 'Un estado sin confirmación puede llevar al usuario a repetir una transferencia o buscar ayuda.', contribution: 'Arquitectura propuesta de estados, expectativas y opciones de recuperación.' } },
-      { name: 'Allpa', tag: 'Proyecto conceptual · Finanzas conductuales', headline: '¿Puede tu reloj hacerte pensar dos veces antes de pagar?', summary: 'Un concepto para mostrar el efecto de una compra sobre el flujo de caja antes de confirmarla.', image: allpaCover, href: '/casos/allpa', chips: ['watchOS', 'Economía conductual', 'UX de flujo de caja'], overlay: { role: 'Product Designer', problem: 'El impacto de una compra suele revisarse después del gasto, cuando ya no puede cambiar la decisión.', contribution: 'Intervención contextual propuesta para Apple Watch e iOS antes de confirmar el pago.' } },
-      { name: 'Vaca', tag: 'Proyecto conceptual · Gastos compartidos', headline: 'Dividir la cuenta es fácil. Cobrarle a tus roommates no.', summary: 'Vaca propone reunir el dinero antes de pagar los gastos comunes.', visual: 'vaca', href: '/casos/vaca', chips: ['Estrategia de producto', 'UX de wallet', 'Flujo conceptual'], overlay: { role: 'Product Designer', problem: 'Dividir la deuda no elimina el momento incómodo de cobrar.', contribution: 'Definición conceptual de un fondo prepagado para cubrir gastos del hogar antes de que aparezca la deuda.' } }
+      { name: 'BBVA Perú', tag: 'Caso profesional · UX para email', headline: 'Una oferta distinta para cada cliente.', summary: 'Un email que debía funcionar para todos.', image: bbvaCover, href: '/casos/bbva', chips: ['UX para email', 'Compliance', 'SFMC'], overlay: { role: 'Diseñador UX', problem: 'Cada cliente recibía una oferta variable que debía entenderse rápido y cumplir restricciones bancarias.', contribution: 'Jerarquía de información, módulos responsive y preparación de activos para Salesforce Marketing Cloud.' } },
+      { name: 'Banco de la Nación', tag: 'Proyecto conceptual · Sistema de diseño', headline: 'Once tareas escondidas en un solo menú.', summary: 'Nación, un sistema de 68 tokens y 22 componentes documentados, aplicado a una transferencia a celular de principio a fin.', image: nacionCover, href: '/casos/banco-nacion', chips: ['Design system', 'Tokens', 'Documentación'], overlay: { role: 'Product Designer', problem: 'Las tareas estaban escondidas en un menú de once opciones y la app no compartía reglas con la web del banco.', contribution: 'Auditoría, tokens en dos niveles, foundations, 22 componentes documentados, roadmap y un flujo de 10 pantallas.' } },
+      { name: 'Vaca', tag: 'Proyecto conceptual · Producto', headline: 'Dividir la cuenta es fácil. Cobrarle a tus roommates no.', summary: 'Un fondo compartido que se llena antes del gasto, llevado de la investigación de escritorio a un prototipo navegable.', visual: 'vaca', href: '/casos/vaca', chips: ['Product design', 'Flujos y estados', 'Prototipo navegable'], overlay: { role: 'Product Designer', problem: 'Dividir la deuda no elimina el momento incómodo de cobrar.', contribution: 'Benchmark, flujos, modelo de estados, kit de UI y un prototipo navegable de cinco tareas.' } }
     ]
   },
   en: {
     nav: { about: 'About', work: 'Projects', capabilities: 'Expertise', contact: 'Contact' },
-    role: 'Product Designer & UX/UI Designer', location: 'Lima, Peru', eyebrow: 'Digital product · Banking · UX/UI', title: 'Rodrigo Aquije',
-    profile: 'Economics · Banking · Design',
-    bio: 'I am a Product Designer and UX/UI Designer with a background in Economics and more than four years of previous experience in credit risk and portfolio evaluation. That foundation helps me connect interface decisions with regulation, behavior and business goals.',
-    bioDetail: 'I currently work at Fahrenheit DDB, where I design UX for BBVA Peru’s personal-loan email campaigns. I work across mobile and desktop versions within the channel, brand and banking-compliance constraints.',
-    about: 'About', aboutTitle: 'I moved from credit-risk analysis to UX design for banking.',
-    aboutCopy: 'Before working in UX/UI, I spent more than four years analyzing credit risk and portfolios. That experience helps me understand how an interface decision affects users, operations and commercial goals.',
-    aboutAside: 'Today I apply that foundation to email UX for BBVA Peru, complemented by visual design, prototyping and AI-assisted front-end development.', aboutCta: 'Learn more about my background',
+    role: 'Product Designer', location: 'Lima, Peru', eyebrow: 'Digital product · UX/UI · Code prototypes', title: 'Rodrigo Aquije',
+    profile: 'Product · UX/UI · Code',
+    bio: 'I am a Product Designer based in Lima. I design flows, states and interfaces, and I build code prototypes with AI to test decisions before they reach development.',
+    bioDetail: 'I currently work as a UX Designer at Fahrenheit DDB for BBVA Peru. I design the personal-loan email campaigns for mobile and desktop, and I work with product and marketing around each campaign’s KPIs.',
+    about: 'About', aboutTitle: 'I started by analyzing data. Now I design products.',
+    aboutCopy: 'I studied Economics and spent more than four years in credit-risk analysis before moving into design. From that stage I kept a way of working: start from data, understand the constraints and measure the consequences of each decision.',
+    aboutAside: 'Today I apply it to email UX for BBVA Peru, complemented by visual design and code prototypes built with AI.', aboutCta: 'Learn more about my background',
     hire: 'Get in touch', hireDesc: 'Share the product, the challenge and the project horizon.', name: 'Name', email: 'Email', brief: 'Project context', send: 'Prepare message',
     copy: 'Copy email', copied: 'Email copied', trust: 'Experience & collaborations', selected: 'Case studies', workTitle: 'Selected work',
-    workIntro: 'Four case studies: one professional email UX case and three conceptual projects about transaction states, financial decisions and shared expenses.', open: 'Explore full case', soon: 'Case in progress',
+    workIntro: 'A professional email UX case for BBVA Peru, a design system for the Banco de la Nación app and a concept product taken all the way to a clickable prototype.', open: 'Explore full case', soon: 'Case in progress',
     capabilities: 'Capabilities & craft', connect: 'Let’s connect', footer: 'Designed and built in Lima.',
     linkedinAction: 'Connect on LinkedIn', linkedinNetwork: 'Professional network', overlayLabels: ['Role', 'Problem', 'Contribution'],
-    avatarAction: 'Open close friends note', avatarHint: 'Close friends', avatarNote: 'Close friends · Personal note', avatarStoryTitle: 'If you made it here, you are already in.',
+    avatarAction: 'Open personal note', avatarHint: 'Personal side', avatarNote: 'Personal note', avatarStoryTitle: 'If you made it here, you are already in.',
     avatarStoryCopy: 'I listen to full albums, live with Lola and Perlita, and I am learning to cook.', avatarStoryCta: 'See my personal side',
     capabilityData: [
       { title: 'Product and UX/UI', desc: 'I define information architecture, flows, states and prototypes to turn user and business requirements into interface decisions.', proof: 'From the problem to a prototype that can be reviewed and tested.', chips: ['Figma', 'Framer', 'User research', 'Prototyping'] },
@@ -72,10 +70,9 @@ const CONTENT = {
       { title: 'Visual design and AI', desc: 'I combine visual tools with AI agents to explore alternatives, document decisions and build prototypes faster.', proof: 'AI speeds up execution; product judgment and review remain mine.', chips: ['Adobe Creative Cloud', 'Codex', 'Claude Code', 'Gemini'] }
     ],
     projects: [
-      { name: 'BBVA Peru', tag: 'Professional case · Email UX', headline: 'A different offer for every customer.', summary: 'One email that had to work for all of them.', image: bbvaCover, href: '/casos/bbva', chips: ['Email UX', 'Compliance', 'SFMC'], overlay: { role: 'Product Designer / UX/UI Designer', problem: 'Each customer received a variable offer that had to be understood quickly while meeting banking restrictions.', contribution: 'Information hierarchy, responsive modules and asset preparation for Salesforce Marketing Cloud.' } },
-      { name: 'Yape', tag: 'Concept project · Transaction states', headline: 'What do you do when Yape cannot confirm whether your money arrived?', summary: 'A proposal for communicating the wait and offering a clear next action.', image: yapeCover, href: '/casos/yape', chips: ['UX audit', 'Microcopy', 'State system'], overlay: { role: 'UX/UI Designer', problem: 'An unconfirmed state can lead users to repeat a transfer or seek help.', contribution: 'A proposed architecture for states, expectations and recovery options.' } },
-      { name: 'Allpa', tag: 'Concept project · Behavioral finance', headline: 'Can your watch make you think twice before paying?', summary: 'A concept that shows how a purchase affects cash flow before confirmation.', image: allpaCover, href: '/casos/allpa', chips: ['watchOS', 'Behavioral economics', 'Cash-flow UX'], overlay: { role: 'Product Designer', problem: 'The impact of a purchase is often reviewed after spending, when the decision can no longer change.', contribution: 'A proposed contextual intervention for Apple Watch and iOS before payment confirmation.' } },
-      { name: 'Vaca', tag: 'Concept project · Shared expenses', headline: 'Splitting the bill is easy. Collecting from your roommates is not.', summary: 'Vaca proposes gathering the money before paying shared expenses.', visual: 'vaca', href: '/casos/vaca', chips: ['Product strategy', 'Wallet UX', 'Concept flow'], overlay: { role: 'Product Designer', problem: 'Splitting a debt does not remove the awkward moment of collecting it.', contribution: 'A concept for a prepaid fund that covers household expenses before debt appears.' } }
+      { name: 'BBVA Peru', tag: 'Professional case · Email UX', headline: 'A different offer for every customer.', summary: 'One email that had to work for all of them.', image: bbvaCover, href: '/casos/bbva', chips: ['Email UX', 'Compliance', 'SFMC'], overlay: { role: 'UX Designer', problem: 'Each customer received a variable offer that had to be understood quickly while meeting banking restrictions.', contribution: 'Information hierarchy, responsive modules and asset preparation for Salesforce Marketing Cloud.' } },
+      { name: 'Banco de la Nación', tag: 'Concept project · Design system', headline: 'Eleven tasks hidden in a single menu.', summary: 'Nación, a system of 68 tokens and 22 documented components, applied to a phone transfer from start to finish.', image: nacionCover, href: '/casos/banco-nacion', chips: ['Design system', 'Tokens', 'Documentation'], overlay: { role: 'Product Designer', problem: 'Tasks were hidden in an eleven-item menu and the app shared no rules with the bank’s website.', contribution: 'Audit, two-level tokens, foundations, 22 documented components, roadmap and a 10-screen flow.' } },
+      { name: 'Vaca', tag: 'Concept project · Product', headline: 'Splitting the bill is easy. Collecting from your roommates is not.', summary: 'A shared fund that fills up before spending, taken from desk research to a clickable prototype.', visual: 'vaca', href: '/casos/vaca', chips: ['Product design', 'Flows and states', 'Clickable prototype'], overlay: { role: 'Product Designer', problem: 'Splitting a debt does not remove the awkward moment of collecting it.', contribution: 'Benchmark, flows, state model, UI kit and a five-task clickable prototype.' } }
     ]
   }
 };
@@ -94,7 +91,7 @@ export default function PortfolioHome() {
   const t = CONTENT[lang];
   const emailCopied = toast === t.copied;
 
-  useEffect(() => { document.title = 'Rodrigo Aquije — Product Designer & UX/UI Designer'; }, [lang]);
+  useEffect(() => { document.title = 'Rodrigo Aquije — Product Designer'; }, [lang]);
 
   useEffect(() => { const media = window.matchMedia('(prefers-reduced-motion: reduce)'); const update = () => setReducedMotion(media.matches); update(); media.addEventListener('change', update); return () => media.removeEventListener('change', update); }, []);
   useEffect(() => { document.body.classList.add('is-loading'); const delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 240 : 880; const timer = setTimeout(() => setLoading(false), delay); return () => { clearTimeout(timer); document.body.classList.remove('is-loading'); }; }, []);
@@ -153,7 +150,7 @@ export default function PortfolioHome() {
 }
 
 function CapabilityShader({ theme, reducedMotion }) { const isLight = theme === 'light'; return <div className="capabilities-shader" aria-hidden="true"><GrainGradient width="100%" height="100%" colors={isLight ? ['#F1F4F9', '#D8F4E7', '#DCE8FF', '#F4F7F3'] : ['#090B10', '#10241D', '#142035', '#090B10']} colorBack={isLight ? '#F1F4F9' : '#090B10'} softness={.88} intensity={.22} noise={.12} shape="corners" speed={reducedMotion ? 0 : .055} scale={1.15} maxPixelCount={700000} /></div>; }
-function LinkedInButton({ t }) { return <a className="ref-icon-button linkedin-hover" href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /><span className="linkedin-profile-card"><span className="linkedin-banner"><b>in</b></span><span className="linkedin-card-body"><img src={avatarImage} alt="" /><strong>Rodrigo Aquije V.</strong><small>Product Designer & UX/UI Designer</small><span className="linkedin-location">{t.location}</span><span className="linkedin-connect">{t.linkedinAction}</span></span></span></a>; }
+function LinkedInButton({ t }) { return <a className="ref-icon-button linkedin-hover" href="https://linkedin.com/in/rodrigo-aquije" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /><span className="linkedin-profile-card"><span className="linkedin-banner"><b>in</b></span><span className="linkedin-card-body"><img src={avatarImage} alt="" /><strong>Rodrigo Aquije V.</strong><small>Product Designer</small><span className="linkedin-location">{t.location}</span><span className="linkedin-connect">{t.linkedinAction}</span></span></span></a>; }
 function CaseCard({ project, t, onOpen }) {
   const cover = project.visual === 'vaca'
     ? <span className="case-generated-cover case-generated-cover--vaca" aria-hidden="true"><span className="vaca-cover-brand">vaca</span><span className="vaca-cover-ledger"><small>Fondo del depa</small><strong>S/ 480</strong><i><b /><b /><b /></i></span><span className="vaca-cover-members"><i>R</i><i>C</i><i>D</i></span></span>
