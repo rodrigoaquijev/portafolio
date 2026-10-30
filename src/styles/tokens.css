@@ -1,0 +1,300 @@
+/* ==========================================================================
+   SISTEMA DE DISEÑO DEL PORTAFOLIO — TOKENS
+   Única fuente de colores, tipografía, espaciado, forma y movimiento.
+   Nivel 1: primitivos (valores crudos). Nivel 2: semánticos (por tema).
+   Nivel 3: alias heredados, para que el CSS existente consuma el sistema.
+   Documentación: content-markdown/sistema-de-diseno-portafolio.md
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Primitivos
+   -------------------------------------------------------------------------- */
+:root {
+  /* Neutros fríos. Ningún fondo usa negro o blanco puros. */
+  --neutral-0: #FFFFFF;
+  --neutral-25: #F8FAFD;
+  --neutral-50: #F1F4F9;
+  --neutral-100: #E6EBF2;
+  --neutral-200: #D3DAE5;
+  --neutral-400: #94A3B8;
+  --neutral-500: #7D8AA0;
+  --neutral-600: #5A6779;
+  --neutral-700: #4B5A6F;
+  --neutral-800: #1E2638;
+  --neutral-850: #161C2A;
+  --neutral-900: #10141E;
+  --neutral-950: #090B10;
+  --neutral-ink: #0B111D;
+  --neutral-snow: #F8FAFC;
+
+  /* Acentos. El tono 400/500 sirve en fondos oscuros; el 700 en fondos claros. */
+  --cyan-400: #00E5FF;
+  --cyan-600: #0284C7;
+  --cyan-700: #0369A1;
+  --iris-400: #818CF8;
+  --iris-500: #6366F1;
+  --iris-600: #4F46E5;
+  --emerald-500: #10B981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --rose-400: #FB7185;
+  --rose-700: #BE123C;
+  --green-500: #1CD760;
+  --green-600: #0AA84F;
+
+  /* Familias */
+  --family-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --family-sans: 'Satoshi', 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --family-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* Escala tipográfica fija. Nada baja de 12 px. */
+  --fs-12: .75rem;
+  --fs-13: .8125rem;
+  --fs-14: .875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-24: 1.5rem;
+  --fs-28: 1.75rem;
+  --fs-32: 2rem;
+
+  /* Espaciado en base 4 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Forma */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Movimiento */
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --duration-slow: 600ms;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Semánticos que no cambian con el tema
+   -------------------------------------------------------------------------- */
+:root {
+  --font-heading: var(--family-serif);
+  --font-body: var(--family-sans);
+  --font-meta: var(--family-mono);
+
+  /* Roles de texto */
+  --text-caption: var(--fs-12);
+  --text-meta: var(--fs-13);
+  --text-small: var(--fs-14);
+  --text-body: var(--fs-16);
+  --text-lead: clamp(var(--fs-18), 1rem + .45vw, var(--fs-20));
+  --text-title-sm: var(--fs-20);
+  --text-title: var(--fs-24);
+  --text-h4: clamp(var(--fs-24), 1.2rem + 1vw, var(--fs-32));
+  --text-h3: clamp(var(--fs-28), 1.1rem + 2vw, 2.75rem);
+  --text-h2: clamp(2.25rem, 1.2rem + 3.2vw, 3.75rem);
+  --text-h1: clamp(2.75rem, 1.3rem + 4.6vw, 5rem);
+  --text-display: clamp(3.25rem, 1.2rem + 6.8vw, 7rem);
+
+  --leading-tight: 1.02;
+  --leading-heading: 1.1;
+  --leading-snug: 1.35;
+  --leading-body: 1.6;
+  --tracking-heading: -.015em;
+  --tracking-body: -.005em;
+  --tracking-meta: .04em;
+
+  /* Diagramación */
+  --container: 1180px;
+  --container-text: 68ch;
+  --gutter: 24px;
+  --container-width: min(100% - 2 * var(--gutter), var(--container));
+  --section-gap: var(--space-32);
+  --header-offset: 104px;
+  --target-min: 44px;
+
+  --card-radius: var(--radius-xl);
+  --focus-width: 2px;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --gutter: 16px;
+    --section-gap: var(--space-20);
+    --header-offset: 96px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Semánticos por tema. Todo texto cumple WCAG AA (4,5:1) sobre bg y surface.
+   -------------------------------------------------------------------------- */
+:root,
+:root[data-theme="light"] {
+  --color-bg: var(--neutral-50);
+  --color-surface: var(--neutral-0);
+  --color-surface-raised: var(--neutral-25);
+  --color-surface-sunken: var(--neutral-100);
+  --color-glass: rgba(255, 255, 255, .85);
+
+  --color-text: var(--neutral-ink);          /* 17,1:1 */
+  --color-text-secondary: var(--neutral-700); /* 6,4:1 */
+  --color-text-tertiary: var(--neutral-600);  /* 5,2:1 */
+
+  --color-border: rgba(11, 17, 29, .1);
+  --color-border-strong: rgba(11, 17, 29, .18);
+
+  --color-accent: var(--emerald-700);        /* 5,0:1 */
+  --color-accent-cyan: var(--cyan-700);      /* 5,4:1 */
+  --color-accent-iris: var(--iris-600);      /* 5,7:1 */
+  --color-accent-rose: var(--rose-700);      /* 5,7:1 */
+  --color-on-accent: var(--neutral-0);
+  --color-focus: var(--iris-600);
+
+  --color-close-friends: var(--green-600);
+  --color-close-friends-text: #15803D;        /* 5,0:1 */
+  --color-close-friends-highlight: #35D875;
+  --color-close-friends-shadow: rgba(5, 150, 105, .2);
+
+  --dock-bg: rgba(255, 255, 255, .94);
+  --dock-border: rgba(255, 255, 255, 1);
+  --dock-shadow:
+    0 20px 45px -8px rgba(15, 23, 42, .18),
+    0 0 0 1px rgba(15, 23, 42, .08),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  --ambient-1: rgba(99, 102, 241, .05);
+  --ambient-2: rgba(2, 132, 199, .04);
+  --shadow-raised: 0 24px 60px -32px rgba(11, 17, 29, .28);
+}
+
+:root[data-theme="dark"] {
+  --color-bg: var(--neutral-950);
+  --color-surface: var(--neutral-900);
+  --color-surface-raised: var(--neutral-850);
+  --color-surface-sunken: var(--neutral-800);
+  --color-glass: rgba(16, 20, 30, .75);
+
+  --color-text: var(--neutral-snow);          /* 17,6:1 */
+  --color-text-secondary: var(--neutral-400); /* 7,2:1 */
+  --color-text-tertiary: var(--neutral-500);  /* 5,3:1 */
+
+  --color-border: rgba(255, 255, 255, .1);
+  --color-border-strong: rgba(255, 255, 255, .18);
+
+  --color-accent: var(--emerald-500);
+  --color-accent-cyan: var(--cyan-400);
+  --color-accent-iris: var(--iris-400);
+  --color-accent-rose: var(--rose-400);
+  --color-on-accent: var(--neutral-950);
+  --color-focus: var(--cyan-400);
+
+  --color-close-friends: var(--green-500);
+  --color-close-friends-text: var(--green-500);
+  --color-close-friends-highlight: #7CF4A7;
+  --color-close-friends-shadow: rgba(28, 215, 96, .24);
+
+  --dock-bg: rgba(20, 26, 38, .85);
+  --dock-border: rgba(255, 255, 255, .18);
+  --dock-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, .85),
+    0 0 0 1px rgba(255, 255, 255, .12),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, .4);
+  --ambient-1: rgba(129, 140, 248, .06);
+  --ambient-2: rgba(0, 229, 255, .05);
+  --shadow-raised: 0 24px 60px -32px rgba(0, 0, 0, .7);
+}
+
+/* --------------------------------------------------------------------------
+   4. Alias heredados. El CSS de cada página usa estos nombres; apuntan al
+   sistema, así que un cambio arriba se propaga a todo el sitio.
+   -------------------------------------------------------------------------- */
+:root {
+  --bg-deep: var(--color-bg);
+  --bg-surface: var(--color-surface);
+  --bg-surface-elevated: var(--color-surface-raised);
+  --bg-glass-panel: var(--color-glass);
+  --text-pure: var(--color-text);
+  --text-muted: var(--color-text-secondary);
+  --text-subtle: var(--color-text-tertiary);
+  --border-subtle: var(--color-border);
+  --border-glass: var(--color-border-strong);
+  --accent-emerald: var(--color-accent);
+  --accent-cyan: var(--color-accent-cyan);
+  --accent-iris: var(--color-accent-iris);
+  --accent-rose: var(--color-accent-rose);
+  --user-accent: var(--color-accent);
+  --close-friends: var(--color-close-friends);
+  --close-friends-highlight: var(--color-close-friends-highlight);
+  --close-friends-shadow: var(--color-close-friends-shadow);
+
+  --font-display: var(--font-heading);
+  --font-serif: var(--font-heading);
+  --font-sans: var(--font-body);
+  --font-ui: var(--font-body);
+  --font-mono: var(--font-meta);
+
+  --type-step--1: var(--fs-14);
+  --type-step-0: var(--fs-16);
+  --type-step-1: var(--fs-20);
+  --type-step-2: var(--fs-24);
+  --type-step-3: var(--fs-32);
+  --type-step-4: 2.5rem;
+  --type-step-5: 3rem;
+  --type-step-6: 4rem;
+  --type-step-7: 5rem;
+
+  --space-xs: var(--space-2);
+  --space-sm: var(--space-4);
+  --space-md: var(--space-6);
+  --space-lg: var(--space-10);
+  --space-xl: var(--space-16);
+  --space-2xl: var(--space-24);
+}
+
+/* --------------------------------------------------------------------------
+   5. Base global
+   -------------------------------------------------------------------------- */
+html {
+  /* Instrument Serif solo tiene peso 400: evita negritas falsas. */
+  font-synthesis-weight: none;
+  scroll-padding-top: var(--header-offset);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+}
+
+h1, h2, h3, h4 { text-wrap: balance; }
+p, li, figcaption { text-wrap: pretty; }
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

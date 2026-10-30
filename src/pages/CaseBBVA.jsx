@@ -107,7 +107,7 @@ function BBVAEmailPreview({ segment, lang, compact = false }) {
     <div className="bbva-email-chrome"><i /><i /><i /><span>mail.bbva.pe</span></div>
     <div className="bbva-email-canvas">
       <header>BBVA</header>
-      <div className="bbva-email-banner"><small>{segment.profile}</small><h3>{segment.title}</h3><p>{segment.body}</p><button>{segment.action}</button></div>
+      <div className="bbva-email-banner"><small>{segment.profile}</small><p className="bbva-email-headline">{segment.title}</p><p>{segment.body}</p><button>{segment.action}</button></div>
       <div className="bbva-email-body"><span>{lang === 'es' ? 'Hola Julia,' : 'Hello Julia,'}</span><p>{lang === 'es' ? 'Tienes una oferta preaprobada y disponible para activar.' : 'You have a pre-approved offer ready to activate.'}</p><article><small>{lang === 'es' ? 'Hasta' : 'Up to'}</small><strong>S/ 34,600</strong><i><b /></i><button>{segment.action}</button></article><footer><ShieldCheck />TCEA 24.90% · {lang === 'es' ? 'Ver condiciones' : 'View conditions'}</footer></div>
     </div>
   </div>;

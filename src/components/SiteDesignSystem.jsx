@@ -16,8 +16,6 @@ export function SiteDesignSystemProvider({ children }) {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
     document.documentElement.dataset.audio = audio ? 'on' : 'off';
-    document.documentElement.dataset.typePair = 'contrast';
-    document.documentElement.dataset.typeScale = 'major-third';
     window.localStorage.setItem('ra-theme', theme);
     window.localStorage.setItem('ra-lang', lang);
   }, [theme, lang, audio]);

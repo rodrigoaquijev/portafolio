@@ -83,7 +83,7 @@ export default function MusicPlayer({ lang = 'es', track = EMPTY_TRACK }) {
       <div className="player-orbit" aria-hidden="true"><span><Disc3 /></span><i /><i /><i /></div>
       <div className="player-track-copy">
         <span><Music2 /> {messages.label}</span>
-        <h3>{displayTitle}</h3>
+        <p className="player-track-title">{displayTitle}</p>
         <p>{displayArtist}</p>
       </div>
       <div className="player-time"><strong>{formatTime(currentTime)}</strong><span>{formatTime(duration)}</span></div>
